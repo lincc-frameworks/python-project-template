@@ -1,0 +1,29 @@
+[project]
+name = "{{project_name}}"
+license = {file = "LICENSE"}
+readme = "README.md"
+authors = [
+    { name = "{{author_name}}", email = "{{author_email}}" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+]
+dynamic = ["version"]
+dependencies = [
+    "deprecated"
+]
+
+# On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
+[project.optional-dependencies]
+dev = [
+    "pytest"
+]
+
+[build-system]
+requires = ["setuptools","wheel"]
+build-backend = "setuptools.build_meta"

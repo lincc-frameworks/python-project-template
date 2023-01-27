@@ -9,3 +9,7 @@ module_name:
 author_name:
     type: str
     help: Your first and last name? i.e. Jenny Fantastic
+
+author_email:
+    type: str
+    help: Your preferred email address? i.e. jenny_fantastic@work.com
