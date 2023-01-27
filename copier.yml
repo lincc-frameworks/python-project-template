@@ -5,3 +5,7 @@ project_name:
 module_name:
     type: str
     help: What is your python module name?
+
+author_name:
+    type: str
+    help: Your first and last name? i.e. Jenny Fantastic
