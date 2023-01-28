@@ -14,4 +14,3 @@ author_name:
 author_email:
     type: str
     help: Your preferred email address?
-    default: jenny_fantastic@work.com
