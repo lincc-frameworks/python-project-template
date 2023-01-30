@@ -13,7 +13,7 @@ This template codifies LINCC-Framework's best practices for python code organiza
 5) Provide answers to the prompts
 6) Enjoy pure, uncut euphoria.
 
-## Post-euphoria {#post-euphoria}
+## Post-euphoria - Install your new package
 
 Ok, ok, calm down. I know, it's really great. 
 You should go ahead and install your new project using these instructions:
@@ -52,7 +52,7 @@ Notice that this template contains a `.github/workflows` directory with a `pytho
 ### Pre-commit is part of it too
 
 Once you have created a new project from the template, and start coding, you can save yourself from the embarassment of say, not including a blank line at the end of your .py file, by using pre-commit checks.
-After you have successfully run `pip install '.[dev]'` as part of the [post-euphoria](#post-euphoria) step, run `pre-commit install`.
+After you have successfully run `pip install '.[dev]'` as part of the "Post-euphoria - Install your new package" step, run `pre-commit install`.
 This will register all the pre-commit git hooks defined in .pre-commit-config.yaml with git so that they are run before a `git commit` is completed.
 
 This functionality relies on a the third-party tool, [pre-commit](https://pre-commit.com/). It's a very useful tool when paired with Github workflows. Since the workflows will typically prevent code merging if certain tests fail, by using pre-commit, the user can verify that their code will pass all the workflow checks prior to completing a git commit.

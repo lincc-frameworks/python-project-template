@@ -16,14 +16,15 @@ classifiers = [
 dynamic = ["version"]
 dependencies = [
     "deprecated",
-    "ipykernel"
+    "ipykernel", # Support for Jupyter notebooks
 ]
 
 # On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
 [project.optional-dependencies]
 dev = [
     "pytest",
-    "pre-commit"
+    "pre-commit", # Used to run checks before finalizing a git commit
+    "nbconvert", # Needed for pre-commit check to clear output from Python notebooks
 ]
 
 [build-system]
