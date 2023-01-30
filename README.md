@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This template codifies the best practices for python code organization, testing, documentation, and automation.
+This template codifies LINCC-Framework's best practices for python code organization, testing, documentation, and automation.
 
 ## How to use this Copier template:
 
