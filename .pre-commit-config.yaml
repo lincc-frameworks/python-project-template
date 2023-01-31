@@ -27,8 +27,8 @@ repos:
         name: Don't commit to main or master branch
 
     # verify that pyproject.toml is well formed
-    repos:
-    - repo: https://github.com/abravalheri/validate-pyproject
-      rev: main
-      hooks:
-        - id: validate-pyproject
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: main
+    hooks:
+      - id: validate-pyproject
+        name: Validate syntax of pyproject.toml
