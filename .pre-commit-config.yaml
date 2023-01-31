@@ -18,3 +18,10 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+
+    # prevents committing directly branches named 'main' and 'master'.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: no-commit-to-branch
+        name: Don't commit to main or master branch
