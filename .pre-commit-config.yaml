@@ -3,7 +3,18 @@ repos:
     hooks:
       - id: jupyter-nb-clear-output
         name: jupyter-nb-clear-output
+        description: Clear output from Jupyter notebooks
         files: \.ipynb$
         stages: [commit]
         language: system
         entry: jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace
+
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest-check
+        description: Run unit tests with pytest
+        entry: pytest --cov=. --cov-report=html
+        language: system
+        pass_filenames: false
+        always_run: true
