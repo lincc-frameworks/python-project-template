@@ -133,7 +133,7 @@ It is preferable that you create a new branch with a name like `issue/##/<short-
 
 Testing can be tricky. The current best way is to clone this repository locally, and use Copier to generate a test project locally, then verify your expected results.
 
-Copier will look for git tags to determine which version of the template to use. You probably don't want to create new tags while you're working template. Create test project using this signature to let Copier know to use the latest local version. See the [Copier documentation](https://copier.readthedocs.io/en/latest/generating/#regenerating-a-project) for more information.
+Copier will look for git tags to determine which version of the template to use. You probably don't want to create new tags while you're working on the template. Create a test project using this signature to let Copier know to use the latest local version. See the [Copier documentation](https://copier.readthedocs.io/en/latest/generating/#regenerating-a-project) for more information.
 
 ```
 >> copier --vcs-ref HEAD </local/path/to/template> </test/project/directory>
