@@ -14,3 +14,14 @@ author_name:
 author_email:
     type: str
     help: Your preferred email address?
+
+###
+# Below this line are Copier configuration options
+###
+
+# The subdirectory that contains the python-project-template. Allows template metadata to be separated from the template.
+_subdirectory: python_project_template
+
+# Tasks to execute after generating or updating a project
+_tasks:
+    - "git init"
