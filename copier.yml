@@ -4,7 +4,8 @@ project_name:
 
 module_name:
     type: str
-    help: What is your python module name?
+    help: What is your python module name? If left blank, will default to project_name.
+    default: {{project_name}}
 
 author_name:
     type: str
