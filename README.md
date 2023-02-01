@@ -60,28 +60,30 @@ Lots more output
 ...
 ```
 
-## Register pre-commit hooks
+## Initialize Git and register pre-commit hooks
 
 The tool `pre-commit` is an industry standard that will execute a set of tests prior to completing a git commit action. For instance, pre-commit can run unit tests to verify code coverage or linters to ensure adherence to style guides. Pre-commit documentation can be found [here](https://pre-commit.com/index.html).
 
-```
->> pre-commit install
-```
-
-## Add local version control to your project
-
-The process of setting up _local_ version control will look something like this:
+To function properly, pre-commit requires that the project is version controlled. So we initialize our directory as a git repository, then install pre-commit.
 
 ```
 >> git init[^1]
 Initialized empty Git repository in /path/to/destination/.git/
+
+>> pre-commit install
+```
+[^1]: If you haven't already, you can run `git config --global init.defaultBranch <name>` so that your default branch name isn't `master`.
+
+## Commit your new project locally
+
+Commit the project to your  _local_ version control like so to see the pre-commit checks run.
+
+```
 >> git checkout -b initial_branch
 Switched to a new branch 'initial_branch'
 >> git add .
 >> git commit -m 'Initial commit'
 ```
-
-[^1]: If you haven't already, you can run `git config --global init.defaultBranch <name>` so that your default branch name isn't `master`.
 
 ## Extra Credit - Push your work to GitHub
 
