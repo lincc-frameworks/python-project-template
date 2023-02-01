@@ -148,4 +148,4 @@ To be able to move quickly, there aren't many guardrails right now to prevent me
 
 ## Optional - Release a new version
 
-Once you've tested the updates you should create a new release to make them available. GitHub's [instructions](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) for doing so are here. Use your best judgement when incrementing the version. i.e. is this a major, minor, or 
+Once you've tested the updates you should create a new release to make them available. GitHub's [instructions](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) for doing so are here. Use your best judgement when incrementing the version. i.e. is this a major, minor, or patch fix.
