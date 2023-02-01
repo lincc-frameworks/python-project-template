@@ -1,10 +1,6 @@
-project_name:
+package_name:
     type: str
-    help: What is your project name?
-
-module_name:
-    type: str
-    help: What is your python module name?
+    help: What is your python package name?
 
 author_name:
     type: str
