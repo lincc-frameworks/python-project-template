@@ -41,7 +41,7 @@ Choose where you would like to create your new project, and call copier with the
 >> copier gh:lincc-frameworks/python-project-template <path/to/destination>
 ```
 
-After providing answers to the prompts, Copier will hydrate a project template and save it in the specified location.
+After providing answers to the prompts, Copier will hydrate a project template and save it in the specified location. Additionally Copier will run `git init` in the new project directory to initialize it as a local repository.
 
 ## Create a new environment and install your new package
 
@@ -60,19 +60,14 @@ Lots more output
 ...
 ```
 
-## Initialize Git and register pre-commit hooks
+## Register pre-commit hooks
 
-The tool `pre-commit` is an industry standard that will execute a set of tests prior to completing a git commit action. For instance, pre-commit can run unit tests to verify code coverage or linters to ensure adherence to style guides. Pre-commit documentation can be found [here](https://pre-commit.com/index.html).
-
-To function properly, pre-commit requires that the project is version controlled. So we initialize our directory as a git repository, then install pre-commit.
+One dependency installed by `pip install '.[dev]'` is `pre-commit`. Run the following command register pre-commit hooks with .git/hooks/pre-commit.
 
 ```
->> git init[^1]
-Initialized empty Git repository in /path/to/destination/.git/
-
 >> pre-commit install
 ```
-[^1]: If you haven't already, you can run `git config --global init.defaultBranch <name>` so that your default branch name isn't `master`.
+`pre-commit` is an industry standard tool that executes a set of tests prior to completing a `git commit` action. For example, `pre-commit` can run unit tests to verify code coverage and linters to ensure adherence to style guides. Additional documentation can be found [here](https://pre-commit.com/index.html).
 
 ## Commit your new project locally
 

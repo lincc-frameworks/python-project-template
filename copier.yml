@@ -1,10 +1,11 @@
 project_name:
     type: str
-    help: What is your project name?
+    help: What is the name of your project?
 
 module_name:
     type: str
-    help: What is your python module name?
+    help: What is your python module name? If left blank, will default to project_name.
+    default: "{{project_name}}"
 
 author_name:
     type: str
@@ -14,3 +15,14 @@ author_name:
 author_email:
     type: str
     help: Your preferred email address?
+
+###
+# Below this line are Copier configuration options.
+###
+
+# Subdirectory that contains the python-project-template. Allows template metadata to be separated from the template.
+_subdirectory: python-project-template
+
+# Tasks to execute after generating or updating a project.
+_tasks:
+    - "git init"
