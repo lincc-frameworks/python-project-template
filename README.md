@@ -62,11 +62,12 @@ Lots more output
 
 ## Register pre-commit hooks
 
-The tool `pre-commit` is an industry standard that will execute a set of tests prior to completing a git commit action. For instance, pre-commit can run unit tests to verify code coverage or linters to ensure adherence to style guides. Pre-commit documentation can be found [here](https://pre-commit.com/index.html).
+One dependency installed by `pip install '.[dev]'` is `pre-commit`. Run the following command register pre-commit hooks with .git/hooks/pre-commit.
 
 ```
 >> pre-commit install
 ```
+`pre-commit` is an industry standard tool that executes a set of tests prior to completing a `git commit` action. For example, `pre-commit` can run unit tests to verify code coverage and linters to ensure adherence to style guides. Additional documentation can be found [here](https://pre-commit.com/index.html).
 
 ## Commit your new project locally
 
