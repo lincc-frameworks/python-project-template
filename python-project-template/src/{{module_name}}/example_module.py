@@ -1,3 +1,5 @@
+"""An example module containing simplistic functions."""
+
 def greetings() -> str:
     """A friendly greeting for a future friend.
 
