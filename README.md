@@ -102,17 +102,35 @@ Copier will automatically check to see if a newer version of the original templa
 
 And of course, because your project is under version control, if you don't like the new changes, you can always revert back to the previous state. :)
 
+## Pre-commit comes with it
+
+No one wants the embarrassment of committing a .py file without a trailing blank line :scream: You'll immediately have access to [pre-commit](https://pre-commit.com/), an industry standard third-party tool.
+
+Using pre-commit before GitHub workflows start allows you to do a quick check of your code before it's committed. This cuts down on code feedback time, and allows for faster development.
+
 ## GitHub CI is ready out of the box
 
 Notice that this template contains a `.github/workflows` directory with a `python-package.yml` file. Because of this, any project created from this template that uses GitHub as a repository will automatically have CI enabled.
 
 GitHub workflows are extremely useful, for more information, check out the [About workflows](https://docs.github.com/en/actions/using-workflows/about-workflows) page.
 
-## Pre-commit is part of it too
+# Optional - but Awesome
 
-No one wants the embarrassment of committing a .py file without a trailing blank line :scream: You'll immediately have access to [pre-commit](https://pre-commit.com/), an industry standard third-party tool.
+## Publishing to PyPI
 
-Using pre-commit before GitHub workflows start allows you to do a quick check of your code before it's committed. This cuts down on code feedback time, and allows for faster development.
+A GitHub workflow is included that will automatically publish the packaged work to [PyPI](https://pypi.org/). To support this, you'll need to configure your new repository.
+
+- Create and verify an account on PyPI - https://pypi.org/account/register/
+- Create a PyPI API token - https://pypi.org/help/#apitoken
+- Save the API token in your new repository following [these instructions](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-a-repository). Save your secret API token with the name: PYPI_API_TOKEN
+
+Now, when you [create a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) from your repository, a workflow will run that will package and deploy the code to PyPI.
+
+## Automatic publishing to ReadTheDocs
+
+If you have connected your GitHub account to [ReadTheDocs](https://readthedocs.org/) you should be able to automatically import the documentation from your project. To connect your GitHub account to ReadTheDocs, simply sign in to ReadTheDocs using your GitHub account. 
+
+On your dashboard, you'll see an "Import a Project" button that will take you to a list of repositories that can be [automatically imported](https://docs.readthedocs.io/en/stable/intro/import-guide.html#automatically-import-your-docs). If you don't see the repository you expect, it is possible that you do not have sufficient permissions configured in your GitHub organization. Talk to an administrator of the organization, and let them know what you're trying to do. 
 
 # Contributing to the Template
 
