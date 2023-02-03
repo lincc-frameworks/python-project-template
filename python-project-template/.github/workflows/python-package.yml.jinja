@@ -33,3 +33,6 @@ jobs:
     - name: Run unit tests with pytest
       run: |
         python -m pytest --cov=. --cov-report=xml
+    - name: Analyze code with pylint
+      run: |
+        pylint -rn -sn --recursive=y ./src
