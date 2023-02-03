@@ -58,3 +58,18 @@ repos:
             "-rn", # Only display messages
             "-sn", # Don't display the score
           ]
+
+  - repo: local
+    hooks:
+      - id: sphinx-build
+        name: Build documentation with Sphinx
+        entry: sphinx-build
+        language: system
+        always_run: true
+        args:
+          [
+            "-b", # Flag to select which builder to use
+            "html", # Use the HTML builder
+            "docs/source", # Source directory of documents
+            "docs/build/html", # Output directory for rendered documents.
+          ]
