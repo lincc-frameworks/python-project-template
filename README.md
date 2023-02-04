@@ -116,6 +116,22 @@ GitHub workflows are extremely useful, for more information, check out the [Abou
 
 # Optional - but Awesome
 
+## Unit test coverage
+
+The GitHub workflow that runs when a new commit is pushed to a pull request, will automatically run unit tests and output code coverage into an xml file. To easily see if code coverage is changing as a result of new work, you should install the GitHub app, Codecov.
+
+- Go to the Codecov app page - https://github.com/apps/codecov
+- Click "Configure"
+- Select your repository and follow the instructions
+
+Future pull requests and commits will now include code coverage information. Neato!
+
+## Automatic publishing to ReadTheDocs
+
+If you have connected your GitHub account to [ReadTheDocs](https://readthedocs.org/) you should be able to automatically import the documentation from your project. To connect your GitHub account to ReadTheDocs, simply sign in to ReadTheDocs using your GitHub account. 
+
+On your dashboard, you'll see an "Import a Project" button that will take you to a list of repositories that can be [automatically imported](https://docs.readthedocs.io/en/stable/intro/import-guide.html#automatically-import-your-docs). If you don't see the repository you expect, it is possible that you do not have sufficient permissions configured in your GitHub organization. Talk to an administrator of the organization, and let them know what you're trying to do.
+
 ## Publishing to PyPI
 
 A GitHub workflow is included that will automatically publish the packaged work to [PyPI](https://pypi.org/). To support this, you'll need to configure your new repository.
@@ -125,12 +141,6 @@ A GitHub workflow is included that will automatically publish the packaged work 
 - Save the API token in your new repository following [these instructions](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-a-repository). Save your secret API token with the name: PYPI_API_TOKEN
 
 Now, when you [create a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) from your repository, a workflow will run that will package and deploy the code to PyPI.
-
-## Automatic publishing to ReadTheDocs
-
-If you have connected your GitHub account to [ReadTheDocs](https://readthedocs.org/) you should be able to automatically import the documentation from your project. To connect your GitHub account to ReadTheDocs, simply sign in to ReadTheDocs using your GitHub account. 
-
-On your dashboard, you'll see an "Import a Project" button that will take you to a list of repositories that can be [automatically imported](https://docs.readthedocs.io/en/stable/intro/import-guide.html#automatically-import-your-docs). If you don't see the repository you expect, it is possible that you do not have sufficient permissions configured in your GitHub organization. Talk to an administrator of the organization, and let them know what you're trying to do. 
 
 # Contributing to the Template
 
