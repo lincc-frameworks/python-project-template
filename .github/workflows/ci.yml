@@ -60,5 +60,4 @@ jobs:
     - name: Tests
       run: |
         cd ../test/${{ matrix.foldername }}
-        cd tests;
-        python -m pytest *
+        python -m pytest tests/*
