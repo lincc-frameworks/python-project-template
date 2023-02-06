@@ -38,15 +38,17 @@ jobs:
       run: |
         sudo apt-get update
         python -m pip install --upgrade pip
-        pip install .
-        pip install .[dev]
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         python -m pip install copier
     - name: Generate package
       run: |
-        copier --defaults ${{ matrix.extra_flags }} copy ./ ../test/${{ matrix.foldername }}
+        copier --vcs-ref HEAD --defaults ${{ matrix.extra_flags }} copy ./ ../test/${{ matrix.foldername }}
         cd ../test/${{ matrix.foldername }}
         cat .copier-answers.yml
+    - name: Build package
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        pip install -e .
+        pip install .[dev]
     - name: Code style checks
       run: |
         cd ../test/${{ matrix.foldername }}
@@ -54,8 +56,7 @@ jobs:
     - name: Build docs
       run: |
         cd ../test/${{ matrix.foldername }}
-        cd docs
-        make html
+        sphinx-build -b html docs/source docs/build/html
     - name: Tests
       run: |
         cd ../test/${{ matrix.foldername }}
