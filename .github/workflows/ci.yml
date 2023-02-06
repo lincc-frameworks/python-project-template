@@ -1,0 +1,63 @@
+name: CI for Template
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Extra context is a way to override options that the user normally
+# specifies during the questions phase of the cookiecutter setup. The keys
+# being overridden here must exist in the cookiecutter.json
+# See https://cookiecutter.readthedocs.io/en/0.9.1/advanced_usage.html#injecting-extra-context
+jobs:
+  tests:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+
+          - name: Base example
+            extra_flags: ''
+            foldername: 'base_example'
+
+          - name: Provide non-default answers
+            extra_flags: '--data project_name=new_science --data module_name=drewtonian --data author_name=Drew --data author_email=ao@aol.com'
+            foldername: 'non_default_answers'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - name: Install Python dependencies
+      run: |
+        sudo apt-get update
+        python -m pip install --upgrade pip
+        pip install .
+        pip install .[dev]
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m pip install copier
+    - name: Generate package
+      run: |
+        copier --defaults ${{ matrix.extra_flags }} copy ./ ../test/${{ matrix.foldername }}
+        cd ../test/${{ matrix.foldername }}
+        cat .copier-answers.yml
+    - name: Code style checks
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        python -m pylint --recursive=y ./src/
+    - name: Build docs
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        cd docs
+        make html
+    - name: Tests
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        cd tests;
+        python -m pytest *
