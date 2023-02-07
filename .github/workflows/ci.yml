@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-# Extra context is a way to override options that the user normally
-# specifies during the questions phase of the cookiecutter setup. The keys
-# being overridden here must exist in the cookiecutter.json
-# See https://cookiecutter.readthedocs.io/en/0.9.1/advanced_usage.html#injecting-extra-context
 jobs:
   tests:
     name: ${{ matrix.name }}
