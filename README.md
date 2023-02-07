@@ -60,18 +60,15 @@ Lots more output
 ...
 ```
 
-## Register pre-commit hooks
+## You _could_ stop here
 
-One dependency installed by `pip install '.[dev]'` is `pre-commit`. Run the following command register pre-commit hooks with .git/hooks/pre-commit.
-
-```
->> pre-commit install
-```
-`pre-commit` is an industry standard tool that executes a set of tests prior to completing a `git commit` action. For example, `pre-commit` can run unit tests to verify code coverage and linters to ensure adherence to style guides. Additional documentation can be found [here](https://pre-commit.com/index.html).
+At this point, your new project is rendered and ready for you to start coding. But there's a lot more that this template has to offer. Keep reading to find out more about built in pre-commit hooks, GitHub CI, automatic documentation, and more.
 
 ## Commit your new project locally
 
-Commit the project to your  _local_ version control like so to see the pre-commit checks run.
+:shushing-face:  If you're interested in using pre-commit hooks to crosscheck your code before you commit it, now is a good time to set that up (it's just one command) - check out ["Helpful pre-commit hooks"](https://github.com/lincc-frameworks/python-project-template#helpful-pre-commit-hooks).
+
+Commit the project to your _local_ version control like so to see the pre-commit checks run.
 
 ```
 >> git checkout -b initial_branch
@@ -80,7 +77,7 @@ Switched to a new branch 'initial_branch'
 >> git commit -m 'Initial commit'
 ```
 
-## Extra Credit - Push your work to GitHub
+## Push your work to GitHub
 
 Create a new repository in GitHub: ([GitHub How-to](https://docs.github.com/en/get-started/quickstart/create-a-repo))
 
@@ -91,30 +88,23 @@ Create a new repository in GitHub: ([GitHub How-to](https://docs.github.com/en/g
 
 Notice that when you create a PR in GitHub, a set of tests for Continuous Integration starts up to verify that the project can build successfully and that all the unit tests pass. Neato!
 
+# Optional - but Awesome
 
-# Some nifty things you get for free
+## Helpful pre-commit hooks
 
-## Keep your project up to date as the original template evolves
+`pre-commit` is installed when running `pip install '.[dev]'`. It's an industry standard tool that executes a set of tests prior to completing a `git commit` action. Using pre-commit enables a quick check of your code before it's committed and checked by GitHub workflows. This cuts down on code feedback time, and allows for faster development. Additional documentation can be found [here](https://pre-commit.com/index.html).
 
-Once your project is under version control you'll be able to keep your project up to date by running `copier update`.
+To configure pre-commit for your project, run the following command register pre-commit hooks with .git/hooks/pre-commit.
 
-Copier will automatically check to see if a newer version of the original template is available and if so the changes will be automatically applied. Neato!
-
-And of course, because your project is under version control, if you don't like the new changes, you can always revert back to the previous state. :)
-
-## Pre-commit comes with it
-
-No one wants the embarrassment of committing a .py file without a trailing blank line :scream: You'll immediately have access to [pre-commit](https://pre-commit.com/), an industry standard third-party tool.
-
-Using pre-commit before GitHub workflows start allows you to do a quick check of your code before it's committed. This cuts down on code feedback time, and allows for faster development.
+```
+>> pre-commit install
+```
 
 ## GitHub CI is ready out of the box
 
 Notice that this template contains a `.github/workflows` directory with a `python-package.yml` file. Because of this, any project created from this template that uses GitHub as a repository will automatically have CI enabled.
 
 GitHub workflows are extremely useful, for more information, check out the [About workflows](https://docs.github.com/en/actions/using-workflows/about-workflows) page.
-
-# Optional - but Awesome
 
 ## Unit test coverage
 
@@ -128,19 +118,27 @@ Future pull requests and commits will now include code coverage information. Nea
 
 ## Automatic publishing to ReadTheDocs
 
-If you have connected your GitHub account to [ReadTheDocs](https://readthedocs.org/) you should be able to automatically import the documentation from your project. To connect your GitHub account to ReadTheDocs, simply sign in to ReadTheDocs using your GitHub account. 
+If you have connected your GitHub account to [ReadTheDocs](https://readthedocs.org/) you should be able to automatically import the documentation from your project. To connect your GitHub account to ReadTheDocs, simply sign in to ReadTheDocs using your GitHub account.
 
 On your dashboard, you'll see an "Import a Project" button that will take you to a list of repositories that can be [automatically imported](https://docs.readthedocs.io/en/stable/intro/import-guide.html#automatically-import-your-docs). If you don't see the repository you expect, it is possible that you do not have sufficient permissions configured in your GitHub organization. Talk to an administrator of the organization, and let them know what you're trying to do.
 
 ## Publishing to PyPI
 
-A GitHub workflow is included that will automatically publish the packaged work to [PyPI](https://pypi.org/). To support this, you'll need to configure your new repository.
+A GitHub workflow is included that will automatically publish the packaged work to [PyPI](https://pypi.org/) when a new release is created. To support this, you'll need to configure your repository.
 
 - Create and verify an account on PyPI - https://pypi.org/account/register/
 - Create a PyPI API token - https://pypi.org/help/#apitoken
 - Save the API token in your new repository following [these instructions](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-a-repository). Save your secret API token with the name: PYPI_API_TOKEN
 
 Now, when you [create a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) from your repository, a workflow will run that will package and deploy the code to PyPI.
+
+## Keep your project up to date as the original template evolves
+
+Once your project is under version control you'll be able to keep your project up to date by running `copier update`.
+
+Copier will automatically check to see if a newer version of the original template is available and if so the changes will be automatically applied. Neato!
+
+And of course, because your project is under version control, if you don't like the new changes, you can always revert back to the previous state. :grinning:
 
 # Contributing to the Template
 
@@ -152,25 +150,26 @@ If there isn't an issue for the work you want to do, please create one and inclu
 
 ## Create a branch
 
-It is preferable that you create a new branch with a name like `issue/##/<short-description>`. GitHub makes it pretty easy to associate branches and tickets, but it's just easier when it's in the name.
+It is preferable that you create a new branch with a name like `issue/##/<short-description>`. GitHub makes it pretty easy to associate branches and tickets, but it's nice when it's in the name.
 
 ## Testing the template
 
 Testing can be tricky. The current best way is to clone this repository locally, and use Copier to generate a test project locally, then verify your expected results.
 
-Copier will look for git tags to determine which version of the template to use. You probably don't want to create new tags while you're working on the template. Create a test project using this signature to let Copier know to use the latest local version. See the [Copier documentation](https://copier.readthedocs.io/en/latest/generating/#regenerating-a-project) for more information.
-
+Copier will look for git tags to determine which version of the template to use. You probably don't want to create new tags while you're working on the template. Create a test project using the following command to let Copier know to use the latest local version. 
 ```
 >> copier --vcs-ref HEAD </local/path/to/template> </test/project/directory>
 ```
 Notes:
 1) Any changes to the template will need to be committed (**not pushed**) to be picked up by Copier.
 2) If there's an opportunity for introducing an automated test, please take it.
+3) This project has some automated testing, to ensure that the template can render a reasonable output project - feel free to extend that if it's reasonable.
+4) See the [Copier documentation](https://copier.readthedocs.io/en/latest/generating/#regenerating-a-project) for more information.
 
 ## Create your PR
 
-To be able to move quickly, there aren't many guardrails right now to prevent merging bad code. This will change as the project becomes more mature. For now, please use PR best practices, and get someone to review your code.
+Please use PR best practices, and get someone to review your code.
 
 ## Optional - Release a new version
 
-Once you've tested the updates you should create a new release to make them available. GitHub's [instructions](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) for doing so are here. Use your best judgement when incrementing the version. i.e. is this a major, minor, or patch fix.
+Once you're PR is merged you should create a new release to make your changes available. GitHub's [instructions](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) for doing so are here. Use your best judgement when incrementing the version. i.e. is this a major, minor, or patch fix.
