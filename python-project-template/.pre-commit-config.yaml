@@ -43,16 +43,19 @@ repos:
     rev: 5.12.0
     hooks:
       - id: isort
-        name: isort (python)
+        name: isort (python files in src/ and tests/)
         description: Sort and organize imports in .py files.
+        types: [python]
+        files: ^(src|tests)/
 
   - repo: local
     hooks:
       - id: pylint
-        name: pylint
+        name: pylint (python files in src/ and tests/)
         entry: pylint
         language: system
         types: [python]
+        files: ^(src|tests)/
         args:
           [
             "-rn", # Only display messages
