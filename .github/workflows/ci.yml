@@ -52,7 +52,7 @@ jobs:
     - name: Build docs
       run: |
         cd ../test/${{ matrix.foldername }}
-        sphinx-build -b html docs/source docs/build/html
+        sphinx-build -b html -c docs/source . docs/build/html
     - name: Tests
       run: |
         cd ../test/${{ matrix.foldername }}
