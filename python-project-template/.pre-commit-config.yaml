@@ -71,8 +71,12 @@ repos:
         always_run: true
         args:
           [
+            "-T",
+            "-E",
+            "-c",
+            "docs/source",
             "-b", # Flag to select which builder to use
             "html", # Use the HTML builder
-            "docs/source", # Source directory of documents
+            ".", # Source directory of documents
             "docs/build/html", # Output directory for rendered documents.
           ]
