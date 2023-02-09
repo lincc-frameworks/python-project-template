@@ -1,4 +1,4 @@
-{{ fullname | escape | underline}}
+{{ name | escape | underline}}
 
 .. automodule:: {{ fullname }}
 
@@ -53,14 +53,14 @@
    {% endif %}
    {% endblock %}
 
-{% block modules %}
-{% if modules %}
-.. autosummary::
-   :toctree:
-   :template: custom-module-template.rst
-   :recursive:
-{% for item in modules %}
-   {{ item }}
-{%- endfor %}
-{% endif %}
-{% endblock %}
+   {% block modules %}
+   {% if modules %}
+   .. autosummary::
+      :toctree:
+      :template: custom-module-template.rst
+      :recursive:
+   {% for item in modules %}
+      {{ item }}
+   {%- endfor %}
+   {% endif %}
+   {% endblock %}
