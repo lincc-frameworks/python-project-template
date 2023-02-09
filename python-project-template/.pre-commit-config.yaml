@@ -69,14 +69,15 @@ repos:
         entry: sphinx-build
         language: system
         always_run: true
+        exclude_types: [file, symlink]
         args:
           [
-            "-T",
-            "-E",
-            "-c",
-            "docs/source",
+            "-T", # Show full trace back on exception
+            "-E", # Don't use saved env. always read all files.
             "-b", # Flag to select which builder to use
             "html", # Use the HTML builder
-            ".", # Source directory of documents
-            "docs/_build/html", # Output directory for rendered documents.
+            "-d", # Flag for cached environment and doctrees
+            "docs/build/doctrees", # directory
+            "./docs", # Source directory of documents
+            "docs/build/html", # Output directory for rendered documents.
           ]

@@ -8,7 +8,7 @@ import os
 import sys
 
 # Define path to the code to be documented **relative to where conf.py (this file) is kept**
-sys.path.insert(0, os.path.abspath('../../src/'))
+sys.path.insert(0, os.path.abspath('../src/'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -22,7 +22,6 @@ release = 'v0.1'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
@@ -32,17 +31,11 @@ templates_path = []
 exclude_patterns = []
 
 master_doc = 'index'  # This assumes that sphinx-build is called from the root directory
-autodoc_member_order = 'bysource'
-autodoc_typehints = 'both'
-autosummary_generate = True  # Turn on sphinx.ext.autosummary
-autoclass_content = "both"  # Add __init__ doc (ie. params) to class summaries
 html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
-autodoc_inherit_docstrings = True  # If no docstring, inherit from base class
 add_module_names = False # Remove namespaces from class/method signatures
 
 autoapi_type = 'python'
-autoapi_type = 'python'
-autoapi_dirs = ['../../src']
+autoapi_dirs = ['../src']
 autoapi_add_toc_tree_entry = False
 autoapi_member_order = 'bysource'
 
@@ -50,8 +43,6 @@ autoapi_member_order = 'bysource'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'alabaster'
-html_static_path = ['_static']
-
 html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'searchbox.html'], }
 
 
