@@ -17,7 +17,7 @@ repos:
       - id: pytest-check
         name: pytest-check
         description: Run unit tests with pytest.
-        entry: pytest --cov=. --cov-report=html
+        entry: pytest --cov=./src --cov-report=html
         language: system
         pass_filenames: false
         always_run: true

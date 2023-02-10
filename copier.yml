@@ -2,11 +2,19 @@ project_name:
     type: str
     help: What is the name of your project?
     default: example_project
+    validator: >-
+        {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_]+$')) %}
+        project_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+        {% endif %}
 
 module_name:
     type: str
     help: What is your python module name? If left blank, will default to project_name.
     default: "{{project_name}}"
+    validator: >-
+        {% if not (module_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_]+$')) %}
+        module_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+        {% endif %}
 
 author_name:
     type: str
