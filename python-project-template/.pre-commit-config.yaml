@@ -43,16 +43,19 @@ repos:
     rev: 5.12.0
     hooks:
       - id: isort
-        name: isort (python)
+        name: isort (python files in src/ and tests/)
         description: Sort and organize imports in .py files.
+        types: [python]
+        files: ^(src|tests)/
 
   - repo: local
     hooks:
       - id: pylint
-        name: pylint
+        name: pylint (python files in src/ and tests/)
         entry: pylint
         language: system
         types: [python]
+        files: ^(src|tests)/
         args:
           [
             "-rn", # Only display messages
@@ -66,10 +69,15 @@ repos:
         entry: sphinx-build
         language: system
         always_run: true
+        exclude_types: [file, symlink]
         args:
           [
+            "-T", # Show full trace back on exception
+            "-E", # Don't use saved env. always read all files.
             "-b", # Flag to select which builder to use
             "html", # Use the HTML builder
-            "docs/source", # Source directory of documents
+            "-d", # Flag for cached environment and doctrees
+            "docs/build/doctrees", # directory
+            "./docs", # Source directory of documents
             "docs/build/html", # Output directory for rendered documents.
           ]
