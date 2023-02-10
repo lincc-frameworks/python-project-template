@@ -1,4 +1,6 @@
 # python-project-template
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/lincc-frameworks/python-project-template)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lincc-frameworks/python-project-template/ci.yml)
 
 ## What is this?
 
@@ -141,6 +143,8 @@ Copier will automatically check to see if a newer version of the original templa
 And of course, because your project is under version control, if you don't like the new changes, you can always revert back to the previous state. :grinning:
 
 # Contributing to the Template
+
+[![GitHub issue custom search in repo](https://img.shields.io/github/issues-search/lincc-frameworks/python-project-template?color=purple&label=Good%20first%20issues&query=is%3Aopen%20label%3A%22good%20first%20issue%22)](https://github.com/lincc-frameworks/python-project-template/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 
 ## Find (or make) a new GitHub issue
 
