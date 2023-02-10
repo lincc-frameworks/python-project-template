@@ -26,8 +26,9 @@ release = 'v0.1'
 extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
-    'autoapi-extension']
+    'sphinx.ext.viewcode']
+
+extensions.append('autoapi.extension')
 
 templates_path = []
 exclude_patterns = []
