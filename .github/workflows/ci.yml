@@ -58,4 +58,4 @@ jobs:
     - name: Tests
       run: |
         cd ../test/${{ matrix.foldername }}
-        python -m pytest tests --cov=${{ module_name }} --cov-report=xml
+        python -m pytest tests --cov=${{ matrix.module_name }} --cov-report=xml
