@@ -16,10 +16,12 @@ jobs:
         include:
 
           - name: Base example
+            module_name: 'example_project' #The default module_name
             extra_flags: ''
             foldername: 'base_example'
 
           - name: Provide non-default answers
+            module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: '--data project_name=new_science --data module_name=drewtonian --data author_name=Drew --data author_email=ao@aol.com'
             foldername: 'non_default_answers'
 
@@ -43,7 +45,7 @@ jobs:
     - name: Build package
       run: |
         cd ../test/${{ matrix.foldername }}
-        pip install -e .
+        pip install .
         pip install .[dev]
     - name: Code style checks
       run: |
@@ -56,4 +58,4 @@ jobs:
     - name: Tests
       run: |
         cd ../test/${{ matrix.foldername }}
-        python -m pytest tests/*
+        python -m pytest tests --cov=${{ matrix.module_name }} --cov-report=xml
