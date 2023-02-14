@@ -33,8 +33,14 @@ dev = [
 ]
 
 [build-system]
-requires = ["setuptools","wheel"]
+requires = [
+    "setuptools>=45", # Used to build and package the Python project
+    "setuptools_scm>=6.2", # Gets release version from git. Makes it available programmatically
+]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "src/{{module_name}}/_version.py"
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = """
