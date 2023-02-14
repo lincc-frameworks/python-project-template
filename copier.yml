@@ -19,13 +19,29 @@ module_name:
 author_name:
     type: str
     help: Your first and last name?
-    placeholder: Jenny Fantastic
     default: Name Placeholder
 
 author_email:
     type: str
     help: Your preferred email address?
-    default: email.placeholder@someplace.special
+    default: name@you.com
+
+preferred_linter:
+    help: What tooling would you like to use to enforce code style?
+    type: str
+    default: pylint
+    choices:
+        pylint: pylint
+        black: black
+        none: none
+
+use_isort:
+    help: Do you want to use a tool to maintain a specific ordering for module imports
+    type: str
+    choices:
+        yes: yes
+        no: no
+
 
 ###
 # Below this line are Copier configuration options.
