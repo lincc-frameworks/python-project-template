@@ -42,7 +42,8 @@ repos:
         name: Validate syntax of pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
 
-    # Automatically sort the imports used in .py files
+{% if use_isort == True %}
+        # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
     hooks:
@@ -51,6 +52,7 @@ repos:
         description: Sort and organize imports in .py files.
         types: [python]
         files: ^(src|tests)/
+{% endif %}
 
   - repo: local
     hooks:
