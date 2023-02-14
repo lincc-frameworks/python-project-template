@@ -36,12 +36,12 @@ preferred_linter:
         none: none
 
 use_isort:
-    help: Do you want to use a tool to maintain a specific ordering for module imports
-    type: str
+    help: Do you want to use a tool to maintain a specific ordering for module imports?
+    type: bool
+    default: yes
     choices:
-        yes: yes
-        no: no
-
+        yes: true
+        no: false
 
 ###
 # Below this line are Copier configuration options.
