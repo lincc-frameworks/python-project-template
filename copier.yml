@@ -9,8 +9,8 @@ project_name:
 
 module_name:
     type: str
-    help: What is your python module name? If left blank, will default to project_name.
-    default: "{{project_name}}"
+    help: What is your python module name?
+    default: example_module
     validator: >-
         {% if not (module_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_]+$')) %}
         module_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
@@ -19,7 +19,7 @@ module_name:
 author_name:
     type: str
     help: Your first and last name?
-    default: Name Placeholder
+    default: Your Name
 
 author_email:
     type: str
