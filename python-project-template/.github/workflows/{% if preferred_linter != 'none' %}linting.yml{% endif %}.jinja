@@ -1,7 +1,7 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# This workflow will install Python dependencies, then perform static linting analysis.
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python package
+name: Lint
 
 on:
   push:
@@ -26,5 +26,11 @@ jobs:
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Analyze code with linter
+{% if preferred_linter == 'pylint' %}
       run: |
         pylint -rn -sn --recursive=y ./src
+{% elif preferred_linter == 'black' %}
+      uses: psf/black@stable
+      with:
+        src: ./src
+{% endif %}

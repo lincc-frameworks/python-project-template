@@ -47,10 +47,14 @@ jobs:
         cd ../test/${{ matrix.foldername }}
         pip install .
         pip install .[dev]
-    - name: Code style checks
+    - name: pylint checks
       run: |
         cd ../test/${{ matrix.foldername }}
         python -m pylint --recursive=y ./src/
+    - name: black checks
+      uses: psf/black@stable
+      with:
+        src: "../test/${{ matrix.foldername }}/src"
     - name: Build docs
       run: |
         cd ../test/${{ matrix.foldername }}

@@ -9,8 +9,8 @@ project_name:
 
 module_name:
     type: str
-    help: What is your python module name? If left blank, will default to project_name.
-    default: "{{project_name}}"
+    help: What is your python module name?
+    default: example_module
     validator: >-
         {% if not (module_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_]+$')) %}
         module_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
@@ -19,13 +19,29 @@ module_name:
 author_name:
     type: str
     help: Your first and last name?
-    placeholder: Jenny Fantastic
-    default: Name Placeholder
+    default: Your Name
 
 author_email:
     type: str
     help: Your preferred email address?
-    default: email.placeholder@someplace.special
+    default: name@you.com
+
+preferred_linter:
+    help: What tooling would you like to use to enforce code style?
+    type: str
+    default: pylint
+    choices:
+        pylint: pylint
+        black: black
+        none: none
+
+use_isort:
+    help: Do you want to use a tool to maintain a specific ordering for module imports?
+    type: bool
+    default: yes
+    choices:
+        yes: true
+        no: false
 
 ###
 # Below this line are Copier configuration options.
