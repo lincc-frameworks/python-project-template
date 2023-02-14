@@ -54,7 +54,7 @@ jobs:
     - name: black checks
       uses: psf/black@stable
         with:
-          src: ../test/${{ matrix.foldername }}/src
+          src: "../test/${{ matrix.foldername }}/src"
     - name: Build docs
       run: |
         cd ../test/${{ matrix.foldername }}
