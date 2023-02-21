@@ -3,8 +3,8 @@ project_name:
     help: What is the name of your project?
     default: example_project
     validator: >-
-        {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_]+$')) %}
-        project_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+        {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_\-]+$')) %}
+        project_name must start with a letter, followed one or more letters, digits, hyphens, or underscores all lowercase.
         {% endif %}
 
 module_name:
@@ -43,12 +43,23 @@ use_isort:
         yes: true
         no: false
 
+create_example_module:
+    help: Do you want to create some example module code?
+    type: bool
+    default: yes
+    choices:
+        yes: true
+        no: false
+
 ###
 # Below this line are Copier configuration options.
 ###
 
 # Subdirectory that contains the python-project-template. Allows template metadata to be separated from the template.
 _subdirectory: python-project-template
+
+_skip_if_exists:
+    - README.md
 
 # Tasks to execute after generating or updating a project.
 _tasks:
