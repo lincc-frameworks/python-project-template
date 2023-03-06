@@ -23,18 +23,8 @@ html_show_sourcelink = (
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "alabaster"
+html_theme = "sphinx_rtd_theme"
 html_sidebars = {
-    "**": ["globaltoc.html", "relations.html", "searchbox.html"],
+    "**": ["globaltoc.html","searchbox.html"],
 }
-
-
-# Readthedocs theme
-# on_rtd is whether on readthedocs.org, this line of code grabbed from docs.readthedocs.org...
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-
-    html_theme = "sphinx_rtd_theme"
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_css_files = ["readthedocs-custom.css"]  # Override some CSS settings

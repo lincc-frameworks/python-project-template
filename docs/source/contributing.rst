@@ -8,6 +8,8 @@ Add yourself as the assignee on an existing issue so that we know who's working 
 
 If there isn't an issue for the work you want to do, please create one and include a description - it's just polite.
 
+You can reach the team with bug reports, feature requests, and general inquiries by creating a new GitHub issue.
+
 Create a branch
 -------------------------------------------------------------------------------
 
