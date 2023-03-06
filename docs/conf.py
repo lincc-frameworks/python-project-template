@@ -4,7 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 
-import os
+from setuptools_scm import get_version
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -12,6 +12,9 @@ import os
 project = "LINCC Frameworks Python Project Template"
 copyright = "2023, LINCC Frameworks"
 author = "LINCC Frameworks"
+release = get_version(root='..')
+# for example take major/minor
+version = ".".join(release.split(".")[:2])
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
