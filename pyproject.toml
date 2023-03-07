@@ -1,0 +1,28 @@
+[project]
+name = "python-project-template"
+license = {file = "LICENSE"}
+readme = "README.md"
+authors = [
+    { name = "LINCC Frameworks", email = "lincc-frameworks-team@lists.lsst.org" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+]
+dynamic = ["version"]
+
+dependencies = [
+    "setuptools_scm",
+    "sphinx==6.1.3", # Used to automatically generate documentation
+    "sphinx_rtd_theme==1.2.0", # Used to render documentation
+]
+
+[build-system]
+requires = [
+    "setuptools>=45", # Used to build and package the Python project
+    "setuptools_scm>=6.2", # Gets release version from git. Makes it available programmatically
+]
+build-backend = "setuptools.build_meta"
