@@ -22,4 +22,9 @@ This project template codifies LINCC-Framework's best practices for python code 
    :caption: Best Practices
 
    practices/overview
+   practices/ci_testing
+   practices/code_coverage
    practices/linting
+   practices/precommit
+   practices/pypi
+   practices/sphinx

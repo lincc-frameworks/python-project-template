@@ -12,7 +12,7 @@ from setuptools_scm import get_version
 project = "LINCC Frameworks Python Project Template"
 copyright = "2023, LINCC Frameworks"
 author = "LINCC Frameworks"
-release = get_version(root='..')
+release = get_version(root="..")
 # for example take major/minor
 version = ".".join(release.split(".")[:2])
 
@@ -27,7 +27,3 @@ html_show_sourcelink = (
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_rtd_theme"
-html_sidebars = {
-    "**": ["globaltoc.html","searchbox.html"],
-}
-html_css_files = ["readthedocs-custom.css"]  # Override some CSS settings
