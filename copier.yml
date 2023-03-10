@@ -26,6 +26,15 @@ author_email:
     help: Your preferred email address?
     default: name@you.com
 
+project_license:
+    help: What license would you like to use?
+    type: str
+    default: MIT
+    choices:
+        MIT: MIT
+        BSD: BSD
+        none: none
+
 preferred_linter:
     help: What tooling would you like to use to enforce code style?
     type: str
@@ -63,4 +72,4 @@ _skip_if_exists:
 
 # Tasks to execute after generating or updating a project.
 _tasks:
-    - "git init"
+    - "git init --initial-branch=main"
