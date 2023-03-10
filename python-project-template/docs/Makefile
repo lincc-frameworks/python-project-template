@@ -5,7 +5,7 @@
 # from the environment for the first two.
 SPHINXOPTS    ?= -T -E -d _build/doctrees -D language=en
 SPHINXBUILD   ?= sphinx-build
-SOURCEDIR     = .
+SOURCEDIR     = source
 BUILDDIR      = ../_readthedocs/
 
 # Put it first so that "make" without argument is like "make help".
