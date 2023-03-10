@@ -1,6 +1,7 @@
 # python-project-template
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/lincc-frameworks/python-project-template)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lincc-frameworks/python-project-template/ci.yml)
+![Read the Docs](https://img.shields.io/readthedocs/lincc-ppt)
 
 ## What is this?
 
