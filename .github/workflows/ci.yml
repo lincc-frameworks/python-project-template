@@ -55,7 +55,7 @@ jobs:
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"
     - name: run mypy check action
-      uses: ../test/${{ matrix.coper_config.foldername }}/.github/workflows/type-checking.yml
+      uses: "../test/${{ matrix.coper_config.foldername }}/.github/workflows/type-checking.yml"
     - name: Build docs
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
