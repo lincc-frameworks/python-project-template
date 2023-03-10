@@ -54,8 +54,14 @@ jobs:
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"
-    - name: run mypy check action
-      uses: "../test/${{ matrix.coper_config.foldername }}/.github/workflows/type-checking.yml"
+    - name: mypy basic checks
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        python -m mypy ./src --ignore-missing-imports
+    - name: mypy strict checks
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        python -m mypy ./src --strict
     - name: Build docs
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
