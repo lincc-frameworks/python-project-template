@@ -8,18 +8,17 @@ on:
 
 jobs:
   tests:
-    name: ${{ matrix.name }}
+    name: ${{ matrix.copier_config.name }} - Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
-        include:
-
+        python-version: ['3.8', '3.9', '3.10']
+        copier_config:
           - name: Base example
-            module_name: 'example_project' #The default module_name
+            module_name: example_project #The default module_name
             extra_flags: ''
-            foldername: 'base_example'
-
+            foldername: base_example
           - name: Provide non-default answers
             module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: '--data project_name=new_science --data module_name=drewtonian --data author_name=Drew --data author_email=ao@aol.com'
@@ -31,7 +30,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: ${{ matrix.python-version }}
     - name: Install Python dependencies
       run: |
         sudo apt-get update
@@ -39,27 +38,27 @@ jobs:
         python -m pip install copier
     - name: Generate package
       run: |
-        copier --vcs-ref HEAD --defaults ${{ matrix.extra_flags }} copy ./ ../test/${{ matrix.foldername }}
-        cd ../test/${{ matrix.foldername }}
+        copier --vcs-ref HEAD --defaults ${{ matrix.copier_config.extra_flags }} copy ./ ../test/${{ matrix.copier_config.foldername }}
+        cd ../test/${{ matrix.copier_config.foldername }}
         cat .copier-answers.yml
     - name: Build package
       run: |
-        cd ../test/${{ matrix.foldername }}
+        cd ../test/${{ matrix.copier_config.foldername }}
         pip install .
         pip install .[dev]
     - name: pylint checks
       run: |
-        cd ../test/${{ matrix.foldername }}
+        cd ../test/${{ matrix.copier_config.foldername }}
         python -m pylint --recursive=y ./src/
     - name: black checks
       uses: psf/black@stable
       with:
-        src: "../test/${{ matrix.foldername }}/src"
+        src: "../test/${{ matrix.copier_config.foldername }}/src"
     - name: Build docs
       run: |
-        cd ../test/${{ matrix.foldername }}
+        cd ../test/${{ matrix.copier_config.foldername }}
         sphinx-build -T -E -b html -d docs/build/doctrees ./docs docs/build/html
     - name: Tests
       run: |
-        cd ../test/${{ matrix.foldername }}
-        python -m pytest tests --cov=${{ matrix.module_name }} --cov-report=xml
+        cd ../test/${{ matrix.copier_config.foldername }}
+        python -m pytest tests --cov=${{ matrix.copier_config.module_name }} --cov-report=xml
