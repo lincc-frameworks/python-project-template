@@ -55,6 +55,14 @@ jobs:
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.foldername }}/src"
+    - name: mypy basic checks
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        python -m mypy ./src --ignore-missing-imports
+    - name: mypy strict checks
+      run: |
+        cd ../test/${{ matrix.foldername }}
+        python -m mypy ./src --strict
     - name: Build docs
       run: |
         cd ../test/${{ matrix.foldername }}
