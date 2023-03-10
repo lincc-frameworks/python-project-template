@@ -14,13 +14,11 @@ jobs:
       fail-fast: true
       matrix:
         python-version: ['3.8', '3.9', '3.10']
+        name: ['Base example']
+        module_name: ['example_project'] #The default module_name
+        extra_flags: ['']
+        foldername: ['base_example']
         include:
-
-          - name: Base example
-            module_name: 'example_project' #The default module_name
-            extra_flags: ''
-            foldername: 'base_example'
-
           - name: Provide non-default answers
             module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: '--data project_name=new_science --data module_name=drewtonian --data author_name=Drew --data author_email=ao@aol.com'
