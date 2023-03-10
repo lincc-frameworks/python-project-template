@@ -8,7 +8,7 @@ on:
 
 jobs:
   tests:
-    name: ${{ matrix.name }}
+    name: ${{ matrix.copier_config.name }} - Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
