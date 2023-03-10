@@ -17,6 +17,22 @@ These prerequisites for Copier are defined `here <https://copier.readthedocs.io/
 2. Git > 2.27
 3. ``pipx`` (nice to have, conda and pip work too, but can be more difficult to reason about later)
 
+.. note::
+    ``pipx`` is a tool to enable installation of end-user applications written in Python. The main difference
+    from ``pip`` is that any tool (such as copier below) installed with pip is only executable from the conda
+    environment that ``pip`` installs it into, while ``pipx`` makes the tool executable from any environment.
+
+    While we will assume the use of ``pipx`` in this documentation, be aware that you are able to use 
+    ``conda`` or ``pip`` if you'd rather have it installed just in one environment.
+
+    For ``pipx`` installation, please be aware that ``pipx ensurepath`` should be run after install, shown 
+    here:
+
+    .. code-block:: bash
+    
+        >> conda install -c conda-forge pipx
+        >> pipx ensurepath
+
 .. code-block:: bash
 
    >> python --version
@@ -27,6 +43,7 @@ These prerequisites for Copier are defined `here <https://copier.readthedocs.io/
 
    >> which pipx
    /usr/bin/pipx
+
 
 
 Install Copier
