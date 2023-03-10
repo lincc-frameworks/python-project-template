@@ -35,6 +35,15 @@ preferred_linter:
         black: black
         none: none
 
+mypy_type_checking:
+    help: Would you like to include mypy to perform static type checking for type hints?
+    type: str
+    default: none
+    choices:
+        none: No type checking
+        basic: Add basic type checking for code that has type hints
+        strict: Add strict type checking to enforce that type hints are used
+
 use_isort:
     help: Do you want to use a tool to maintain a specific ordering for module imports?
     type: bool
