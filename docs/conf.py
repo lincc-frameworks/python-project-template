@@ -20,6 +20,7 @@ version = ".".join(release.split(".")[:2])
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 master_doc = "index"  # This assumes that sphinx-build is called from the root directory
+html_favicon = 'favicon.ico'
 html_show_sourcelink = (
     False  # Remove 'view source code' from top of page (for html, not python)
 )

@@ -11,12 +11,26 @@ Choose where you would like to create your new project, and call copier with the
 
     >> copier gh:lincc-frameworks/python-project-template <path/to/destination>
 
+Copier will ask you questions for how to set up the project. These questions will be used to fill in aspects of the project's configuration, including both metadata and parameters. Below we provide some high-level overview of the questions:
+
+  * *What is the name of your project?* (``project_name``): The name of your project.
+  * *What is your python module name?* (``module_name``): The name of your (first) module. The main thing this controls is where your source code will live (``src/{{module_name}}``).
+  * *Your first and last name?* (``author_name``): The name of code's author.  This will be used in the project and documentation metadata.
+  * *Your preferred email address?* (``author_email``): The contact email for the code's author. This will be used in the project and documentation metadata.
+  * *What tooling would you like to use to enforce code style?* (``preferred_linter``): A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks.
+  * *Do you want to use a tool to maintain a specific ordering for module imports?* (``use_isort``): `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`.
+  * *Do you want to create some example module code?* (``create_example_module``): If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file.
+
+While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_
+
 After providing answers to the prompts, Copier will hydrate a project template and save it in the specified location. Additionally Copier will run ``git init`` in the new project directory to initialize it as a local repository.
 
 Create a new environment and install your new package
 -------------------------------------------------------------------------------
 
-Create a new environment with your choice of environment tools (virtualenv, conda, etc.). Activate it, and change into the package directory.
+If you are using `virtual environments <https://packaging.python.org/en/latest/glossary/#term-Virtual-Environment>`_ create a new environment with your choice of environment tools (virtualenv, conda, etc.) and activate it. This step is optional, but we recommend using virtual environments to better manage different project's dependencies. See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ for more details.
+
+Go to the new package's directory (e.g. ``cd {{project_name}}``)
 
 Install the newly created python package. Use ``pip`` to install both the standard set of dependencies as well as the ``[dev]`` dependencies. (Note: depending on your system, you may not need the single quotes about ``'.[dev]'``)
 

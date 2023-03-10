@@ -31,7 +31,7 @@ Notes:
 1. Any changes to the template will need to be committed (not pushed) to be picked up by Copier.
 2. If there's an opportunity for introducing an automated test, please take it.
 3. This project has some automated testing, to ensure that the template can hydrate a reasonable output project - feel free to extend that if it's reasonable.
-4. See the Copier documentation for more information.
+4. See the `Copier documentation <https://copier.readthedocs.io/en/latest/generating/#regenerating-a-project>`_ for more information.
 
 
 Create your PR
@@ -42,4 +42,6 @@ Please use PR best practices, and get someone to review your code.
 Optional - Release a new version
 -------------------------------------------------------------------------------
 
-Once your PR is merged you should create a new release to make your changes available. GitHub's instructions for doing so are here. Use your best judgement when incrementing the version. i.e. is this a major, minor, or patch fix.
+Once your PR is merged you should create a new release to make your changes available. 
+GitHub's `instructions <https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository>`_ for doing so are here. 
+Use your best judgement when incrementing the version. i.e. is this a major, minor, or patch fix.
