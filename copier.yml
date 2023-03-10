@@ -1,6 +1,6 @@
 project_name:
     type: str
-    help: What is the name of your project?
+    help: What is the name of your project? (test change)
     default: example_project
     validator: >-
         {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_\-]+$')) %}
