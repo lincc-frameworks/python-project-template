@@ -35,7 +35,7 @@ but summarized below.
 
 .. note::
     ``pipx`` is a tool to enable installation of end-user applications written in Python. The main difference
-    from ``pip`` is that any tool (such as copier below) installed with pip is only executable from
+    from ``pip`` is that any tool (such as copier in the next section) installed with pip is only executable from an
     environment that ``pip`` installs it into, while ``pipx`` makes the tool executable from any environment.
 
     While we will assume the use of ``pipx`` in this documentation, be aware that you are able to use 
