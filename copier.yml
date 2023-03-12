@@ -1,6 +1,6 @@
 project_name:
     type: str
-    help: What is the name of your project? (test change)
+    help: What is the name of your project?
     default: example_project
     validator: >-
         {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_\-]+$')) %}
@@ -45,6 +45,14 @@ use_isort:
 
 create_example_module:
     help: Do you want to create some example module code?
+    type: bool
+    default: yes
+    choices:
+        yes: true
+        no: false
+
+include_notebooks:
+    help: Do you want to include rendered notebooks in your documentation?
     type: bool
     default: yes
     choices:
