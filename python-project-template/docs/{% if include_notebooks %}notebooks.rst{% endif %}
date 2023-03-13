@@ -4,4 +4,4 @@ Example Notebooks
 .. toctree::
    :hidden:
 
-    ../nb/example_notebook
+    Example <nb/example_notebook>
