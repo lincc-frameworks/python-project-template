@@ -28,8 +28,8 @@ jobs:
     - name: Analyze code with mypy
 {% if mypy_type_checking == 'basic' %}
       run: |
-        mypy ./src --ignore-missing-imports
+        mypy ./src ./tests --ignore-missing-imports
 {% elif mypy_type_checking == 'strict' %}
       run: |
-        mypy ./src --strict
+        mypy ./src ./tests --strict
 {% endif %}
