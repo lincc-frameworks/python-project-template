@@ -73,8 +73,8 @@ Commit your new project locally
 -------------------------------------------------------------------------------
 
 If you're interested in using pre-commit hooks to crosscheck your code before you commit it, 
-now is a good time to set that up (it's just one command) - check out 
-:doc:`</practices/precommit>`.
+now is a good time to set that up (it's just one command) - check out
+:doc:`pre-commit <../practices/precommit>`
 
 Commit the project to your local version control like so to see the pre-commit checks run.
 
