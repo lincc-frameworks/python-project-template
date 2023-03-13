@@ -4,7 +4,7 @@ Git Large File Support
 Quick Start
 -------------------------------------------------------------------------------
 
-After cloning a repository and connecting to the resulting working tree issue ```git lfs install``` to install configurationa and hooks and then ```git lfs track``` to designate targets for git-lfs.
+After cloning a repository and connecting to the resulting working tree issue ``git lfs install`` to install configurationa and hooks and then ``git lfs track`` to designate targets for git-lfs.
 
 .. code-block:: bash
 
