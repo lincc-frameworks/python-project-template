@@ -13,15 +13,31 @@ Choose where you would like to create your new project, and call copier with the
 
 Copier will ask you questions for how to set up the project. These questions will be used to fill in aspects of the project's configuration, including both metadata and parameters. Below we provide some high-level overview of the questions:
 
-  * *What is the name of your project?* (``project_name``): The name of your project.
-  * *What is your python module name?* (``module_name``): The name of your (first) module. The main thing this controls is where your source code will live (``src/{{module_name}}``).
-  * *Your first and last name?* (``author_name``): The name of code's author.  This will be used in the project and documentation metadata.
-  * *Your preferred email address?* (``author_email``): The contact email for the code's author. This will be used in the project and documentation metadata.
-  * *What tooling would you like to use to enforce code style?* (``preferred_linter``): A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks.
-  * *Do you want to use a tool to maintain a specific ordering for module imports?* (``use_isort``): `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`.
-  * *Do you want to create some example module code?* (``create_example_module``): If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file.
+.. list-table::
+   :header-rows: 1
 
-While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_
+   * - **Question**
+     - **Notes**
+   * - *Would you like to use simple (default tooling) or customized installation?*
+     - If a simple install is used, the template automatically selects the recommended tooling options (linter, isort, and create example module). 
+   * - *What is the name of your project?*
+     - The name of your project.
+   * - *What is your python module name?*
+     - The name of your (first) module. This controls where your source code will live (``src/{{module_name}}``).
+   * - *Your first and last name?* 
+     -  The name of code's author.  This will be used in the project and documentation metadata.
+   * - *Your preferred email address?*
+     - The contact email for the code's author. This will be used in the project and documentation metadata.
+   * - *What license would you like to use?*
+     - The license type you want to use for this project. Options are MIT and BSD. For more information on these options see `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
+   * - *What tooling would you like to use to enforce code style?*
+     - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks. Defaults to ``pylint`` during simple installation. 
+   * - *Do you want to use a tool to maintain a specific ordering for module imports?*
+     - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. Defaults to ``True`` during simple installation.
+   * - *Do you want to create some example module code?*
+     - If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file. Defaults to ``True`` during simple installation.
+
+While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_ 
 
 After providing answers to the prompts, Copier will hydrate a project template and save it in the specified location. Additionally Copier will run ``git init`` in the new project directory to initialize it as a local repository.
 
