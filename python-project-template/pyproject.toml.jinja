@@ -29,11 +29,11 @@ dev = [
     "sphinx==6.1.3", # Used to automatically generate documentation
     "sphinx_rtd_theme==1.2.0", # Used to render documentation
     "sphinx-autoapi==2.0.1", # Used to automatically generate api documentation
-{% if preferred_linter == 'pylint' %}
+{%- if preferred_linter == 'pylint' %}
     "pylint", # Used for static linting of files
-{% elif preferred_linter == 'black' %}
+{%- elif preferred_linter == 'black' %}
     "black", # Used for static linting of files
-{% endif %}
+{%- endif %}
 ]
 
 [build-system]
@@ -46,7 +46,7 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 write_to = "src/{{module_name}}/_version.py"
 
-{% if preferred_linter == 'pylint' %}
+{%- if preferred_linter == 'pylint' -%}
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = """
@@ -54,7 +54,7 @@ disable = """
 """
 ignore-patterns = "^_.*" # Ignore files that start with an underscore, i.e. _version.py
 
-{% elif preferred_linter == 'black' %}
+{%- elif preferred_linter == 'black' -%}
 
 [tool.black]
 line-length = 110
