@@ -4,22 +4,24 @@ Git Large File Support
 Quick Start
 -------------------------------------------------------------------------------
 
-After cloning a repository and connecting to the resulting working tree issue ``git lfs install`` to install configurationa and hooks and then ``git lfs track`` to designate targets for git-lfs.
+After cloning a repository and connecting to the resulting working tree confirm that you have ``git-lfs`` and then issue ``git lfs install`` to install configurationa and hooks and then ``git lfs track`` to designate targets for git-lfs.
 
 .. code-block:: bash
 
+    git-lfs --version
     git lfs install --local
     git lfs track '*.fits' '*.fits.fz' '*.gz'
 
 
-FAQ
--------------------------------------------------------------------------------
+.. list-table::
+  :header-rows: 1
 
-git: 'lfs' is not a git command
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-See :ref:`get-git-lfs-label`.
-
+  * - **Common Problems**
+    - **Resolution**
+  * - git-lfs: command not found
+    - Install git-lfs, see :ref:`get-git-lfs-label`
+  * - git: 'lfs' is not a git command
+    - Install git-lfs, see :ref:`get-git-lfs-label`
 
 What is it? Why do it?
 -------------------------------------------------------------------------------
@@ -38,9 +40,6 @@ How to manage
 
 Get git-lfs
 ^^^^^^^^^^^
-You will need git-lfs. At this time it is not available using ``pip``  or ``pipx``
-and while there is a pip package named ``git-lfs`` it does not in fact contain
-``git-lfs``. Please do not use it.
 
 The preferred installation instructions are at `Git-lfs <https://git-lfs.com/>`_.
 That site will show you instructions most appropriate for your platform.
@@ -50,6 +49,10 @@ You may also use conda as it has a ``git-lfs`` package appropriately named.
 .. code-block:: bash
 
     conda install git-lfs
+
+At this time it is not available using ``pip``  or ``pipx``.
+Note that while there is a pip package named ``git-lfs`` it does not in fact contain
+``git-lfs``. Please do not use it.
 
 Install git-lfs in the local repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -78,6 +81,7 @@ For example, if you want to specify that ``FITS`` files are handled by git-lfs t
     git lfs track '*.fits' '*.fits.fz'
 
 You can see a list of currently tracked names
+
 .. code-block:: bash
 
     git lfs track
