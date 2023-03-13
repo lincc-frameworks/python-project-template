@@ -72,7 +72,9 @@ At this point, your new project is hydrated and ready for you to start coding. B
 Commit your new project locally
 -------------------------------------------------------------------------------
 
-If you're interested in using pre-commit hooks to crosscheck your code before you commit it, now is a good time to set that up (it's just one command) - check out `"Helpful pre-commit hooks" <https://github.com/lincc-frameworks/python-project-template#helpful-pre-commit-hooks>`_.
+If you're interested in using pre-commit hooks to crosscheck your code before you commit it, 
+now is a good time to set that up (it's just one command) - check out 
+:doc:`</practices/precommit>`.
 
 Commit the project to your local version control like so to see the pre-commit checks run.
 

@@ -1,0 +1,6 @@
+Notebooks
+========================================================================================
+
+.. toctree::
+
+    Introducing Jupyter Notebooks <nb/intro_notebook>

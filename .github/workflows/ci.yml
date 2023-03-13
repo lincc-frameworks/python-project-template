@@ -54,6 +54,12 @@ jobs:
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"
+    - name: Install notebook requirements
+      if: ${{ true }}
+      run: |
+        sudo apt-get install pandoc
+        pip install -r ../test/${{ matrix.copier_config.foldername }}/docs/requirements.txt
+        cat ../test/${{ matrix.copier_config.foldername }}/docs/requirements.txt
     - name: Build docs
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
