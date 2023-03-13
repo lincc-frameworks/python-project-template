@@ -1,3 +1,11 @@
+custom_install:
+    help: Would you like to use simple (default tooling) or customized installation?
+    type: bool
+    default: customized
+    choices:
+        customized: true
+        simple: false
+
 project_name:
     type: str
     help: What is the name of your project?
@@ -43,6 +51,7 @@ preferred_linter:
         pylint: pylint
         black: black
         none: none
+    when: "{{ custom_install }}"
 
 use_isort:
     help: Do you want to use a tool to maintain a specific ordering for module imports?
@@ -51,6 +60,7 @@ use_isort:
     choices:
         yes: true
         no: false
+    when: "{{ custom_install }}"
 
 create_example_module:
     help: Do you want to create some example module code?
@@ -59,6 +69,7 @@ create_example_module:
     choices:
         yes: true
         no: false
+    when: "{{ custom_install }}"
 
 ###
 # Below this line are Copier configuration options.
