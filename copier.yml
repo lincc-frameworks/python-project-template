@@ -71,6 +71,14 @@ create_example_module:
         no: false
     when: "{{ custom_install }}"
 
+include_notebooks:
+    help: Do you want to include rendered notebooks in your documentation?
+    type: bool
+    default: yes
+    choices:
+        yes: true
+        no: false
+
 ###
 # Below this line are Copier configuration options.
 ###

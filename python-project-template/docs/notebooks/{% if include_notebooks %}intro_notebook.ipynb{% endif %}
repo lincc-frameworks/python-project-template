@@ -1,0 +1,111 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "accepting-editor",
+   "metadata": {
+    "cell_marker": "\"\"\""
+   },
+   "source": [
+    "# Introducing Jupyter Notebooks\n",
+    "\n",
+    "_(The example used here is JamesALeedham's notebook: [intro.ipynb](https://github.com/JamesALeedham/Sphinx-Autosummary-Recursion/blob/master/docs/notebooks/intro.ipynb))_\n",
+    "\n",
+    "First, set up the environment:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "actual-thirty",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib\n",
+    "import matplotlib.pyplot as pl\n",
+    "import numpy as np\n",
+    "\n",
+    "try:\n",
+    "    from IPython import get_ipython\n",
+    "    get_ipython().run_line_magic('matplotlib', 'inline')\n",
+    "except AttributeError:\n",
+    "    print('Magic function can only be used in IPython environment')\n",
+    "    matplotlib.use('Agg')\n",
+    "\n",
+    "pl.rcParams[\"figure.figsize\"] = [15, 8]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "coral-upper",
+   "metadata": {
+    "cell_marker": "\"\"\"",
+    "lines_to_next_cell": 1
+   },
+   "source": [
+    "Then, define a function that creates a pretty graph:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "funded-protection",
+   "metadata": {
+    "lines_to_next_cell": 1
+   },
+   "outputs": [],
+   "source": [
+    "def SineAndCosineWaves():\n",
+    "    # Get a large number of X values for a nice smooth curve. Using Pi as np.sin requires radians...\n",
+    "    x = np.linspace(0, 2 * np.pi, 180)\n",
+    "    # Convert radians to degrees to make for a meaningful X axis (1 radian = 57.29* degrees)\n",
+    "    xdeg = 57.29577951308232 * np.array(x)\n",
+    "    # Calculate the sine of each value of X\n",
+    "    y = np.sin(x)\n",
+    "    # Calculate the cosine of each value of X\n",
+    "    z = np.cos(x)\n",
+    "    # Plot the sine wave in blue, using degrees rather than radians on the X axis\n",
+    "    pl.plot(xdeg, y, color='blue', label='Sine wave')\n",
+    "    # Plot the cos wave in green, using degrees rather than radians on the X axis\n",
+    "    pl.plot(xdeg, z, color='green', label='Cosine wave')\n",
+    "    pl.xlabel(\"Degrees\")\n",
+    "    # More sensible X axis values\n",
+    "    pl.xticks(np.arange(0, 361, 45))\n",
+    "    pl.legend()\n",
+    "    pl.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "thorough-cutting",
+   "metadata": {
+    "cell_marker": "\"\"\""
+   },
+   "source": [
+    "Finally, call that function to display the graph:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "imported-uruguay",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "SineAndCosineWaves()"
+   ]
+  }
+ ],
+ "metadata": {
+  "jupytext": {
+   "cell_markers": "\"\"\""
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
