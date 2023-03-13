@@ -32,7 +32,7 @@ Copier will ask you questions for how to set up the project. These questions wil
      - The license type you want to use for this project. Options are MIT and BSD. For more information on these options see `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
    * - *What tooling would you like to use to enforce code style?*
      - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks. Defaults to ``pylint`` during simple installation. 
-   * - *Do you want to use a tool to maintain a specific ordering for module imports?*
+   * - *Do you want to use a isort maintain a specific ordering for module imports?*
      - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. Defaults to ``True`` during simple installation.
    * - *Do you want to create some example module code?*
      - If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file. Defaults to ``True`` during simple installation.
@@ -43,17 +43,26 @@ While these choices will provide the initial structure for your project, most ca
 
 After providing answers to the prompts, Copier will hydrate a project template and save it in the specified location. Additionally Copier will run ``git init`` in the new project directory to initialize it as a local repository.
 
-Create a new environment and install your new package
--------------------------------------------------------------------------------
+Create a new environment
+---------------------------
 
-If you are using `virtual environments <https://packaging.python.org/en/latest/glossary/#term-Virtual-Environment>`_ create a new environment with your choice of environment tools (virtualenv, conda, etc.) and activate it. This step is optional, but we recommend using virtual environments to better manage different project's dependencies. See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ for more details.
+If you are using `virtual environments <https://packaging.python.org/en/latest/glossary/#term-Virtual-Environment>`_ 
+create a new environment with your choice of environment tools (virtualenv, conda, etc.) and activate it. 
+This step is optional, but we recommend using virtual environments to better manage different project's dependencies. 
+See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ for more details.
 
-Go to the new package's directory (e.g. ``cd {{project_name}}``)
+Install your new package
+----------------------------------------------------
 
-Install the newly created python package. Use ``pip`` to install both the standard set of dependencies as well as the ``[dev]`` dependencies. (Note: depending on your system, you may not need the single quotes about ``'.[dev]'``)
+Go to the new package directory and install the newly created python package.
+Use ``pip`` to install both the standard set of dependencies as well as the ``[dev]`` dependencies.
+
+.. note::
+  Depending on your system you may not need the single quotes around ``'.[dev]'``.
 
 .. code-block:: bash
 
+    >> cd {{project_name}}
     >> pip install -e .
     ...
     Lots of output

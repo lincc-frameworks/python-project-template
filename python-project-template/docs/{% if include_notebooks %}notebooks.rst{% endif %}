@@ -3,4 +3,4 @@ Notebooks
 
 .. toctree::
 
-    Introducing Jupyter Notebooks <nb/intro_notebook>
+    Introducing Jupyter Notebooks <notebooks/intro_notebook>

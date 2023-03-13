@@ -54,7 +54,7 @@ preferred_linter:
     when: "{{ custom_install }}"
 
 use_isort:
-    help: Do you want to use a tool to maintain a specific ordering for module imports?
+    help: Do you want to use isort to maintain a specific ordering for module imports?
     type: bool
     default: yes
     choices:
