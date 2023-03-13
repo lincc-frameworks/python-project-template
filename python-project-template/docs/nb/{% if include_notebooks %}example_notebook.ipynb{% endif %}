@@ -9,7 +9,7 @@
    "source": [
     "# Introducing Jupyter Notebooks\n",
     "\n",
-    "_(This notebook is JamesALeedham's [intro.ipynb](https://github.com/JamesALeedham/Sphinx-Autosummary-Recursion/blob/master/docs/notebooks/intro.ipynb).)_\n",
+    "_(The example used here is JamesALeedham's notebook: [intro.ipynb](https://github.com/JamesALeedham/Sphinx-Autosummary-Recursion/blob/master/docs/notebooks/intro.ipynb))_\n",
     "\n",
     "First, set up the environment:"
    ]
