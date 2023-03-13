@@ -53,15 +53,6 @@ preferred_linter:
         none: none
     when: "{{ custom_install }}"
 
-mypy_type_checking:
-    help: Would you like to include mypy to perform static type checking for type hints?
-    type: str
-    default: none
-    choices:
-        No type checking: none
-        Add basic type checking for code that has type hints: basic
-        Add strict type checking to enforce that type hints are used: strict
-
 use_isort:
     help: Do you want to use a tool to maintain a specific ordering for module imports?
     type: bool
@@ -70,6 +61,15 @@ use_isort:
         yes: true
         no: false
     when: "{{ custom_install }}"
+
+mypy_type_checking:
+    help: Would you like to include mypy to perform static type checking for type hints?
+    type: str
+    default: none
+    choices:
+        No type checking: none
+        Add basic type checking for code that has type hints: basic
+        Add strict type checking to enforce that type hints are used: strict
 
 create_example_module:
     help: Do you want to create some example module code?
