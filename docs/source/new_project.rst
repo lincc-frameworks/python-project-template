@@ -36,6 +36,8 @@ Copier will ask you questions for how to set up the project. These questions wil
      - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. Defaults to ``True`` during simple installation.
    * - *Do you want to create some example module code?*
      - If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file. Defaults to ``True`` during simple installation.
+   * - *Do you want to add a .gitattributes with entries for git-lfs?*
+     - Support for large files for use in git. This option is primarily informational and no answer locks you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
 
 While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_ 
 
@@ -71,8 +73,8 @@ Commit your new project locally
 -------------------------------------------------------------------------------
 
 If you're interested in using pre-commit hooks to crosscheck your code before you commit it, 
-now is a good time to set that up (it's just one command) - check out 
-:doc:`</practices/precommit>`.
+now is a good time to set that up (it's just one command) - check out
+:doc:`pre-commit <../practices/precommit>`
 
 Commit the project to your local version control like so to see the pre-commit checks run.
 

@@ -79,6 +79,15 @@ include_notebooks:
         yes: true
         no: false
 
+use_gitlfs:
+    help: Do you want to add a .gitattributes with entries for git-lfs (see https://lincc-ppt.readthedocs.io/en/latest/practices/git-lfs.html)?
+    type: str
+    default: none
+    choices:
+        maybe later: none
+        yes .gitattributes with example entries disabled: disabled
+        yes .gitattributes with example entries enabled: enabled
+
 ###
 # Below this line are Copier configuration options.
 ###
@@ -88,6 +97,7 @@ _subdirectory: python-project-template
 
 _skip_if_exists:
     - README.md
+    - .gitattributes
 
 # Tasks to execute after generating or updating a project.
 _tasks:

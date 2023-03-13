@@ -14,3 +14,4 @@ Practices
 * :doc:`precommit`
 * :doc:`pypi`
 * :doc:`sphinx`
+* :doc:`git-lfs`
