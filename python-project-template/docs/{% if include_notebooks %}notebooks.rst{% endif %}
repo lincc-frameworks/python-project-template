@@ -1,7 +1,7 @@
-Example Notebooks
+Notebooks
 ========================================================================================
 
 .. toctree::
    :hidden:
 
-    Example <nb/example_notebook>
+    Introducing Jupyter Notebooks <nb/intro_notebook>
