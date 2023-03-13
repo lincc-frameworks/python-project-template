@@ -51,7 +51,7 @@ preferred_linter:
         pylint: pylint
         black: black
         none: none
-    when: "{% if custom_install %}true{% endif %}"
+    when: "{{ custom_install }}"
 
 use_isort:
     help: Do you want to use a tool to maintain a specific ordering for module imports?
