@@ -46,7 +46,7 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 write_to = "src/{{module_name}}/_version.py"
 
-{%- if preferred_linter == 'pylint' -%}
+{%- if preferred_linter == 'pylint' %}
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = """
@@ -54,7 +54,7 @@ disable = """
 """
 ignore-patterns = "^_.*" # Ignore files that start with an underscore, i.e. _version.py
 
-{%- elif preferred_linter == 'black' -%}
+{%- elif preferred_linter == 'black' %}
 
 [tool.black]
 line-length = 110
