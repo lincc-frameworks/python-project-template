@@ -54,6 +54,9 @@ jobs:
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"
+    - name: Add pandoc for notebook building
+      if: ${{ true }}
+      uses: docker://pandoc/latex:2.9
     - name: Build docs
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
