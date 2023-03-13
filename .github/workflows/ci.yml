@@ -58,8 +58,8 @@ jobs:
       if: ${{ true }}
       run: |
         sudo apt-get install pandoc
-        pip install -r ../test/base_example/docs/requirements.txt
-        cat ../test/base_example/docs/requirements.txt
+        pip install -r ../test/${{ matrix.copier_config.foldername }}/docs/requirements.txt
+        cat ../test/${{ matrix.copier_config.foldername }}/docs/requirements.txt
     - name: Build docs
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
