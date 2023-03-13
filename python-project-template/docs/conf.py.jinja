@@ -29,7 +29,9 @@ version = ".".join(release.split(".")[:2])
 extensions = ["sphinx.ext.mathjax", "sphinx.ext.napoleon", "sphinx.ext.viewcode"]
 
 extensions.append("autoapi.extension")
-{% if include_notebooks %}extensions.append("nbsphinx"){% endif %}
+{%- if include_notebooks %}
+extensions.append("nbsphinx")
+{%- endif %}
 
 templates_path = []
 exclude_patterns = []
