@@ -54,13 +54,14 @@ jobs:
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"
-    - name: Add pandoc for notebook building
+    - name: Install notebook requirements
       if: ${{ true }}
-      uses: docker://pandoc/latex:2.9
+      run: |
+        sudo apt-get install pandoc
+        pip install -r docs/requirements.txt
     - name: Build docs
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
-        pip install -r docs/requirements.txt
         sphinx-build -T -E -b html -d docs/build/doctrees ./docs docs/build/html
     - name: Tests
       run: |
