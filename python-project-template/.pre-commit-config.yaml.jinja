@@ -57,19 +57,35 @@ repos:
         files: ^(src|tests)/
 {% endif %}
 {% if preferred_linter == 'pylint' %}
-    # Analyze the code style and report code that doesn't adhere.
+      # Analyze the src code style and report code that doesn't adhere.
   - repo: local
     hooks:
       - id: pylint
-        name: pylint (python files in src/ and tests/)
+        name: pylint (python files in src/)
         entry: pylint
         language: system
         types: [python]
-        files: ^(src|tests)/
+        files: ^src/
         args:
           [
             "-rn", # Only display messages
             "-sn", # Don't display the score
+            "--rcfile=src/.pylintrc",
+          ]
+    # Analyze the tests code style and report code that doesn't adhere.
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint (python files in tests/)
+        entry: pylint
+        language: system
+        types: [python]
+        files: ^tests/
+        args:
+          [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--rcfile=tests/.pylintrc",
           ]
 {% elif preferred_linter == 'black' %}
     # Analyze the code style and report code that doesn't adhere.
