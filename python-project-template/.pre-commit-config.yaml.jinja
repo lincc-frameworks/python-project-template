@@ -85,6 +85,25 @@ repos:
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
 {% endif %}
+{% if mypy_type_checking != 'none' %}
+    # Analyze type hints and report errors.
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy (python files in src/ and tests/)
+        entry: mypy
+        language: system
+        types: [python]
+        files: ^(src|tests)/
+        args:
+          [
+          {% if mypy_type_checking == 'basic' %}
+            "--ignore-missing-imports", # Ignore imports without type hints
+          {% elif mypy_type_checking == 'strict' %}
+            "--strict", # Use mypy strict mode to enforce type hints
+          {% endif %}
+          ]
+{% endif %}
   - repo: local
     hooks:
       - id: sphinx-build

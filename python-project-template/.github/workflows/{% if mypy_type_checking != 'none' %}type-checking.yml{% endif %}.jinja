@@ -1,0 +1,35 @@
+# This workflow will install Python dependencies, then perform static type checking analysis.
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: mypy Type checking
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        python -m pip install --upgrade pip
+        pip install .
+        pip install .[dev]
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Analyze code with mypy
+{% if mypy_type_checking == 'basic' %}
+      run: |
+        mypy ./src ./tests --ignore-missing-imports
+{% elif mypy_type_checking == 'strict' %}
+      run: |
+        mypy ./src ./tests --strict
+{% endif %}

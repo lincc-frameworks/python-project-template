@@ -38,6 +38,9 @@ dev = [
 {%- elif preferred_linter == 'black' %}
     "black", # Used for static linting of files
 {%- endif %}
+{%- if mypy_type_checking != 'none' %}
+    "mypy", # Used for static type checking of files
+{%- endif %}
 ]
 
 [build-system]
