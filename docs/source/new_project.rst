@@ -32,7 +32,7 @@ Copier will ask you questions for how to set up the project. These questions wil
      - The license type you want to use for this project. Options are MIT and BSD. For more information on these options see `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
    * - *What tooling would you like to use to enforce code style?*
      - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks. Defaults to ``pylint`` during simple installation. 
-   * - *Do you want to use isort maintain a specific ordering for module imports?*
+   * - *Do you want to use isort to maintain a specific ordering for module imports?*
      - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. Defaults to ``True`` during simple installation.
    * - *Do you want to create some example module code?*
      - If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file. Defaults to ``True`` during simple installation.
