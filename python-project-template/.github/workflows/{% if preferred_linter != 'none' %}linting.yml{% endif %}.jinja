@@ -28,7 +28,7 @@ jobs:
     - name: Analyze code with linter
 {% if preferred_linter == 'pylint' %}
       run: |
-        pylint -rn -sn --recursive=y ./src
+        pylint -rn -sn --recursive=y ./src --rcfile=./src/.pylintrc
 {% elif preferred_linter == 'black' %}
       uses: psf/black@stable
       with:
