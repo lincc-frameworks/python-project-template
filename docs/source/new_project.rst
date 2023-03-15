@@ -21,8 +21,9 @@ Copier will ask you questions for how to set up the project. These questions wil
   * *What tooling would you like to use to enforce code style?* (``preferred_linter``): A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks.
   * *Do you want to use a tool to maintain a specific ordering for module imports?* (``use_isort``): `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`.
   * *Do you want to create some example module code?* (``create_example_module``): If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file.
+  * *Do you want to include rendered notebooks in your documentation?* (``include_notebooks``): The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will be included in your project. A sample notebook will be generated and added to your docs as an example.
 
-While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_
+While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_.
 
 After providing answers to the prompts, Copier will hydrate a project template and save it in the specified location. Additionally Copier will run ``git init`` in the new project directory to initialize it as a local repository.
 
