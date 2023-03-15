@@ -23,7 +23,7 @@ dependencies = [
     "ipykernel", # Support for Jupyter notebooks
 ]
 
-# On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
+# On a mac, install optional dependencies with `pip install '.[dev]'` or `pip install '.[docs]'` (include the single quotes)
 [project.optional-dependencies]
 dev = [
     "pytest",
@@ -42,6 +42,15 @@ dev = [
     "mypy", # Used for static type checking of files
 {%- endif %}
 ]
+
+{%- if include_notebooks %}
+docs = [
+    "nbsphinx", # Used to itegrate Python notebooks into Sphinx documentation
+    "ipython", # TODO
+    "matplotlib", # Used in sample notebook intro_notebook.ipynb
+    "numpy", # Used in sample notebook intro_notebook.ipynb
+]
+{%- endif %}
 
 [build-system]
 requires = [
