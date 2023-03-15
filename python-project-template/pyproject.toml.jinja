@@ -7,11 +7,11 @@ authors = [
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
-{% if project_license == 'MIT' %}
+{%- if project_license == 'MIT' %}
     "License :: OSI Approved :: MIT License",
-{% elif project_license == 'BSD' %}
+{%- elif project_license == 'BSD' %}
     "License :: OSI Approved :: BSD License",
-{% endif %}
+{%- endif %}
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
     "Operating System :: OS Independent",
@@ -37,6 +37,9 @@ dev = [
     "pylint", # Used for static linting of files
 {%- elif preferred_linter == 'black' %}
     "black", # Used for static linting of files
+{%- endif %}
+{%- if mypy_type_checking != 'none' %}
+    "mypy", # Used for static type checking of files
 {%- endif %}
 ]
 

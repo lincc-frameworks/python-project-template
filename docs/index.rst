@@ -25,6 +25,7 @@ It's really neat!
    practices/overview
    practices/ci_testing
    practices/code_coverage
+   practices/git-lfs
    practices/linting
    practices/precommit
    practices/pypi

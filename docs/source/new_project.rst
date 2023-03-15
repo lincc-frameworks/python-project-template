@@ -13,31 +13,61 @@ Choose where you would like to create your new project, and call copier with the
 
 Copier will ask you questions for how to set up the project. These questions will be used to fill in aspects of the project's configuration, including both metadata and parameters. Below we provide some high-level overview of the questions:
 
-  * *What is the name of your project?* (``project_name``): The name of your project.
-  * *What is your python module name?* (``module_name``): The name of your (first) module. The main thing this controls is where your source code will live (``src/{{module_name}}``).
-  * *Your first and last name?* (``author_name``): The name of code's author.  This will be used in the project and documentation metadata.
-  * *Your preferred email address?* (``author_email``): The contact email for the code's author. This will be used in the project and documentation metadata.
-  * *What license would you like to use?* (``project_license``): The license type you wwant to use for this project. Options are MIT and BSD. For more information on these options see `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
-  * *What tooling would you like to use to enforce code style?* (``preferred_linter``): A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks.
-  * *Do you want to use a tool to maintain a specific ordering for module imports?* (``use_isort``): `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`.
-  * *Do you want to create some example module code?* (``create_example_module``): If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file.
-  * *Do you want to include rendered notebooks in your documentation?* (``include_notebooks``): The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will be included in your project. A sample notebook will be generated and added to your docs as an example.
+.. list-table::
+   :header-rows: 1
+
+   * - **Question**
+     - **Notes**
+   * - *Would you like to use simple (default tooling) or customized installation?*
+     - If a simple install is used, the template automatically selects the recommended tooling options (linter, isort, and create example module). 
+   * - *What is the name of your project?*
+     - The name of your project.
+   * - *What is your python module name?*
+     - The name of your (first) module. This controls where your source code will live (``src/{{module_name}}``).
+   * - *Your first and last name?* 
+     -  The name of code's author.  This will be used in the project and documentation metadata.
+   * - *Your preferred email address?*
+     - The contact email for the code's author. This will be used in the project and documentation metadata.
+   * - *What license would you like to use?*
+     - The license type you want to use for this project. Options are MIT and BSD. For more information on these options see `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
+   * - *What tooling would you like to use to enforce code style?*
+     - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks. Defaults to ``pylint`` during simple installation. 
+   * - *Do you want to use isort to maintain a specific ordering for module imports?*
+     - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. Defaults to ``True`` during simple installation.
+   * - *Would you like to include mypy to perform static type checking for type hints?*
+     - `mypy <https://www.mypy-lang.org>`_ performs static type checking on python code that uses `type hints <https://docs.python.org/3/library/typing.html>`_. This type checking makes sure that the correct data types are being used where type hints are defined. If basic or strict type checking is selected, a pre-commit hook and GitHub actions workflow that perform the type checking are added. Basic type checking performs type checks but ignores code or imports for which type hints are not written. Strict type checking enforces type hints are used by giving errors where no type hints are found.
+   * - *Do you want to create some example module code?*
+     - If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file. Defaults to ``True`` during simple installation.
+   * - *Do you want to add a .gitattributes with entries for git-lfs?*
+     - Support for large files for use in git. This option is primarily informational and no answer locks you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
+   * - *Do you want to include rendered notebooks in your documentation?*
+     - The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will be included in your project. A sample notebook will be generated and added to your docs as an example.
+
 
 While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_.
 
 After providing answers to the prompts, Copier will hydrate a project template and save it in the specified location. Additionally Copier will run ``git init`` in the new project directory to initialize it as a local repository.
 
-Create a new environment and install your new package
--------------------------------------------------------------------------------
+Create a new environment
+---------------------------
 
-If you are using `virtual environments <https://packaging.python.org/en/latest/glossary/#term-Virtual-Environment>`_ create a new environment with your choice of environment tools (virtualenv, conda, etc.) and activate it. This step is optional, but we recommend using virtual environments to better manage different project's dependencies. See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ for more details.
+If you are using `virtual environments <https://packaging.python.org/en/latest/glossary/#term-Virtual-Environment>`_ 
+create a new environment with your choice of environment tools (virtualenv, conda, etc.) and activate it. 
+This step is optional, but we recommend using virtual environments to better manage different project's dependencies. 
+See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ for more details.
 
-Go to the new package's directory (e.g. ``cd {{project_name}}``)
+Install your new package
+----------------------------------------------------
 
-Install the newly created python package. Use ``pip`` to install both the standard set of dependencies as well as the ``[dev]`` dependencies. (Note: depending on your system, you may not need the single quotes about ``'.[dev]'``)
+Go to the new package directory and install the newly created python package.
+Use ``pip`` to install both the standard set of dependencies as well as the ``[dev]`` dependencies.
+
+.. note::
+  Depending on your system you may not need the single quotes around ``'.[dev]'``.
 
 .. code-block:: bash
 
+    >> cd {{project_name}}
     >> pip install -e .
     ...
     Lots of output
@@ -56,7 +86,9 @@ At this point, your new project is hydrated and ready for you to start coding. B
 Commit your new project locally
 -------------------------------------------------------------------------------
 
-If you're interested in using pre-commit hooks to crosscheck your code before you commit it, now is a good time to set that up (it's just one command) - check out `"Helpful pre-commit hooks" <https://github.com/lincc-frameworks/python-project-template#helpful-pre-commit-hooks>`_.
+If you're interested in using pre-commit hooks to crosscheck your code before you commit it, 
+now is a good time to set that up (it's just one command) - check out
+:doc:`pre-commit <../practices/precommit>`
 
 Commit the project to your local version control like so to see the pre-commit checks run.
 
