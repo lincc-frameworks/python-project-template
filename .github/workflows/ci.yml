@@ -49,7 +49,7 @@ jobs:
     - name: pylint checks
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
-        python -m pylint --recursive=y ./src/
+        python -m pylint --recursive=y ./src/ --rcfile=./src/.pylintrc
     - name: black checks
       uses: psf/black@stable
       with:
