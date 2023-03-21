@@ -27,6 +27,7 @@ version = ".".join(release.split(".")[:2])
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ["sphinx.ext.mathjax", "sphinx.ext.napoleon", "sphinx.ext.viewcode"]
+
 extensions.append("autoapi.extension")
 {%- if include_notebooks %}
 extensions.append("nbsphinx")

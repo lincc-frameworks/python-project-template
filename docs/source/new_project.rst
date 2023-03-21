@@ -56,6 +56,10 @@ create a new environment with your choice of environment tools (virtualenv, cond
 This step is optional, but we recommend using virtual environments to better manage different project's dependencies. 
 See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ for more details.
 
+.. tip::
+  Projects using Python notebooks will need to have ``pandoc`` installed to convert notebooks to html locally. 
+  Pandoc is `available on conda-forge <https://github.com/conda-forge/pandoc-feedstock>`_, so conda can be a convenient way to keep these dependencies grouped together.
+
 Install your new package
 ----------------------------------------------------
 
