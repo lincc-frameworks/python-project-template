@@ -15,6 +15,7 @@ It's really neat!
 
    source/overview
    source/new_project
+   source/update_project
    source/existing_project
    source/contributing
 
