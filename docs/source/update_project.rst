@@ -46,7 +46,7 @@ the rest.
 
     >> copier --force --data <question_name>="new answer" update
 
-This tell copier to use the previous answers for all questions except the one you want to
+This tells copier to use the previous answers for all questions except the one you want to
 update. For instance, if you initialized your project by selected ``pylint`` as your 
 preferred linter, but now would like to change to ``black``, you could use the following:
 
