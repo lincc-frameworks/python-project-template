@@ -29,6 +29,9 @@ dev = [
     "pytest",
     "pytest-cov", # Used to report total code coverage
     "pre-commit", # Used to run checks before finalizing a git commit
+    "sphinx==6.1.3", # Used to automatically generate documentation
+    "sphinx_rtd_theme==1.2.0", # Used to render documentation
+    "sphinx-autoapi==2.0.1", # Used to automatically generate api documentation
 {%- if preferred_linter == 'pylint' %}
     "pylint", # Used for static linting of files
 {%- elif preferred_linter == 'black' %}
@@ -39,9 +42,6 @@ dev = [
 {%- endif %}
 {%- if include_notebooks %}
     "nbconvert", # Needed for pre-commit check to clear output from Python notebooks
-    "sphinx==6.1.3", # Used to automatically generate documentation
-    "sphinx_rtd_theme==1.2.0", # Used to render documentation
-    "sphinx-autoapi==2.0.1", # Used to automatically generate api documentation
     "nbsphinx", # Used to itegrate Python notebooks into Sphinx documentation
     "ipython", # Also used in building notebooks into Sphinx
     "matplotlib", # Used in sample notebook intro_notebook.ipynb
