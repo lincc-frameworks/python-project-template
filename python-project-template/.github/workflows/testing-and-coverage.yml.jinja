@@ -37,7 +37,8 @@ jobs:
       uses: codecov/codecov-action@v3
 {%- if include_notebooks %}
     - name: Install notebook requirements
-      run: sudo apt-get install pandoc
+      run: |
+        sudo apt-get install pandoc
 {%- endif %}
     - name: Build docs
       run: |
