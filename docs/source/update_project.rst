@@ -1,21 +1,28 @@
 Keeping your project up to date
 ===============================
 
-Once your project is under version control you'll be able to keep your project up 
-to date as new features are added to the template by running the following command:
+As we release new template features, you can keep your project up to date with 
+a single-word command:
 
 .. code-block:: bash
 
-    >> copier update
+    >> copier
 
 Copier will automatically check to see if a newer version of the original template 
 is available and if so the changes will be automatically applied. Neato!
 
-And of course, because your project is under version control, if you don't like 
-the new changes, you can always revert back to the previous state.
+You should run ``git diff`` to see what code has changed.
+If you don't like the new changes, you can always revert back to the previous state.
 
-There are a few additional flags that you can use to be more explicit about how and what you want to update.
-We've found the following to be the most useful.
+Additionally, if Copier encounters a merge conflict between your existing code and 
+the updated template, it will produce ``.rej`` files that contain the unresolved diffs. 
+If you see a ``.rej`` file, resolve the merge conflict and check that your code 
+was updated correctly. 
+There is no need to commit ``.rej`` files, you should remove them as 
+the merge conflicts are resolved.
+
+There are a few additional flags that you can use to be more explicit about how 
+and what you want to update. We've found the following to be the most useful.
 
 Get the absolute latest version of the template
 -----------------------------------------------

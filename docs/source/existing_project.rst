@@ -120,6 +120,19 @@ simply an indicator that you should review that file before committing.
 After running Copier
 --------------------
 
+Look at what changed
+....................
+
+You should run ``git diff`` to see what code has changed.
+If you don't like the new changes, you can always revert back to the previous state.
+
+Additionally, if Copier encounters a merge conflict between your existing code and 
+the updated template, it will produce ``.rej`` files that contain the unresolved diffs. 
+If you see a ``.rej`` file, resolve the merge conflict and check that your code 
+was updated correctly. 
+There is no need to commit ``.rej`` files, you should remove them as 
+the merge conflicts are resolved.
+
 Confirm that your package builds
 ................................
 You should attempt to use ``pip`` to build your package and install dependencies. 
