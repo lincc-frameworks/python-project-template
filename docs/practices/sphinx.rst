@@ -42,3 +42,41 @@ follow the same steps as readthedocs will perform when building your documentati
 
 This will build your document source tree into ``$project_directory/_readthedocs/html/``,
 and you can inspect the built HTML by opening the ``index.html`` file.
+
+Python notebooks
+-------------------------------------------------------------------------------
+
+Including notebooks in local builds
+...............................................................................
+
+To have your notebooks built along with the rest of your documentation when you 
+run Sphinx locally, install `Pandoc <https://pandoc.org/>`_. This Haskell library 
+is `available on conda-forge <https://github.com/conda-forge/pandoc-feedstock>`_ 
+among a `variety of other options <https://pandoc.org/installing.html>`_.
+
+Note that ReadTheDocs already has this requirement, so manually installing pandoc 
+is only required for running sphinx builds on your machine.
+
+
+Excluding notebooks from local builds
+...............................................................................
+
+Alternatively, you can make Sphinx ignore all of the notebooks in your documentation
+while still building everything else. To do so, you will need to run sphinx in make 
+mode, which allows the use of the -D flag to override excluded files.
+
+.. code-block:: bash
+
+    cd $project_directory
+    pip install -e .
+    cd docs
+    sphinx-build -M html . ../_readthedocs/html -T -E -d _build/doctrees -D language=en -D exclude_patterns="notebooks/*"
+
+Or, using the command in the included Makefile,
+
+.. code-block:: bash
+
+    cd $project_directory
+    pip install -e .
+    cd docs
+    make no-notebooks
