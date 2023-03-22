@@ -163,7 +163,7 @@ Import sorting
 ..............
 
 If your project wasn't using ``isort`` or something similar before, there's a good 
-change that pre-commit hook will fail. It will automatically reorder the offending 
+chance that pre-commit hook will fail. It will automatically reorder the offending 
 imports. You'll just need to ``git add`` the modified files again.
 
 
