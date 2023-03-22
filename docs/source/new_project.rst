@@ -38,10 +38,10 @@ Copier will ask you questions for how to set up the project. These questions wil
      - `mypy <https://www.mypy-lang.org>`_ performs static type checking on python code that uses `type hints <https://docs.python.org/3/library/typing.html>`_. This type checking makes sure that the correct data types are being used where type hints are defined. If basic or strict type checking is selected, a pre-commit hook and GitHub actions workflow that perform the type checking are added. Basic type checking performs type checks but ignores code or imports for which type hints are not written. Strict type checking enforces type hints are used by giving errors where no type hints are found.
    * - *Do you want to create some example module code?*
      - If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file. Defaults to ``True`` during simple installation.
-   * - *Do you want to add a .gitattributes with entries for git-lfs?*
-     - Support for large files for use in git. This option is primarily informational and no answer locks you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
    * - *Do you want to include rendered notebooks in your documentation?*
      - The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will be included in your project. A sample notebook will be generated and added to your docs as an example.
+   * - *Do you want to add a .gitattributes with entries for git-lfs?*
+     - Support for large files for use in git. This option is primarily informational and no answer locks you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
 
 
 While these choices will provide the initial structure for your project, most can be changed later. See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_.
