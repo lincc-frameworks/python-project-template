@@ -156,6 +156,17 @@ or missing dependencies.
     After porting the definitions, remove setup.py and build with ``pip install``. 
     This will ensure that pyproject.toml is being used for build configuration.
 
+.. warning::
+
+    If your existing package uses a pyproject.toml file and has a hardcoded "version"
+    line similar to ``version: "1.2.0"`` in the ``[project]`` section, please 
+    remove that line.
+
+    The LINCC Frameworks template makes use of dynamic versioning with 
+    ``dynamic = ["version"]``. 
+    A build error will occur if both a hardcoded and dynamic version definition 
+    are present in the same pyproject.toml file.
+
 
 Run all unit tests
 ..................
