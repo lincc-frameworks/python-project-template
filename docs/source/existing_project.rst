@@ -13,7 +13,7 @@ If you want to update a project that already uses the template, please see
     Every pre-existing project is unique - it's a snowflake - even if the developers followed 
     accepted guidelines and best practices. 
     
-    Because of that, we can't we enumerate all the possible sticking points that may be 
+    Because of that, we can't we enumerate all the possible sticking points that you may
     encounter when attempting to incorporate the LINCC Frameworks Python Project Template 
     into a pre-existing project.
 
