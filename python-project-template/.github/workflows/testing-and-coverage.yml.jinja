@@ -35,3 +35,10 @@ jobs:
         python -m pytest tests --cov={{module_name}} --cov-report=xml
     - name: Upload coverage report to codecov
       uses: codecov/codecov-action@v3
+{%- if include_notebooks %}
+    - name: Install notebook requirements
+      run: sudo apt-get install pandoc
+{%- endif %}
+    - name: Build docs
+      run: |
+        sphinx-build -T -E -b html -d docs/build/doctrees ./docs docs/build/html
