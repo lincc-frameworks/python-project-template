@@ -57,7 +57,7 @@ repos:
         files: ^(src|tests)/
 {% endif %}
 {% if preferred_linter == 'pylint' %}
-      # Analyze the src code style and report code that doesn't adhere.
+    # Analyze the src code style and report code that doesn't adhere.
   - repo: local
     hooks:
       - id: pylint
