@@ -15,7 +15,8 @@ BUILDDIR      = ../_readthedocs/
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-{% if include_notebooks %}
+{%- if include_notebooks %}
+
 # Build all Sphinx docs locally, except the notebooks
 no-nb no-notebooks:
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(EXCLUDENB) $(O)
