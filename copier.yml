@@ -70,6 +70,7 @@ mypy_type_checking:
         No type checking: none
         Add basic type checking for code that has type hints: basic
         Add strict type checking to enforce that type hints are used: strict
+    when: "{{ custom_install }}"
 
 create_example_module:
     help: Do you want to create some example module code?
