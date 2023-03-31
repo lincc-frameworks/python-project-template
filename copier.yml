@@ -26,12 +26,12 @@ module_name:
 
 author_name:
     type: str
-    help: Your first and last name?
+    help: What is the name of the code author? (Can be a person or organization)
     default: Your Name
 
 author_email:
     type: str
-    help: Your preferred email address?
+    help: Code author's preferred email address?
     default: name@you.com
 
 project_license:

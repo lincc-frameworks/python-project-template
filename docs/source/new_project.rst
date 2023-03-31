@@ -25,7 +25,7 @@ Copier will ask you questions for how to set up the project. These questions wil
    * - *What is your python module name?*
      - The name of your (first) module. This controls where your source code will live (``src/{{module_name}}``).
    * - *Your first and last name?* 
-     -  The name of code's author.  This will be used in the project and documentation metadata.
+     -  The name of code's author. This will be used in the project and documentation metadata. This name will also be included as part of the copyright license.
    * - *Your preferred email address?*
      - The contact email for the code's author. This will be used in the project and documentation metadata.
    * - *What license would you like to use?*
