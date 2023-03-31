@@ -12,7 +12,7 @@ project_name:
     default: example_project
     validator: >-
         {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_\-]+$')) %}
-        project_name must start with a letter, followed one or more letters, digits, hyphens, or underscores all lowercase.
+        project_name must start with a letter, followed by one or more letters, digits, hyphens, or underscores (all letters lowercase).
         {% endif %}
 
 module_name:
@@ -21,7 +21,7 @@ module_name:
     default: example_module
     validator: >-
         {% if not (module_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_]+$')) %}
-        module_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+        module_name must start with a letter, followed by one or more letters, digits, or underscores (all letters lowercase).
         {% endif %}
 
 author_name:
