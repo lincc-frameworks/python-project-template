@@ -3,7 +3,7 @@ name = "{{project_name}}"
 license = {file = "LICENSE"}
 readme = "README.md"
 authors = [
-    { name = "{{author_name}}", email = "{{author_email}}" }
+    { name = "{{author_name}}"{% if author_email %}, email = "{{author_email}}"{% endif %} }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
