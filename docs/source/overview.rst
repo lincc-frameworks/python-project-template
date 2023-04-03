@@ -9,6 +9,7 @@ The template takes care of the minutia of directory structures, tool configurati
 Copier is an open source tool that hydrates projects from templates and natively supports updating projects as the original template matures. 
 It's really neat!
 
+.. _prerequisites:
 
 Prerequisites
 -------------------------------------------------------------------------------
@@ -17,7 +18,7 @@ but summarized below.
 
 1. Python > 3.7
 2. Git > 2.27
-3. Pipx (nice to have, Conda and Pip work too, but can be more difficult to reason about later)
+3. Pipx (recommended - pip and conda work too, but require a different work flow)
 
 .. tip:: 
     You check your prerequisite versions as shown below
