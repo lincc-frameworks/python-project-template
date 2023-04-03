@@ -11,7 +11,7 @@ project_name:
     help: What is the name of your project?
     default: example_project
     validator: >-
-        {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_\-]+$')) %}
+        {% if not (project_name | regex_search('^[a-z][a-z0-9\_\-]+$')) %}
         project_name must start with a letter, followed by one or more letters, digits, hyphens, or underscores (all letters lowercase).
         {% endif %}
 
@@ -20,7 +20,7 @@ module_name:
     help: What is your python module name?
     default: example_module
     validator: >-
-        {% if not (module_name | regex_search('^[a-zA-Z][a-zA-Z0-9\_]+$')) %}
+        {% if not (module_name | regex_search('^[a-z][a-z0-9\_]+$')) %}
         module_name must start with a letter, followed by one or more letters, digits, or underscores (all letters lowercase).
         {% endif %}
 
