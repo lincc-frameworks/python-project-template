@@ -19,6 +19,8 @@ We have seen the template used successfully in projects that don't adhere to
 these guidelines. But if you meet these guidelines, you'll be guaranteed to get 
 the full benefit of the template.
 
+.. _prerequisites:
+
 Prerequisites
 --------------
 
