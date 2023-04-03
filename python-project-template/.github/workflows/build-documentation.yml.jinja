@@ -1,0 +1,37 @@
+# This workflow will install Python dependencies, build the package and then build the documentation.
+
+name: Build documentation
+
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        python -m pip install --upgrade pip
+        pip install .
+        pip install .[dev]
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+{%- if include_notebooks %}
+    - name: Install notebook requirements
+      run: |
+        sudo apt-get install pandoc
+{%- endif %}
+    - name: Build docs
+      run: |
+        sphinx-build -T -E -b html -d docs/build/doctrees ./docs docs/build/html
