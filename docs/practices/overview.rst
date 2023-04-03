@@ -11,6 +11,7 @@ Practices
 * :doc:`ci_testing`
 * :doc:`code_coverage`
 * :doc:`linting`
+* :doc:`pipx`
 * :doc:`precommit`
 * :doc:`pypi`
 * :doc:`sphinx`

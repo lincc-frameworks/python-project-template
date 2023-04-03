@@ -1,26 +1,41 @@
-Get Started
+Getting Started
 ===============================================================================
 
-This project template codifies LINCC-Framework's best practices for python code organization, testing, documentation, and automation.
-It is meant to help new python projects get started quickly, letting the user focus on writing code.
-The template takes care of the minutia of directory structures, tool configurations, and automated testing until the user is ready to take over.
+This project template codifies LINCC Framework's best practices for python code 
+organization, testing, documentation, and automation.
+It is meant to help python projects get started quickly and allow the user 
+to focus on writing code. 
 
-`Copier <https://copier.readthedocs.io/en/latest/>`_  is required to use this template. 
-Copier is an open source tool that hydrates projects from templates and natively supports updating projects as the original template matures. 
-It's really neat!
+We built this tool with a few assumptions in mind.
+The following are **not** considered requirements to use the template.
+However, some of the included tooling may not work as expected if your project 
+doesn't follow these guidelines.
 
+1. Your project is mostly Python based.
+2. GitHub will be used as a remote repository.
+3. Your remote repository will be publicly available.
+
+We have seen the template used successfully in projects that don't adhere to 
+these guidelines. But if you meet these guidelines, you'll be guaranteed to get 
+the full benefit of the template.
 
 Prerequisites
--------------------------------------------------------------------------------
-These prerequisites for Copier are defined `here <https://copier.readthedocs.io/en/latest/#installation>`_ 
-but summarized below.
+--------------
 
-1. Python > 3.7
-2. Git > 2.27
-3. Pipx (nice to have, Conda and Pip work too, but can be more difficult to reason about later)
+To use our template you'll need to install 
+`Copier <https://copier.readthedocs.io/en/latest/>`_. 
+Copier is an open source tool that hydrates projects from templates and 
+natively supports updating projects as the original template matures. 
+It's really neat!
 
-.. tip:: 
-    You check your prerequisite versions as shown below
+.. important::
+    Copier has two requirements and one recommended tool:
+
+    1. Python > 3.7 (required)
+    2. Git > 2.27 (required)
+    3. pipx (recommended - more info about pipx :doc:`here<../practices/pipx>`)
+
+    You can check your requirements like so:
 
     .. code-block:: bash
 
@@ -33,39 +48,13 @@ but summarized below.
         >> which pipx
             /usr/bin/pipx
 
-.. note::
-    ``pipx`` is a tool to enable installation of end-user applications written in Python. The main difference
-    from ``pip`` is that any tool (such as copier in the next section) installed with pip is only executable from an
-    environment that ``pip`` installs it into, while ``pipx`` makes the tool executable from any environment.
-
-    While we will assume the use of ``pipx`` in this documentation, be aware that you are able to use 
-    ``conda`` or ``pip`` if you'd rather have it installed just in one environment.
-
-    Please be aware that ``pipx ensurepath`` should be run after installing ``pipx``, as shown below
-
-    .. code-block:: bash
-    
-        >> conda install -c conda-forge pipx
-        >> pipx ensurepath
-
-    For more information about ``pipx`` see the `documentation <https://pypa.github.io/pipx/>`_.
-
-
-Install Copier
--------------------------------------------------------------------------------
-
-Given that you have all the prerequisites satisfied, go ahead and install Copier.
+Given that your system satisfies the requirements, go ahead and install Copier.
 
 .. code-block:: bash
 
     >> pipx install copier
 
-Now you can either create a new project, or use the template configuration in an existing project.
-Choose your next adventure...
-
-
-Next Steps
--------------------------------------------------------------------------------
-
-* :doc:`new_project`
-* :doc:`existing_project`
+Now choose your next adventure...
+-------------------------------------
+* :doc:`Start a new project<new_project>`
+* :doc:`Upgrade an existing project<existing_project>`
