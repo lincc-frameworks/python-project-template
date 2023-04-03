@@ -8,40 +8,53 @@ previously used our template.
 If you want to update a project that already uses the template, please see 
 :doc:`Keeping your project up to date <update_project>`.
 
-.. attention ::
+Disclaimers
+-----------
 
-    Every pre-existing project is unique - it's a snowflake - even if the developers followed 
-    accepted guidelines and best practices. 
-    
-    Because of that, we can't we enumerate all the possible sticking points that you may
-    encounter when attempting to incorporate the LINCC Frameworks Python Project Template 
-    into a pre-existing project.
+Every pre-existing project is unique
+....................................
 
-.. tip ::
+We can't enumerate all the possible sticking points that you may encounter 
+when attempting to incorporate the LINCC Frameworks Python Project Template 
+into a pre-existing project. 
 
-    The newer a pre-existing project is, the easier it will be to incorporate the 
-    LINCC Frameworks Python Project Template.
+We're here to help though! We have called out some gotchas below and we want to 
+hear from you if you encounter problems. Feel free to start a discussion here: 
+https://github.com/lincc-frameworks/python-project-template/discussions
 
-    That being said, we have used this template to bring dormant projects up to date with 
-    modern development standards.
+We'll respond there as quickly as possible, and hopefully the results will help 
+others along too!
+
+Newer projects are easier to upgrade
+....................................
+
+The newer a pre-existing project is, the easier it will be to incorporate the 
+LINCC Frameworks Python Project Template.
+
+That being said, we have successfully used this template to bring dormant 
+projects up to date with modern development standards.
 
 Before you begin
 ----------------
+
+Check the prerequisites
+.......................
+
+Make sure your system satisfies the :ref:`prerequisites <prerequisites>`. Copier, 
+the tool that powers our template, requires recent versions of Python and Git. 
+We have seen a handful of instances, particularly when working on computing 
+clusters, where users have encountered error messages resulting from older 
+versions of the dependencies.
 
 Start clean
 ...........
 
 It's best to start with a clean local repository and a new git branch just for this task. 
 Copier will not allow the user to merge a template with a git tracked local repository 
-if there are uncommitted changes. 
+if there are uncommitted changes or untracked files.
 
 It's not explicitly necessary, but removing ``cache`` and ``build`` directories will 
 make it easier to see what changes are being made.
-
-Check your environment
-......................
-
-Make sure your system satisfies the :doc:`prerequisites <overview>`.
 
 Hydrate a copy of the template into your project
 ................................................
