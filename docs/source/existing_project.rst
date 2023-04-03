@@ -38,7 +38,7 @@ Before you begin
 ----------------
 
 Check the prerequisites
-......................
+.......................
 
 Make sure your system satisfies the :ref:`prerequisites <prerequisites>`. Copier, 
 the tool that powers our template, requires recent versions of Python and Git. 
