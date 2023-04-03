@@ -1,17 +1,16 @@
 LINCC Frameworks Python Project Template
 ===============================================================================
 
-This project template codifies LINCC-Framework's best practices for python code organization, testing, documentation, and automation.
-It is meant to help new python projects get started quickly, letting the user focus on writing code.
-The template takes care of the minutia of directory structures, tool configurations, and automated testing until the user is ready to take over.
+This project template codifies LINCC Framework's best practices for python code 
+organization, testing, documentation, and automation.
+It is meant to help python projects get started quickly and allow the user 
+to focus on writing code. 
 
-`Copier <https://copier.readthedocs.io/en/latest/>`_ is required to use this template.
-Copier is an open source tool that hydrates projects from templates and natively supports updating projects as the original template matures.
-It's really neat!
+We think it's really neat, and we hope you do to!
 
 .. toctree::
    :maxdepth: 1
-   :caption: Getting Started
+   :caption: Using the Template
 
    source/overview
    source/new_project
@@ -28,6 +27,7 @@ It's really neat!
    practices/code_coverage
    practices/git-lfs
    practices/linting
+   practices/pipx
    practices/precommit
    practices/pypi
    practices/sphinx
