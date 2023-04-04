@@ -126,7 +126,7 @@ are changed. See the note above about merge conflicts and ``.rej`` files for
 more context.
 
 Remember, the changes from these updates are only *staged for commit*, they 
-are't permanent and can easily be unstaged.
+aren't permanent and can easily be unstaged.
 
 More information about Copier updates
 -------------------------------------
