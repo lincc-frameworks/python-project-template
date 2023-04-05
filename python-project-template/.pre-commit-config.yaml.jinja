@@ -20,7 +20,7 @@ repos:
         files: \.ipynb$
         stages: [commit]
         language: system
-        entry: jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace
+        entry: jupyter nbconvert --clear-output
 
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the 
