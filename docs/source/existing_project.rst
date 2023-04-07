@@ -193,8 +193,15 @@ Use pre-commit
 ..............
 
 Install and use ``pre-commit``. It may seem annoying at first, but it will save 
-you many cycles of "see a test fail on GitHub, make and push a change, hope the test passes".
+you many cycles of "see a test fail on GitHub, make and push a change, hope the 
+test passes". Installation is easy!
 
+.. code:: bash
+
+    >> pre-commit install
+
+For more information about ``pre-commit`` including a list of the checks that 
+will be run before each commit, check out :doc:`pre-commit <../practices/precommit>`.
 
 Import sorting
 ..............

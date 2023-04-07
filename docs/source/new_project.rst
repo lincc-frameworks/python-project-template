@@ -90,10 +90,6 @@ At this point, your new project is hydrated and ready for you to start coding. B
 Commit your new project locally
 -------------------------------------------------------------------------------
 
-If you're interested in using pre-commit hooks to crosscheck your code before you commit it, 
-now is a good time to set that up (it's just one command) - check out
-:doc:`pre-commit <../practices/precommit>`
-
 Commit the project to your local version control like so to see the pre-commit checks run.
 
 .. code-block:: bash
@@ -114,3 +110,18 @@ Create a new repository in GitHub: (`GitHub How-to <https://docs.github.com/en/g
     >> git push origin <local_branch_name>
 
 Notice that when you create a PR in GitHub, a set of tests for Continuous Integration starts up to verify that the project can build successfully and that all the unit tests pass. Neato!
+
+Install pre-commit
+----------------------------
+
+Now that your project has been pushed to a GitHub remote repository, it's a good 
+time to install ``pre-commit`` so that future commits will run a suite of checks 
+before pushing code to the remote repository. 
+Run the following command in your terminal.
+
+.. code:: bash
+
+    >> pre-commit install
+
+For more information about ``pre-commit`` including a list of the checks that 
+will be run before each commit, please see :doc:`pre-commit <../practices/precommit>`.
