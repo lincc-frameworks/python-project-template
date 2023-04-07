@@ -5,7 +5,7 @@
 # from the environment for the first two.
 SPHINXOPTS    ?= -T -E -d _build/doctrees -D language=en
 {%- if include_notebooks %}
-EXCLUDENB     ?= -D exclude_patterns="notebooks/*"
+EXCLUDENB     ?= -D exclude_patterns="notebooks/*","_build","**.ipynb_checkpoints"
 {%- endif %}
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = .
