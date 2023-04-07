@@ -57,4 +57,5 @@ of these that are not useful for your project.
      - Ensures that automatically generated documentation and, optionally, jupyter notebooks can be built successfully.
 
 
-Many other pre-commit hooks exist, a partial list can be found `here <https://pre-commit.com/hooks.html>`_.
+Many other pre-commit hooks exist, a partial list can be found in the pre-commit 
+`documentation <https://pre-commit.com/hooks.html>`_.

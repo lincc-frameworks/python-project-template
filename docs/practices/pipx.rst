@@ -22,10 +22,12 @@ We use ``pipx`` to install Copier (the technology that powers our template) as
 a command line tool, so that we can call ``copier`` from any virtual environment.
 Beyond that, we don't use ``pipx`` for anything else in the template.
 
-In the :doc:`Getting Started <../source/overview>` section, we assume the use of ``pipx``. But you can use 
-``conda`` or ``pip`` if you'd rather have ``copier`` installed in a specific 
-environment. We have not yet documented the differences to the getting started 
-workflow that this would require.
+In the :doc:`Getting Started <../source/overview>` section, we assume the use 
+of ``pipx``. 
+But you can use ``conda`` or ``pip`` if you'd rather have ``copier`` installed 
+in a specific environment. 
+We have not yet documented the differences to the getting started workflow that 
+this would require.
 
 How to install ``pipx``
 -----------------------

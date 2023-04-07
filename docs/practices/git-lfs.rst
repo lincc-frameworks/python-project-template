@@ -4,7 +4,9 @@ Git Large File Support
 Quick Start
 -------------------------------------------------------------------------------
 
-After cloning a repository and connecting to the resulting working tree confirm that you have ``git-lfs`` and then issue ``git lfs install`` to install configuration and hooks and then ``git lfs track`` to designate targets for git-lfs.
+After cloning a repository and connecting to the resulting working tree confirm 
+that you have ``git-lfs`` and then issue ``git lfs install`` to install 
+configuration and hooks and then ``git lfs track`` to designate targets for git-lfs.
 
 .. code-block:: bash
 
@@ -26,12 +28,17 @@ After cloning a repository and connecting to the resulting working tree confirm 
 What is it? Why do it?
 -------------------------------------------------------------------------------
 
-`Git-lfs <https://git-lfs.com/>`_ replaces large files such as datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server.
-This can be very useful for projects that have large data files that change infrequently. It does require a remote that supports git-lfs and so if you are unsure about
-whether you want to use git-lfs you probably do not want to use it until you understand it better.
+`Git-lfs <https://git-lfs.com/>`_ replaces large files such as datasets, and 
+graphics with text pointers inside Git, while storing the file contents on a remote server.
+This can be very useful for projects that have large data files that change 
+infrequently. 
+It does require a remote that supports git-lfs and so if you are unsure about
+whether you want to use git-lfs you probably do not want to use it until you 
+understand it better.
 
 This template provides a starting point for using git-lfs with a project.
-Note that you need to install the program ``git-lfs`` separately as that is not easily done as part of the installation. See :ref:`get-git-lfs-label`.
+Note that you need to install the program ``git-lfs`` separately as that is not 
+easily done as part of the installation. See :ref:`get-git-lfs-label`.
 
 How to manage
 -------------------------------------------------------------------------------
@@ -73,8 +80,10 @@ and several other git servers do support git-lfs. If you use another remote you 
 Designate files for git-lfs tracking
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 You will also want add paths to ``.gitattributes`` that designate the files git-lfs will manage for git.
-While you can edit ``.gitattributes`` directly there is a command that will make the needed changes and create the file if necessary.
-For example, if you want to specify that ``FITS`` files are handled by git-lfs then you might use these commands
+While you can edit ``.gitattributes`` directly there is a command that will make 
+the needed changes and create the file if necessary.
+For example, if you want to specify that ``FITS`` files are handled by git-lfs 
+then you might use these commands
 
 .. code-block:: bash
 
@@ -94,13 +103,18 @@ in the lsst developer documentation and adapt its recommendations to your projec
 Uninstall git-lfs from the repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you want to stop using git-lfs going forward then you can uninstall it. You should use the same options used on installation, in particular if you specified the ``--local`` option you should also specify it here. Probably it is safer to always include the ``--local`` option so you restrict impact to the current repository.
+If you want to stop using git-lfs going forward then you can uninstall it. 
+You should use the same options used on installation, in particular if you 
+specified the ``--local`` option you should also specify it here. 
+Probably it is safer to always include the ``--local`` option so you restrict 
+impact to the current repository.
 
 .. code-block:: bash
 
     git lfs uninstall --local
 
-Any files modified after uninstalling git-lfs will become part of the regular git repository but the git-lfs artifacts will remain.
+Any files modified after uninstalling git-lfs will become part of the regular 
+git repository but the git-lfs artifacts will remain.
 
 Note that we recommend against uninstalling git-lfs as it causes confusion.
 
@@ -110,7 +124,8 @@ You can see what files are controlled by git-lfs using the ``git lfs ls-files`` 
 
     git lfs ls-files
 
-Then if you want to copy them to the regular git repository you can change their modification dates using ``touch`` and commit the changes.
+Then if you want to copy them to the regular git repository you can change their 
+modification dates using ``touch`` and commit the changes.
 
 
 
