@@ -15,7 +15,7 @@ repos:
   - repo: local
     hooks:
       - id: jupyter-nb-clear-output
-        name: jupyter-nb-clear-output
+        name: Clear output from Jupyter notebooks
         description: Clear output from Jupyter notebooks.
         files: \.ipynb$
         stages: [commit]
@@ -30,7 +30,7 @@ repos:
   - repo: local
     hooks:
       - id: pytest-check
-        name: pytest-check
+        name: Run unit tests
         description: Run unit tests with pytest.
         entry: bash -c "if python -m pytest --co -qq; then python -m pytest --cov=./src --cov-report=html; fi"
         language: system
@@ -42,7 +42,7 @@ repos:
     rev: v4.4.0
     hooks:
       - id: no-commit-to-branch
-        name: Don't commit to main or master branch
+        name: Prevent main branch commits
         description: Prevent the user from committing directly to the primary branch.
       - id: check-added-large-files
         name: Check for large files
@@ -54,7 +54,7 @@ repos:
     rev: v0.12.1
     hooks:
       - id: validate-pyproject
-        name: Validate syntax of pyproject.toml
+        name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
 {% if use_isort == true %}
     # Automatically sort the imports used in .py files
