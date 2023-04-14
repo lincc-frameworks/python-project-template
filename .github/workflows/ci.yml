@@ -19,7 +19,7 @@ jobs:
             module_name: example_project # The default module_name
             extra_flags: ''
             foldername: base_example
-          - name: Provide non-default answers
+          - name: Black w/o example module
             module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: >-
               --data project_name=new_science
@@ -33,8 +33,37 @@ jobs:
               --data create_example_module=no
               --data include_notebooks=no
               --data use_gitlfs=disabled
-            foldername: 'non_default_answers'
-            
+            foldername: 'black_w_o_example_module'
+          - name: Black w/ example
+            module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
+            extra_flags: >-
+              --data project_name=new_science
+              --data module_name=drewtonian
+              --data author_name=Drew
+              --data author_email=ao@aol.com
+              --data project_license=BSD
+              --data preferred_linter=black
+              --data use_isort=false
+              --data mypy_type_checking=basic
+              --data create_example_module=yes
+              --data include_notebooks=no
+              --data use_gitlfs=disabled
+            foldername: 'black_w_example_module'
+          - name: Pylint w/o example
+            module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
+            extra_flags: >-
+              --data project_name=new_science
+              --data module_name=drewtonian
+              --data author_name=Drew
+              --data author_email=ao@aol.com
+              --data project_license=BSD
+              --data preferred_linter=pylint
+              --data use_isort=false
+              --data mypy_type_checking=basic
+              --data create_example_module=no
+              --data include_notebooks=no
+              --data use_gitlfs=disabled
+            foldername: 'pylint_w_o_example_module'
     steps:
     
     - name: Checkout code
