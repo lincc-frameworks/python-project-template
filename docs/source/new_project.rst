@@ -10,7 +10,7 @@ the template.
 
 .. code-block:: bash
 
-    >> copier gh:lincc-frameworks/python-project-template <path/to/destination>
+    >> copier gh:lincc-frameworks/python-project-template <new/project/directory>
 
 Copier will ask you questions for how to set up the project. These questions 
 will be used to fill in aspects of the project's configuration, including both 
@@ -85,7 +85,7 @@ Use ``pip`` to install both the standard set of dependencies as well as the
 
 .. code-block:: bash
 
-    >> cd {{project_name}}
+    >> cd <new/project/directory>
     >> pip install -e .
     ...
     Lots of output
