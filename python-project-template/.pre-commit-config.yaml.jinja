@@ -150,11 +150,11 @@ repos:
                   # Note: -M requires next 3 args to be builder, source, output
             "html", # Specify builder
             "./docs", # Source directory of documents
-            "./docs/build/html", # Output directory for rendered documents
+            "./_readthedocs", # Output directory for rendered documents
             "-T", # Show full trace back on exception
             "-E", # Don't use saved env; always read all files
             "-d", # Flag for cached environment and doctrees
-            "./docs/build/doctrees", # Directory
+            "./docs/_build/doctrees", # Directory
             "-D", # Flag to override settings in conf.py
             "exclude_patterns=notebooks/*", # Exclude our notebooks from pre-commit
           ]
@@ -175,8 +175,8 @@ repos:
             "-b", # Flag to select which builder to use
             "html", # Use the HTML builder
             "-d", # Flag for cached environment and doctrees
-            "docs/build/doctrees", # directory
+            "./docs/_build/doctrees", # directory
             "./docs", # Source directory of documents
-            "docs/build/html", # Output directory for rendered documents.
+            "./_readthedocs", # Output directory for rendered documents.
           ]
 {%- endif %}
