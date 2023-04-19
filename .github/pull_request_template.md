@@ -6,12 +6,12 @@ Before submitting this PR, please make sure that your input and responses are en
 
 ## Change Description (or Root Cause)
 - [ ] Link to the PR you are addressing
-[How to link to a PR](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue)
+([How to link to a PR](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue))
 
 
 
 ## Solution Description
-- [ ] Explain the technical solution you have provided and how it fixes the issue case
+- [ ] Explain the technical solution you have provided and how it fixes the issue or feature being implemented
 
 
 
