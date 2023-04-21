@@ -21,7 +21,7 @@ If it fixes an open issue, please link to the issue here. If this PR closes an i
 
 
 ## Solution Description
-- [ ] Explains the technical solution that I have provided and how it addresses the issue or feature being implemented
+<!-- Please explain the technical solution that I have provided and how it addresses the issue or feature being implemented -->
 
 
 
@@ -50,14 +50,14 @@ If it fixes an open issue, please link to the issue here. If this PR closes an i
 - [ ] Any updated docstrings use the [NumPy docstring format](https://numpydoc.readthedocs.io/en/latest/format.html)
 
 ### Build/CI Change Checklist
-- [ ] If required or optional dependencies have changed (including version numbers), I have updated the [readme](https://github.com/lincc-frameworks/python-project-template/blob/main/README.md) to reflect this
-- [ ] If this is a new CI setup, I have added the associated badge to the [readme](https://github.com/lincc-frameworks/python-project-template/blob/main/README.md)
+- [ ] If required or optional dependencies have changed (including version numbers), I have updated the [README](https://github.com/lincc-frameworks/python-project-template/blob/main/README.md) to reflect this
+- [ ] If this is a new CI setup, I have added the associated badge to the [README](https://github.com/lincc-frameworks/python-project-template/blob/main/README.md)
 
 <!-- ### Version Change Checklist [For Future Use] -->
 
 ### Other Change Checklist
 - [ ] Any new or updated docstrings use the [NumPy docstring format](https://numpydoc.readthedocs.io/en/latest/format.html).
 - [ ] I have updated the tutorial to highlight my new feature (if appropriate)
-- [ ] I have added tests to cover any changes
+- [ ] I have added unit/End-to-End (E2E) test cases to cover any changes
 - [ ] My change includes a breaking change
-  - [ ] My change includes backwards compatibility and deprecation warnings (if possible).
+  - [ ] My change includes backwards compatibility and deprecation warnings (if possible)
