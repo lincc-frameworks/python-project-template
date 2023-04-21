@@ -16,7 +16,7 @@ Describe your changes in detail. In your description, you should answer question
 
 If it fixes an open issue, please link to the issue here. If this PR closes an issue, put the word 'closes' before the issue link to auto-close the issue when the PR is merged.
 -->
-- [ ] Includes a link to the PR I am addressing
+- [ ] My PR includes a link to the issue that I am addressing
 
 
 
