@@ -78,7 +78,7 @@ jobs:
       run: |
         sudo apt-get update
         python -m pip install --upgrade pip
-        python -m pip install copier
+        python -m pip install copier mypy
     
     - name: Generate package
       run: |
@@ -103,6 +103,18 @@ jobs:
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"
+   
+    - name: mypy checks basic
+      if: ${{ contains(matrix.copier_config.extra_flags, 'mypy_type_checking=basic') && !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
+      run: |
+        cd "../test/${{ matrix.copier_config.foldername }}"
+        mypy src tests
+   
+    - name: mypy checks strict
+      if: ${{ contains(matrix.copier_config.extra_flags, 'mypy_type_checking=strict') && !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
+      run: |
+        cd "../test/${{ matrix.copier_config.foldername }}"
+        mypy --strict src tests
    
     - name: Install notebook requirements
       if: ${{ !contains(matrix.copier_config.extra_flags, 'include_notebooks=no') }}
