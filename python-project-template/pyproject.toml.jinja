@@ -61,10 +61,13 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 write_to = "src/{{module_name}}/_version.py"
-
 {%- if preferred_linter == 'black' %}
 
 [tool.black]
 line-length = 110
+{%- endif %}
+{%- if mypy_type_checking != 'none' %}
 
-{% endif -%}
+[tool.setuptools.package-data]
+{{module_name}} = ["py.typed"]
+{%- endif %}
