@@ -25,9 +25,9 @@ questions:
    * - *Would you like to use simple (default tooling) or customized installation?*
      - If a simple install is used, the template automatically selects the recommended tooling options (linter, isort, and create example module). 
    * - *What is the name of your project?*
-     - The name of your project. If you distribute your code via PyPI, this is the name that will be used. This will allow users to pip install like so: ``pip install <project_name>``.
+     - The name of your project. If you distribute your code via PyPI, this is the name that will be used. This will allow users to pip install like so: ``pip install <project_name>``. The project name must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _, -).
    * - *What is your python package name?*
-     - The name of your (first) module. This controls where your source code will live (``src/{{package_name}}``). 
+     - The name of your (first) module. This controls where your source code will live (``src/{{package_name}}``).  The package name must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _).
    * - *Your first and last name?* 
      -  The name of code's author. This will be used in the project and documentation metadata. This name will also be included as part of the copyright license.
    * - *Your preferred email address?*
