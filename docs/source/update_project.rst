@@ -60,7 +60,7 @@ If you change any of the initial responses during the update you should
 take some time to review your project for any files or directories that are no 
 longer needed. 
 
-For instance, if you change the ``module_name`` response from "new_project" to 
+For instance, if you change the ``package_name`` response from "new_project" to 
 "great_project", it is unlikely that Copier will be able to create a new 
 directory structure, move and rename your existing files, *and* remove the old 
 directory structure.
