@@ -25,9 +25,9 @@ questions:
    * - *Would you like to use simple (default tooling) or customized installation?*
      - If a simple install is used, the template automatically selects the recommended tooling options (linter, isort, and create example module). 
    * - *What is the name of your project?*
-     - The name of your project.
-   * - *What is your python module name?*
-     - The name of your (first) module. This controls where your source code will live (``src/{{module_name}}``).
+     - The name of your project. If you distribute your code via PyPI, this is the name that will be used. This will allow users to pip install like so: ``pip install <project_name>``. The project name must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _, -).
+   * - *What is your python package name?*
+     - The name of your top level package. Specifies the location of the source code (``src/{{package_name}}``). The package name must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _).
    * - *Your first and last name?* 
      -  The name of code's author. This will be used in the project and documentation metadata. This name will also be included as part of the copyright license.
    * - *Your preferred email address?*
@@ -41,7 +41,7 @@ questions:
    * - *Would you like to include mypy to perform static type checking for type hints?*
      - `mypy <https://www.mypy-lang.org>`_ performs static type checking on python code that uses `type hints <https://docs.python.org/3/library/typing.html>`_. This type checking makes sure that the correct data types are being used where type hints are defined. If basic or strict type checking is selected, a pre-commit hook and GitHub actions workflow that perform the type checking are added. Basic type checking performs type checks but ignores code or imports for which type hints are not written. Strict type checking enforces type hints are used by giving errors where no type hints are found.
    * - *Do you want to create some example module code?*
-     - If this option is selected the template will create a model in ``src/{{module_name}}`` and create a corresponding example test file. Defaults to ``True`` during simple installation.
+     - If this option is selected the template will create an example module ``src/{{package_name}}/example_module.py`` and test file ``tests/{{package_name}}/test_example_module.py``. Defaults to ``True`` during simple installation.
    * - *Do you want to include rendered notebooks in your documentation?*
      - The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will be included in your project. A sample notebook will be generated and added to your docs as an example.
    * - *Do you want to add a .gitattributes with entries for git-lfs?*

@@ -16,14 +16,14 @@ jobs:
         python-version: ['3.8', '3.9', '3.10']
         copier_config:
           - name: Base example
-            module_name: example_project # The default module_name
+            package_name: example_project # The default package_name
             extra_flags: ''
             foldername: base_example
           - name: Black w/o example module
-            module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
+            package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: >-
               --data project_name=new_science
-              --data module_name=drewtonian
+              --data package_name=drewtonian
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
@@ -35,10 +35,10 @@ jobs:
               --data use_gitlfs=disabled
             foldername: 'black_w_o_example_module'
           - name: Black w/ example
-            module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
+            package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: >-
               --data project_name=new_science
-              --data module_name=drewtonian
+              --data package_name=drewtonian
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
@@ -50,10 +50,10 @@ jobs:
               --data use_gitlfs=disabled
             foldername: 'black_w_example_module'
           - name: Pylint w/o example
-            module_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
+            package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: >-
               --data project_name=new_science
-              --data module_name=drewtonian
+              --data package_name=drewtonian
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
@@ -132,4 +132,4 @@ jobs:
       if: ${{ !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
-        python -m pytest tests --cov=${{ matrix.copier_config.module_name }} --cov-report=xml
+        python -m pytest tests --cov=${{ matrix.copier_config.package_name }} --cov-report=xml
