@@ -155,7 +155,7 @@ or missing dependencies.
 .. code:: bash
 
     >> pip install -e .
-    >> pip install .'[dev]'
+    >> pip install -e .'[dev]'
 
 .. note:: 
 
