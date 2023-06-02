@@ -1,4 +1,4 @@
-from {{package_name}} import example_module
+from {% if namespace_project != 'none' %}{{namespace_project}}.{% endif %}{{package_name}} import example_module
 
 
 def test_greetings() -> None:

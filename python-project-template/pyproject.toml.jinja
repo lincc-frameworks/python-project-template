@@ -60,7 +60,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-write_to = "src/{{package_name}}/_version.py"
+write_to = "{% if namespace_project != 'none' %}{{namespace_project}}{% else %}src{% endif %}/{{package_name}}/_version.py"
 {%- if preferred_linter == 'black' %}
 
 [tool.black]
@@ -75,4 +75,11 @@ profile = "black"
 
 [tool.setuptools.package-data]
 {{package_name}} = ["py.typed"]
+{%- endif %}
+{%- if namespace_project != 'none' %}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["{{namespace_project}}"]
+namespaces = true
 {%- endif %}
