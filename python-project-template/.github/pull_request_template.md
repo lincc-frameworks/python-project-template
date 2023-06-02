@@ -26,7 +26,7 @@ If it fixes an open issue, please link to the issue here. If this PR closes an i
 
 
 ## Code Quality
-- [ ] I have read the [Contribution Guide](https://lincc-ppt.readthedocs.io/en/latest/source/contributing.html)
+- [ ] I have read the Contribution Guide
 - [ ] My code follows the code style of this project
 - [ ] My code builds (or compiles) cleanly without any errors or warnings
 - [ ] My code contains relevant comments and necessary documentation
@@ -50,8 +50,8 @@ If it fixes an open issue, please link to the issue here. If this PR closes an i
 - [ ] Any updated docstrings use the [NumPy docstring format](https://numpydoc.readthedocs.io/en/latest/format.html)
 
 ### Build/CI Change Checklist
-- [ ] If required or optional dependencies have changed (including version numbers), I have updated the [README](https://github.com/lincc-frameworks/python-project-template/blob/main/README.md) to reflect this
-- [ ] If this is a new CI setup, I have added the associated badge to the [README](https://github.com/lincc-frameworks/python-project-template/blob/main/README.md)
+- [ ] If required or optional dependencies have changed (including version numbers), I have updated the README to reflect this
+- [ ] If this is a new CI setup, I have added the associated badge to the README
 
 <!-- ### Version Change Checklist [For Future Use] -->
 
