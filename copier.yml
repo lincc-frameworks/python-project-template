@@ -100,6 +100,16 @@ use_gitlfs:
         yes .gitattributes with example entries enabled: enabled
     when: "{{ custom_install }}"
 
+namespace_project:
+    help: Do you want to give a namespace package name and make this a subpackage of it?
+    type: str
+    default: none
+    validator: >-
+        {% if not (project_name | regex_search('^[a-z][a-z0-9\_\-]+$')) %}
+        Must use a lowercase letter followed by one or more of (a-z, 0-9, _, -).
+        {% endif %}
+    when: "{{ custom_install }}"
+
 ###
 # Below this line are Copier configuration options.
 ###
