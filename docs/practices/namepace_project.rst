@@ -159,6 +159,6 @@ Try it out.  In this example we use the python interpreter to import the subpack
 
 You might want to uninstall the packages to avoid python environment bloat!
 
-.. code-block: bash
+.. code-block:: bash
 
     pip uninstall acme-supernovae acme-utilities
