@@ -19,7 +19,7 @@ Synopsis
 
 #. Choose an organization namespace shared by all related packages. For example **acme**.
 #. Rename the **src** directory to the organization name **acme**.
-#. Replaces references to **src** with references to **acme**.
+#. Replace references to **src** with references to **acme**.
 #. Add a clause to pyproject.toml to declare this as a namespace package.
 #. Change import statements to reflect the namespace package.
 #. Test
