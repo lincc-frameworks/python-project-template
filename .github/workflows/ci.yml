@@ -78,7 +78,7 @@ jobs:
       run: |
         sudo apt-get update
         python -m pip install --upgrade pip
-        python -m pip install copier mypy
+        python -m pip install 'copier<8.0' mypy
     
     - name: Generate package
       run: |
