@@ -31,4 +31,4 @@ We think it's really neat, and we hope you do to!
    practices/precommit
    practices/pypi
    practices/sphinx
-   practices/namepace_project
+   practices/namespace_project
