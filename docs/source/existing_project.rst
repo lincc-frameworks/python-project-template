@@ -62,7 +62,7 @@ Hydrate a copy of the template into your project
 .. code:: bash
 
     >> cd <existing_project_directory>
-    >> copier gh:lincc-frameworks/python-project-template .
+    >> copier copy gh:lincc-frameworks/python-project-template .
 
 
 A note on directory structure

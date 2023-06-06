@@ -10,7 +10,7 @@ the template.
 
 .. code-block:: bash
 
-    >> copier gh:lincc-frameworks/python-project-template <new/project/directory>
+    >> copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
 
 Copier will ask you questions for how to set up the project. These questions 
 will be used to fill in aspects of the project's configuration, including both 
@@ -112,6 +112,7 @@ checks run.
 
 .. code-block:: bash
 
+    >> git init --initial-branch=main
     >> git checkout -b initial_branch
     Switched to a new branch 'initial_branch'
     >> git add .

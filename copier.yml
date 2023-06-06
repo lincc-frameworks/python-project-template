@@ -112,5 +112,5 @@ _skip_if_exists:
     - .gitattributes
 
 # Tasks to execute after generating or updating a project.
-_tasks:
-    - "git init --initial-branch=main"
+# _tasks:
+#     - "git init --initial-branch=main"
