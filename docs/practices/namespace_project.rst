@@ -33,7 +33,6 @@ Follow the instructions at :doc:`New Project <../source/new_project>` to create 
 
     copier copy gh:lincc-frameworks/python-project-template acme-supernovae
     cd acme-supernovae
-    git init --initial-branch=main
     git add README.md && git commit -m 'initial commit'
     git checkout -b acme/main
     mv src acme
