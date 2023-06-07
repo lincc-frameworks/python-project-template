@@ -109,7 +109,6 @@ using exactly the same process as above but with different names.  Then install 
     cd ..
     copier copy gh:lincc-frameworks/python-project-template acme-utilities
     cd acme-utilities
-    git init --initial-branch=main
     git add README.md && git commit -m 'initial commit'
     git checkout -b acme/main
     mv src acme
