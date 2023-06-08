@@ -13,7 +13,7 @@ the template.
     installed version of Copier >= 8.0.0. The following command will not work
     with earlier versions of Copier.
 
-    ``pipx list`` will display installed the currently install version of Copier.
+    ``pipx list`` will display the currently installed version of Copier.
 
 .. code-block:: bash
 
