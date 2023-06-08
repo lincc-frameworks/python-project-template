@@ -9,7 +9,7 @@ Either way, the process starts with a single-line command:
 
 .. code-block:: bash
 
-    >> copier
+    >> copier update
 
 Updating the template version
 -----------------------------
@@ -34,7 +34,7 @@ get an appreciation for complexity of the task.
 
     .. code-block:: bash
 
-        >> copier
+        >> copier update
           ...
           identical  README.md
           identical  tests
@@ -87,7 +87,7 @@ Copier provides the ``--vcs-ref`` flag for this purpose.
 
 .. code-block:: bash
 
-    >> copier --vcs-ref=HEAD update
+    >> copier update --vcs-ref=HEAD
 
 Here Copier will use the latest template from the ``main`` branch and apply it 
 to your project.
@@ -104,7 +104,7 @@ response, you can change it without having to edit the rest.
 
 .. code-block:: bash
 
-    >> copier --force --data <question_name>="new answer" update
+    >> copier update --force --data <question_name>="new answer"
 
 This tells copier to use the previous answers for all questions except the one you want to
 update. Copier will not attempt to update the template, and it will not review 
@@ -116,7 +116,7 @@ following command:
 
 .. code-block:: bash
 
-    >> copier --force --data preferred_linter="black" update
+    >> copier update --force --data preferred_linter="black"
 
 The full list of questions can be found 
 `here <https://github.com/lincc-frameworks/python-project-template/blob/main/copier.yml>`_.

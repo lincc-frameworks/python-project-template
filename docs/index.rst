@@ -8,6 +8,10 @@ to focus on writing code.
 
 We think it's really neat, and we hope you do to!
 
+.. important:: 
+   These instructions assume you are using ``copier`` version 8.0 or newer. Some
+   features may not be available in older versions.
+
 .. toctree::
    :maxdepth: 1
    :caption: Using the Template

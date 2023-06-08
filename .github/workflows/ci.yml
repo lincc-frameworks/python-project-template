@@ -78,17 +78,18 @@ jobs:
       run: |
         sudo apt-get update
         python -m pip install --upgrade pip
-        python -m pip install 'copier<8.0' mypy
+        python -m pip install copier mypy
     
     - name: Generate package
       run: |
-        copier --vcs-ref HEAD --defaults ${{ matrix.copier_config.extra_flags }} copy ./ ../test/${{ matrix.copier_config.foldername }}
+        copier copy --vcs-ref HEAD --defaults ${{ matrix.copier_config.extra_flags }} ./ ../test/${{ matrix.copier_config.foldername }}
         cd ../test/${{ matrix.copier_config.foldername }}
         cat .copier-answers.yml
     
     - name: Build package
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
+        git init --initial-branch=main
         pip install .
         pip install .[dev]
     

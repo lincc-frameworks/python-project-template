@@ -31,7 +31,7 @@ Follow the instructions at :doc:`New Project <../source/new_project>` to create 
 
 .. code-block:: bash
 
-    copier gh:lincc-frameworks/python-project-template acme-supernovae
+    copier copy gh:lincc-frameworks/python-project-template acme-supernovae
     cd acme-supernovae
     git add README.md && git commit -m 'initial commit'
     git checkout -b acme/main
@@ -107,7 +107,7 @@ using exactly the same process as above but with different names.  Then install 
 .. code-block:: bash
 
     cd ..
-    copier gh:lincc-frameworks/python-project-template acme-utilities
+    copier copy gh:lincc-frameworks/python-project-template acme-utilities
     cd acme-utilities
     git add README.md && git commit -m 'initial commit'
     git checkout -b acme/main

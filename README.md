@@ -7,14 +7,16 @@ This project template codifies LINCC-Framework's best practices for python code 
 
 [Copier](https://copier.readthedocs.io/en/latest/) is required to use this template. Copier is an open source tool that hydrates projects from templates and natively supports updating projects as the original template matures. It's really neat!
 
-See the detailed user guide in [readthedocs](https://lincc-ppt.readthedocs.io/)
+Our template works best with Copier v8.0 and above. 
+For all the information, see the detailed user guide in
+[readthedocs](https://lincc-ppt.readthedocs.io/)
 
 ## Getting started
 
 Choose where you would like to create your new project, and call copier with the template.
 
 ```
->$ copier gh:lincc-frameworks/python-project-template <path/to/destination>
+>$ copier copy gh:lincc-frameworks/python-project-template <path/to/destination>
 ```
 
 ## Contributing to the Template

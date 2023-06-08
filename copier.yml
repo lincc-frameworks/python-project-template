@@ -111,6 +111,5 @@ _skip_if_exists:
     - README.md
     - .gitattributes
 
-# Tasks to execute after generating or updating a project.
-_tasks:
-    - "git init --initial-branch=main"
+# Require that the user has at least Copier v8.0.0 installed
+_min_copier_version: "8.0.0"

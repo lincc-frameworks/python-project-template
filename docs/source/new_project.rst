@@ -8,9 +8,16 @@ Create a new project from the template
 Choose where you would like to create your new project, and call copier with 
 the template.
 
+.. important::
+    A new version of Copier was released June 4, 2023. Please ensure that your
+    installed version of Copier >= 8.0.0. The following command will not work
+    with earlier versions of Copier.
+
+    ``pipx list`` will display the currently installed version of Copier.
+
 .. code-block:: bash
 
-    >> copier gh:lincc-frameworks/python-project-template <new/project/directory>
+    >> copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
 
 Copier will ask you questions for how to set up the project. These questions 
 will be used to fill in aspects of the project's configuration, including both 
@@ -53,56 +60,46 @@ can be changed later.
 See Copier's `documentation for changing answers to the question <https://copier.readthedocs.io/en/stable/updating/>`_.
 
 After providing answers to the prompts, Copier will hydrate a project template 
-and save it in the specified location. Additionally Copier will run 
-``git init`` in the new project directory to initialize it as a local repository.
+and save it in the directory you specified.
 
-Create a new environment
----------------------------
+Create and activate a new environment
+--------------------------------------
+
+.. note::
+    This step is optional, but we recommend using virtual environments to better 
+    manage different project's dependencies. 
+    See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ 
+    for more details.
 
 If you are using `virtual environments <https://packaging.python.org/en/latest/glossary/#term-Virtual-Environment>`_ 
 create a new environment with your choice of environment tools (virtualenv, 
-conda, etc.) and activate it. 
-This step is optional, but we recommend using virtual environments to better 
-manage different project's dependencies. 
-See Python's `description of virtual environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/>`_ 
-for more details.
+conda, etc.) and activate it.
 
-.. tip::
-  Projects using Python notebooks will need to have ``pandoc`` installed to 
-  convert notebooks to html locally. 
-  Pandoc is `available on conda-forge <https://github.com/conda-forge/pandoc-feedstock>`_, 
-  so conda can be a convenient way to keep these dependencies grouped together.
+Prepare your project
+---------------------
 
-Install your new package
-----------------------------------------------------
-
-Go to the new package directory and install the newly created python package.
-Use ``pip`` to install both the standard set of dependencies as well as the 
-``[dev]`` dependencies.
-
-.. note::
-  Depending on your system you may not need the single quotes around ``'.[dev]'``.
+Once your virtual environment has been created and activated run the following
+script in your new project directory.
 
 .. code-block:: bash
 
-    >> cd <new/project/directory>
-    >> pip install -e .
-    ...
-    Lots of output
-    ...
+    >> bash .prepare_project.sh
 
-    >> pip install -e '.[dev]'
-    ...
-    Lots more output
-    ...
+This script will initialize your local git repository then install the new Python
+package in editable mode along with runtime and developer dependencies. Finally
+the script will initialize :doc:`pre-commit <../practices/precommit>`.
 
-Great, but don't stop here
--------------------------------------------------------------------------------
+The full contents of the script can be seen on `Github <https://github.com/lincc-frameworks/python-project-template/tree/main/python-project-template/.prepare_project.sh>`_.
 
-At this point, your new project is hydrated and ready for you to start coding. 
-But there's a lot more that this template has to offer. 
-Keep reading to find out more about built in pre-commit hooks, GitHub CI, 
-automatic documentation, and more.
+The script assumes that you have access to bash. If that is not true for your environment,
+you should be able to run all the commands manually in your environment using
+your available shell.
+
+.. tip::
+  Projects using Python notebooks will need to have ``pandoc`` installed to 
+  convert notebooks to html locally.
+  Pandoc is `available on conda-forge <https://github.com/conda-forge/pandoc-feedstock>`_, 
+  so conda can be a convenient way to keep these dependencies grouped together.
 
 Commit your new project locally
 -------------------------------------------------------------------------------
@@ -131,17 +128,10 @@ Notice that when you create a PR in GitHub, a set of tests for Continuous
 Integration starts up to verify that the project can build successfully and 
 that all the unit tests pass. Neato!
 
-Install pre-commit
-----------------------------
+Great, but don't stop here
+-------------------------------------------------------------------------------
 
-Now that your project has been pushed to a GitHub remote repository, it's a good 
-time to install ``pre-commit`` so that future commits will run a suite of checks 
-before pushing code to the remote repository. 
-Run the following command in your terminal.
-
-.. code:: bash
-
-    >> pre-commit install
-
-For more information about ``pre-commit`` including a list of the checks that 
-will be run before each commit, please see :doc:`pre-commit <../practices/precommit>`.
+At this point, your new project is hydrated, version controlled and ready for
+you to start coding. But there's a lot more that this template has to offer!
+Take a look at the :doc:`Best Practices section <../practices/overview>` to learn about
+built in pre-commit hooks, GitHub CI, automatic documentation, and more.
