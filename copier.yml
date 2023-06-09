@@ -1,10 +1,11 @@
 custom_install:
-    help: Would you like to use simple (default tooling) or customized installation? {{_copier_answers}} 
+    help: Would you like to use simple (default tooling) or customized installation? 
     type: bool
     default: customized
     choices:
         customized: true
         simple: false
+    when: {% if project_name == 'example_project' %}
 
 project_name:
     type: str
