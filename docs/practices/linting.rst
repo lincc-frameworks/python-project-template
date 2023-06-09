@@ -25,8 +25,9 @@ each developer creates some formatting changes each time they touch a file (and
 then another developer undoes them the next time they touch the same file).
 
 
-pylint configuration
+Note about our pylint configuration
 -------------------------------------------------------------------------------
+
 Pylint is one of the linter options included in the template. While there are a
 number of errors and coding standards that the linter can search for, you may not
 want to include all of them, or modify the values of certain checks such as line
@@ -47,8 +48,34 @@ documentation.
 <https://pylint.readthedocs.io/en/stable/user_guide/configuration/index.html>`_
 
 
+How to modify
+--------------
 
-How to modify/remove
--------------------------------------------------------------------------------
+Currently the template offers three choices for linters - None, Black, or pylint.
 
-TODO
+Modifying Black
+................
+
+`Black <https://black.readthedocs.io/en/latest/index.html>`_ is a very opinionated
+linting tool, and doesn't permit much in the way of customization. The
+configurations that are available are defined in ``pyproject.toml`` under the
+``[tool.black]`` section. For more details see Black's documentation on configuration:
+https://black.readthedocs.io/en/latest/usage_and_configuration/the_basics.html#configuration-via-a-file
+
+
+Modifying pylint
+.................
+
+`pylint <https://pylint.readthedocs.io/en/latest/>`_ is a highly customizable linting
+tool. The configuration for pylint is maintained in two ``.pylintrc`` files in 
+the ``./src`` and ``./tests`` directories. This allows separate configurations
+for source versus test code. Take a look at the configuration documentation
+for pylint here: https://pylint.readthedocs.io/en/latest/user_guide/configuration/index.html
+
+How to switch or remove linters
+-------------------------------
+
+If you started a project without selecting a linter, or you want to change or 
+remove the linter entirely, use the ``copier update`` command to change the
+response to the "What tooling would you like to use to enforce code style?"
+question.
