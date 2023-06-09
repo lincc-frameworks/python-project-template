@@ -19,10 +19,33 @@ reviewing effort on the meat of the code.
 
 There are two main linters suggested by this template: pylint and black. While 
 they have a lot of the same opinions, we recommend picking a single standard for 
-your project and sticking to it. 
-If some folks use one linter, this may cause undue churn in your source files as 
+your project and sticking to it.
+If some folks use one linter, this may cause undue churn in your source files as
 each developer creates some formatting changes each time they touch a file (and 
 then another developer undoes them the next time they touch the same file).
+
+
+pylint configuration
+-------------------------------------------------------------------------------
+Pylint is one of the linter options included in the template. While there are a
+number of errors and coding standards that the linter can search for, you may not
+want to include all of them, or modify the values of certain checks such as line
+length to fit the agreed standards in your project. To do this, pylint allows
+project wide configuration in either the project's ``pyproject.toml`` file, or in
+a separate ``.pylintrc`` file.
+
+We have found in our projects that one configuration across both source and test
+files is inadequate, and that separate standards are needed in each, for example,
+in requiring that methods contain docstrings. So we generate two ``.pylintrc``
+files, one under ``src`` and the other under ``tests``. When pylint is run in
+the pre-commit hooks and the github actions, it is run twice, once on the
+source files with the src config, and once on the test files with the tests
+config.
+
+For more on how to configure the pylint options, `take a look at pylint's
+documentation.
+<https://pylint.readthedocs.io/en/stable/user_guide/configuration/index.html>`_
+
 
 
 How to modify/remove
