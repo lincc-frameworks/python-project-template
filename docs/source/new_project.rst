@@ -109,8 +109,6 @@ checks run.
 
 .. code-block:: bash
 
-    >> git checkout -b initial_branch
-    Switched to a new branch 'initial_branch'
     >> git add .
     >> git commit -m 'Initial commit'
 
@@ -127,6 +125,14 @@ Create a new repository in GitHub: (`GitHub How-to <https://docs.github.com/en/g
 Notice that when you create a PR in GitHub, a set of tests for Continuous 
 Integration starts up to verify that the project can build successfully and 
 that all the unit tests pass. Neato!
+
+.. note::
+    Once your project is created and pushed to GitHub, consider setting up
+    branch protection rules. (`GitHub Instructions <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging>`_).
+
+    Pre-commit hooks can help too. Search for "UNCOMMENT" in
+    ``.pre-commit-config.yaml`` and follow the directions to setup local branch
+    protection.
 
 Great, but don't stop here
 -------------------------------------------------------------------------------
