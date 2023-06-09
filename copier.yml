@@ -81,6 +81,15 @@ create_example_module:
         no: false
     when: "{{ custom_install }}"
 
+include_docs:
+    help: Do you want to include a directory for sphinx, and autoapi generation?
+    type: bool
+    default: yes
+    choices:
+        yes: true
+        no: false
+    when: "{{ custom_install }}"
+
 include_notebooks:
     help: Do you want to include rendered notebooks in your documentation?
     type: bool
@@ -88,7 +97,7 @@ include_notebooks:
     choices:
         yes: true
         no: false
-    when: "{{ custom_install }}"
+    when: "{{ custom_install and include_docs }}"
 
 use_gitlfs:
     help: Do you want to add a .gitattributes with entries for git-lfs (see https://lincc-ppt.readthedocs.io/en/latest/practices/git-lfs.html)?
