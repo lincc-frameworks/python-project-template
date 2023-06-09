@@ -31,8 +31,9 @@ We think it's really neat, and we hope you do to!
    practices/code_coverage
    practices/git-lfs
    practices/linting
+   practices/namespace_project
    practices/pipx
    practices/precommit
    practices/pypi
+   practices/unit_testing
    practices/sphinx
-   practices/namespace_project
