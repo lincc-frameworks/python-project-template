@@ -6,7 +6,7 @@ echo "Initializing local git repository"
     if let "${gitversion[0]}<2"; then
 	# manipulate directly
 	git init . && echo 'ref: refs/heads/main' >.git/HEAD
-    elif let "${gitversion[0]}==2 & ${gitversion[1]}<40"; then
+    elif let "${gitversion[0]}==2 & ${gitversion[1]}<34"; then
 	# rename master to main
 	git init . && { git branch -m master main 2>/dev/null || true; };
     else
