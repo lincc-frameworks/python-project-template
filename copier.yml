@@ -5,7 +5,7 @@ custom_install:
     choices:
         customized: true
         simple: false
-    when: "{% if project_name == 'example_project' %}""
+    when: "{% if project_name == 'example_project' %}"
 
 project_name:
     type: str
