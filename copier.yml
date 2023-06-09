@@ -1,5 +1,5 @@
 custom_install:
-    help: Would you like to use simple (default tooling) or customized installation?
+    help: Would you like to use simple (default tooling) or customized installation? T 
     type: bool
     default: customized
     choices:
