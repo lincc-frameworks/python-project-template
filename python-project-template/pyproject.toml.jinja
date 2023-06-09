@@ -60,6 +60,11 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 write_to = "src/{{package_name}}/_version.py"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
 {%- if preferred_linter == 'black' %}
 
 [tool.black]
