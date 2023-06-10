@@ -5,11 +5,12 @@ Updating a project comes in two flavors.
 Updating to incorporate a new version of the template, or updating 
 one or more specific responses to the questions used to hydrate the project.
 
-Either way, the process starts with a single-line command:
+Either way, the process starts with a single-line command in the directory containing
+your project:
 
 .. code-block:: bash
 
-    >> copier update
+    >> copier update ./<project directory>
 
 Updating the template version
 -----------------------------
