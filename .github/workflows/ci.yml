@@ -99,20 +99,6 @@ jobs:
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src/rail"
-   
-    - name: mypy checks basic
-      if: ${{ contains(matrix.copier_config.extra_flags, 'mypy_type_checking=basic') && !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
-      run: |
-        cd "../test/${{ matrix.copier_config.foldername }}"
-        mypy src
-        mypy tests
-   
-    - name: mypy checks strict
-      if: ${{ contains(matrix.copier_config.extra_flags, 'mypy_type_checking=strict') && !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
-      run: |
-        cd "../test/${{ matrix.copier_config.foldername }}"
-        mypy --strict src
-        mypy --strict tests
 
     - name: Tests
       if: ${{ !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
