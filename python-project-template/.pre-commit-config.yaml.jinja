@@ -158,7 +158,7 @@ repos:
             "-D", # Flag to override settings in conf.py
             "exclude_patterns=notebooks/*", # Exclude our notebooks from pre-commit
           ]
-{%- else %}
+{%- elif include_docs %}
     # Make sure Sphinx can build the documentation without issues.
   - repo: local
     hooks:

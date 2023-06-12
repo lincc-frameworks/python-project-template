@@ -64,6 +64,15 @@ jobs:
               --data include_notebooks=no
               --data use_gitlfs=disabled
             foldername: 'pylint_w_o_example_module'
+          - name: No sphinx docs
+            package_name: 'drewtonian'
+            extra_flags: >-
+              --data project_name=new_science
+              --data package_name=drewtonian
+              --data include_docs=no
+              --data include_notebooks=no
+            foldername: 'no_sphinx_docs'
+
     steps:
     
     - name: Checkout code
@@ -125,6 +134,7 @@ jobs:
         cat ../test/${{ matrix.copier_config.foldername }}/docs/requirements.txt
     
     - name: Build docs
+      if: ${{ !contains(matrix.copier_config.extra_flags, 'include_docs=no') }}
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
         sphinx-build -T -E -b html -d docs/build/doctrees ./docs docs/build/html
