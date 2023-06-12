@@ -39,7 +39,12 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-write_to = "src/{{package_name}}/_version.py"
+write_to = "src/rail/{{package_name}}/_version.py"
+
+[tools.setuptools.packages.find]
+where = ["."]
+include = ["rail"]
+namespaces = true
 
 [tool.pytest.ini_options]
 testpaths = [

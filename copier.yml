@@ -8,8 +8,8 @@ custom_install:
 
 project_name:
     type: str
-    help: What is the name of your project?
-    default: example_project
+    help: What is the name of your project? This will be used by PyPI, i.e. pz-rail-<algorithm>
+    default: pz-rail-algo
     validator: >-
         {% if not (project_name | regex_search('^[a-z][a-z0-9\_\-]+$')) %}
         Must use a lowercase letter followed by one or more of (a-z, 0-9, _, -).
