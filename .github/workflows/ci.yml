@@ -95,13 +95,13 @@ jobs:
       if: ${{ contains (matrix.copier_config.name, 'Base') }}
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
-        python -m pylint --recursive=y ./src/ --rcfile=./src/.pylintrc
+        python -m pylint --recursive=y ./src/rail --rcfile=./src/rail/.pylintrc
    
     - name: black checks
       if: ${{ contains(matrix.copier_config.extra_flags, 'preferred_linter=black') }}
       uses: psf/black@stable
       with:
-        src: "../test/${{ matrix.copier_config.foldername }}/src"
+        src: "../test/${{ matrix.copier_config.foldername }}/src/rail"
    
     - name: mypy checks basic
       if: ${{ contains(matrix.copier_config.extra_flags, 'mypy_type_checking=basic') && !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
