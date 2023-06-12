@@ -27,21 +27,12 @@ package_name:
 author_name:
     type: str
     help: What is the name of the code author? (Can be a person or organization)
-    default: Your Name
+    default: LSST Dark Energy Science Collaboration (DESC)
 
 author_email:
     type: str
     help: Code author's preferred email address?
     default: name@you.com
-
-project_license:
-    help: What license would you like to use?
-    type: str
-    default: MIT
-    choices:
-        MIT: MIT
-        BSD: BSD
-        none: none
 
 preferred_linter:
     help: What tooling would you like to use to enforce code style?

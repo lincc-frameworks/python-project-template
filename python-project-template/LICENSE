@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023{% if author_name %} {{author_name}}{% endif %}
+Copyright (c) 2023 LSST Dark Energy Science Collaboration (DESC)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

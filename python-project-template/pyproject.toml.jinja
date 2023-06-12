@@ -3,26 +3,17 @@ name = "{{project_name}}"
 license = {file = "LICENSE"}
 readme = "README.md"
 authors = [
-    { name = "{{author_name}}"{% if author_email %}, email = "{{author_email}}"{% endif %} }
+    { name = "LSST Dark Energy Science Collaboration (DESC)"{% if author_email %}, email = "{{author_email}}"{% endif %} }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
-{%- if project_license == 'MIT' %}
     "License :: OSI Approved :: MIT License",
-{%- elif project_license == 'BSD' %}
-    "License :: OSI Approved :: BSD License",
-{%- endif %}
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
 ]
 dynamic = ["version"]
-dependencies = [
-{%- if include_notebooks %}
-    "ipykernel", # Support for Jupyter notebooks
-{%- endif %}
-]
 
 # On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
 [project.optional-dependencies]
