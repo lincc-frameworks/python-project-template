@@ -1,5 +1,5 @@
 [project]
-name = "python-project-template"
+name = "RAIL-project-template"
 license = {file = "LICENSE"}
 readme = "README.md"
 authors = [
@@ -16,6 +16,7 @@ dynamic = ["version"]
 
 dependencies = [
     "setuptools_scm",
+    "pre-commit"
 ]
 
 [build-system]
