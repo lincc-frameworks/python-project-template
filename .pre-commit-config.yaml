@@ -1,0 +1,21 @@
+repos:
+
+    # prevents committing directly branches named 'main' and 'master'.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: no-commit-to-branch
+        name: Prevent main branch commits
+        description: Prevent the user from committing directly to the primary branch.
+      - id: check-added-large-files
+        name: Check for large files
+        description: Prevent the user from committing very large files.
+        args: ['--maxkb=500']
+
+    # verify that pyproject.toml is well formed
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.12.1
+    hooks:
+      - id: validate-pyproject
+        name: Validate pyproject.toml
+        description: Verify that pyproject.toml adheres to the established schema.
