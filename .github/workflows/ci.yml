@@ -16,7 +16,7 @@ jobs:
         python-version: ['3.8', '3.9', '3.10']
         copier_config:
           - name: Base example
-            package_name: example_project # The default package_name
+            package_name: example_package # The default package_name
             extra_flags: ''
             foldername: base_example
           - name: Black w/o example module
