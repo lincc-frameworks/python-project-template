@@ -64,6 +64,14 @@ jobs:
               --data include_notebooks=no
               --data use_gitlfs=disabled
             foldername: 'pylint_w_o_example_module'
+          - name: No sphinx docs
+            package_name: 'drewtonian'
+            extra_flags: >-
+              --data project_name=new_science
+              --data package_name=drewtonian
+              --data include_docs=no
+            foldername: 'no_sphinx_docs'
+
     steps:
     
     - name: Checkout code
