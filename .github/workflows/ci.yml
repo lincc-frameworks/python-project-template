@@ -26,7 +26,6 @@ jobs:
               --data package_name=drewtonian
               --data author_name=Drew
               --data author_email=ao@aol.com
-              --data project_license=BSD
               --data preferred_linter=black
               --data use_isort=false
               --data mypy_type_checking=basic
@@ -40,7 +39,6 @@ jobs:
               --data package_name=drewtonian
               --data author_name=Drew
               --data author_email=ao@aol.com
-              --data project_license=BSD
               --data preferred_linter=black
               --data use_isort=false
               --data mypy_type_checking=basic
@@ -54,7 +52,6 @@ jobs:
               --data package_name=drewtonian
               --data author_name=Drew
               --data author_email=ao@aol.com
-              --data project_license=BSD
               --data preferred_linter=pylint
               --data use_isort=false
               --data mypy_type_checking=basic
