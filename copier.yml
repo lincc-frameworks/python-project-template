@@ -1,11 +1,3 @@
-custom_install:
-    help: Would you like to use simple (default tooling) or customized installation? 
-    type: bool
-    default: customized
-    choices:
-        customized: true
-        simple: false
-
 project_name:
     type: str
     help: What is the name of your project? This will be used by PyPI, i.e. pz-rail-<algorithm>
@@ -34,53 +26,10 @@ author_email:
     help: Code author's preferred email address?
     default: name@you.com
 
-preferred_linter:
-    help: What tooling would you like to use to enforce code style?
-    type: str
-    default: pylint
-    choices:
-        pylint: pylint
-        black: black
-        none: none
-    when: "{{ custom_install }}"
-
-use_isort:
-    help: Do you want to use isort to maintain a specific ordering for module imports?
-    type: bool
-    default: yes
-    choices:
-        yes: true
-        no: false
-    when: "{{ custom_install }}"
-
-mypy_type_checking:
-    help: Would you like to include mypy to perform static type checking for type hints?
-    type: str
-    default: none
-    choices:
-        No type checking: none
-        Add basic type checking for code that has type hints: basic
-        Add strict type checking to enforce that type hints are used: strict
-    when: "{{ custom_install }}"
-
 create_example_module:
     help: Do you want to create some example module code?
     type: bool
-    default: yes
-    choices:
-        yes: true
-        no: false
-    when: "{{ custom_install }}"
-
-use_gitlfs:
-    help: Do you want to add a .gitattributes with entries for git-lfs (see https://lincc-ppt.readthedocs.io/en/latest/practices/git-lfs.html)?
-    type: str
-    default: none
-    choices:
-        maybe later: none
-        yes .gitattributes with example entries disabled: disabled
-        yes .gitattributes with example entries enabled: enabled
-    when: "{{ custom_install }}"
+    default: no
 
 ###
 # Below this line are Copier configuration options.

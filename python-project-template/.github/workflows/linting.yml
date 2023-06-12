@@ -18,10 +18,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
-        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+        python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -30,11 +30,5 @@ jobs:
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Analyze code with linter
-{% if preferred_linter == 'pylint' %}
       run: |
-        pylint -rn -sn --recursive=y ./src --rcfile=./src/.pylintrc
-{% elif preferred_linter == 'black' %}
-      uses: psf/black@stable
-      with:
-        src: ./src
-{% endif -%}
+        pylint -rn -sn --recursive=y ./src

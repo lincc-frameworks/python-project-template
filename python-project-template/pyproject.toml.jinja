@@ -21,14 +21,7 @@ dev = [
     "pytest",
     "pytest-cov", # Used to report total code coverage
     "pre-commit", # Used to run checks before finalizing a git commit
-{%- if preferred_linter == 'pylint' %}
     "pylint", # Used for static linting of files
-{%- elif preferred_linter == 'black' %}
-    "black", # Used for static linting of files
-{%- endif %}
-{%- if mypy_type_checking != 'none' %}
-    "mypy", # Used for static type checking of files
-{%- endif %}
 ]
 
 [build-system]
@@ -50,18 +43,25 @@ namespaces = true
 testpaths = [
     "tests",
 ]
-{%- if preferred_linter == 'black' %}
+addopts = [
+    "--cov=rail",
+    "--cov-report=html"
+]
 
-[tool.black]
-line-length = 110
-{% if use_isort %}
-[tool.isort]
-profile = "black"
-{%- endif %}
-
-{%- endif %}
-{%- if mypy_type_checking != 'none' %}
-
-[tool.setuptools.package-data]
-{{package_name}} = ["py.typed"]
-{%- endif %}
+[tool.pylint]
+disable = [
+    "abstract-method",
+    "invalid-name",
+    "too-many-statements",
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "too-few-public-methods",
+    "duplicate-code",
+    "use-dict-literal",
+    "broad-exception-caught",
+]
+max-line-length = 110
+max-locals = 50
+max-branches = 25
+max-public-methods = 50
