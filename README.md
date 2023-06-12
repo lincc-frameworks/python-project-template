@@ -24,3 +24,9 @@ Choose where you would like to create your new project, and call copier with the
 [![GitHub issue custom search in repo](https://img.shields.io/github/issues-search/lincc-frameworks/python-project-template?color=purple&label=Good%20first%20issues&query=is%3Aopen%20label%3A%22good%20first%20issue%22)](https://github.com/lincc-frameworks/python-project-template/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 
 See full documentation at [readthedocs](https://lincc-ppt.readthedocs.io/en/latest/source/contributing.html)
+
+## Acknowledgements
+
+LINCC Frameworks is supported by Schmidt Futures, a philanthropic initiative
+founded by Eric and Wendy Schmidt, as part of the Virtual Institute of 
+Astrophysics (VIA).
