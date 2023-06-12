@@ -1,32 +1,34 @@
-# LINCC Frameworks Python Project Template
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/lincc-frameworks/python-project-template)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lincc-frameworks/python-project-template/ci.yml)
-![Read the Docs](https://img.shields.io/readthedocs/lincc-ppt)
+# RAIL Python Project Template
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/LSSTDESC/RAIL-project-template/ci.yml)
 
-This project template codifies LINCC-Framework's best practices for python code organization, testing, documentation, and automation. It is meant to help new python projects get started quickly, letting the user focus on writing code. The template takes care of the minutia of directory structures, tool configurations, and automated testing until the user is ready to take over.
+This project borrows from the LINCC Frameworks' template of best practices for
+python code organization, testing, and automation. It is meant to help new RAIL
+projects use the same standards, and be interoperable with other packages in
+the RAIL-iverse.
 
-[Copier](https://copier.readthedocs.io/en/latest/) is required to use this template. Copier is an open source tool that hydrates projects from templates and natively supports updating projects as the original template matures. It's really neat!
+Notable differences from the original template include:
+
+- support for namespaced packages
+- remove sphinx documentation generation
+- keep pylint configuration in the pyproject.toml (instead of creating
+pylint.rc files)
+
+[Copier](https://copier.readthedocs.io/en/latest/) is required to use this
+template. Copier is an open source tool that hydrates projects from templates 
+and natively supports updating projects as the original template matures.
 
 Our template works best with Copier v8.0 and above. 
-For all the information, see the detailed user guide in
-[readthedocs](https://lincc-ppt.readthedocs.io/)
 
 ## Getting started
 
 Choose where you would like to create your new project, and call copier with the template.
 
 ```
->$ copier copy gh:lincc-frameworks/python-project-template <path/to/destination>
+>$ copier copy gh:LSSTDESC/RAIL-project-template <path/to/destination>
 ```
 
 ## Contributing to the Template
 
-[![GitHub issue custom search in repo](https://img.shields.io/github/issues-search/lincc-frameworks/python-project-template?color=purple&label=Good%20first%20issues&query=is%3Aopen%20label%3A%22good%20first%20issue%22)](https://github.com/lincc-frameworks/python-project-template/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[![GitHub issue custom search in repo](https://img.shields.io/github/issues-search/LSSTDESC/RAIL-project-template?color=purple&label=Good%20first%20issues&query=is%3Aopen%20label%3A%22good%20first%20issue%22)](https://github.com/LSSTDESC/RAIL-project-template/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 
-See full documentation at [readthedocs](https://lincc-ppt.readthedocs.io/en/latest/source/contributing.html)
-
-## Acknowledgements
-
-LINCC Frameworks is supported by Schmidt Futures, a philanthropic initiative
-founded by Eric and Wendy Schmidt, as part of the Virtual Institute of 
-Astrophysics (VIA).
+See full documentation at LINCC's [readthedocs](https://lincc-ppt.readthedocs.io/en/latest/source/contributing.html)
