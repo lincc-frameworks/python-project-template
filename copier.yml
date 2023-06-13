@@ -48,8 +48,8 @@ preferred_linter:
     type: str
     default: pylint
     choices:
-        pylint: pylint
         black: black
+        pylint: pylint
         none: none
     when: "{{ custom_install }}"
 
