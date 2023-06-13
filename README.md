@@ -27,6 +27,37 @@ Choose where you would like to create your new project, and call copier with the
 >$ copier copy gh:LSSTDESC/RAIL-project-template <path/to/destination>
 ```
 
+## Configuring your repository
+
+After you've created a project with this template and pushed it to GitHub, a small
+amount of additional set up in the repository will allow you to take full advantage
+of the features that the template offers.
+
+### Enable Codecov reporting
+
+The Continuous Integration tests built into the template will automatically generate
+the code coverage files that Codecov needs for reporting. All you need to do is
+enable Codecov for your repository.
+
+Go here: https://github.com/apps/codecov and configure it for your repository
+
+### Publish to PyPI automatically
+
+A GitHub action has been created that will automatically publish a package to PyPI.
+To make use of that, you'll need to create an API key and save it your new repo.
+Follow these instructions to get started: https://lincc-ppt.readthedocs.io/en/latest/practices/pypi.html#set-up
+
+### Automatically Add issues to the Project Tracker
+
+To easily track issues across many repositories, we can make use of GitHub's projects.
+A GitHub action is included in template that will automatically add new issues to
+the primary RAIL project tracker, however, you'll need to setup a Person Access Token
+and save it as repository secret for it to work. 
+
+These instructions explain how to create a Personal Access Token: https://github.com/actions/add-to-project#creating-a-pat-and-adding-it-to-your-repository
+
+Once your token is created save it as a **repository secret** with the name: ``ADD_TO_PROJECT_PAT``.
+
 ## Contributing to the Template
 
 ### WARNING:
