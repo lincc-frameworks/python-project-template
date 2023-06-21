@@ -42,11 +42,11 @@ that will print out all packages installed through pip and their installed versi
    2. "Unit test smoke test"
    3. Scroll until you find a green check
    4. Pick a python versioned build
-   5. Expand "List dependencies"
+   6. Cut'n'paste the list to a file, e.g. "pass.txt"
 2. Find a failed run.
    1. From the "Unit test smoke test" page, find the first red check
    2. Pick a python versioned build
-   3. Expand "List dependencies"
+   4. Cut'n'paste the list to a file, e.g. "fail.txt"
 3. Diff those lists
    1. e.g. ``diff pass.txt fail.txt``
    2. Or use an online diff tool like https://www.diffchecker.com/
