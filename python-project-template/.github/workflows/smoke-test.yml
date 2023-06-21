@@ -1,5 +1,7 @@
 # This workflow will run daily at 06:45.
 # It will install Python dependencies and run tests with a variety of Python versions.
+# See documentation for help debugging smoke test issues:
+#    https://lincc-ppt.readthedocs.io/en/latest/practices/ci_testing.html#version-culprit
 
 name: Unit test smoke test
 
@@ -28,6 +30,9 @@ jobs:
         pip install .
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: List dependencies
+      run: |
+        pip list
     - name: Run unit tests with pytest
       run: |
         python -m pytest tests
