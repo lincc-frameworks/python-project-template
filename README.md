@@ -1,5 +1,6 @@
 # RAIL Python Project Template
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/LSSTDESC/RAIL-project-template/ci.yml)
+[![Forked](https://img.shields.io/badge/Forked-LINCC%20Frameworks%20Python%20Project%20Template-brightgreen)](https://github.com/LINCC-Frameworks/python-project-template)
 
 This project borrows from the LINCC Frameworks' template of best practices for
 python code organization, testing, and automation. It is meant to help new RAIL
