@@ -37,13 +37,10 @@ latest local version.
 
 Notes:
 
-#. Any changes to the template will need to be committed (not pushed) to be
-picked up by Copier.
+#. Any changes to the template will need to be committed (not pushed) to be picked up by Copier.
 #. If there's an opportunity for introducing an automated test, please take it.
-#. This project has some automated testing, to ensure that the template can
-hydrate a reasonable output project - feel free to extend that if it's reasonable.
-#. See the `Copier documentation <https://copier.readthedocs.io/en/latest/generating/#regenerating-a-project>`_
-for more information.
+#. This project has some automated testing, to ensure that the template can hydrate a reasonable output project - feel free to extend that if it's reasonable.
+#. See the `Copier documentation <https://copier.readthedocs.io/en/latest/generating/#regenerating-a-project>`_ for more information.
 
 
 Create your PR
