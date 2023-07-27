@@ -13,7 +13,7 @@ an example!
 This template provides additional scaffolding for autoapi documentation. This 
 pulls docstrings from python source code and creates pretty API reference documents.
 
-How to get started
+How to get started with ReadTheDocs
 -------------------------------------------------------------------------------
 
 If you have connected your GitHub account to `ReadTheDocs <https://readthedocs.org/>`_
@@ -26,6 +26,15 @@ list of repositories that can be
 If you don't see the repository you expect, it is possible that you do not have 
 sufficient permissions configured in your GitHub organization. Talk to an administrator 
 of the organization, and let them know what you're trying to do.
+
+.. note::
+    Additional ReadTheDocs recommendations
+
+    - Include multiple maintainers in your RTD project. You don't want to be 
+      the single point of failure!
+    - Turn on Pull Request builds (Admin > Advanced Settings > Build pull 
+      requests for this project). This will try to build the RTD site for each 
+      pull request, and PR reviewers can preview the changes.
 
 How to manage
 -------------------------------------------------------------------------------
