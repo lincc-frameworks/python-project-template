@@ -102,7 +102,7 @@ jobs:
         git config --global user.email "tstname@example.com"
         git config --global user.name "Test Name"       
         git init --initial-branch=main
-        git add README.md .copier-answers.yml
+        git add src
         git commit -m initial
         pip install .
         pip install .[dev]
