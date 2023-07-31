@@ -99,7 +99,11 @@ jobs:
     - name: Build package
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
+        git config --global user.email "tstname@example.com"
+        git config --global user.name "Test Name"       
         git init --initial-branch=main
+        git add src
+        git commit -m initial
         pip install .
         pip install .[dev]
     
