@@ -49,7 +49,14 @@ jobs:
     - name: Build package
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
+        # initialize git
+        git config --global user.email "tstname@example.com"
+        git config --global user.name "Test Name"       
         git init --initial-branch=main
+        # commit src which seems required so that site-utils contains rail/example_package
+        # and import rail.example_package will function
+        git add src
+        git commit -m initial
         pip install .
         pip install .[dev]
     
