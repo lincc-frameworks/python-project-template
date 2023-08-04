@@ -11,4 +11,4 @@ def runtime_computation():
 
 def memory_computation():
     """Memory computation for a random list up to 512 samples."""
-    [0] * random.randint(0, 512)
+    return [0] * random.randint(0, 512)

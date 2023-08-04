@@ -11,6 +11,6 @@ def time_computation():
     example_benchmarks.runtime_computation()
 
 
-def peakmem_list():
+def mem_list():
     """Memory computations are prefixed with 'mem' or 'peakmem'."""
     return example_benchmarks.memory_computation()
