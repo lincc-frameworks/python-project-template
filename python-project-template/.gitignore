@@ -141,3 +141,6 @@ tmp/
 
 # Mac OS
 .DS_Store
+
+# Pytest monitor
+.pymon
