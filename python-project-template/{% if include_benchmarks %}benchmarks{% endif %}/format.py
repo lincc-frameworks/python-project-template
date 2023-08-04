@@ -25,6 +25,7 @@ All benchmarks:
 | Before      | After       | Ratio    | Method                             |
 |-------------|-------------|----------|------------------------------------|
 | [fcd6c976]  | [bc939276]  |          |                                    |
+| 2.1k        | 2.1k        | 1.00     | benchmarks.MemSuite.mem_list       |
 | failed      | 304±2ms     | n/a      | benchmarks.TimeSuite.time_iterkeys |
 | 2.43±0.05μs | 205±0.7ms   | 84400.48 | benchmarks.TimeSuite.time_keys     |
 | 9.67±0.03μs | 505±1ms     | 52177.14 | benchmarks.TimeSuite.time_range    |
