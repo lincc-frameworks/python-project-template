@@ -99,6 +99,15 @@ include_notebooks:
         no: false
     when: "{{ custom_install and include_docs }}"
 
+include_benchmarks:
+    help: Do you want to enable benchmarking?
+    type: bool
+    default: yes
+    choices:
+        yes: true
+        no: false
+    when: "{{ custom_install }}"
+
 use_gitlfs:
     help: Do you want to add a .gitattributes with entries for git-lfs (see https://lincc-ppt.readthedocs.io/en/latest/practices/git-lfs.html)?
     type: str

@@ -1,0 +1,93 @@
+# This workflow will run benchmarks with airspeed velocity (asv)
+# and publish the results to a dashboard on GH Pages.
+
+name: Run ASV benchmarks for main
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  PYTHON_VERSION: "3.10"
+  WORKING_DIR: ${{ github.workspace }}/benchmarks
+
+jobs:
+
+  consecutiveness:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set workflows on main to run consecutively
+        uses: mktcode/consecutive-workflow-action@eb43c6b5852dd0e33efa797a1817196d06daa4b2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  setup-python:
+    runs-on: ubuntu-latest
+    needs: consecutiveness
+
+    steps:
+      - name: Cache Python ${{ env.PYTHON_VERSION }}
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: python-${{ env.PYTHON_VERSION }}
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ env.PYTHON_VERSION }}"
+
+  asv-main:
+    runs-on: ubuntu-latest
+    needs: setup-python
+
+    permissions:
+      contents: write
+
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      - name: Checkout main branch of the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache Python ${{ env.PYTHON_VERSION }}
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: python-${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          python -m pip install --upgrade pip
+          pip install asv virtualenv tabulate
+
+      - name: Create ASV machine config file
+        run: asv machine --machine gh-runner --yes
+
+      - name: Run ASV for the main branch
+        run: asv run ALL --skip-existing
+
+      - name: Submit results to the repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/
+          git pull
+          git commit -m "Upload new benchmarks"
+          git push origin main
+
+      - name: Generate dashboard HTML
+        run: |
+          asv show
+          asv publish
+
+      - name: Deploy to Github pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ${{ env.WORKING_DIR }}/html

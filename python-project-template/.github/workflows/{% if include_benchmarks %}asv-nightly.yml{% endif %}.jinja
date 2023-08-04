@@ -1,0 +1,76 @@
+# This workflow will run daily at 06:45.
+# It will run benchmarks with airspeed velocity (asv)
+# and compare performance with the previous nightly build.
+
+name: Run benchmarks nightly job
+
+on:
+  schedule:
+    - cron: 45 6 * * *
+
+env:
+  PYTHON_VERSION: "3.10"
+  WORKING_DIR: ${{ github.workspace }}/benchmarks
+  NIGHTLY_HASH_FILE: nightly-hash
+
+jobs:
+
+  asv-nightly:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      - name: Checkout main branch of the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache Python ${{ env.PYTHON_VERSION }}
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: python-${{ env.PYTHON_VERSION }}
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ env.PYTHON_VERSION }}"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          python -m pip install --upgrade pip
+          pip install asv virtualenv
+
+      - name: Create ASV machine config file
+        run: asv machine --machine gh-runner --yes
+
+      - name: Get nightly dates under comparison
+        id: nightly-dates
+        run: |
+          echo "yesterday=$(date -d yesterday +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Use last nightly commit hash from cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.WORKING_DIR }}
+          key: nightly-results-${{ steps.nightly-dates.outputs.yesterday }}
+
+      - name: Run comparison of main against last nightly build
+        run: |
+          if [ -f ${{ env.NIGHTLY_HASH_FILE}} ]; then          
+            PREV_HASH=$(cat ${{ env.NIGHTLY_HASH_FILE }})
+            asv continuous $PREV_HASH ${{ github.sha }}  || true
+            asv compare $PREV_HASH ${{ github.sha }} --sort ratio
+          fi
+          echo ${{ github.sha }} > ${{ env.NIGHTLY_HASH_FILE }}
+
+      - name: Update last nightly hash in cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.WORKING_DIR }}
+          key: nightly-results-${{ steps.nightly-dates.outputs.today }}
