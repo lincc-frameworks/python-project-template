@@ -10,7 +10,7 @@ on:
 
 env:
   PYTHON_VERSION: "3.10"
-  WORKING_DIR: ${{ github.workspace }}/benchmarks
+  WORKING_DIR: {% raw %}${{ github.workspace }}{% endraw %}/benchmarks
 
 jobs:
 
@@ -18,16 +18,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Cache Python ${{ env.PYTHON_VERSION }}
+      - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: python-${{ env.PYTHON_VERSION }}
+          key: python-{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
 
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
+      - name: Set up Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
         uses: actions/setup-python@v4
         with:
-          python-version: "${{ env.PYTHON_VERSION }}"
+          python-version: "{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}"
 
   asv-pr:
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ${{ env.WORKING_DIR }}
+        working-directory: {% raw %}${{ env.WORKING_DIR }}{% endraw %}
 
     steps:
       - name: Checkout PR branch of the repository
@@ -47,11 +47,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache Python ${{ env.PYTHON_VERSION }}
+      - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: python-${{ env.PYTHON_VERSION }}
+          key: python-{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
 
       - name: Install dependencies
         run: |
@@ -63,27 +63,27 @@ jobs:
         uses: Tiryoh/gha-jobid-action@v0
         id: jobs
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          job_name: ${{ github.job }}
+          github_token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          job_name: {% raw %}${{ github.job }}{% endraw %}
 
       - name: Create ASV machine config file
         run: asv machine --machine gh-runner --yes
 
       - name: Run comparison of PR against main branch
         run: |
-          git remote add upstream https://github.com/${{ github.repository }}.git
+          git remote add upstream https://github.com/{% raw %}${{ github.repository }}{% endraw %}.git
           git fetch upstream
           asv continuous upstream/main HEAD || true
           asv compare upstream/main HEAD --sort ratio | tee output
           python format.py
           printf "\n\nClick [here]($STEP_URL) to view all benchmarks." >> output
         env:
-          STEP_URL: "${{ steps.jobs.outputs.html_url }}#step:8:1"
+          STEP_URL: "{% raw %}${{ steps.jobs.outputs.html_url }}{% endraw %}#step:8:1"
 
       - name: Publish comment to PR
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
           script: |
             const fs = require('fs');
             const path = require('path');

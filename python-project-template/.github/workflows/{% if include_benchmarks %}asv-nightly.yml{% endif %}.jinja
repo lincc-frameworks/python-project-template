@@ -10,7 +10,7 @@ on:
 
 env:
   PYTHON_VERSION: "3.10"
-  WORKING_DIR: ${{ github.workspace }}/benchmarks
+  WORKING_DIR: {% raw %}${{ github.workspace }}{% endraw %}/benchmarks
   NIGHTLY_HASH_FILE: nightly-hash
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ${{ env.WORKING_DIR }}
+        working-directory: {% raw %}${{ env.WORKING_DIR }}{% endraw %}
 
     steps:
       - name: Checkout main branch of the repository
@@ -28,16 +28,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache Python ${{ env.PYTHON_VERSION }}
+      - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: python-${{ env.PYTHON_VERSION }}
+          key: python-{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
 
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
+      - name: Set up Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
         uses: actions/setup-python@v4
         with:
-          python-version: "${{ env.PYTHON_VERSION }}"
+          python-version: "{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}"
 
       - name: Install dependencies
         run: |
@@ -57,20 +57,20 @@ jobs:
       - name: Use last nightly commit hash from cache
         uses: actions/cache@v3
         with:
-          path: ${{ env.WORKING_DIR }}
-          key: nightly-results-${{ steps.nightly-dates.outputs.yesterday }}
+          path: {% raw %}${{ env.WORKING_DIR }}{% endraw %}
+          key: nightly-results-{% raw %}${{ steps.nightly-dates.outputs.yesterday }}{% endraw %}
 
       - name: Run comparison of main against last nightly build
         run: |
-          if [ -f ${{ env.NIGHTLY_HASH_FILE}} ]; then          
-            PREV_HASH=$(cat ${{ env.NIGHTLY_HASH_FILE }})
-            asv continuous $PREV_HASH ${{ github.sha }}  || true
-            asv compare $PREV_HASH ${{ github.sha }} --sort ratio
+          if [ -f {% raw %}${{ env.NIGHTLY_HASH_FILE}}{% endraw %} ]; then          
+            PREV_HASH=$(cat {% raw %}${{ env.NIGHTLY_HASH_FILE }}{% endraw %})
+            asv continuous $PREV_HASH {% raw %}${{ github.sha }}{% endraw %}  || true
+            asv compare $PREV_HASH {% raw %}${{ github.sha }}{% endraw %} --sort ratio
           fi
-          echo ${{ github.sha }} > ${{ env.NIGHTLY_HASH_FILE }}
+          echo {% raw %}${{ github.sha }}{% endraw %} > {% raw %}${{ env.NIGHTLY_HASH_FILE }}{% endraw %}
 
       - name: Update last nightly hash in cache
         uses: actions/cache@v3
         with:
-          path: ${{ env.WORKING_DIR }}
-          key: nightly-results-${{ steps.nightly-dates.outputs.today }}
+          path: {% raw %}${{ env.WORKING_DIR }}{% endraw %}
+          key: nightly-results-{% raw %}${{ steps.nightly-dates.outputs.today }}{% endraw %}
