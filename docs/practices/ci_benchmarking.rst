@@ -6,17 +6,20 @@ What is it? Why do it?
 -------------------------------------------------------------------------------
 
 Continuous integration benchmarking is the practice of running a suite of carefully
-catered benchmarks against your code base to assess its performance over time.
+catered benchmarks against your codebase to assess its performance over time.
 
 There are three main ways this template enables automated benchmarking:
 
-1. On all pushes to main. It allows to keep track of the performance of your codebase 
+1. On all pushes to main. It allows to keep track of the performance of your benchmarks 
    over a long period of time. This workflow is responsible for creating and deploying
-   a dashboard on Github Pages to visualize plots and performance regressions.
+   a dashboard to Github Pages to visualize plots on performance and its regressions.
 2. On pull requests to main. This evaluates the impact of the new code changes on the
-   performance. 
-3. On a scheduled "nightly run". The primary goal of this workflow is to make sure
-   that upstream dependencies don't degrade performance significantly.
+   performance.
+3. On a scheduled "nightly run". Its primary goal is to make sure that upstream dependencies
+   don't introduce breaking changes that degrade performance significantly.
+
+The benchmarking tool responsible to compute the runtime and memory benchmarks is 
+`airspeed velocity (ASV) <https://asv.readthedocs.io/en/stable/>`_.
 
 
 How to manage
@@ -50,7 +53,6 @@ For more information about this configuration file, visit the `asv.conf.json ref
 A dashboard deployment is automatically triggered when the "gh-pages" branch is updated.
 Within a couple of minutes, the changes should be reflected on the dashboard.
 
-
 asv-main
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -64,29 +66,26 @@ This workflow is triggered on pushes to the main branch.
 
       >> asv run ALL --skip-existing
 
-- Publishes the results to a dashboard on GH Pages. The URL should be similar to `<https://{{organization}}.github.io/{{project_name}}>`_.
+- Publishes the results to a dashboard on GitHub Pages (`<https://{{organization}}.github.io/{{project_name}}>`_).
   
 .. note::
-   - A github-actions[bot] pushes the benchmark results to the main branch. The workflows run consecutively to avoid any conflicts between jobs attempting to submit results simultaneously. A workflow is queued up until the previous workflow running on main is finished.
-   - ASV uses the most recent benchmarking suites to compute results for the range of commits in question. Any direct change to these suites with the intent to affect the runtime or memory usage produces no change of behavior.
+   * A Github actions bot pushes the benchmark results to the main branch for future use. 
+     The workflows run consecutively to avoid any conflicts between jobs attempting to submit
+     results simultaneously. A workflow is queued up until the previous workflow running on main is finished.
+   * ASV uses the most recent benchmarking suites to compute results for the range of commits in question. 
+     Any direct change to these suites with the intent to affect the runtime or memory usage produces no 
+     change of behavior. Only changes to your project source modules do.
 
 asv-pr
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This workflow is triggered on pull requests targeting the main branch.
 
-- Compares the benchmarks of the main branch and compares it with those of main merged with the new changes.
+* Compares the benchmarks of the main branch with those of main merged with the new changes.
+* Uses `lf-asv-formatter <https://github.com/lincc-frameworks/lf-asv-formatter>`_ to process the output.
+* Publishes a comment on the pull request with the final assessment.
 
-   .. code:: bash
-
-      >>> asv continuous upstream/main HEAD || true
-      >>> asv compare upstream/main HEAD --sort ratio | tee output
-
-- Invokes `lf-asv-formatter <https://github.com/lincc-frameworks/asv-formatter>`_ for output processing.
-
-- Publishes a comment on the pull request with the final assessment.
-
-Typical ASV table file (before processing):
+Below is an example of the results generated.
 
 +-------------+------------+----------+------------------------------------+
 | Before      | After      | Ratio    | Method                             |
@@ -105,20 +104,15 @@ Typical ASV table file (before processing):
 +-------------+------------+----------+------------------------------------+
 
 .. note::
-   The pipeline fails if the pull request degrades performance significantly. The threshold is set to ``110%``,
+   The pipeline will fail if the pull request degrades performance significantly. The threshold is set to ``110%``,
    by default.
-
 
 asv-nightly
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``.github/workflows/asv-nightly.yml`` file configures the scheduled benchmark test.
-It uses standard cron notation to start the job at 0645 every day. This time was 
-selected to be a little far away from an hour break, when most benchmarks would likely run.
-
-This wokflow compares the performance of the main branch with the one from the previous day.
-
-This workflow uses the repository cache to store the results for each nightly run. GitHub will remove any cache entries that have not been accessed in over 7 days so we should not worry about them compounding over time.
+The ``.github/workflows/asv-nightly.yml`` file configures a scheduled run of benchmarks.
+It uses standard cron notation to start the job at 0645 every day and it compares the
+most recent code on main with that of the previous day.
 
 
 Use during development
@@ -127,26 +121,44 @@ Use during development
 Running ASV locally
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-One may want to execute ASV locally during the development process.
-
-Running ASV locally for the current branch is as simple as executing:
+You may want to run ``asv`` locally, during development. Verify that it has been 
+properly installed on your environment by executing the following command. It runs 
+the benchmarking suite for your most recent commit.
 
 .. code:: bash
-    
+
     >> asv run
 
-To run a comparison between two revisions, execute:
+Having benchmarks for several revisions, you may compare them with ease.
 
 .. code:: bash
     
     >> asv compare revision1 revision2
 
-ASV makes use of a very flexible and powerful syntax which allows to specify a range of commits and even tags. 
-For more information visit the `ASV #Benchmarking <https://asv.readthedocs.io/en/stable/using.html#benchmarking>`_.
+The commands use a very flexible and powerful syntax which allows to specify a range 
+of commits and even tags. For more information visit ASV's
+`Benchmarking section <https://asv.readthedocs.io/en/stable/using.html#benchmarking>`_.
 
 Writing benchmarks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In short, the benchmark suite should include methods that follow a predefined prefix.
+Performance is measured for suites defined under ``benchmarks/benchmarks``.
 
-`Benchmark types and attributes <https://asv.readthedocs.io/en/stable/benchmarks.html#benchmark-types-and-attributes>`_
+The functions benchmarked must follow a predefined prefix.
+
+* **time_**: measures runtime.
+* **mem_**: measures memory consumption for a specific Python object.
+* **peakmem_**: measures maximum size of the process in memory.
+
+More information about available methods
+`here <https://asv.readthedocs.io/en/stable/benchmarks.html#benchmark-types-and-attributes>`_.
+
+
+Demo
+-------------------------------------------------------------------------------
+
+.. note::
+   Project ``benchmarking-asv`` showcases the integration with these workflows.
+
+   * `Repository <https://github.com/lincc-frameworks/benchmarking-asv>`_
+   * `Dashboard <https://lincc-frameworks.github.io/benchmarking-asv>`_

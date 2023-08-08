@@ -145,25 +145,7 @@ Take a look at the :doc:`Best Practices section <../practices/overview>` to lear
 built in pre-commit hooks, GitHub CI, automatic documentation, and more.
 
 .. important::
-    Benchmarking setup requires additional steps.
-    
-    Refer to the "How to manage section" of :doc:`Continuous Integration Benchmarking <../practices/ci_benchmarking>` for more information.
+    Benchmarking setup requires additional steps. Refer to the "How to manage" section
+    of :doc:`Continuous Integration Benchmarking <../practices/ci_benchmarking>` for more information.
 
-Running ASV locally
-...............
-
-Running ASV locally for the current branch is as simple as executing:
-
-.. code:: bash
-    
-    >> asv run
-
-To run a comparison between two revisions, execute:
-
-.. code:: bash
-    
-    >> asv compare revision1 revision2
-
-ASV syntax is very flexible and allows to specify a range of commits and even tags. 
-For more information visit the `documentation <https://asv.readthedocs.io/en/stable/using.html#benchmarking>`_.
 
