@@ -57,7 +57,7 @@ jobs:
         run: |
           sudo apt-get update
           python -m pip install --upgrade pip
-          pip install asv virtualenv tabulate
+          pip install asv virtualenv tabulate lf-asv-formatter
 
       - name: Get current job logs URL
         uses: Tiryoh/gha-jobid-action@v0
@@ -75,7 +75,7 @@ jobs:
           git fetch upstream
           asv continuous upstream/main HEAD || true
           asv compare upstream/main HEAD --sort ratio | tee output
-          python format.py
+          python -m lf_asv_formatter
           printf "\n\nClick [here]($STEP_URL) to view all benchmarks." >> output
         env:
           STEP_URL: "{% raw %}${{ steps.jobs.outputs.html_url }}{% endraw %}#step:8:1"
