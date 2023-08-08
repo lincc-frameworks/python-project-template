@@ -82,7 +82,7 @@ asv-pr
 This workflow is triggered on pull requests targeting the main branch.
 
 * Compares the benchmarks of the main branch with those of main merged with the new changes.
-* Uses `lf-asv-formatter <https://github.com/lincc-frameworks/lf-asv-formatter>`_ to process the output.
+* Uses `asv-formatter <https://github.com/lincc-frameworks/asv-formatter>`_ to process the output.
 * Publishes a comment on the pull request with the final assessment.
 
 Below is an example of the results generated.
