@@ -103,10 +103,6 @@ Below is an example of the results generated.
 | failed      | 1.01±0s    | n/a      | benchmarks.TimeSuite.time_xrange   |
 +-------------+------------+----------+------------------------------------+
 
-.. note::
-   The pipeline will fail if the pull request degrades performance significantly. The threshold is set to ``110%``,
-   by default.
-
 asv-nightly
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
