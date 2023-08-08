@@ -51,6 +51,8 @@ questions:
      - If this option is selected the template will create an example module ``src/{{package_name}}/example_module.py`` and test file ``tests/{{package_name}}/test_example_module.py``. Defaults to ``True`` during simple installation.
    * - *Do you want to include rendered notebooks in your documentation?*
      - The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will be included in your project. A sample notebook will be generated and added to your docs as an example.
+   * - *Do you want to enable benchmarking?*
+     - Answering `Yes` enables benchmarking using `airspeed velocity (ASV) <https://asv.readthedocs.io/en/stable/>`_. The template will add the GitHub workflows for continuous integration and create a sample benchmarking suite under ``benchmarks/benchmarks/benchmarks.py``. Defaults to ``True`` during simple installation.
    * - *Do you want to add a .gitattributes with entries for git-lfs?*
      - Support for large files for use in git. This option is primarily informational and no answer locks you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
 
@@ -141,3 +143,27 @@ At this point, your new project is hydrated, version controlled and ready for
 you to start coding. But there's a lot more that this template has to offer!
 Take a look at the :doc:`Best Practices section <../practices/overview>` to learn about
 built in pre-commit hooks, GitHub CI, automatic documentation, and more.
+
+.. important::
+    Benchmarking setup requires additional steps.
+    
+    Refer to the "How to manage section" of :doc:`Continuous Integration Benchmarking <../practices/ci_benchmarking>` for more information.
+
+Running ASV locally
+...............
+
+Running ASV locally for the current branch is as simple as executing:
+
+.. code:: bash
+    
+    >> asv run
+
+To run a comparison between two revisions, execute:
+
+.. code:: bash
+    
+    >> asv compare revision1 revision2
+
+ASV syntax is very flexible and allows to specify a range of commits and even tags. 
+For more information visit the `documentation <https://asv.readthedocs.io/en/stable/using.html#benchmarking>`_.
+

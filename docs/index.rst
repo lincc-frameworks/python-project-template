@@ -28,6 +28,7 @@ We think it's really neat, and we hope you do to!
 
    practices/overview
    practices/ci_testing
+   practices/ci_benchmarking
    practices/code_coverage
    practices/git-lfs
    practices/linting
