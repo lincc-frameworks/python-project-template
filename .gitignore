@@ -135,3 +135,7 @@ dmypy.json
 
 # Mac OS
 .DS_Store
+
+# Airspeed Velocity performance results
+_results/
+_html/
