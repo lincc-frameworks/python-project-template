@@ -11,6 +11,7 @@ Practices
 -------------------------------------------------------------------------------
 
 * :doc:`ci_testing`
+* :doc:`ci_benchmarking`
 * :doc:`code_coverage`
 * :doc:`linting`
 * :doc:`pipx`

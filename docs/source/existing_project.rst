@@ -230,3 +230,10 @@ be a lot of linting errors that will block committing your code.
 It's highly recommended that in the next commit after incorporating the template 
 that you address the linting errors so that you don't have to continue to use the 
 ``SKIP=...`` command for the rest of your days.
+
+Benchmarking
+............
+
+If your project wasn't using benchmarking before, and you chose to include it, please 
+make sure you follow the instructions under :doc:`Continuous Integration Benchmarking <../practices/ci_benchmarking>`
+to conclude the setup.

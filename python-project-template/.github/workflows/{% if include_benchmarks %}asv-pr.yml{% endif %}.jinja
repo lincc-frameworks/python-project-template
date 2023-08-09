@@ -1,0 +1,103 @@
+# This workflow will run benchmarks with airspeed velocity (asv) for pull requests.
+# It will compare the performance of the main branch with the performance of the merge
+# with the new changes and publish a comment with this assessment.  
+
+name: Run ASV benchmarks for PR
+
+on:
+  pull_request:
+    branches: [ main ]
+
+env:
+  PYTHON_VERSION: "3.10"
+  WORKING_DIR: {% raw %}${{ github.workspace }}{% endraw %}/benchmarks
+
+jobs:
+
+  setup-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: python-{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+
+      - name: Set up Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}"
+
+  asv-pr:
+    runs-on: ubuntu-latest
+    needs: setup-python
+
+    permissions:
+      actions: read
+      pull-requests: write
+
+    defaults:
+      run:
+        working-directory: {% raw %}${{ env.WORKING_DIR }}{% endraw %}
+
+    steps:
+      - name: Checkout PR branch of the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: python-{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          python -m pip install --upgrade pip
+          pip install asv virtualenv tabulate lf-asv-formatter
+
+      - name: Get current job logs URL
+        uses: Tiryoh/gha-jobid-action@v0
+        id: jobs
+        with:
+          github_token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          job_name: {% raw %}${{ github.job }}{% endraw %}
+
+      - name: Create ASV machine config file
+        run: asv machine --machine gh-runner --yes
+
+      - name: Run comparison of PR against main branch
+        run: |
+          git remote add upstream https://github.com/{% raw %}${{ github.repository }}{% endraw %}.git
+          git fetch upstream
+          asv continuous upstream/main HEAD || true
+          asv compare upstream/main HEAD --sort ratio | tee output
+          python -m lf_asv_formatter
+          printf "\n\nClick [here]($STEP_URL) to view all benchmarks." >> output
+        env:
+          STEP_URL: "{% raw %}${{ steps.jobs.outputs.html_url }}{% endraw %}#step:8:1"
+
+      - name: Publish comment to PR
+        uses: actions/github-script@v6
+        with:
+          github-token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const workingDir = process.env.WORKING_DIR;
+            try {
+              process.chdir(workingDir);
+              const comment = fs.readFileSync('output', 'utf-8');
+              const { data } = await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: context.issue.number,
+                body: comment,
+              });
+              console.log('Comment published:', data.html_url);
+            } catch (err) {
+              console.error(err);
+            }

@@ -53,6 +53,9 @@ dev = [
     "matplotlib", # Used in sample notebook intro_notebook.ipynb
     "numpy", # Used in sample notebook intro_notebook.ipynb
 {%- endif %}
+{%- if include_benchmarks %}
+    "asv", # Used to compute performance benchmarks
+{%- endif %}
 ]
 
 [build-system]
