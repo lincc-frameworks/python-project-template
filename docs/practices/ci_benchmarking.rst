@@ -118,27 +118,42 @@ Running ASV locally
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You may want to run ``asv`` locally, during development. Verify that it has been 
-properly installed on your environment by executing the following command. It runs 
-the benchmarking suite for your most recent commit.
+properly installed on your environment by executing the following command. There 
+are several questions you'll be asked the first time, and you may need to instal 
+a new python venv. When your local environment is properly configured, it runs 
+the benchmarking suite for your most recent commit
 
 .. code:: bash
 
+    >> cd benchmarks
     >> asv run
 
-Having benchmarks for several revisions, you may compare them with ease.
+You will need to commit changes locally for the new code to be picked up by ASV.
+Having benchmarks for several revisions, you can find them and compare them with ease.
 
 .. code:: bash
     
-    >> asv compare revision1 revision2
+    >>asv show
+      Commits with results:
+
+      Machine    : XPS8104-L
+      Environment: virtualenv-py3.10-Cython-build-packaging
+
+          d02787f1
+          5dd46d87
+    >> asv compare d02787f1 5dd46d87
 
 The commands use a very flexible and powerful syntax which allows to specify a range 
 of commits and even tags. For more information visit ASV's
 `Benchmarking section <https://asv.readthedocs.io/en/stable/using.html#benchmarking>`_.
 
+Since you've had to create many commits while working on benchmarks, be sure
+to squash before merging to main!
+
 Writing benchmarks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Performance is measured for suites defined under ``benchmarks/benchmarks``.
+Performance is measured for suites defined under ``benchmarks``.
 
 The functions benchmarked must follow a predefined prefix.
 
