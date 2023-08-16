@@ -1,5 +1,6 @@
-# This workflow will run benchmarks with airspeed velocity (asv)
-# and publish the results to a dashboard on GH Pages.
+# This workflow will run benchmarks with airspeed velocity (asv), 
+# store the new results in the "benchmarks" branch and publish them
+# to a dashboard on GH Pages.
 
 name: Run ASV benchmarks for main
 
@@ -67,20 +68,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install asv virtualenv tabulate
 
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Create ASV machine config file
         run: asv machine --machine gh-runner --yes
+
+      - name: Fetch previous results from the "benchmarks" branch
+        run: |
+          if git ls-remote --exit-code origin benchmarks > /dev/null 2>&1; then
+            git merge origin/benchmarks \
+              --allow-unrelated-histories \
+              --no-commit
+            mv ../_results .
+          fi
 
       - name: Run ASV for the main branch
         run: asv run ALL --skip-existing
 
-      - name: Submit results to the repository
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _results/ -f
-          git pull
-          git commit -m "Upload new benchmarks"
-          git push origin main
+      - name: Submit new results to the "benchmarks" branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: benchmarks
+          folder: {% raw %}${{ env.WORKING_DIR }}{% endraw %}/_results
+          target-folder: _results
 
       - name: Generate dashboard HTML
         run: |
@@ -90,4 +103,5 @@ jobs:
       - name: Deploy to Github pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          branch: gh-pages
           folder: {% raw %}${{ env.WORKING_DIR }}{% endraw %}/_html
