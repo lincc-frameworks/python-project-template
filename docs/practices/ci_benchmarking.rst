@@ -69,8 +69,8 @@ This workflow is triggered on pushes to the main branch.
 - Publishes the results to a dashboard on GitHub Pages (`<https://{{organization}}.github.io/{{project_name}}>`_).
   
 .. note::
-   * A Github actions bot pushes the benchmark results to the main branch for future use. 
-     The workflows run consecutively to avoid any conflicts between jobs attempting to submit
+   * A Github actions bot pushes the benchmark results to a separate branch (``benchmarks``), creating
+     it if it does not yet exist. The workflows run consecutively to avoid any conflicts between jobs attempting to submit
      results simultaneously. A workflow is queued up until the previous workflow running on main is finished.
    * ASV uses the most recent benchmarking suites to compute results for the range of commits in question. 
      Any direct change to these suites with the intent to affect the runtime or memory usage produces no 
