@@ -57,7 +57,7 @@ jobs:
         run: |
           sudo apt-get update
           python -m pip install --upgrade pip
-          pip install asv virtualenv tabulate lf-asv-formatter
+          pip install asv==0.5.1 virtualenv tabulate lf-asv-formatter
 
       - name: Get current job logs URL
         uses: Tiryoh/gha-jobid-action@v0

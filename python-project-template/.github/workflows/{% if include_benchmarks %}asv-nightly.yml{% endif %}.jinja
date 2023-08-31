@@ -43,7 +43,7 @@ jobs:
         run: |
           sudo apt-get update
           python -m pip install --upgrade pip
-          pip install asv virtualenv
+          pip install asv==0.5.1 virtualenv
 
       - name: Create ASV machine config file
         run: asv machine --machine gh-runner --yes
