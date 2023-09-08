@@ -76,9 +76,11 @@ testpaths = [
 
 [tool.black]
 line-length = 110
+target-version = ["py38"]
 {% if use_isort %}
 [tool.isort]
 profile = "black"
+line_length = 110
 {%- endif %}
 
 {%- endif %}
