@@ -37,4 +37,5 @@ We think it's really neat, and we hope you do to!
    practices/precommit
    practices/pypi
    practices/unit_testing
+   practices/pytest_timeout
    practices/sphinx
