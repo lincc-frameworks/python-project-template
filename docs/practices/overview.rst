@@ -20,3 +20,4 @@ Practices
 * :doc:`pypi`
 * :doc:`sphinx`
 * :doc:`git-lfs`
+* :doc:`pytest_timeout`
