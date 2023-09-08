@@ -57,15 +57,6 @@ repos:
         name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
 
-    # Run black to format code
-  - repo: https://github.com/psf/black
-    rev: 23.7.0
-    hooks:
-      - id: black-jupyter
-        name: Run black (.py and .ipnyb files)
-        description: Auto-format code with black.
-        files: ^(src|tests|docs|benchmarks)/
-        language_version: python3.10
 {% if use_isort == true %}
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
@@ -76,16 +67,8 @@ repos:
         description: Sort and organize imports in .py files.
         types: [python]
         files: ^(src|tests|benchmarks)/
-
-    # Automatically sort the imports used in .ipynb files
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.7.0
-    hooks:
-      - id: nbqa-isort
-        name: Run isort (jupyter notebooks)
-        files: ^docs/
-        args: ["--float-to-top"]
 {% endif %}
+
 {% if preferred_linter == 'pylint' %}
     # Analyze the src code style and report code that doesn't adhere.
   - repo: local
@@ -121,17 +104,18 @@ repos:
 {% elif preferred_linter == 'black' %}
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 23.7.0
     hooks:
-      - id: black
+      - id: black-jupyter
         types: [python]
-        files: ^(src|tests)/
+        files: ^(src|tests|docs|benchmarks)/
         # It is recommended to specify the latest version of Python
         # supported by your project here, or alternatively use
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
 {% endif %}
+
 {% if mypy_type_checking != 'none' %}
     # Analyze type hints and report errors.
   - repo: local
@@ -151,6 +135,7 @@ repos:
           {% endif %}
           ]
 {% endif %}
+
 {%- if include_notebooks %}
     # Make sure Sphinx can build the documentation while explicitly omitting 
     # notebooks from the docs, so users don't have to wait through the execution 
