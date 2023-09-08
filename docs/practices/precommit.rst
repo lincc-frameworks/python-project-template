@@ -43,19 +43,18 @@ of these that are not useful for your project.
      - Prevents committing very large files. The default file size threshold is 500kb and is configurable.
    * - Validate pyproject.toml
      - Verify pyproject.toml adheres to the required schema to avoid changes that would break the build.
-   * - isort (python files in src/ and tests/)
-     - Runs isort to sort and organize your python package imports. *(Optionally installed when project is created.)*
+   * - isort
+     - Runs isort to sort and organize your python package imports on .py and .pyi files. One can add more file extensions by editing this hook on ``.pre-commit-config.yaml`` directly. *(Optionally installed when project is created.)*
    * - pylint (python files in src/)
      - Runs pylint to enforce a particular code style on python files in the src/ directory. *(Optionally installed when project is created.)*
-   * - pylint (python files in tests/)
-     - Same as above, but for the tests/ directory. *(Optionally installed when project is created.)*
+   * - pylint (python files in tests/ and benchmarks/)
+     - Same as above, but for the tests/ and benchmarks/ directory. *(Optionally installed when project is created.)*
    * - black
-     - Runs black to enforce a particular code style on python files in the src/ and tests/ directories. *(Optionally installed when project is created.)*
+     - Runs black to enforce a particular code style on .py, .pyi and .ipynb files. One can add more file extensions by editing this hook on ``.pre-commit-config.yaml`` directly. *(Optionally installed when project is created.)*
    * - mypy
      - Runs static type checking on python files in the src/ and tests/ directories. *(Optionally installed when project is created.)*
    * - Build documentation with Sphinx
      - Ensures that automatically generated documentation and, optionally, jupyter notebooks can be built successfully.
-
 
 Many other pre-commit hooks exist, a partial list can be found in the pre-commit 
 `documentation <https://pre-commit.com/hooks.html>`_.

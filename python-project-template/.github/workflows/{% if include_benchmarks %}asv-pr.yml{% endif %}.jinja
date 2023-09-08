@@ -12,6 +12,10 @@ env:
   PYTHON_VERSION: "3.10"
   WORKING_DIR: {% raw %}${{ github.workspace }}{% endraw %}/benchmarks
 
+concurrency:
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  cancel-in-progress: true
+
 jobs:
 
   setup-python:
