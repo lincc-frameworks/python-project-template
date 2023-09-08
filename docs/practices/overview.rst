@@ -10,8 +10,9 @@ additional pointers you might want as you work within these practices.
 Practices
 -------------------------------------------------------------------------------
 
-* :doc:`ci_testing`
 * :doc:`ci_benchmarking`
+* :doc:`ci_precommit`
+* :doc:`ci_testing`
 * :doc:`code_coverage`
 * :doc:`linting`
 * :doc:`pipx`

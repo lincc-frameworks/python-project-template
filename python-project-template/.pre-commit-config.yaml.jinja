@@ -66,7 +66,6 @@ repos:
         description: Auto-format code with black.
         files: ^(src|tests|docs|benchmarks)/
         language_version: python3.10
-
 {% if use_isort == true %}
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
@@ -87,7 +86,6 @@ repos:
         files: ^docs/
         args: ["--float-to-top"]
 {% endif %}
-
 {% if preferred_linter == 'pylint' %}
     # Analyze the src code style and report code that doesn't adhere.
   - repo: local
@@ -104,6 +102,7 @@ repos:
             "-sn", # Don't display the score
             "--rcfile=src/.pylintrc",
           ]
+
     # Analyze the tests code style and report code that doesn't adhere.
   - repo: local
     hooks:
@@ -133,7 +132,6 @@ repos:
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
 {% endif %}
-
 {% if mypy_type_checking != 'none' %}
     # Analyze type hints and report errors.
   - repo: local
@@ -153,7 +151,6 @@ repos:
           {% endif %}
           ]
 {% endif %}
-
 {%- if include_notebooks %}
     # Make sure Sphinx can build the documentation while explicitly omitting 
     # notebooks from the docs, so users don't have to wait through the execution 

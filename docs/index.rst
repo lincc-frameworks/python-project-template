@@ -27,8 +27,9 @@ We think it's really neat, and we hope you do to!
    :caption: Best Practices
 
    practices/overview
-   practices/ci_testing
    practices/ci_benchmarking
+   practices/ci_precommit
+   practices/ci_testing
    practices/code_coverage
    practices/git-lfs
    practices/linting
