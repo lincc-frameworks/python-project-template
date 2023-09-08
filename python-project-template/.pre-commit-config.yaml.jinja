@@ -90,11 +90,11 @@ repos:
   - repo: local
     hooks:
       - id: pylint
-        name: pylint (python files in tests/)
+        name: pylint (python files in tests/ and benchmarks/)
         entry: pylint
         language: system
         types: [python]
-        files: ^tests/
+        files: ^(tests|benchmarks)/
         args:
           [
             "-rn", # Only display messages
