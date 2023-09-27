@@ -31,9 +31,9 @@ dev = [
     "pytest-cov", # Used to report total code coverage
     "pre-commit", # Used to run checks before finalizing a git commit
 {%- if include_docs %}
-    "sphinx==6.1.3", # Used to automatically generate documentation
-    "sphinx-rtd-theme==1.2.0", # Used to render documentation
-    "sphinx-autoapi==2.0.1", # Used to automatically generate api documentation
+    "sphinx", # Used to automatically generate documentation
+    "sphinx-rtd-theme", # Used to render documentation
+    "sphinx-autoapi", # Used to automatically generate api documentation
 {%- endif %}
 {%- if preferred_linter == 'pylint' %}
     "pylint", # Used for static linting of files
