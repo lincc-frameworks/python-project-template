@@ -21,10 +21,10 @@ to PyPI when a new release is created.
 To support this, you'll need to configure your repository.
 
 * Create and verify an account on PyPI - https://pypi.org/account/register/
-* Create a PyPI API token - https://pypi.org/help/#apitoken
-* Save the API token in your repository **as an "Action Secret"** following
-  `these instructions <https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces#adding-secrets-for-a-repository>`_. 
-  Save your secret API token with the name: ``PYPI_API_TOKEN``
+* Create a new PyPI trusted publisher using the appropriate instructions
+ * For previously unpublished packages: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
+ * For existing published packaged: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
+* When configuring your trusted publisher, the value to use for the "Workflow name" is "publish-to-pypi.yml".
 
 
 Releasing new versions
