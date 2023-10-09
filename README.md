@@ -59,6 +59,16 @@ These instructions explain how to create a Personal Access Token: https://github
 
 Once your token is created save it as a **repository secret** with the name: ``ADD_TO_PROJECT_PAT``.
 
+### Utilize pre-commit hooks
+
+Pre-commit runs various tests against your code.
+These checks are mostly the same as those that are run in continuous integration,
+but by running them locally it's possible to reduce the amount of time between committing
+and finding errors in the code.
+
+It is not required to use pre-commit if you use this template, but it is available
+if you would like. To enable it, simply run ``pre-commit install``.
+
 ## Contributing to the Template
 
 ### WARNING:
