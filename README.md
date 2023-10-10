@@ -26,6 +26,9 @@ Choose where you would like to create your new project, and call copier with the
 
 ```
 >$ copier copy gh:LSSTDESC/RAIL-project-template <path/to/destination>
+<Answer the questions>
+>$ git init
+>$ pip install -e .[dev]
 ```
 
 ## Configuring your repository
