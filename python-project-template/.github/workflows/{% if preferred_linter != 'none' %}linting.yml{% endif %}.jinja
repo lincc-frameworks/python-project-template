@@ -34,6 +34,9 @@ jobs:
       run: |
         pylint -rn -sn --recursive=y ./src --rcfile=./src/.pylintrc
         pylint -rn -sn --recursive=y ./tests --rcfile=./tests/.pylintrc
+{%- if include_benchmarks %}
+        pylint -rn -sn --recursive=y ./benchmarks --rcfile=./tests/.pylintrc
+{%- endif %}
 {%- elif preferred_linter == 'black' %}
       uses: psf/black@stable
       with:
