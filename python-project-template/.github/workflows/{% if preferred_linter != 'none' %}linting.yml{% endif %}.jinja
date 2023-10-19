@@ -30,11 +30,15 @@ jobs:
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Analyze code with linter
-{% if preferred_linter == 'pylint' %}
+{%- if preferred_linter == 'pylint' %}
       run: |
         pylint -rn -sn --recursive=y ./src --rcfile=./src/.pylintrc
-{% elif preferred_linter == 'black' %}
+        pylint -rn -sn --recursive=y ./tests --rcfile=./tests/.pylintrc
+{%- if include_benchmarks %}
+        pylint -rn -sn --recursive=y ./benchmarks --rcfile=./tests/.pylintrc
+{%- endif %}
+{%- elif preferred_linter == 'black' %}
       uses: psf/black@stable
       with:
         src: ./src
-{% endif -%}
+{%- endif %}
