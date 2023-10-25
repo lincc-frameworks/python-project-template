@@ -48,8 +48,11 @@ Go here: https://github.com/apps/codecov and configure it for your repository
 ### Publish to PyPI automatically
 
 A GitHub action has been created that will automatically publish a package to PyPI.
-To make use of that, you'll need to create an API key and save it your new repo.
-Follow these instructions to get started: https://lincc-ppt.readthedocs.io/en/latest/practices/pypi.html#set-up
+To make use of that, you'll use "trusted publishing". For a high level overview of
+trusted publishing see the PyPI documentation here: https://docs.pypi.org/trusted-publishers/
+
+For specific instructions to set up trusted publishing between GitHub and PyPI,
+take a look at the PyPI documentation here: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
 
 ### Automatically Add issues to the Project Tracker
 
