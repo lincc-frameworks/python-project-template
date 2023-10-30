@@ -24,7 +24,7 @@ author_name:
 author_email:
     type: str
     help: Code author's preferred email address?
-    default: name@you.com
+    default: lsst-desc-rail-admin@slac.stanford.edu
 
 create_example_module:
     help: Do you want to create some example module code?
