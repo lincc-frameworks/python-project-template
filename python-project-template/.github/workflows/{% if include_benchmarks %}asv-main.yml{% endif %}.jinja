@@ -66,7 +66,7 @@ jobs:
         run: |
           sudo apt-get update
           python -m pip install --upgrade pip
-          pip install asv==0.5.1 virtualenv tabulate
+          pip install asv==0.6.1 virtualenv tabulate
 
       - name: Configure git
         run: |
@@ -86,7 +86,7 @@ jobs:
           fi
 
       - name: Run ASV for the main branch
-        run: asv run ALL --skip-existing
+        run: asv run ALL --skip-existing --verbose
 
       - name: Submit new results to the "benchmarks" branch
         uses: JamesIves/github-pages-deploy-action@v4
