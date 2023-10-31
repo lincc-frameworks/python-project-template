@@ -43,7 +43,7 @@ jobs:
         run: |
           sudo apt-get update
           python -m pip install --upgrade pip
-          pip install asv==0.5.1 virtualenv
+          pip install asv==0.6.1 virtualenv
 
       - name: Create ASV machine config file
         run: asv machine --machine gh-runner --yes
@@ -67,8 +67,8 @@ jobs:
 
           if [ -f $HASH_FILE ]; then          
             PREV_HASH=$(cat $HASH_FILE)
-            asv continuous $PREV_HASH $CURRENT_HASH || true
-            asv compare $PREV_HASH $CURRENT_HASH --sort ratio
+            asv continuous $PREV_HASH $CURRENT_HASH --verbose || true
+            asv compare $PREV_HASH $CURRENT_HASH --sort ratio --verbose
           fi
 
           echo $CURRENT_HASH > $HASH_FILE
