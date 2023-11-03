@@ -59,6 +59,7 @@ preferred_linter:
     choices:
         black: black
         pylint: pylint
+        ruff: ruff
         none: none
     when: "{{ custom_install }}"
 

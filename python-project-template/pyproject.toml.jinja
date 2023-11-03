@@ -42,6 +42,8 @@ dev = [
     "pylint", # Used for static linting of files
 {%- elif preferred_linter == 'black' %}
     "black", # Used for static linting of files
+{%- elif preferred_linter == 'ruff' %}
+    "ruff", # Used for static linting of files
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
     "mypy", # Used for static type checking of files
@@ -82,6 +84,13 @@ target-version = ["py38"]
 profile = "black"
 line_length = 110
 
+{%- elif preferred_linter == 'ruff' %}
+
+[tool.ruff]
+line-length = 110
+target-version = ["py38"]
+
+{%- endif %}
 {%- if mypy_type_checking != 'none' %}
 [tool.setuptools.package-data]
 {{package_name}} = ["py.typed"]

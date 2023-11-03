@@ -99,6 +99,13 @@ repos:
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
+{% elif preferred_linter == 'ruff' %}
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.1.3
+    hooks:
+      - id: ruff
+        types_or: [ python, pyi, jupyter ]
 {% endif %}
 
 {% if mypy_type_checking != 'none' %}

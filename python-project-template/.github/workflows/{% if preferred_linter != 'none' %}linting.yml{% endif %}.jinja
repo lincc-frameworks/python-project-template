@@ -41,4 +41,7 @@ jobs:
       uses: psf/black@stable
       with:
         src: ./src
+{%- elif preferred_linter == 'ruff' %}
+      run: |
+        ruff check --output-format=github .
 {%- endif %}
