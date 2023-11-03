@@ -170,7 +170,7 @@ Consider setting up branch protection rules. (`GitHub Instructions <https://docs
 This will help ensure your code is always ready to deploy by running all tests
 pass to merging into the ``main`` branch.
 
-Enable ``depndabot`` for your new repository. (`GitHub Instructions <https://docs.github.com/en/code-security/getting-started/securing-your-repository#managing-dependabot-security-updates>`_)
+Enable ``dependabot`` for your new repository. (`GitHub Instructions <https://docs.github.com/en/code-security/getting-started/securing-your-repository#managing-dependabot-security-updates>`_)
 There are several different features that ``dependabot`` offers to keep your dependencies
 up to date and your code secure. It's as easy as clicking a checkbox to get started.
 
