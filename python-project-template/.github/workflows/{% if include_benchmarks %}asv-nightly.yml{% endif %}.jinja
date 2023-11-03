@@ -7,7 +7,8 @@ name: Run benchmarks nightly job
 on:
   schedule:
     - cron: 45 6 * * *
-
+  workflow_dispatch:
+  
 env:
   PYTHON_VERSION: "3.10"
   WORKING_DIR: {% raw %}${{ github.workspace }}{% endraw %}/benchmarks
