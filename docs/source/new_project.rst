@@ -30,31 +30,62 @@ questions:
    * - **Question**
      - **Notes**
    * - *Would you like to use simple (default tooling) or customized installation?*
-     - If a simple install is used, the template automatically selects the recommended tooling options (linter, isort, and create example module). 
+     - If a simple install is used, the template automatically selects the recommended 
+       tooling options (linter, isort, and create example module). 
    * - *What is the name of your project?*
-     - The name of your project. If you distribute your code via PyPI, this is the name that will be used. This will allow users to pip install like so: ``pip install <project_name>``. The project name must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _, -).
+     - The name of your project. If you distribute your code via PyPI, this is the name 
+       that will be used. This will allow users to pip install like so: ``pip install <project_name>``. 
+       The project name must start with a lowercase letter, followed by one or more of the 
+       following (a-z, 0-9, _, -).
    * - *What is your python package name?*
-     - The name of your top level package. Specifies the location of the source code (``src/{{package_name}}``). The package name must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _).
+     - The name of your top level package. Specifies the location of the source 
+       code (``src/{{package_name}}``). The package name must start with a lowercase letter, 
+       followed by one or more of the following (a-z, 0-9, _).
+   * - *What github organization will your project live under?*
+     - This will either be a gihub organization, or your github username, if you're working outside 
+       of an organization. This is used to construct URLs to your project, like
+       ``https://github.com/{{project_organization}}/{{project_name}}``
    * - *Your first and last name?* 
-     -  The name of code's author. This will be used in the project and documentation metadata. This name will also be included as part of the copyright license.
+     - The name of code's author. This will be used in the project and documentation metadata. 
+       This name will also be included as part of the copyright license.
    * - *Your preferred email address?*
      - The contact email for the code's author. This will be used in the project and documentation metadata.
    * - *What license would you like to use?*
-     - The license type you want to use for this project. Options are MIT and BSD. For more information on these options see `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
+     - The license type you want to use for this project. Options are MIT and BSD. For more information on these options see 
+       `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
    * - *What tooling would you like to use to enforce code style?*
-     - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). We provide options for `black <https://black.readthedocs.io/en/stable/>`_, `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks. Defaults to ``pylint`` during simple installation. 
+     - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). 
+       We provide options for `black <https://black.readthedocs.io/en/stable/>`_, 
+       `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a 
+       project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks. 
+       Defaults to ``pylint`` during simple installation. 
    * - *Do you want to use isort to maintain a specific ordering for module imports?*
-     - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. Defaults to ``True`` during simple installation.
+     - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. 
+       Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. 
+       Defaults to ``True`` during simple installation.
    * - *Would you like to include mypy to perform static type checking for type hints?*
-     - `mypy <https://www.mypy-lang.org>`_ performs static type checking on python code that uses `type hints <https://docs.python.org/3/library/typing.html>`_. This type checking makes sure that the correct data types are being used where type hints are defined. If basic or strict type checking is selected, a pre-commit hook and GitHub actions workflow that perform the type checking are added. Basic type checking performs type checks but ignores code or imports for which type hints are not written. Strict type checking enforces type hints are used by giving errors where no type hints are found.
+     - `mypy <https://www.mypy-lang.org>`_ performs static type checking on python code that uses 
+       `type hints <https://docs.python.org/3/library/typing.html>`_. This type checking makes sure that the 
+       correct data types are being used where type hints are defined. If basic or strict type checking is 
+       selected, a pre-commit hook and GitHub actions workflow that perform the type checking are added. 
+       Basic type checking performs type checks but ignores code or imports for which type hints are not written. 
+       Strict type checking enforces type hints are used by giving errors where no type hints are found.
    * - *Do you want to create some example module code?*
-     - If this option is selected the template will create an example module ``src/{{package_name}}/example_module.py`` and test file ``tests/{{package_name}}/test_example_module.py``. Defaults to ``True`` during simple installation.
+     - If this option is selected the template will create an example module 
+       ``src/{{package_name}}/example_module.py`` and test file 
+       ``tests/{{package_name}}/test_example_module.py``. Defaults to ``True`` during simple installation.
    * - *Do you want to include rendered notebooks in your documentation?*
-     - The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will be included in your project. A sample notebook will be generated and added to your docs as an example.
+     - The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will 
+       be included in your project. A sample notebook will be generated and added to your docs as an example.
    * - *Do you want to enable benchmarking?*
-     - Answering `Yes` enables benchmarking using `airspeed velocity (ASV) <https://asv.readthedocs.io/en/stable/>`_. The template will add the GitHub workflows for continuous integration and create a sample benchmarking suite under ``benchmarks/benchmarks/benchmarks.py``. Defaults to ``True`` during simple installation.
+     - Answering `Yes` enables benchmarking using 
+       `airspeed velocity (ASV) <https://asv.readthedocs.io/en/stable/>`_. The template will add the GitHub 
+       workflows for continuous integration and create a sample benchmarking suite under 
+       ``benchmarks/benchmarks/benchmarks.py``. Defaults to ``True`` during simple installation.
    * - *Do you want to add a .gitattributes with entries for git-lfs?*
-     - Support for large files for use in git. This option is primarily informational and no answer locks you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
+     - Support for large files for use in git. This option is primarily informational and no answer locks 
+       you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs 
+       for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
 
 
 While these choices will provide the initial structure for your project, most 

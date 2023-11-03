@@ -22,8 +22,10 @@ To support this, you'll need to configure your repository.
 
 * Create and verify an account on PyPI - https://pypi.org/account/register/
 * Create a new PyPI trusted publisher using the appropriate instructions
- * For previously unpublished packages: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
- * For existing published packaged: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
+
+  * For previously unpublished packages: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
+  * For existing published packaged: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
+   
 * When configuring your trusted publisher, the value to use for the "Workflow name" is "publish-to-pypi.yml".
 
 
