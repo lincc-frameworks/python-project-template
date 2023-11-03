@@ -29,15 +29,8 @@ Set-up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Inside the ``benchmarks`` directory there's a file called ``asv.conf.json`` which configures 
-airspeed velocity. When first configuring the project one must manually define the following
-two URLs. The remaining fields should remain unchanged.
-
-- **project_url**: The project's homepage URL.
-- **show_commit_url**: The base URL to show a commit for the project. It is used on the
-  dashboard to enable performance data points on the plots to have a link to the respective commits. 
-  It should be similar to `<https://github.com/{{organization}}/{{project_name}}/commit/>`_.
-
-For more information about this configuration file, visit the `asv.conf.json reference <https://asv.readthedocs.io/en/stable/asv.conf.json.html>`_.
+airspeed velocity. For more information about this configuration file, visit the 
+`asv.conf.json reference <https://asv.readthedocs.io/en/stable/asv.conf.json.html>`_.
 
 .. important::
    Activate GitHub Pages for your repository, otherwise the dashboard webpage won't be accessible. 

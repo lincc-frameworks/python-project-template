@@ -24,6 +24,11 @@ package_name:
         Must use a lowercase letter followed by one or more of (a-z, 0-9, _).
         {% endif %}
 
+project_organization:
+    type: str
+    help: What github organization will your project live under? 
+    default: my_organization
+
 author_name:
     type: str
     help: What is the name of the code author? (Can be a person or organization)
