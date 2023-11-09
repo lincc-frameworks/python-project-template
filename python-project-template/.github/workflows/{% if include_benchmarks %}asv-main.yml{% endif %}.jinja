@@ -86,7 +86,7 @@ jobs:
           fi
 
       - name: Run ASV for the main branch
-        run: asv run ALL --skip-existing --verbose
+        run: asv run ALL --skip-existing --verbose || true
 
       - name: Submit new results to the "benchmarks" branch
         uses: JamesIves/github-pages-deploy-action@v4
