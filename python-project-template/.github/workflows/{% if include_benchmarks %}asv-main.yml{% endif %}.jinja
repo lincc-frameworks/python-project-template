@@ -12,20 +12,14 @@ env:
   PYTHON_VERSION: "3.10"
   WORKING_DIR: {% raw %}${{ github.workspace }}{% endraw %}/benchmarks
 
+concurrency:
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  cancel-in-progress: true
+
 jobs:
-
-  consecutiveness:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Set workflows on main to run consecutively
-        uses: mktcode/consecutive-workflow-action@eb43c6b5852dd0e33efa797a1817196d06daa4b2
-        with:
-          token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
 
   setup-python:
     runs-on: ubuntu-latest
-    needs: consecutiveness
 
     steps:
       - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
