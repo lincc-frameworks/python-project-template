@@ -126,7 +126,7 @@ Having benchmarks for several revisions, you can find them and compare them with
 
 .. code:: bash
     
-    >>asv show
+    >> asv show
       Commits with results:
 
       Machine    : XPS8104-L
@@ -139,6 +139,12 @@ Having benchmarks for several revisions, you can find them and compare them with
 The commands use a very flexible and powerful syntax which allows to specify a range 
 of commits and even tags. For more information visit ASV's
 `Benchmarking section <https://asv.readthedocs.io/en/stable/using.html#benchmarking>`_.
+
+If your benchmark fails, you can re-run and find more information with the following:
+
+.. code:: bash
+
+    >> asv run --show-stderr
 
 Since you've had to create many commits while working on benchmarks, be sure
 to squash before merging to main!
