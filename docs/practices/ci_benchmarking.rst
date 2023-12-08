@@ -144,7 +144,7 @@ If your benchmark fails, you can re-run and find more information with the follo
 
 .. code:: bash
 
-    >> asv run show-stderr
+    >> asv run --show-stderr
 
 Since you've had to create many commits while working on benchmarks, be sure
 to squash before merging to main!
