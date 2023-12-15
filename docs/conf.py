@@ -20,13 +20,11 @@ version = ".".join(release.split(".")[:2])
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 master_doc = "index"  # This assumes that sphinx-build is called from the root directory
-html_favicon = 'static/favicon.ico'
-html_show_sourcelink = (
-    False  # Remove 'view source code' from top of page (for html, not python)
-)
+html_favicon = "static/favicon.ico"
+html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
 
 # Allow a custom CSS.
-html_static_path = ['static',]
+html_static_path = ["static"]
 html_css_files = ["custom.css"]
 
 # -- Options for HTML output -------------------------------------------------
