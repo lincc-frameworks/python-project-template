@@ -24,6 +24,9 @@ dependencies = [
 {%- endif %}
 ]
 
+[project.urls]
+"Source Code" = "https://github.com/{{project_organization}}/{{project_name}}"
+
 # On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
 [project.optional-dependencies]
 dev = [
@@ -58,10 +61,6 @@ dev = [
 {%- endif %}
 ]
 
-[metadata]
-long_description = { file = "README.md" }
-url = "https://github.com/{{project_organization}}/{{project_name}}"
-
 [build-system]
 requires = [
     "setuptools>=62", # Used to build and package the Python project
@@ -76,20 +75,16 @@ write_to = "src/{{package_name}}/_version.py"
 testpaths = [
     "tests",
 ]
-{%- if preferred_linter == 'black' %}
 
 [tool.black]
 line-length = 110
 target-version = ["py38"]
-{% if use_isort %}
+
 [tool.isort]
 profile = "black"
 line_length = 110
-{%- endif %}
 
-{%- endif %}
 {%- if mypy_type_checking != 'none' %}
-
 [tool.setuptools.package-data]
 {{package_name}} = ["py.typed"]
 {%- endif %}
