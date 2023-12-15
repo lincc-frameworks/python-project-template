@@ -73,13 +73,13 @@ However, some of the tools that the template includes expect that
 the package source code will be in a first level directory named ``src``, and 
 that tests will be contained in a first level directory named ``tests``.
 
-For example, if your project is in a directory named ``/science``, your source 
-code and tests might look like this:
+For example, if your project is in a directory named ``/science``, and your package
+is named ``new_science``, your source code and tests might look like this:
 
 .. code:: bash
 
-    /science/src/module.py
-    /science/tests/test_module.py
+    /science/src/new_science/module.py
+    /science/tests/new_science/test_module.py
 
 If your directory structure for source code and tests is significantly 
 different than this, it might be worth reorganizing the files in order to make use 
