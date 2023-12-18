@@ -46,4 +46,5 @@ An example installation of ``pipx`` might look like this.
         >> conda install -c conda-forge pipx
         >> pipx ensurepath
 
-Pro tip: Don't forget the ``pipx ensurepath`` to finalize the installation!
+.. important::
+    Don't forget to run ``pipx ensurepath`` to finalize the installation.

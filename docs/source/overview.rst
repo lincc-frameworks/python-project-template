@@ -33,9 +33,14 @@ It's really neat!
 .. important::
     Copier has two requirements and one recommended tool:
 
-    1. Python > 3.7 (required)
-    2. Git > 2.27 (required)
-    3. pipx (recommended - more info about pipx :doc:`here<../practices/pipx>`)
+    #. Python > 3.7 **required**
+    #. Git > 2.27 **required**
+    #. pipx *recommended*
+
+    Learn how to maintain a clean Python environment with ``pipx``
+    :doc:`here<../practices/pipx>`. We recommend using ``pipx`` to install Copier
+    for a more maintainable development environment, although some users have also
+    had success with ``conda``.
 
     You can check your requirements like so:
 
