@@ -14,6 +14,9 @@
     "branches": [
         "HEAD"
     ],
+    "install_command": [
+        "python -m pip install {wheel_file}"
+    ],
     "build_command": [
         "python -m build --wheel -o {build_cache_dir} {build_dir}"
     ],
