@@ -29,12 +29,13 @@ Set-up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Inside the ``benchmarks`` directory there's a file called ``asv.conf.json`` which configures 
-airspeed velocity.
+airspeed velocity. You may need to perform minor changes to this file. For example, if you need
+to install dependencies declared on a ``requirements.txt`` file, you may want to set the
+``install_command`` as follows:
 
-You may need to perform minor changes to this file. For example, if you need to install dependencies
-declared on a `requirements.txt` file, you may want to set the `install_command` as follows:
+    .. code:: bash
 
-`python -m pip install -r requirements.txt {wheel_file}`
+        python -m pip install -r requirements.txt {wheel_file}
 
 For more information about this configuration file, visit the
 `asv.conf.json reference <https://asv.readthedocs.io/en/stable/asv.conf.json.html>`_.
