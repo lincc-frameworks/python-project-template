@@ -36,7 +36,6 @@ jobs:
               --data mypy_type_checking=basic
               --data create_example_module=no
               --data include_notebooks=no
-              --data use_gitlfs=disabled
             foldername: 'black_w_o_example_module'
           - name: Black w/ example
             package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
@@ -51,7 +50,6 @@ jobs:
               --data mypy_type_checking=basic
               --data create_example_module=yes
               --data include_notebooks=no
-              --data use_gitlfs=disabled
             foldername: 'black_w_example_module'
           - name: Pylint w/o example
             package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
@@ -66,7 +64,6 @@ jobs:
               --data mypy_type_checking=basic
               --data create_example_module=no
               --data include_notebooks=no
-              --data use_gitlfs=disabled
             foldername: 'pylint_w_o_example_module'
           - name: No sphinx docs
             package_name: 'drewtonian'
