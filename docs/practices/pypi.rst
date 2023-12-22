@@ -9,6 +9,7 @@ published via PyPI, a package can be installed on anyone's development environme
 with ``pip`` or ``conda`` commands. 
 PyPI makes versioning and sharing your software products easy.
 
+See also packaging with :doc:`conda`.
 
 How to manage
 -------------------------------------------------------------------------------

@@ -113,16 +113,6 @@ include_benchmarks:
         no: false
     when: "{{ custom_install }}"
 
-use_gitlfs:
-    help: Do you want to add a .gitattributes with entries for git-lfs (see https://lincc-ppt.readthedocs.io/en/latest/practices/git-lfs.html)?
-    type: str
-    default: none
-    choices:
-        maybe later: none
-        yes .gitattributes with example entries disabled: disabled
-        yes .gitattributes with example entries enabled: enabled
-    when: "{{ custom_install }}"
-
 ###
 # Below this line are Copier configuration options.
 ###
@@ -132,7 +122,6 @@ _subdirectory: python-project-template
 
 _skip_if_exists:
     - README.md
-    - .gitattributes
 
 # Require that the user has at least Copier v8.0.0 installed
 _min_copier_version: "8.0.0"
