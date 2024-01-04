@@ -3,7 +3,7 @@
 For more information on writing benchmarks:
 https://asv.readthedocs.io/en/stable/writing_benchmarks.html."""
 
-import example_benchmarks
+from {{package_name}} import example_benchmarks
 
 
 def time_computation():
