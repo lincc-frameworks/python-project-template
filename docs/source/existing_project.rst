@@ -19,11 +19,7 @@ when attempting to incorporate the LINCC Frameworks Python Project Template
 into a pre-existing project. 
 
 We're here to help though! We have called out some gotchas below and we want to 
-hear from you if you encounter problems. Feel free to start a discussion here: 
-https://github.com/lincc-frameworks/python-project-template/discussions
-
-We'll respond there as quickly as possible, and hopefully the results will help 
-others along too!
+hear from you if you encounter problems. Feel free to :doc:`/source/contact`
 
 Newer projects are easier to upgrade
 ....................................
@@ -237,3 +233,8 @@ Benchmarking
 If your project wasn't using benchmarking before, and you chose to include it, please 
 make sure you follow the instructions under :doc:`Continuous Integration Benchmarking <../practices/ci_benchmarking>`
 to conclude the setup.
+
+Still have questions?
+----------------------------------------
+
+:doc:`/source/contact`
