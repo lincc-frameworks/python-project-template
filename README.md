@@ -1,7 +1,7 @@
 # LINCC Frameworks Python Project Template
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/lincc-frameworks/python-project-template)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lincc-frameworks/python-project-template/ci.yml)
-![Read the Docs](https://img.shields.io/readthedocs/lincc-ppt)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lincc-frameworks/python-project-template/ci.yml)](https://github.com/lincc-frameworks/python-project-template/ci.yml)
+[![Read the Docs](https://img.shields.io/readthedocs/lincc-ppt)](https://lincc-ppt.readthedocs.io/)
 
 This project template codifies LINCC-Framework's best practices for python code organization, testing, documentation, and automation. It is meant to help new python projects get started quickly, letting the user focus on writing code. The template takes care of the minutia of directory structures, tool configurations, and automated testing until the user is ready to take over.
 

@@ -166,16 +166,22 @@ Additional configurations
 Configure your GitHub repository for safety and security
 ********************************************************
 
-Consider setting up branch protection rules. (`GitHub Instructions <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging>`_)
-This will help ensure your code is always ready to deploy by running all tests
-pass to merging into the ``main`` branch.
+* Consider setting up branch protection rules.
 
-Enable ``dependabot`` for your new repository. (`GitHub Instructions <https://docs.github.com/en/code-security/getting-started/securing-your-repository#managing-dependabot-security-updates>`_)
-There are several different features that ``dependabot`` offers to keep your dependencies
-up to date and your code secure. It's as easy as clicking a checkbox to get started.
+  * `GitHub Instructions for protected branches <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging>`_
+  * This will help ensure your code is always ready to deploy by running all tests
+    pass to merging into the ``main`` branch.
 
-Add another GitHub user as an administrator on your repository (`GitHub Instructions <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository>`_).
-It's just a good idea - like having a spare set of keys for your Lamborghini.
+* Enable ``dependabot`` for your new repository
+
+  * `GitHub Instructions for dependabot <https://docs.github.com/en/code-security/getting-started/securing-your-repository#managing-dependabot-security-updates>`_
+  * There are several different features that ``dependabot`` offers to keep your dependencies
+    up to date and your code secure. It's as easy as clicking a checkbox to get started.
+
+* Add another GitHub user as an administrator on your repository
+
+  * `GitHub Instructions for repo access <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository>`_
+  * It's just a good idea - like having a spare set of keys for your Lamborghini.
 
 Get the most out of this template
 *********************************
@@ -188,3 +194,8 @@ for more information.
 
 Finally, take a look at the :doc:`Best Practices section <../practices/overview>` to learn about
 built in pre-commit hooks, GitHub CI, automatic documentation, and more.
+
+Still have questions?
+-------------------------------------------------------------------------------
+
+:doc:`/source/contact`

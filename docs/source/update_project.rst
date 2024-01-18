@@ -136,3 +136,9 @@ The maintainers of Copier have written good instructions and there's no point
 in reproducing it all here. 
 For all the details about updating with Copier checkout the 
 `original documentation <https://copier.readthedocs.io/en/latest/updating/>`_.
+
+
+Still have questions?
+-------------------------------------
+
+:doc:`/source/contact`

@@ -21,3 +21,8 @@ Practices
 * :doc:`sphinx`
 * :doc:`git-lfs`
 * :doc:`pytest_timeout`
+
+Still have questions?
+--------------------------------
+
+:doc:`/source/contact`

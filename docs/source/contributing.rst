@@ -13,6 +13,8 @@ include a description - it's just polite.
 You can reach the team with bug reports, feature requests, and general inquiries
 by creating a new GitHub issue.
 
+:doc:`/source/contact`
+
 Create a branch
 -------------------------------------------------------------------------------
 
@@ -56,3 +58,5 @@ GitHub's `instructions <https://docs.github.com/en/repositories/releasing-projec
 for doing so are here. 
 Use your best judgement when incrementing the version. i.e. is this a major,
 minor, or patch fix.
+
+Do you want to help out, but you're not sure how? :doc:`/source/contact`

@@ -8,6 +8,9 @@ to focus on writing code.
 
 We think it's really neat, and we hope you do to!
 
+If you find it useful, or have any questions or concerns when using the template,
+please :doc:`/source/contact`
+
 .. important:: 
    These instructions assume you are using ``copier`` version 8.0 or newer. Some
    features may not be available in older versions.
@@ -21,6 +24,7 @@ We think it's really neat, and we hope you do to!
    source/update_project
    source/existing_project
    source/contributing
+   source/contact
 
 .. toctree::
    :maxdepth: 1
