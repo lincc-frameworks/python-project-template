@@ -8,7 +8,7 @@ repos:
   - repo: local
     hooks:
       - id: pytest-check
-        stage: post-commit
+        stages: [post-commit]
         name: Run unit tests
         description: Run unit tests with pytest.
         entry: bash -c "if python -m pytest --co -qq; then python -m pytest; fi"
