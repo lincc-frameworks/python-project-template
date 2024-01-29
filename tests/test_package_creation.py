@@ -2,20 +2,17 @@ import pytest
 import pytest_copie
 import subprocess
 
-def assert_successful_project_creation(result):
+def successfully_created_project(result):
     """Basic assertions that indicate the copier was able to create a project"""
-    assert result.exit_code == 0
-    assert result.exception is None
-    assert result.project_dir.is_dir()
+    return result.exit_code == 0 and result.exception is None and result.project_dir.is_dir()
 
 
-def assert_directory_structure(result, package_name = "example_package"):
+def directory_structure_is_correct(result, package_name = "example_package"):
     """Test to ensure that the default directory structure ws created correctly"""
-    assert (result.project_dir / f"src/{package_name}").is_dir()
-    assert (result.project_dir / f"tests/{package_name}").is_dir()
+    return (result.project_dir / f"src/{package_name}").is_dir() and (result.project_dir / f"tests/{package_name}").is_dir()
 
 
-def assert_black_runs_successfully(result):
+def black_runs_successfully(result):
     """Test to ensure that the black linter runs successfully on the project"""
     # run black with `--check` to look for lint errors, but don't fix them.
     black_results = subprocess.run(
@@ -23,10 +20,10 @@ def assert_black_runs_successfully(result):
         cwd=result.project_dir
     )
 
-    assert black_results.returncode == 0
+    return black_results.returncode == 0
 
 
-def assert_pylint_runs_successfully(result):
+def pylint_runs_successfully(result):
     """Test to ensure that the pylint linter runs successfully on the project"""
     # run pylint to ensure that the hydrated files are linted correctly
     pylint_results = subprocess.run(
@@ -37,7 +34,23 @@ def assert_pylint_runs_successfully(result):
         cwd=result.project_dir
     )
 
-    assert pylint_results.returncode == 0
+    return pylint_results.returncode == 0
+
+
+def unit_tests_in_project_run_successfully(result, package_name = "example_package"):
+    """Test to ensure that the unit tests run successfully on the project
+
+    !!! NOTE - This doesn't currently work because we need to `pip install` the hydrated
+    project before running the tests. And we don't have a way to create a temporary
+    virtual environment for the project.
+    """
+    pytest_results = subprocess.run(
+        ["python", "-m", "pytest", (result.project_dir / f"tests/{package_name}")],
+        cwd=result.project_dir
+    )
+
+    return pytest_results.returncode == 0
+
 
 def test_all_defaults(copie):
     """Test that the default values are used when no arguments are given.
@@ -47,11 +60,11 @@ def test_all_defaults(copie):
     # run copier to hydrate a temporary project
     result = copie.copy()
 
-    assert_successful_project_creation(result)
+    assert successfully_created_project(result)
 
-    assert_directory_structure(result)
+    assert directory_structure_is_correct(result)
 
-    assert_pylint_runs_successfully(result)
+    assert pylint_runs_successfully(result)
 
     # make sure that some basic files were created
     assert (result.project_dir / "README.md").is_file()
@@ -82,9 +95,9 @@ def test_use_black_and_no_example_modules(copie):
     # run copier to hydrate a temporary project
     result = copie.copy(extra_answers=extra_answers)
 
-    assert_successful_project_creation(result)
+    assert successfully_created_project(result)
 
-    assert_directory_structure(result)
+    assert directory_structure_is_correct(result)
 
     # make sure that the files that were not requested were not created
     assert not (result.project_dir / "src/example_package/example_module.py").is_file()
@@ -98,4 +111,4 @@ def test_use_black_and_no_example_modules(copie):
                break
     assert found_line
 
-    assert_black_runs_successfully(result)
+    assert black_runs_successfully(result)
