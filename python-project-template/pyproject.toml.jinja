@@ -89,7 +89,25 @@ line_length = 110
 [tool.ruff]
 line-length = 110
 target-version = "py38"
-
+select = [
+    # pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # pep8 naming,
+    "N",
+    # docstyle,
+    "D"
+]
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
 [tool.setuptools.package-data]
