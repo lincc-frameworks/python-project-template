@@ -92,7 +92,6 @@ target-version = "py38"
 select = [
     # pycodestyle
     "E",
-    "W",
     # Pyflakes
     "F",
     # pyupgrade
@@ -103,8 +102,6 @@ select = [
     "SIM",
     # isort
     "I",
-    # pep8 naming,
-    "N",
 ]
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
