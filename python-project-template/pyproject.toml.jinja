@@ -84,11 +84,11 @@ target-version = ["py38"]
 profile = "black"
 line_length = 110
 
-{%- elif preferred_linter == 'ruff' %}
+{%- if preferred_linter == 'ruff' %}
 
 [tool.ruff]
 line-length = 110
-target-version = ["py38"]
+target-version = "py38"
 
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
