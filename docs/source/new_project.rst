@@ -56,8 +56,9 @@ questions:
    * - *What tooling would you like to use to enforce code style?*
      - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). 
        We provide options for `black <https://black.readthedocs.io/en/stable/>`_, 
-       `pylint <https://pypi.org/project/pylint/>`_, or no linter. Choosing a linter will include it as a 
-       project dependency and include it in the :doc:`pre-commit <../practices/precommit>` hooks. 
+       `pylint <https://pypi.org/project/pylint/>`_, `ruff <https://docs.astral.sh/ruff/>`_ or no linter.
+       Choosing a linter will include it as a project dependency and include it in the
+       :doc:`pre-commit <../practices/precommit>` hooks.
        Defaults to ``pylint`` during simple installation. 
    * - *Do you want to use isort to maintain a specific ordering for module imports?*
      - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. 

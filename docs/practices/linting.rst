@@ -17,7 +17,7 @@ the code they're looking at adheres to that agreed-upon coding standard.
 A code reviewer won't be distracted by improper spacing, and can focus their 
 reviewing effort on the meat of the code.
 
-There are two main linters suggested by this template: pylint and black. While 
+There are three main linters suggested by this template: pylint, black, and ruff. While
 they have a lot of the same opinions, we recommend picking a single standard for 
 your project and sticking to it.
 If some folks use one linter, this may cause undue churn in your source files as
@@ -71,6 +71,20 @@ tool. The configuration for pylint is maintained in two ``.pylintrc`` files in
 the ``./src`` and ``./tests`` directories. This allows separate configurations
 for source versus test code. Take a look at the configuration documentation
 for pylint here: https://pylint.readthedocs.io/en/latest/user_guide/configuration/index.html
+
+
+Modifying ruff
+.................
+
+`Ruff <https://docs.astral.sh/ruff/>`_ is a very performant and highly customizable linting
+tool. The configuration for ruff is maintained in the ``pyproject.toml`` file.
+Ruff has many rules split into groups that can be selected to use when checking code.
+By default, we mostly follow the set of rules suggested by the
+`ruff documentation <https://docs.astral.sh/ruff/linter/#rule-selection>`_, with a few extra
+rules as suggested by
+`Rubin Data Management <https://developer.lsst.io/python/style.html#ruff-configuration-files>`_.
+For more information on configuration, see ruff's documentation here:
+https://docs.astral.sh/ruff/configuration/
 
 How to switch or remove linters
 -------------------------------
