@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "accepting-editor",
+   "id": "textblock1",
    "metadata": {
     "cell_marker": "\"\"\""
    },
@@ -19,7 +19,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "actual-thirty",
+   "id": "codeblock1",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "coral-upper",
+   "id": "textblock2",
    "metadata": {
     "cell_marker": "\"\"\"",
     "lines_to_next_cell": 1
@@ -50,6 +50,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "codeblock2",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -60,6 +61,7 @@
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "codeblock3",
    "metadata": {},
    "outputs": [],
    "source": [
