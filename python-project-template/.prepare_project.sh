@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+echo "Checking pip version"
+pipversion=( $(pip --version | awk '{print $2}' | sed 's/\./ /g') )
+if let "${pipversion[0]}<22"; then
+    echo "Insufficient version of pip found. Requires at least version 22."
+    echo "See https://lincc-ppt.readthedocs.io/ for details."
+fi
+
 echo "Initializing local git repository"
 {
     gitversion=( $(git version | git version | awk '{print $3}' | sed 's/\./ /g') )
