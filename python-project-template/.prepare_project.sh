@@ -2,7 +2,7 @@
 
 echo "Initializing local git repository"
 {
-    gitversion=( $(git version | sed 's/^.* //;s/\./ /g') )
+    gitversion=( $(git version | git version | awk '{print $3}' | sed 's/\./ /g') )
     if let "${gitversion[0]}<2"; then
 	# manipulate directly
 	git init . && echo 'ref: refs/heads/main' >.git/HEAD
