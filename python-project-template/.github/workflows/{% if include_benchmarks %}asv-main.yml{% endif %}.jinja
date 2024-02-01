@@ -1,3 +1,4 @@
+{%- raw -%}
 # This workflow will run benchmarks with airspeed velocity (asv), 
 # store the new results in the "benchmarks" branch and publish them
 # to a dashboard on GH Pages.
@@ -10,10 +11,10 @@ on:
 
 env:
   PYTHON_VERSION: "3.10"
-  WORKING_DIR: {% raw %}${{ github.workspace }}{% endraw %}/benchmarks
+  WORKING_DIR: ${{ github.workspace }}/benchmarks
 
 concurrency:
-  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -22,16 +23,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+      - name: Cache Python ${{ env.PYTHON_VERSION }}
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: python-{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+          key: python-${{ env.PYTHON_VERSION }}
 
-      - name: Set up Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
-          python-version: "{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}"
+          python-version: "${{ env.PYTHON_VERSION }}"
 
   asv-main:
     runs-on: ubuntu-latest
@@ -42,7 +43,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: {% raw %}${{ env.WORKING_DIR }}{% endraw %}
+        working-directory: ${{ env.WORKING_DIR }}
 
     steps:
       - name: Checkout main branch of the repository
@@ -50,11 +51,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache Python {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+      - name: Cache Python ${{ env.PYTHON_VERSION }}
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: python-{% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+          key: python-${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies
         run: |
@@ -86,7 +87,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: benchmarks
-          folder: {% raw %}${{ env.WORKING_DIR }}{% endraw %}/_results
+          folder: ${{ env.WORKING_DIR }}/_results
           target-folder: _results
 
       - name: Generate dashboard HTML
@@ -98,4 +99,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: {% raw %}${{ env.WORKING_DIR }}{% endraw %}/_html
+          folder: ${{ env.WORKING_DIR }}/_html
+{%- endraw -%}
