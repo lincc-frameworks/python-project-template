@@ -26,6 +26,7 @@ dev = [
     "pre-commit", # Used to run checks prior to committing code
     "pytest", # Used to run tests
     "pytest-copie", # Used to create hydrated copier projects for testing
+    "tox", # Used to run tests in multiple environments
 ]
 
 [build-system]
