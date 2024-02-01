@@ -31,10 +31,11 @@ natively supports updating projects as the original template matures.
 It's really neat!
 
 .. important::
-    Copier has two requirements and one recommended tool:
+    Copier has a few requirements and one recommended tool:
 
     #. Python > 3.7 **required**
     #. Git > 2.27 **required**
+    #. pip >= 22 **required**
     #. pipx *recommended*
 
     Learn how to maintain a clean Python environment with ``pipx``
@@ -51,6 +52,9 @@ It's really neat!
 
         >> git --version
             git version 2.34.1
+
+        >> pip --version
+            pip 23.3.1 from _____
 
         >> which pipx
             /usr/bin/pipx
