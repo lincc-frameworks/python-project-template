@@ -148,4 +148,4 @@ jobs:
       if: ${{ !contains(matrix.copier_config.extra_flags, 'create_example_module=no') }}
       run: |
         cd ../test/${{ matrix.copier_config.foldername }}
-        python -m pytest tests --cov=${{ matrix.copier_config.package_name }} --cov-report=xml
+        python -m pytest --cov=${{ matrix.copier_config.package_name }} --cov-report=xml
