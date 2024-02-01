@@ -40,4 +40,4 @@ jobs:
         pip list
     - name: Run unit tests with pytest
       run: |
-        python -m pytest tests
+        python -m pytest
