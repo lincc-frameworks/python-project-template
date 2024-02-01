@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 echo "Checking pip version"
+MINIMUM_PIP_VERSION=22
 pipversion=( $(pip --version | awk '{print $2}' | sed 's/\./ /g') )
-if let "${pipversion[0]}<22"; then
-    echo "Insufficient version of pip found. Requires at least version 22."
+if let "${pipversion[0]}<${MINIMUM_PIP_VERSION}"; then
+    echo "Insufficient version of pip found. Requires at least version ${MINIMUM_PIP_VERSION}."
     echo "See https://lincc-ppt.readthedocs.io/ for details."
     exit 1
 fi
