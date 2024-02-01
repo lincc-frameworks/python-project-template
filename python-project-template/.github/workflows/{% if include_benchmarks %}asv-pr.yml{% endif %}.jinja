@@ -1,7 +1,9 @@
 {%- raw -%}
 # This workflow will run benchmarks with airspeed velocity (asv) for pull requests.
 # It will compare the performance of the main branch with the performance of the merge
-# with the new changes and publish a comment with this assessment.
+# with the new changes. It then publishes a comment with this assessment by triggering
+# the publish-benchmarks-pr workflow.
+# Based on https://securitylab.github.com/research/github-actions-preventing-pwn-requests/.
 name: Run benchmarks for PR
 
 on:

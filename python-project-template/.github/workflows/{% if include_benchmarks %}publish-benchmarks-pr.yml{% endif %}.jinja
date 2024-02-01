@@ -1,8 +1,8 @@
 {%- raw -%}
-# This workflow publishes a benchmarks comment to a PR.
-# It is triggered after the benchmarks are computed in the asv-pr workflow.
-# This separation of concerns allows us limit access to the target repository
-# private tokens and secrets, increasing the level of security.
+# This workflow publishes a benchmarks comment on a pull request. It is triggered after the
+# benchmarks are computed in the asv-pr workflow. This separation of concerns allows us limit
+# access to the target repository private tokens and secrets, increasing the level of security.
+# Based on https://securitylab.github.com/research/github-actions-preventing-pwn-requests/.
 name: Publish benchmarks comment to PR
 
 on:
