@@ -89,6 +89,8 @@ line_length = 110
 [tool.ruff]
 line-length = 110
 target-version = "py38"
+
+[tool.ruff.lint]
 select = [
     # pycodestyle
     "E",
@@ -106,6 +108,7 @@ select = [
     # isort
     "I",
 ]
+ignore = []
 {%- if mypy_type_checking != 'none' %}
 [tool.setuptools.package-data]
 {{package_name}} = ["py.typed"]
