@@ -31,8 +31,7 @@ jobs:
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
-              --data preferred_linter=black
-              --data use_isort=false
+              --data enforce_style=["black"]
               --data mypy_type_checking=basic
               --data create_example_module=no
               --data include_notebooks=no
@@ -45,8 +44,7 @@ jobs:
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
-              --data preferred_linter=black
-              --data use_isort=false
+              --data enforce_style=["black"]
               --data mypy_type_checking=basic
               --data create_example_module=yes
               --data include_notebooks=no
@@ -59,8 +57,7 @@ jobs:
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
-              --data preferred_linter=pylint
-              --data use_isort=false
+              --data enforce_style=["pylint"]
               --data mypy_type_checking=basic
               --data create_example_module=no
               --data include_notebooks=no
@@ -114,7 +111,7 @@ jobs:
         python -m pylint --recursive=y ./src/ --rcfile=./src/.pylintrc
    
     - name: black checks
-      if: ${{ contains(matrix.copier_config.extra_flags, 'preferred_linter=black') }}
+      if: ${{ contains(matrix.copier_config.extra_flags, 'enforce_style=["black"]') }}
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"

@@ -19,10 +19,13 @@ any linting issues that it could not resolve but should be fixed.
 For each pull request, our ``pre-commit.ci`` workflow will:
 
 * Clear outputs from Jupyter notebooks
-* Sort imports using ``isort``
-* According to the preferred linter selected:
-   * Format code using ``black`` (including notebooks)
-   * Check compliance with ``pylint`` rules
+* Analyze the src code style and report code that doesn't adhere, using 
+  the options you selected for your tooling set:
+  
+  * "ruff": checks for linting rules, sorts imports, auto-formats code
+  * "pylint": checks for compliance with pylint rules
+  * "black": auto-formats code (including notebooks)
+  * "isort": Sort imports using ``isort``
 
 .. note::
   * Only a small subset of hooks declared in the ``.pre-commit-config.yaml`` file

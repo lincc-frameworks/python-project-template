@@ -43,7 +43,7 @@ repos:
         name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
 
-{% if use_isort == true %}
+{%- if 'isort' in enforce_style %}
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
@@ -52,9 +52,9 @@ repos:
         name: Run isort
         description: Sort and organize imports in .py and .pyi files.
         types_or: [python, pyi]
-{% endif %}
+{%- endif %}
 
-{% if preferred_linter == 'pylint' %}
+{%- if 'pylint' in enforce_style %}
     # Analyze the src code style and report code that doesn't adhere.
   - repo: local
     hooks:
@@ -86,7 +86,8 @@ repos:
             "-sn", # Don't display the score
             "--rcfile=tests/.pylintrc",
           ]
-{% elif preferred_linter == 'black' %}
+{%- endif %}
+{%- if 'black' in enforce_style %}
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
     rev: 23.7.0
@@ -99,7 +100,8 @@ repos:
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
-{% elif preferred_linter == 'ruff' %}
+{%- endif %}
+{%- if 'ruff' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
     rev: v0.1.3

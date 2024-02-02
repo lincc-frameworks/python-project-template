@@ -38,11 +38,13 @@ dev = [
     "sphinx-rtd-theme", # Used to render documentation
     "sphinx-autoapi", # Used to automatically generate api documentation
 {%- endif %}
-{%- if preferred_linter == 'pylint' %}
+{%- if 'pylint' in enforce_style %}
     "pylint", # Used for static linting of files
-{%- elif preferred_linter == 'black' %}
+{%- endif %}
+{%- if 'black'  in enforce_style %}
     "black", # Used for static linting of files
-{%- elif preferred_linter == 'ruff' %}
+{%- endif %}
+{%- if 'ruff' in enforce_style %}
     "ruff", # Used for static linting of files
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
@@ -84,8 +86,6 @@ target-version = ["py38"]
 profile = "black"
 line_length = 110
 
-{%- if preferred_linter == 'ruff' %}
-
 [tool.ruff]
 line-length = 110
 target-version = "py38"
@@ -106,7 +106,6 @@ select = [
     # isort
     "I",
 ]
-{%- endif %}
 {%- if mypy_type_checking != 'none' %}
 [tool.setuptools.package-data]
 {{package_name}} = ["py.typed"]
