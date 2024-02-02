@@ -117,7 +117,7 @@ following command:
 
 .. code-block:: bash
 
-    >> copier update --force --data preferred_linter="black"
+    >> copier update --force --data include_benchmarks=true
 
 The full list of questions can be found 
 `here <https://github.com/lincc-frameworks/python-project-template/blob/main/copier.yml>`_.

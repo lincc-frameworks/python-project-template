@@ -1,3 +1,12 @@
+_message_before_copy: |
+    Thanks for generating a project using LINCC's template.
+
+    You'll be asked a series of questions whose answers will be used to
+    generate a tailored project for you.
+
+    You can refer to our documentation for more details and contact info
+    https://lincc-ppt.readthedocs.io/en/latest/
+
 custom_install:
     help: Would you like to use simple (default tooling) or customized installation? 
     type: bool
@@ -52,24 +61,41 @@ project_license:
         BSD: BSD
         none: none
 
-preferred_linter:
-    help: What tooling would you like to use to enforce code style?
+python_versions:
+    help: What versions of python are you targeting? We will add automated testing for these versions.
+    default: ["3.9", "3.10", "3.11"]
     type: str
-    default: pylint
+    multiselect: true
     choices:
-        black: black
-        pylint: pylint
-        ruff: ruff
-        none: none
+        "3.7 (end-of-life)": "3.7"
+        "3.8": "3.8"
+        "3.9": "3.9"
+        "3.10": "3.10"
+        "3.11": "3.11"
+        "3.12": "3.12"
     when: "{{ custom_install }}"
 
-use_isort:
-    help: Do you want to use isort to maintain a specific ordering for module imports?
-    type: bool
-    default: yes
+enforce_style:
+    help: What tooling set would you like to use to enforce code style? Use SPACE to highlight all that apply.
+    type: str
+    default: [ruff]
+    multiselect: true
     choices:
-        yes: true
-        no: false
+        ruff: ruff
+        pylint: pylint
+        black: black
+        isort: isort
+    when: "{{ custom_install }}"
+
+failure_notification:
+    help: How would you like to receive workflow failure notifications?
+    type: str
+    default: [email]
+    multiselect: true
+    choices:
+        email: email
+        slack bot integration (additional configuration required): slack
+        none: none
     when: "{{ custom_install }}"
 
 mypy_type_checking:
@@ -118,6 +144,14 @@ include_benchmarks:
         no: false
     when: "{{ custom_install }}"
 
+_message_after_copy: |
+    Your project "{{ project_name }}" has been created successfully!
+
+    Next, change directory to the project root and complete git configuration:
+
+       $ cd {{ _copier_conf.dst_path }}
+       $ bash .prepare_project.sh
+
 ###
 # Below this line are Copier configuration options.
 ###
@@ -128,5 +162,6 @@ _subdirectory: python-project-template
 _skip_if_exists:
     - README.md
 
-# Require that the user has at least Copier v8.0.0 installed
-_min_copier_version: "8.0.0"
+# Require that the user has at least Copier v9.1.0 installed
+# Earliest version with "multiselect" support.
+_min_copier_version: "9.1.0"

@@ -1,0 +1,88 @@
+# This workflow will run daily at 06:45.
+# It will install Python dependencies and run tests with a variety of Python versions.
+# See documentation for help debugging smoke test issues:
+#    https://lincc-ppt.readthedocs.io/en/latest/practices/ci_testing.html#version-culprit
+
+name: Unit test smoke test
+
+on:
+
+  # Runs this workflow automatically
+  schedule:
+    - cron: 45 6 * * *
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: {{ python_versions }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
+      uses: actions/setup-python@v4
+      with:
+        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        python -m pip install --upgrade pip
+        pip install .
+        pip install .[dev]
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: List dependencies
+      run: |
+        pip list
+    - name: Run unit tests with pytest
+      run: |
+        python -m pytest
+{%- if 'email' in failure_notification %}
+    - name: Send failure email
+{%- endif %}
+{%- if 'slack' in failure_notification %}
+{%- raw %}
+    - name: Send status to Slack app
+      if: ${{ failure() && github.event_name != 'workflow_dispatch' }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
+      id: slack
+      uses: slackapi/slack-github-action@v1.24.0
+      with:
+        # For posting a rich message using Block Kit
+        payload: | # The payload defined here can be customized to you liking https://api.slack.com/reference/block-kit/blocks 
+          {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "${{ github.repository }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "GitHub Action build result: *${{ job.status }}* :${{ job.status }}:" # Note that we expect the slack workspace to have an emoji called “failed” in this case.
+                }
+              },
+              {
+                "type": "divider"
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Here is where the webhook URL is provided
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+{%- endraw %}
+{%- endif %}

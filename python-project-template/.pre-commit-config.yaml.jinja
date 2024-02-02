@@ -42,7 +42,7 @@ repos:
       - id: validate-pyproject
         name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
-{%- if use_isort == true %}
+{%- if 'isort' in enforce_style %}
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
@@ -52,7 +52,7 @@ repos:
         description: Sort and organize imports in .py and .pyi files.
         types_or: [python, pyi]
 {%- endif %}
-{%- if preferred_linter == 'pylint' %}
+{%- if 'pylint' in enforce_style %}
     # Analyze the src code style and report code that doesn't adhere.
   - repo: local
     hooks:
@@ -83,7 +83,7 @@ repos:
             "-sn", # Don't display the score
             "--rcfile=tests/.pylintrc",
           ]
-{%- elif preferred_linter == 'black' %}
+{%- if 'black' in enforce_style %}
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
     rev: 23.7.0
@@ -96,12 +96,13 @@ repos:
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
-{%- elif preferred_linter == 'ruff' %}
+{%- if 'ruff' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
     rev: v0.1.3
     hooks:
       - id: ruff
+        name: Format and lint code using ruff
         types_or: [ python, pyi, jupyter ]
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
@@ -137,7 +138,7 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-{% if include_notebooks %}
+{%- if include_notebooks %}
     # Make sure Sphinx can build the documentation while explicitly omitting 
     # notebooks from the docs, so users don't have to wait through the execution 
     # of each notebook or each commit. By default, these will be checked in the 

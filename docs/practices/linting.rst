@@ -1,8 +1,16 @@
-Linting
+Code Style
 ===============================================================================
 
 What is it? Why do it?
 -------------------------------------------------------------------------------
+
+"Code style" describes the conventions you use in writing the source files 
+for your code base. If there are multiple people working on a code base, 
+it's important to establish an agreeable code style so everyone can easily read 
+and modify the code.
+
+Linters
+...............................................................................
 
 Linting is a form of static program checking, meaning that it analyzes code 
 without running it.
@@ -17,20 +25,77 @@ the code they're looking at adheres to that agreed-upon coding standard.
 A code reviewer won't be distracted by improper spacing, and can focus their 
 reviewing effort on the meat of the code.
 
-There are three main linters suggested by this template: pylint, black, and ruff. While
-they have a lot of the same opinions, we recommend picking a single standard for 
-your project and sticking to it.
-If some folks use one linter, this may cause undue churn in your source files as
-each developer creates some formatting changes each time they touch a file (and 
-then another developer undoes them the next time they touch the same file).
+These tools often do *not* change your code to adhere to a standard, they just 
+alert you to potential issues.
 
+The template currently offers two tools for linting:
 
-Note about our pylint configuration
+- **pylint** - slow and thorough
+- **ruff** - very fast, usually good enough.
+
+Auto-formatters
+...............................................................................
+
+Auto-formatting tools will *change* your source files, to adhere to a consistent
+visual style. These tools often do *not* interpret your code for syntax errors
+or code smells.
+
+The template currently offers three tools for auto-formatting:
+
+- **black** - general code formatting
+- **isort** - import statement sorting and organizing
+- **ruff** - does it all
+
+Different formatters share a lot of the same opinions, but we recommend picking
+a single standard for your project and sticking to it.
+If some folks use different formatters, this may cause undue churn in your source 
+files as each developer creates some formatting changes each time they touch a file 
+(and then another developer undoes them the next time they touch the same file).
+Two good configurations are to use ``ruff`` for all your code style needs OR 
+use some combination of ``pylint``, ``black``, and ``isort``.
+
+Ruff
 -------------------------------------------------------------------------------
 
-Pylint is one of the linter options included in the template. While there are a
-number of errors and coding standards that the linter can search for, you may not
-want to include all of them, or modify the values of certain checks such as line
+`Ruff <https://docs.astral.sh/ruff/>`_ is a very performant and highly customizable
+linting tool, that can also perform auto-formatting. 
+
+This tool can be run on its own in *linting* (warning) mode with command like:
+
+.. code:: bash
+
+    >> ruff check
+
+This tool can be run on its own in *auto-formatting* mode with command like:
+
+.. code:: bash
+
+    >> ruff format
+
+Modifying ruff
+...............................................................................
+
+The configuration for ruff is maintained in the ``pyproject.toml`` file.
+Ruff has many rules split into groups that can be selected to use when checking code.
+By default, we mostly follow the set of rules suggested by the
+`ruff documentation <https://docs.astral.sh/ruff/linter/#rule-selection>`_, with a 
+few extra rules as suggested by
+`Rubin Data Management <https://developer.lsst.io/python/style.html#ruff-configuration-files>`_.
+For more information on configuration, see ruff's documentation here:
+https://docs.astral.sh/ruff/configuration/
+
+Pylint
+-------------------------------------------------------------------------------
+
+`pylint <https://pylint.readthedocs.io/en/latest/>`_ is a linting
+tool. It is fairly opinionated, but highly customizable. It's very thorough, but 
+that means it's also among the slower of the linting options out there.
+
+Modifying pylint
+...............................................................................
+
+There are lots of errors and coding standards that the linter can search for, 
+but you may not want to include all of them, or modify the values of certain checks such as line
 length to fit the agreed standards in your project. To do this, pylint allows
 project wide configuration in either the project's ``pyproject.toml`` file, or in
 a separate ``.pylintrc`` file.
@@ -47,49 +112,44 @@ For more on how to configure the pylint options, `take a look at pylint's
 documentation.
 <https://pylint.readthedocs.io/en/stable/user_guide/configuration/index.html>`_
 
-
-How to modify
---------------
-
-Currently the template offers three choices for linters - None, Black, or pylint.
-
-Modifying Black
-................
+Black
+-------------------------------------------------------------------------------
 
 `Black <https://black.readthedocs.io/en/latest/index.html>`_ is a very opinionated
-linting tool, and doesn't permit much in the way of customization. The
+auto-formatting tool. It ensures that all code in your project uses consistent 
+formatting (e.g. spacing, quote styles, line breaks).
+
+This tool can be run on its own with command like:
+
+.. code:: bash
+
+    >> black .
+
+Modifying Black
+...............................................................................
+
+Black and doesn't permit much in the way of customization. The
 configurations that are available are defined in ``pyproject.toml`` under the
 ``[tool.black]`` section. For more details see Black's documentation on configuration:
 https://black.readthedocs.io/en/latest/usage_and_configuration/the_basics.html#configuration-via-a-file
 
+isort 
+-------------------------------------------------------------------------------
 
-Modifying pylint
-.................
+isort is a standalone tool that will sort and organization imports in all
+the `.py` and `.pyi` files in your project.
 
-`pylint <https://pylint.readthedocs.io/en/latest/>`_ is a highly customizable linting
-tool. The configuration for pylint is maintained in two ``.pylintrc`` files in 
-the ``./src`` and ``./tests`` directories. This allows separate configurations
-for source versus test code. Take a look at the configuration documentation
-for pylint here: https://pylint.readthedocs.io/en/latest/user_guide/configuration/index.html
+This tool can be run on its own with command like:
 
+.. code:: bash
 
-Modifying ruff
-.................
+    >> isort .
 
-`Ruff <https://docs.astral.sh/ruff/>`_ is a very performant and highly customizable linting
-tool. The configuration for ruff is maintained in the ``pyproject.toml`` file.
-Ruff has many rules split into groups that can be selected to use when checking code.
-By default, we mostly follow the set of rules suggested by the
-`ruff documentation <https://docs.astral.sh/ruff/linter/#rule-selection>`_, with a few extra
-rules as suggested by
-`Rubin Data Management <https://developer.lsst.io/python/style.html#ruff-configuration-files>`_.
-For more information on configuration, see ruff's documentation here:
-https://docs.astral.sh/ruff/configuration/
-
-How to switch or remove linters
--------------------------------
+How to switch or remove tools
+-------------------------------------------------------------------------------
 
 If you started a project without selecting a linter, or you want to change or 
 remove the linter entirely, use the ``copier update`` command to change the
-response to the "What tooling would you like to use to enforce code style?"
-question.
+response to the "What tooling set would you like to use to enforce code style?"
+question. This will add or remove steps to check code style against the selected
+tools.

@@ -64,7 +64,7 @@ def test_all_defaults(copie):
 
     assert directory_structure_is_correct(result)
 
-    assert pylint_runs_successfully(result)
+    assert not pylint_runs_successfully(result)
 
     # make sure that some basic files were created
     assert (result.project_dir / "README.md").is_file()
@@ -88,7 +88,7 @@ def test_use_black_and_no_example_modules(copie):
 
     # provide a dictionary of the non-default answers to use
     extra_answers = {
-        "preferred_linter": "black",
+        "enforce_style": ["black", "pylint", "isort"],
         "create_example_module": False,
     }
 
@@ -98,6 +98,8 @@ def test_use_black_and_no_example_modules(copie):
     assert successfully_created_project(result)
 
     assert directory_structure_is_correct(result)
+
+    assert pylint_runs_successfully(result)
 
     # make sure that the files that were not requested were not created
     assert not (result.project_dir / "src/example_package/example_module.py").is_file()

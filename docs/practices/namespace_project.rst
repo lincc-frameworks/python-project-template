@@ -1,18 +1,24 @@
 Python namespace project
 ========================
 
-`Pep 420 <https://peps.python.org/pep-0420/>`_ defines a standard for namespace packages. This standard allows for separately versioned and maintained subpackages to present under a single top level package name.
-While the organization name *should* be globally unique to the python community the subpackage names are not so restricted.
+`Pep 420 <https://peps.python.org/pep-0420/>`_ defines a standard for namespace packages. 
+This standard allows for separately versioned and maintained subpackages to present 
+under a single top level package name. While the organization name *should* be globally 
+unique to the python community the subpackage names are not so restricted.
 
-For example the following code uses a namespace **acme** to contain two separately maintained projects **acme-supernovae** that uses a package name supernovae and **acme-utilities** that uses a package name utilities.
+For example the following code uses a namespace **acme** to contain two separately 
+maintained projects **acme-supernovae** that uses a package name supernovae and 
+**acme-utilities** that uses a package name utilities.
 
 .. code-block:: python
 
     from acme.supernovae import orbits
     from acme.utilities import fits, wcs
 
-A python project template created project can be converted to a `pep 420 <https://peps.python.org/pep-0420/>`_ compliant namespace package with a few steps.
-The example provided here is for a new project but the procedure can be applied to existing projects that have not strayed signficiantly from the template file structure.
+A python project template created project can be converted to a 
+`pep 420 <https://peps.python.org/pep-0420/>`_ compliant namespace package with a few steps.
+The example provided here is for a new project but the procedure can be applied 
+to existing projects that have not strayed signficiantly from the template file structure.
 
 Synopsis
 --------
@@ -27,7 +33,8 @@ Synopsis
 Example
 -------
 
-Follow the instructions at :doc:`New Project <../source/new_project>` to create a new project named **acme-supernovae** with a package named **supernovae**.
+Follow the instructions at :doc:`New Project <../source/new_project>` to create a new 
+project named **acme-supernovae** with a package named **supernovae**.
 
 .. code-block:: bash
 
@@ -38,10 +45,11 @@ Follow the instructions at :doc:`New Project <../source/new_project>` to create 
     mv src acme
     git add . && git commit -m 'initial branch commit'
 
-Change references to directory **src** to **acme** in all files. This part of the example might break over time
-as code changes and other uses of **src** are confused by the sed expression.
+Change references to directory **src** to **acme** in all files. This part of the example 
+might break over time as code changes and other uses of **src** are confused by the sed expression.
 
-Define bash functions to find the files containing **src** and to perform the change using sed so first add the shell functions.
+Define bash functions to find the files containing **src** and to perform the change using 
+sed so first add the shell functions.
 
 .. code-block:: bash
 
