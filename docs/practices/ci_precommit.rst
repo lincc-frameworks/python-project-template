@@ -14,29 +14,34 @@ to help enforcing code style and keeping it consistent during development.
 
 Using `pre-commit.ci lite <https://pre-commit.ci/lite>`_, we incorporate a bot
 into our project that performs as many automatic fixes as possible and reports
-any linting issues that it could not resolve but should be fixed.
+any code style issues that it could not resolve but should be fixed.
 
 For each pull request, our ``pre-commit.ci`` workflow will:
 
 * Clear outputs from Jupyter notebooks
 * Analyze the src code style and report code that doesn't adhere, using 
   the options you selected for your tooling set:
-  
+
   * "ruff": checks for linting rules, sorts imports, auto-formats code
   * "pylint": checks for compliance with pylint rules
   * "black": auto-formats code (including notebooks)
   * "isort": Sort imports using ``isort``
 
+* Analyze type hints (if mypy type checking is enabled)
+
 .. note::
   * Only a small subset of hooks declared in the ``.pre-commit-config.yaml`` file
-    is relevant for the CI pipeline. For more information on the list of available
+    is relevant for the CI pipeline. Some checks are simply not relevant, while 
+    others are performed in other github workflows instead.
+    
+    For more information on the list of available
     hooks visit :doc:`Pre-Commit <../practices/precommit>`.
 
 How to activate
 -------------------------------------------------------------------------------
 
-The template will automatically generate the ``pre-commit-ci.yml`` workflow file
-if you have chosen a linter when setting up the project with ``copier``. To finish 
-the configuration of this feature and activate the automatic fixes on pull requests, 
-you need to `install <https://github.com/apps/pre-commit-ci-lite/installations/new>`_
+The template will automatically generate the ``pre-commit-ci.yml`` workflow file. 
+To finish the configuration of this feature and activate the automatic fixes on
+pull requests, you need to 
+`install <https://github.com/apps/pre-commit-ci-lite/installations/new>`_
 the pre-commit application for your relevant GitHub repository.

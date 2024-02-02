@@ -85,7 +85,6 @@ enforce_style:
         pylint: pylint
         black: black
         isort: isort
-        none: none
     when: "{{ custom_install }}"
 
 failure_notification:

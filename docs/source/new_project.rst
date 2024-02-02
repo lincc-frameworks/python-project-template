@@ -45,25 +45,28 @@ questions:
      - This will either be a gihub organization, or your github username, if you're working outside 
        of an organization. This is used to construct URLs to your project, like
        ``https://github.com/{{project_organization}}/{{project_name}}``
-   * - *Your first and last name?* 
-     - The name of code's author. This will be used in the project and documentation metadata. 
+   * - *What is the name of the code author?* 
+     - The name of the code's author, or the organization that is responsible for the code.
+       This will be used in the project and documentation metadata. 
        This name will also be included as part of the copyright license.
    * - *Your preferred email address?*
      - The contact email for the code's author. This will be used in the project and documentation metadata.
    * - *What license would you like to use?*
      - The license type you want to use for this project. Options are MIT and BSD. For more information on these options see 
        `Github's license page <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository>`_.
-   * - *What tooling would you like to use to enforce code style?*
-     - A linter is a tool to automatically format for consistency (see :doc:`Linting <../practices/linting>`). 
-       We provide options for `black <https://black.readthedocs.io/en/stable/>`_, 
-       `pylint <https://pypi.org/project/pylint/>`_, `ruff <https://docs.astral.sh/ruff/>`_ or no linter.
-       Choosing a linter will include it as a project dependency and include it in the
+   * - *What versions of python are you targeting?*
+     - Select all versions of python that you are targeting for execution. We will add automated testing
+       for all of these versions. 
+   * - *What tooling set would you like to use to enforce code style?*
+     - See :doc:`/practices/linting`. 
+       We provide several compatible options for linters and autoformatters.
+       Choosing a formatter or linter will include it as a project dependency and include it in the
        :doc:`pre-commit <../practices/precommit>` hooks.
-       Defaults to ``pylint`` during simple installation. 
-   * - *Do you want to use isort to maintain a specific ordering for module imports?*
-     - `isort <https://pycqa.github.io/isort/>`_ is a tool for ordering imports in a standard order. 
-       Enabling the option will include ``isort`` as part of github's :doc:`pre-commit <../practices/precommit>`. 
-       Defaults to ``True`` during simple installation.
+       Defaults to ``ruff`` during simple installation. 
+   * - *How would you like to receive workflow failure notifications?*
+     - See :doc:`/practices/ci_testing`. 
+       Some github workflows are not loud about their failures, so we have some configuration
+       for sending alerts to you or your team.
    * - *Would you like to include mypy to perform static type checking for type hints?*
      - `mypy <https://www.mypy-lang.org>`_ performs static type checking on python code that uses 
        `type hints <https://docs.python.org/3/library/typing.html>`_. This type checking makes sure that the 
@@ -75,6 +78,10 @@ questions:
      - If this option is selected the template will create an example module 
        ``src/{{package_name}}/example_module.py`` and test file 
        ``tests/{{package_name}}/test_example_module.py``. Defaults to ``True`` during simple installation.
+   * - *Do you want to include a directory for sphinx, and autoapi generation?*
+     - If this option is selected the template will create directories and configuration files
+       to enable Sphinx document generation and ReadTheDocs integration. Any docstrings in your 
+       python files will be turned into API documentation.
    * - *Do you want to include rendered notebooks in your documentation?*
      - The requirements to host rendered notebooks on your Read the Docs (or just build them locally) will 
        be included in your project. A sample notebook will be generated and added to your docs as an example.
@@ -83,11 +90,6 @@ questions:
        `airspeed velocity (ASV) <https://asv.readthedocs.io/en/stable/>`_. The template will add the GitHub 
        workflows for continuous integration and create a sample benchmarking suite under 
        ``benchmarks/benchmarks/benchmarks.py``. Defaults to ``True`` during simple installation.
-   * - *Do you want to add a .gitattributes with entries for git-lfs?*
-     - Support for large files for use in git. This option is primarily informational and no answer locks 
-       you in to using (or not using) git-lfs. Importantly, selecting this option does not install git-lfs 
-       for your project (see :doc:`Git_Large_File_Support <../practices/git-lfs>`).
-
 
 While these choices will provide the initial structure for your project, most 
 can be changed later. 
