@@ -31,7 +31,7 @@ Modifying using the Github Web-Interface
 Github offers native support for adding and modifying issue templates directly
 in it's web-interface. This is done within the settings menu, and Github has a
 straightforward guide on how to access this interface, 
-`here <https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository>`_
+`here <https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository>`_.
 
 Changing Template Ordering
 ...............................................................................
