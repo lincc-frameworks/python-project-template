@@ -45,7 +45,7 @@ def unit_tests_in_project_run_successfully(result, package_name = "example_packa
     virtual environment for the project.
     """
     pytest_results = subprocess.run(
-        ["python", "-m", "pytest", (result.project_dir / f"tests/{package_name}")],
+        ["python", "-m", "pytest"],
         cwd=result.project_dir
     )
 

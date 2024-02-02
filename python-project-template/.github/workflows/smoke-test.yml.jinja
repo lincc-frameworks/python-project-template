@@ -40,7 +40,7 @@ jobs:
         pip list
     - name: Run unit tests with pytest
       run: |
-        python -m pytest tests
+        python -m pytest
 {%- if 'email' in failure_notification %}
     - name: Send failure email
 {%- endif %}
