@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10']
+        python-version: {{ python_versions }}
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -41,3 +41,9 @@ jobs:
     - name: Run unit tests with pytest
       run: |
         python -m pytest tests
+{%- if 'email' in failure_notification %}
+    - name: Send failure email
+{%- endif %}
+{%- if 'slack' in failure_notification %}
+    - name: Send slack message
+{%- endif %}
