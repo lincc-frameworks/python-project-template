@@ -107,8 +107,30 @@ select = [
     "SIM",
     # isort
     "I",
+    # docstrings
+    "D101",
+    "D102",
+    "D103",
+    "D106",
+    "D206",
+    "D207",
+    "D208",
+    "D300",
+    "D417",
+    "D419",
+
 ]
-ignore = []
+
+ignore = [
+    "UP006", # Allow non standard library generics in type hints
+    "UP007", # Allow Union in type hints
+    "SIM114", # Allow if with same arms
+    "B028", # Allow default warning level
+    "SIM117", # Allow nested with
+    "UP015", # Allow redundant open parameters
+    "UP028", # Allow yield in for loop
+]
+
 {%- if mypy_type_checking != 'none' %}
 [tool.setuptools.package-data]
 {{package_name}} = ["py.typed"]
