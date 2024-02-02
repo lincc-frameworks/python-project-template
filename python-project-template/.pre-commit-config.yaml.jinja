@@ -1,6 +1,5 @@
 fail_fast: true
 repos:
-
     # Compare the local template version to the latest remote template version
     # This hook should always pass. It will print a message if the local version 
     # is out of date.
@@ -11,7 +10,6 @@ repos:
         name: Check template version
         description: Compare current template version against latest
         verbose: true
-
     # Clear output from jupyter notebooks so that only the input cells are committed.
   - repo: local
     hooks:
@@ -22,7 +20,6 @@ repos:
         stages: [commit]
         language: system
         entry: jupyter nbconvert --clear-output
-
     # Prevents committing directly branches named 'main' and 'master'.
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -83,6 +80,7 @@ repos:
             "-sn", # Don't display the score
             "--rcfile=tests/.pylintrc",
           ]
+{%- endif %}
 {%- if 'black' in enforce_style %}
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
@@ -96,6 +94,7 @@ repos:
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
+{%- endif %}
 {%- if 'ruff' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
@@ -117,11 +116,11 @@ repos:
         files: ^(src|tests)/
         args:
           [
-          {% if mypy_type_checking == 'basic' %}
+          {%- if mypy_type_checking == 'basic' %}
             "--ignore-missing-imports", # Ignore imports without type hints
-          {% elif mypy_type_checking == 'strict' %}
+          {%- elif mypy_type_checking == 'strict' %}
             "--strict", # Use mypy strict mode to enforce type hints
-          {% endif %}
+          {%- endif %}
           ]
 {%- endif %}
     # Run unit tests, verify that they pass. Note that coverage is run against
