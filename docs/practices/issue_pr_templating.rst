@@ -23,7 +23,7 @@ types. By default, the python-project-template provides three base templates
 * **feature-request-template**: A template for requesting new features of the package.
 
 A user will be prompted to choose between these templates any time they attempt
-to create a new issue in the repository. You may add to new templates to this 
+to create a new issue in the repository. You may add new templates to this 
 list as additional common issue themes become clear in your project.
 
 Modifying using the Github Web-Interface
