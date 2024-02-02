@@ -23,7 +23,7 @@ jobs:
             package_name: example_package # The default package_name
             extra_flags: ''
             foldername: base_example
-          - name: Black w/o example module
+          - name: No example module
             package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: >-
               --data project_name=new_science
@@ -31,12 +31,11 @@ jobs:
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
-              --data enforce_style=["black"]
               --data mypy_type_checking=basic
               --data create_example_module=no
               --data include_notebooks=no
             foldername: 'black_w_o_example_module'
-          - name: Black w/ example
+          - name: Example module
             package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
             extra_flags: >-
               --data project_name=new_science
@@ -44,24 +43,10 @@ jobs:
               --data author_name=Drew
               --data author_email=ao@aol.com
               --data project_license=BSD
-              --data enforce_style=["black"]
               --data mypy_type_checking=basic
               --data create_example_module=yes
               --data include_notebooks=no
             foldername: 'black_w_example_module'
-          - name: Pylint w/o example
-            package_name: 'drewtonian' # Same module name provided in `extra_flags` on the next line.
-            extra_flags: >-
-              --data project_name=new_science
-              --data package_name=drewtonian
-              --data author_name=Drew
-              --data author_email=ao@aol.com
-              --data project_license=BSD
-              --data enforce_style=["pylint"]
-              --data mypy_type_checking=basic
-              --data create_example_module=no
-              --data include_notebooks=no
-            foldername: 'pylint_w_o_example_module'
           - name: No sphinx docs
             package_name: 'drewtonian'
             extra_flags: >-
@@ -111,7 +96,6 @@ jobs:
         python -m pylint --recursive=y ./src/ --rcfile=./src/.pylintrc
    
     - name: black checks
-      if: ${{ contains(matrix.copier_config.extra_flags, 'enforce_style=["black"]') }}
       uses: psf/black@stable
       with:
         src: "../test/${{ matrix.copier_config.foldername }}/src"
