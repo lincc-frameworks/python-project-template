@@ -42,8 +42,7 @@ repos:
       - id: validate-pyproject
         name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
-
-{% if use_isort == true %}
+{%- if use_isort == true %}
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
@@ -52,9 +51,8 @@ repos:
         name: Run isort
         description: Sort and organize imports in .py and .pyi files.
         types_or: [python, pyi]
-{% endif %}
-
-{% if preferred_linter == 'pylint' %}
+{%- endif %}
+{%- if preferred_linter == 'pylint' %}
     # Analyze the src code style and report code that doesn't adhere.
   - repo: local
     hooks:
@@ -70,7 +68,6 @@ repos:
             "-sn", # Don't display the score
             "--rcfile=src/.pylintrc",
           ]
-
     # Analyze the tests code style and report code that doesn't adhere.
   - repo: local
     hooks:
@@ -86,7 +83,7 @@ repos:
             "-sn", # Don't display the score
             "--rcfile=tests/.pylintrc",
           ]
-{% elif preferred_linter == 'black' %}
+{%- elif preferred_linter == 'black' %}
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
     rev: 23.7.0
@@ -99,16 +96,15 @@ repos:
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
-{% elif preferred_linter == 'ruff' %}
+{%- elif preferred_linter == 'ruff' %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
     rev: v0.1.3
     hooks:
       - id: ruff
         types_or: [ python, pyi, jupyter ]
-{% endif %}
-
-{% if mypy_type_checking != 'none' %}
+{%- endif %}
+{%- if mypy_type_checking != 'none' %}
     # Analyze type hints and report errors.
   - repo: local
     hooks:
@@ -126,8 +122,7 @@ repos:
             "--strict", # Use mypy strict mode to enforce type hints
           {% endif %}
           ]
-{% endif %}
-
+{%- endif %}
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the 
     # github workflow script, the coverage is run against the installed package
@@ -142,8 +137,7 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-
-{%- if include_notebooks %}
+{% if include_notebooks %}
     # Make sure Sphinx can build the documentation while explicitly omitting 
     # notebooks from the docs, so users don't have to wait through the execution 
     # of each notebook or each commit. By default, these will be checked in the 
