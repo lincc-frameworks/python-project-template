@@ -41,49 +41,39 @@ jobs:
     - name: Run unit tests with pytest
       run: |
         python -m pytest
-    - name: Print failure_notification values
-      run: |
-        echo "failure_notification: ${{ toJson(failure_notification) }}"
-        
 {%- if 'email' in failure_notification %}
-    - name: Send failure email
-      #if: ${{ failure() }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
+    - name: Send email
       uses: dawidd6/action-send-mail@v3
       with:
-        # Specify connection via URL (replaces server_address, server_port, secure,
-        # username and password)
-        #
-        # Format:
-        #
-        #  * smtp://user:password@server:port
-        #  * smtp+starttls://user:password@server:port
-        ###connection_url: ${{secrets.MAIL_CONNECTION}}
-        
         # Required mail server address if not connection_url:
         server_address: smtp.gmail.com
-        
-        # Server port, default 25:
+        # Server port: (uses TLS by default if server_port is 465)
         server_port: 465
-        
-        # Optional whether this connection use TLS (default is true if server_port is 465)
-        ###secure: true
 
-        # TODO: may need to uncomment these following lines; just testing for now to see if we can get away with this
-        # Optional (recommended) mail server username:
-        ###username: ${{secrets.MAIL_USERNAME}}
-        # Optional (recommended) mail server password:
-        ###password: ${{secrets.MAIL_PASSWORD}}
-        
-        # Required mail subject:
-        subject: Github Actions job result
+        # Mail server username:
+        username: {% raw %}${{secrets.MAIL_USERNAME}}{% endraw %}
+        # Mail server password:
+        password: {% raw %}${{secrets.MAIL_PASSWORD}}{% endraw %}
         # Required recipients' addresses:
         to: {{ author_email }}
-        # Required sender full name (address can be skipped):
-        from: ${{github.repository}} Workflow
-        
-        # Optional plain body:
-        body: Job in ${{github.repository}} has failed :(
-        
+
+        # Required mail subject:
+        subject: {% raw %}Smoke test ${{ job.status }} in ${{github.repository}}{% endraw %}
+        # Required sender full name:
+        from: GitHub Actions Report
+        # Optional body:
+        html_body: {% raw %}|
+          <!DOCTYPE html>
+          <html>
+          <body>
+          <h3>Smoke test ${{ job.status }}</h3>
+          <p>The smoke test in <b>${{ github.repository }}</b> has completed with result: <b>${{ job.status }}</b></p>
+          <p><a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}">
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          </a></p>
+          </body>
+          </html>
+          {% endraw %}
 {%- endif %}
 {%- if 'slack' in failure_notification %}
     - name: Send status to Slack app
