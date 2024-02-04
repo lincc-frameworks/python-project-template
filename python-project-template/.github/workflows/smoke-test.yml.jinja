@@ -43,6 +43,43 @@ jobs:
         python -m pytest
 {%- if 'email' in failure_notification %}
     - name: Send failure email
+      if: ${{ failure() }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Specify connection via URL (replaces server_address, server_port, secure,
+        # username and password)
+        #
+        # Format:
+        #
+        #  * smtp://user:password@server:port
+        #  * smtp+starttls://user:password@server:port
+        ###connection_url: ${{secrets.MAIL_CONNECTION}}
+        
+        # Required mail server address if not connection_url:
+        server_address: smtp.gmail.com
+        
+        # Server port, default 25:
+        server_port: 465
+        
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        ###secure: true
+
+        # TODO: may need to uncomment these following lines; just testing for now to see if we can get away with this
+        # Optional (recommended) mail server username:
+        ###username: ${{secrets.MAIL_USERNAME}}
+        # Optional (recommended) mail server password:
+        ###password: ${{secrets.MAIL_PASSWORD}}
+        
+        # Required mail subject:
+        subject: Github Actions job result
+        # Required recipients' addresses:
+        to: {%- author_email -%}
+        # Required sender full name (address can be skipped):
+        from: ${{github.repository}} Workflow
+        
+        # Optional plain body:
+        body: Job in ${{github.repository}} has failed :(
+        
 {%- endif %}
 {%- if 'slack' in failure_notification %}
     - name: Send status to Slack app
