@@ -93,7 +93,7 @@ failure_notification:
     default: [email]
     multiselect: true
     choices:
-        email: email
+        email (additional configuration required): email
         slack bot integration (additional configuration required): slack
         none: none
     when: "{{ custom_install }}"
