@@ -43,7 +43,7 @@ jobs:
         python -m pytest
 {%- if 'email' in failure_notification %}
     - name: Send failure email
-      if: ${{ failure() }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
+      #if: ${{ failure() }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
       uses: dawidd6/action-send-mail@v3
       with:
         # Specify connection via URL (replaces server_address, server_port, secure,
@@ -83,7 +83,7 @@ jobs:
 {%- endif %}
 {%- if 'slack' in failure_notification %}
     - name: Send status to Slack app
-      if: ${{ failure() && github.event_name != 'workflow_dispatch' }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
+      #if: ${{ failure() }} # && github.event_name != 'workflow_dispatch' }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
       id: slack
       uses: slackapi/slack-github-action@v1.24.0
       with:
