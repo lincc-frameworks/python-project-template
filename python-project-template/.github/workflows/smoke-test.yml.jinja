@@ -41,6 +41,10 @@ jobs:
     - name: Run unit tests with pytest
       run: |
         python -m pytest
+    - name: Print failure_notification values
+      run: |
+        echo "failure_notification: ${{ toJson(failure_notification) }}"
+        
 {%- if 'email' in failure_notification %}
     - name: Send failure email
       #if: ${{ failure() }} # Only post if the workflow failed and was not manually started. Customize this as necessary./
