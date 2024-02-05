@@ -61,11 +61,46 @@ looks into the nature of the failure. This can be tricky with github, as a
 worfklow failure will, by default, only notify the maintainer who added the
 workflow file to the repo.
 
-The template supports two types of notifications: email or slack. If you 
-choose slack, some additional configuration is necessary.
+The template supports two types of notifications: email or slack. Both options 
+require some additional configuration, as follows:
+
+Email notifications
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a Gmail app password and add to your repo's secret
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To send email notifications, you'll need to create a Gmail app password and add
+it to your repo's secrets.
+
+- `Create a Gmail app password <https://support.google.com/accounts/answer/185833?hl=en>`_.
+
+  - You'll need to enable 2-step verification for your Google account to create
+    an app password. This is a good idea anyway, as it adds an extra layer of
+    security to your account.
+
+  - Once you've enabled 2-step verification, you can create an app password
+    for your account. This is a password that you'll use to send emails from
+    your account, without needing to use your actual account password.
+
+  - You'll need to create a new app password for each repo that you want to
+    send email notifications from.
+
+- `Add the app password to your repo's secrets <https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository>`_.
+
+  - By default, the template uses the secret names ``MAIL_USERNAME`` and 
+    ``MAIL_PASSWORD``. You can change this in the ``smoke-test.yml`` file.
+
+.. note::
+   The email notifications are sent from the email address associated with the
+   app password, so you may want to create a new email address for this purpose.
+
+
+Slack notifications
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a Slack App
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You'll need to create a Slack app. It's not as scary as it sounds!
 It will have certain permissions to post to particular channels, and will have
@@ -86,7 +121,7 @@ for setting up an app. We really only need steps 1 and 5, summarized below:
   Copy the webook URL.
 
 Github workflow step to post to webhook
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now you'll need to configure each project repo to send slack messages.
 
