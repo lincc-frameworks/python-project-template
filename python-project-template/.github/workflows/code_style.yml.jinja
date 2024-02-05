@@ -33,11 +33,11 @@ jobs:
         pip install .
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-{%- if mypy_type_checking == 'basic' -%}
+{%- if mypy_type_checking == 'basic' %}
     - name: Analyze code with mypy
       run: |
         mypy ./src ./tests --ignore-missing-imports
-{%- elif mypy_type_checking == 'strict' -%}
+{%- elif mypy_type_checking == 'strict' %}
     - name: Analyze code with mypy
       run: |
         mypy ./src ./tests --strict
@@ -58,6 +58,7 @@ jobs:
 {%- endif -%}
 {%- if 'ruff' in enforce_style %}
     - name: Analyze code with ruff
+      run: |
        ruff format --check
        ruff check
 {%- endif -%}
