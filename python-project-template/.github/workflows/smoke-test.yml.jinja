@@ -77,6 +77,7 @@ jobs:
           {% endraw %}
 {%- endif %}
 {%- if 'slack' in failure_notification %}
+{%- raw %}
     - name: Send status to Slack app
       if: {% raw %}${{ failure() && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only post if the workflow failed and was not manually started. Customize this as necessary.
       id: slack

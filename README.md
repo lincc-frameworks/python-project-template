@@ -15,8 +15,10 @@ For all the information, see the detailed user guide in
 
 Choose where you would like to create your new project, and call copier with the template.
 
-```
->$ copier copy gh:lincc-frameworks/python-project-template <path/to/destination>
+```sh
+copier copy gh:lincc-frameworks/python-project-template <path/to/destination>
+cd <path/to/destination>
+bash .prepare_project.sh
 ```
 
 ## Contributing to the Template

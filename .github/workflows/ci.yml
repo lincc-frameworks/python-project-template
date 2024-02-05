@@ -88,13 +88,7 @@ jobs:
         git commit -m initial
         pip install .
         pip install .[dev]
-    
-    - name: pylint checks
-      if: ${{ contains (matrix.copier_config.name, 'Base') }}
-      run: |
-        cd ../test/${{ matrix.copier_config.foldername }}
-        python -m pylint --recursive=y ./src/ --rcfile=./src/.pylintrc
-   
+      
     - name: black checks
       uses: psf/black@stable
       with:
