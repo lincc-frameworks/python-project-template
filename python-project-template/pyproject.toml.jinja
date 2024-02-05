@@ -18,6 +18,7 @@ classifiers = [
     "Programming Language :: Python",
 ]
 dynamic = ["version"]
+requires-python = ">={{ python_versions[0] }}"
 dependencies = [
 {%- if include_notebooks %}
     "ipykernel", # Support for Jupyter notebooks
@@ -80,7 +81,7 @@ testpaths = [
 
 [tool.black]
 line-length = 110
-target-version = ["py38"]
+target-version = ["py{{ python_versions[0] | replace(".", "") }}"]
 
 [tool.isort]
 profile = "black"
@@ -88,7 +89,7 @@ line_length = 110
 
 [tool.ruff]
 line-length = 110
-target-version = "py38"
+target-version = "py{{ python_versions[0] | replace(".", "") }}"
 
 [tool.ruff.lint]
 select = [
