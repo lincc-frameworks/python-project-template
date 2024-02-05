@@ -26,18 +26,18 @@ jobs:
 
     steps:
       - name: Checkout main branch of the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
         with:
           fetch-depth: 0
 
       - name: Cache Python ${{ env.PYTHON_VERSION }}
-        uses: actions/cache@v3
+        uses: actions/cache@main
         with:
           path: ~/.cache/pip
           key: python-${{ env.PYTHON_VERSION }}
 
       - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@main
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
 
@@ -71,7 +71,7 @@ jobs:
           echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       - name: Use last nightly commit hash from cache
-        uses: actions/cache@v3
+        uses: actions/cache@main
         with:
           path: ${{ env.WORKING_DIR }}
           key: nightly-results-${{ steps.nightly-dates.outputs.yesterday }}
@@ -88,7 +88,7 @@ jobs:
           echo $CURRENT_HASH > $HASH_FILE
 
       - name: Update last nightly hash in cache
-        uses: actions/cache@v3
+        uses: actions/cache@main
         with:
           path: ${{ env.WORKING_DIR }}
           key: nightly-results-${{ steps.nightly-dates.outputs.today }}
