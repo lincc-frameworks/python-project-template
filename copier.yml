@@ -38,8 +38,8 @@ project_organization:
     help: What github organization will your project live under? 
     default: my_organization
     validator: >-
-        {% if not (project_organization | regex_search('^[a-z][a-z0-9\_\-]+$')) %}
-        Must use a lowercase letter followed by one or more of (a-z, 0-9, _, -).
+        {% if not (project_organization | regex_search('^[a-zA-Z0-9][a-zA-Z0-9\-]+$')) %}
+        The name may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.
         {% endif %}
 
 author_name:
