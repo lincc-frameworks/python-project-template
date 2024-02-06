@@ -36,6 +36,7 @@ please :doc:`/source/contact`
    practices/ci_testing
    practices/code_coverage
    practices/git-lfs
+   practices/issue_pr_templating
    practices/linting
    practices/namespace_project
    practices/pipx

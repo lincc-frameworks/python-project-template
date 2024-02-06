@@ -1,7 +1,7 @@
-# This workflow will install Python dependencies, then perform static type checking analysis.
+# This workflow will install Python dependencies, then perform static analysis for code style and type checking.
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: mypy Type checking
+name: Code Style analysis
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10']
+        python-version: {{ python_versions }}
 
     steps:
     - uses: actions/checkout@v3
@@ -33,11 +33,32 @@ jobs:
         pip install .
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+{%- if mypy_type_checking == 'basic' %}
     - name: Analyze code with mypy
-{% if mypy_type_checking == 'basic' %}
       run: |
         mypy ./src ./tests --ignore-missing-imports
-{% elif mypy_type_checking == 'strict' %}
+{%- elif mypy_type_checking == 'strict' %}
+    - name: Analyze code with mypy
       run: |
         mypy ./src ./tests --strict
-{% endif -%}
+{%- endif -%}
+{%- if 'black' in enforce_style %}
+    - name: Analyze code for black formatting
+      run: |
+        black --check .
+{%- endif -%}
+{%- if 'pylint' in enforce_style %}
+    - name: Analyze code with pylint
+      run: |
+        pylint -rn -sn --recursive=y ./src --rcfile=./src/.pylintrc
+        pylint -rn -sn --recursive=y ./tests --rcfile=./tests/.pylintrc
+{%- if include_benchmarks %}
+        pylint -rn -sn --recursive=y ./benchmarks --rcfile=./tests/.pylintrc
+{%- endif -%}
+{%- endif -%}
+{%- if 'ruff' in enforce_style %}
+    - name: Analyze code with ruff
+      run: |
+       ruff format --check
+       ruff check
+{%- endif -%}

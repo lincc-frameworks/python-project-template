@@ -20,6 +20,15 @@ dependencies = [
     "sphinx-rtd-theme", # Used to render documentation
 ]
 
+[project.optional-dependencies]
+dev = [
+    "black", # Used to format code
+    "pre-commit", # Used to run checks prior to committing code
+    "pytest", # Used to run tests
+    "pytest-copie", # Used to create hydrated copier projects for testing
+    "tox", # Used to run tests in multiple environments
+]
+
 [build-system]
 requires = [
     "setuptools>=62", # Used to build and package the Python project
