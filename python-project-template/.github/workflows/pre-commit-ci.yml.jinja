@@ -13,11 +13,11 @@ jobs:
     env: 
       SKIP: "check-lincc-frameworks-template-version,pytest-check,no-commit-to-branch,validate-pyproject,check-added-large-files,sphinx-build"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
       with:
         fetch-depth: 0 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@main
       with:
         python-version: '3.10'
     - name: Install dependencies
@@ -27,8 +27,8 @@ jobs:
         pip install .
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - uses: pre-commit/action@v3.0.0
+    - uses: pre-commit/action@main # Still using Node 16
       with:
         extra_args: --from-ref {% raw %}${{ github.event.pull_request.base.sha }}{% endraw %} --to-ref {% raw %}${{ github.event.pull_request.head.sha }}{% endraw %}
-    - uses: pre-commit-ci/lite-action@v1.0.1
+    - uses: pre-commit-ci/lite-action@main
       if: always()

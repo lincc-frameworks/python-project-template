@@ -25,12 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Cache Python ${{ env.PYTHON_VERSION }}
-      uses: actions/cache@v3
+      uses: actions/cache@main
       with:
         path: ~/.cache/pip
         key: python-${{ env.PYTHON_VERSION }}
     - name: Set up Python ${{ env.PYTHON_VERSION }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@main
       with:
         python-version: ${{ env.PYTHON_VERSION }}
   asv-pr:
@@ -41,14 +41,14 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
     steps:
     - name: Checkout PR branch of the repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@main
       with:
         fetch-depth: 0
     - name: Display Workflow Run Information
       run: |
         echo "Workflow Run ID: ${{ github.run_id }}"
     - name: Cache Python ${{ env.PYTHON_VERSION }}
-      uses: actions/cache@v3
+      uses: actions/cache@main
       with:
         path: ~/.cache/pip
         key: python-${{ env.PYTHON_VERSION }}
@@ -62,7 +62,7 @@ jobs:
     - name: Save pull request number
       run: echo ${{ github.event.pull_request.number }} > ${{ env.ARTIFACTS_DIR }}/pr
     - name: Get current job logs URL
-      uses: Tiryoh/gha-jobid-action@v0
+      uses: Tiryoh/gha-jobid-action@main
       id: jobs
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -81,7 +81,7 @@ jobs:
       env:
         STEP_URL: "${{ steps.jobs.outputs.html_url }}#step:11:1"
     - name: Upload artifacts (PR number and benchmarks output)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@main
       with:
         name: benchmark-artifacts
         path: ${{ env.ARTIFACTS_DIR }}
