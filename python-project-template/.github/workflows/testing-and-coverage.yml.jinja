@@ -36,4 +36,4 @@ jobs:
     - name: Upload coverage report to codecov
       uses: codecov/codecov-action@main
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+        token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
