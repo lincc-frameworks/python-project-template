@@ -150,7 +150,6 @@ or missing dependencies.
 
 .. code:: bash
 
-    >> pip install -e .
     >> pip install -e .'[dev]'
 
 .. note:: 

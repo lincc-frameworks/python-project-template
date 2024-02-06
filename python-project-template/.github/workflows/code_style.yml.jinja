@@ -30,7 +30,6 @@ jobs:
       run: |
         sudo apt-get update
         python -m pip install --upgrade pip
-        pip install .
         pip install .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 {%- if mypy_type_checking == 'basic' %}

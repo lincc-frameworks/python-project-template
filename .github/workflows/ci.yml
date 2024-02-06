@@ -86,7 +86,6 @@ jobs:
         git init --initial-branch=main
         git add src
         git commit -m initial
-        pip install .
         pip install .[dev]
       
     - name: black checks

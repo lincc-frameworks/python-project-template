@@ -32,8 +32,7 @@ jobs:
       run: |
         sudo apt-get update
         python -m pip install --upgrade pip
-        pip install .
-        pip install .[dev]
+        pip install -e .[dev]
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: List dependencies
       run: |
