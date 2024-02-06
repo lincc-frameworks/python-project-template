@@ -35,3 +35,5 @@ jobs:
         python -m pytest --cov={{package_name}} --cov-report=xml
     - name: Upload coverage report to codecov
       uses: codecov/codecov-action@main
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}

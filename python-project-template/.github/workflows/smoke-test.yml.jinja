@@ -44,7 +44,7 @@ jobs:
 {%- if 'email' in failure_notification %}
     - name: Send status to author's email      
       if: {% raw %}${{ failure() }} && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only email if the workflow failed and was not manually started. Customize this as necessary.
-      uses: dawidd6/action-send-mail@main
+      uses: dawidd6/action-send-mail@master
       with:
         # Required mail server address if not connection_url:
         server_address: smtp.gmail.com
