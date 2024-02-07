@@ -36,7 +36,7 @@ package_name:
 project_organization:
     type: str
     help: What github organization will your project live under? 
-    default: my_organization
+    default: my-organization
     validator: >-
         {% if not (project_organization | regex_search('^[a-zA-Z0-9][a-zA-Z0-9\-]*$')) %}
         The name may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.
