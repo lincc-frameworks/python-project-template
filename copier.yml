@@ -90,12 +90,11 @@ enforce_style:
 failure_notification:
     help: How would you like to receive workflow failure notifications?
     type: str
-    default: [email]
+    default: []
     multiselect: true
     choices:
         email (additional configuration required): email
         slack bot integration (additional configuration required): slack
-        none: none
     when: "{{ custom_install }}"
 
 mypy_type_checking:
