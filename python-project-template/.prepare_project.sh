@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
+echo "Checking virtual environment"
+if [ -z "${VIRTUAL_ENV}" ] && [ -z "${CONDA_PREFIX}" ]; then
+    echo 'No virtual environment detected: none of $VIRTUAL_ENV or $CONDA_PREFIX is set.'
+    echo "See https://lincc-ppt.readthedocs.io/ for details."
+    exit 1
+fi
+
 echo "Checking pip version"
 MINIMUM_PIP_VERSION=22
-pipversion=( $(pip --version | awk '{print $2}' | sed 's/\./ /g') )
+pipversion=( $(python -m pip --version | awk '{print $2}' | sed 's/\./ /g') )
 if let "${pipversion[0]}<${MINIMUM_PIP_VERSION}"; then
     echo "Insufficient version of pip found. Requires at least version ${MINIMUM_PIP_VERSION}."
     echo "See https://lincc-ppt.readthedocs.io/ for details."
@@ -25,10 +32,10 @@ echo "Initializing local git repository"
 } > /dev/null
 
 echo "Installing package and runtime dependencies in local environment"
-pip install -e . > /dev/null
+python -m pip install -e . > /dev/null
 
 echo "Installing developer dependencies in local environment"
-pip install -e .'[dev]' > /dev/null
+python -m pip install -e .'[dev]' > /dev/null
 
 echo "Installing pre-commit"
 pre-commit install > /dev/null
