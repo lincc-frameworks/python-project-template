@@ -94,14 +94,25 @@ repos:
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.10
 {%- endif %}
-{%- if 'ruff' in enforce_style %}
+{%- if 'ruff_lint' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
     rev: v0.1.3
     hooks:
       - id: ruff
-        name: Format and lint code using ruff
+        name: Lint code using ruff
         types_or: [ python, pyi, jupyter ]
+        args: ["check"]
+{%- endif %}
+{%- if 'ruff_format' in enforce_style %}
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.1.3
+    hooks:
+      - id: ruff
+        name: Format code using ruff
+        types_or: [ python, pyi, jupyter ]
+        args: ["format", "--check"]
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
     # Analyze type hints and report errors.

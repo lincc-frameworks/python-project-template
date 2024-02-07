@@ -62,7 +62,7 @@ questions:
        We provide several compatible options for linters and autoformatters.
        Choosing a formatter or linter will include it as a project dependency and include it in the
        :doc:`pre-commit <../practices/precommit>` hooks.
-       Defaults to ``ruff`` during simple installation. 
+       Defaults to ``ruff`` (linting and autoformatting) during simple installation. 
    * - *How would you like to receive workflow failure notifications?*
      - See :doc:`/practices/ci_testing`. 
        Some github workflows are not loud about their failures, so we have some configuration

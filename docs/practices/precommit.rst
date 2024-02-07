@@ -59,7 +59,11 @@ of these that are not useful for your project.
      - Runs black to enforce a particular code style on .py, .pyi and .ipynb files. 
        One can add more file extensions by editing this hook on ``.pre-commit-config.yaml`` 
        directly. *(Optionally installed when project is created.)*
-   * - Format and lint code using ruff
+   * - Lint code using ruff
+     - Runs ruff to enforce a particular code style on .py, .pyi and .ipynb files. 
+       One can add more file extensions by editing this hook on ``.pre-commit-config.yaml`` 
+       directly. *(Optionally installed when project is created.)*
+   * - Format code using ruff
      - Runs ruff to enforce a particular code style on .py, .pyi and .ipynb files. 
        One can add more file extensions by editing this hook on ``.pre-commit-config.yaml`` 
        directly. *(Optionally installed when project is created.)*

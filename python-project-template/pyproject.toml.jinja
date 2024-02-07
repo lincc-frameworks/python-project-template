@@ -45,7 +45,7 @@ dev = [
 {%- if 'black'  in enforce_style %}
     "black", # Used for static linting of files
 {%- endif %}
-{%- if 'ruff' in enforce_style %}
+{%- if 'ruff_lint' in enforce_style or 'ruff_format' in enforce_style %}
     "ruff", # Used for static linting of files
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}

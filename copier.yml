@@ -78,10 +78,11 @@ python_versions:
 enforce_style:
     help: What tooling set would you like to use to enforce code style? Use SPACE to highlight all that apply.
     type: str
-    default: [ruff]
+    default: [ruff_lint, ruff_format]
     multiselect: true
     choices:
-        ruff: ruff
+        ruff linting: ruff_lint
+        ruff auto-formatter: ruff_format
         pylint: pylint
         black: black
         isort: isort
