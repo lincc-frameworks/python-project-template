@@ -121,9 +121,15 @@ script in your new project directory.
 
     >> bash .prepare_project.sh
 
-This script will initialize your local git repository then install the new Python
-package in editable mode along with runtime and developer dependencies. Finally
-the script will initialize :doc:`pre-commit <../practices/precommit>`.
+This script will initialize your local git repository, install the new Python
+package in editable mode along with runtime and developer dependencies, and
+initialize :doc:`pre-commit <../practices/precommit>`.
+
+.. important::
+    The script ends by creating a first commit to the initial branch with the template files.
+    If you added other files to the repository before running the script they will be subject
+    to the pre-commit hooks checks. If they are not compliant the bash script will exit
+    with a verbose error code. You should apply the suggestions and re-run the script.
 
 The full contents of the script can be seen on `Github <https://github.com/lincc-frameworks/python-project-template/tree/main/python-project-template/.prepare_project.sh>`_.
 
