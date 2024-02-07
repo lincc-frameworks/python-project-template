@@ -32,3 +32,6 @@ pip install -e .'[dev]' > /dev/null
 
 echo "Installing pre-commit"
 pre-commit install > /dev/null
+
+echo "Committing initial files"
+git add . && SKIP="no-commit-to-branch" git commit -m "Initial commit"
