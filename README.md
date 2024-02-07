@@ -19,7 +19,7 @@ Choose where you would like to create your new project, and call copier with the
 copier copy gh:lincc-frameworks/python-project-template <path/to/destination>
 cd <path/to/destination>
 # Create a virtual environment, feel free to use conda, pyenv or your favorite tool
-python3 -mvenv ~/.virtualenvs/<project_name>
+python3 -mvenv ~/.virtualenvs/<env_name>
 source ~/.virtualenvs/<project_name>/bin/activate
 bash .prepare_project.sh
 ```
