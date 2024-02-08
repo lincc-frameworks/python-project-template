@@ -3,8 +3,16 @@
 echo "Checking virtual environment"
 if [ -z "${VIRTUAL_ENV}" ] && [ -z "${CONDA_PREFIX}" ]; then
     echo 'No virtual environment detected: none of $VIRTUAL_ENV or $CONDA_PREFIX is set.'
-    echo "See https://lincc-ppt.readthedocs.io/ for details."
-    exit 1
+    echo
+    echo "=== This script is going to install the project in the system python environment ==="
+    echo "Proceed? [y/N]"
+    read -r RESPONCE
+    if [ "${RESPONCE}" != "y" ]; then
+        echo "See https://lincc-ppt.readthedocs.io/ for details."
+        echo "Exiting."
+        exit 1
+    fi
+
 fi
 
 echo "Checking pip version"
