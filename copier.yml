@@ -146,9 +146,10 @@ include_benchmarks:
 _message_after_copy: |
     Your project "{{ project_name }}" has been created successfully!
 
-    Next, change directory to the project root and complete git configuration:
+    Next, change directory to the project root, create virtual environment, and complete git configuration:
 
        $ cd {{ _copier_conf.dst_path }}
+       $ python3 -mvenv ~/.virtualenvs/{{ project_name }} && source ~/.virtualenvs/{{ project_name }}/bin/activate
        $ bash .prepare_project.sh
 
 ###
