@@ -55,9 +55,13 @@ jobs:
         pylint -rn -sn --recursive=y ./benchmarks --rcfile=./tests/.pylintrc
 {%- endif -%}
 {%- endif -%}
-{%- if 'ruff' in enforce_style %}
-    - name: Analyze code with ruff
+{%- if 'ruff_lint' in enforce_style %}
+    - name: Analyze code with ruff formatter
       run: |
        ruff format --check
+{%- endif -%}
+{%- if 'ruff_format' in enforce_style %}
+    - name: Analyze code with ruff linter
+      run: |
        ruff check
 {%- endif -%}

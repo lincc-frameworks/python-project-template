@@ -22,7 +22,8 @@ For each pull request, our ``pre-commit.ci`` workflow will:
 * Analyze the src code style and report code that doesn't adhere, using 
   the options you selected for your tooling set:
 
-  * "ruff": checks for linting rules, sorts imports, auto-formats code
+  * "ruff linting": checks for linting rules, and import order
+  * "ruff auto-formatter": auto-formats code
   * "pylint": checks for compliance with pylint rules
   * "black": auto-formats code (including notebooks)
   * "isort": Sort imports using ``isort``
