@@ -147,11 +147,45 @@ include_benchmarks:
 _message_after_copy: |
     Your project "{{ project_name }}" has been created successfully!
 
-    Next, change directory to the project root, create virtual environment, and complete git configuration:
+    There are a few more manual steps to finish the setup.
 
+    Go to your project directory, create a virtual environment, and run the initialization script:
        $ cd {{ _copier_conf.dst_path }}
        $ python3 -mvenv ~/.virtualenvs/{{ project_name }} && source ~/.virtualenvs/{{ project_name }}/bin/activate
        $ bash .prepare_project.sh
+
+    Push your project to a new repository on GitHub:
+       $ git remote add origin https://github.com/{{project_organization}}/{{project_name}}.git
+       $ git push -u origin main
+
+    {%- if include_notebooks %}
+
+    Install pandoc to build your documentation locally
+       $ conda install pandoc
+    {%- endif %}
+
+    {%- if "email" in failure_notification %}
+
+    Follow these instructions to set up email notifications:
+       https://lincc-ppt.readthedocs.io/en/latest/practices/ci_testing.html#email-notifications
+    {%- endif %}
+
+    {%- if "slack" in failure_notification %}
+
+    Follow these instructions to set up slack notifications:
+       https://lincc-ppt.readthedocs.io/en/latest/practices/ci_testing.html#slack-notifications
+    {%- endif %}
+
+    {%- if include_benchmarks %}
+
+    Follow these instructions to set up benchmarking
+       https://lincc-ppt.readthedocs.io/en/latest/practices/ci_benchmarking.html#set-up
+    {%- endif %}
+
+    Finally, a few items to consider:
+       - Set up branch protection rules in github
+       - Enable dependabot in github
+       - Add another GitHub user as an administrator on the repository
 
 ###
 # Below this line are Copier configuration options.
