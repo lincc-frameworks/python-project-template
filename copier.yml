@@ -5,7 +5,7 @@ _message_before_copy: |
     generate a tailored project for you.
 
     You can refer to our documentation for more details and contact info
-    https://lincc-ppt.readthedocs.io/en/latest/
+    https://lincc-ppt.readthedocs.io/en/latest/source/new_project.html#template-questions
 
 custom_install:
     help: Would you like to use simple (default tooling) or customized installation? 

@@ -62,14 +62,13 @@ It's really neat!
 Given that your system satisfies the requirements, go ahead and install Copier.
 
 .. important::
-    A new version of Copier was released June 4, 2023. Please ensure that your
-    installed version of Copier >= 8.0.0.
+    This template is optimized to work well with Copier >= 9.1.0.
 
     ``pipx list`` will display installed the currently install version of Copier.
 
 .. code-block:: bash
 
-    >> pipx install --force copier>8.0.0
+    >> pipx install --force copier>9.1.0
 
 Now choose your next adventure...
 -------------------------------------
