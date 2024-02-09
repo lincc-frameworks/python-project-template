@@ -21,7 +21,7 @@ cd <path/to/destination>
 # Create a virtual environment, feel free to use conda, pyenv or your favorite tool
 python3 -mvenv ~/.virtualenvs/<env_name>
 source ~/.virtualenvs/<env_name>/bin/activate
-bash .prepare_project.sh
+bash .initialize_new_project.sh
 ```
 
 ## Contributing to the Template

@@ -120,7 +120,7 @@ script in your new project directory.
 
 .. code-block:: bash
 
-    >> bash .prepare_project.sh
+    >> bash .initialize_new_project.sh
 
 This script will initialize your local git repository, install the new Python
 package in editable mode along with runtime and developer dependencies, and
@@ -132,7 +132,7 @@ initialize :doc:`pre-commit <../practices/precommit>`.
     to the pre-commit hooks checks. If they are not compliant the bash script will exit
     with a verbose error code. You should apply the suggestions and re-run the script.
 
-The full contents of the script can be seen on `Github <https://github.com/lincc-frameworks/python-project-template/tree/main/python-project-template/.prepare_project.sh>`_.
+The full contents of the script can be seen on `Github <https://github.com/lincc-frameworks/python-project-template/tree/main/python-project-template/.initialize_new_project.sh>`_.
 
 The script assumes that you have access to bash. If that is not true for your environment,
 you should be able to run all the commands manually in your environment using

@@ -151,7 +151,7 @@ _message_after_copy: |
 
        $ cd {{ _copier_conf.dst_path }}
        $ python3 -mvenv ~/.virtualenvs/{{ project_name }} && source ~/.virtualenvs/{{ project_name }}/bin/activate
-       $ bash .prepare_project.sh
+       $ bash .initialize_new_project.sh
 
 ###
 # Below this line are Copier configuration options.
