@@ -44,7 +44,7 @@ The template currently offers three tools for auto-formatting:
 
 - **black** - general code formatting
 - **isort** - import statement sorting and organizing
-- **ruff** - does it all
+- **ruff format** - general code formatting
 
 Different formatters share a lot of the same opinions, but we recommend picking
 a single standard for your project and sticking to it.
