@@ -45,7 +45,7 @@ It's really neat!
 
     You can check your requirements like so:
 
-    .. code-block:: bash
+    .. code-block:: console
 
         >> python --version
             Python 3.10.9
@@ -67,7 +67,7 @@ Given that your system satisfies the requirements, go ahead and install Copier.
 
     ``pipx list`` will display installed the currently install version of Copier.
 
-.. code-block:: bash
+.. code-block:: console
 
     >> pipx install --force copier>8.0.0
 

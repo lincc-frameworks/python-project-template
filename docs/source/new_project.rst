@@ -15,7 +15,7 @@ the template.
 
     ``pipx list`` will display the currently installed version of Copier.
 
-.. code-block:: bash
+.. code-block:: console
 
     >> copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
 
@@ -117,7 +117,7 @@ Prepare your project
 Once your virtual environment has been created and activated run the following
 script in your new project directory.
 
-.. code-block:: bash
+.. code-block:: console
 
     >> bash .prepare_project.sh
 
@@ -149,7 +149,7 @@ Commit your new project locally
 Commit the project to your local version control like so to see the pre-commit 
 checks run.
 
-.. code-block:: bash
+.. code-block:: console
 
     >> git add .
     >> git commit -m 'Initial commit'
@@ -159,7 +159,7 @@ Push your work to GitHub
 
 Create a new repository in GitHub: (`GitHub How-to <https://docs.github.com/en/get-started/quickstart/create-a-repo>`_)
 
-.. code-block:: bash
+.. code-block:: console
 
     >> git remote add origin https://github.com/<the_remote_project>/<the_remote_repository>
     >> git push origin <local_branch_name>

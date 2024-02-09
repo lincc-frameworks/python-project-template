@@ -36,7 +36,7 @@ Example
 Follow the instructions at :doc:`New Project <../source/new_project>` to create a new 
 project named **acme-supernovae** with a package named **supernovae**.
 
-.. code-block:: bash
+.. code-block:: console
 
     copier copy gh:lincc-frameworks/python-project-template acme-supernovae
     cd acme-supernovae
@@ -51,7 +51,7 @@ might break over time as code changes and other uses of **src** are confused by 
 Define bash functions to find the files containing **src** and to perform the change using 
 sed so first add the shell functions.
 
-.. code-block:: bash
+.. code-block:: console
 
     organization=acme
     subpackage=supernovae
@@ -65,13 +65,13 @@ sed so first add the shell functions.
 
 It is wise to review the changes before committing them.
 
-.. code-block:: bash
+.. code-block:: console
 
     git diff
 
 Assuming all is good
 
-.. code-block:: bash
+.. code-block:: console
 
     git add .
     git commit -m "finished move from src to ${organization}"
@@ -79,7 +79,7 @@ Assuming all is good
 Add a clause to pyproject.toml to declare this as a namespace package. Again, you might want to
 review the results before committing. At least take a look so you see what it added.
 
-.. code-block:: bash
+.. code-block:: console
 
     tr '|' '\n' <<<'|[tool.setuptools.packages.find]|where = ["."]|include = ["'"${organization}"'"]|namespaces = true' >>pyproject.toml
     git add .
@@ -90,7 +90,7 @@ the package is now a namespace package. This is done by adding a clause to the i
 
 This might be the trickiest bit although for a brand new project it does very little.
 
-.. code-block:: bash
+.. code-block:: console
 
     myfiles2() { find . -name .git -prune -o -type f \( -name '*.py' -o -name '*.ipynb' \) -print; }
     mysed2() { sed -e "/import/s%${subpackage}%${organization}.${subpackage}%g;" "${1}" >.tmpfile && mv "${1}" .oldfile && mv .tmpfile "${1}" && rm .oldfile; }
@@ -104,7 +104,7 @@ This might be the trickiest bit although for a brand new project it does very li
 Build the project and install. We recommend that you do this in a virtual environment.
 In this example we build for '.[dev]' and also run the pre-commit hooks as a verification step.
 
-.. code-block:: bash
+.. code-block:: console
 
     pip install -e '.[dev]'
     pre-commit run --all-files
@@ -112,7 +112,7 @@ In this example we build for '.[dev]' and also run the pre-commit hooks as a ver
 Create a new project named **acme-utilities** with a package named **utilities** and convert it to a namespace package
 using exactly the same process as above but with different names.  Then install and check with pre-commit hooks.
 
-.. code-block:: bash
+.. code-block:: console
 
     cd ..
     copier copy gh:lincc-frameworks/python-project-template acme-utilities
@@ -153,7 +153,7 @@ using exactly the same process as above but with different names.  Then install 
 
 Try it out.  In this example we use the python interpreter to import the subpackages and run the examples.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ python
     >>> from acme import supernovae, utilities
@@ -167,6 +167,6 @@ Try it out.  In this example we use the python interpreter to import the subpack
 
 You might want to uninstall the packages to avoid python environment bloat!
 
-.. code-block:: bash
+.. code-block:: console
 
     pip uninstall acme-supernovae acme-utilities

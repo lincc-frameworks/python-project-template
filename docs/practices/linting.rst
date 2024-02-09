@@ -62,13 +62,13 @@ linting tool, that can also perform auto-formatting.
 
 This tool can be run on its own in *linting* (warning) mode with command like:
 
-.. code:: bash
+.. code:: console
 
     >> ruff check
 
 This tool can be run on its own in *auto-formatting* mode with command like:
 
-.. code:: bash
+.. code:: console
 
     >> ruff format
 
@@ -121,7 +121,7 @@ formatting (e.g. spacing, quote styles, line breaks).
 
 This tool can be run on its own with command like:
 
-.. code:: bash
+.. code:: console
 
     >> black .
 
@@ -141,7 +141,7 @@ the `.py` and `.pyi` files in your project.
 
 This tool can be run on its own with command like:
 
-.. code:: bash
+.. code:: console
 
     >> isort .
 

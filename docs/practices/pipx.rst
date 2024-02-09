@@ -41,7 +41,7 @@ installation process that is most straightforward for you system.
 
 An example installation of ``pipx`` might look like this. 
 
-.. code-block:: bash
+.. code-block:: console
     
         >> conda install -c conda-forge pipx
         >> pipx ensurepath

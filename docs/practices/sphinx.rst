@@ -42,7 +42,7 @@ How to manage
 To build the documentation in your local development environment, it's best to 
 follow the same steps as readthedocs will perform when building your documentation.
 
-.. code-block:: bash
+.. code-block:: console
 
     cd $project_directory
     pip install -e .
@@ -74,7 +74,7 @@ Alternatively, you can make Sphinx ignore all of the notebooks in your documenta
 while still building everything else. To do so, you will need to run sphinx in make 
 mode, which allows the use of the -D flag to override excluded files.
 
-.. code-block:: bash
+.. code-block:: console
 
     cd $project_directory
     pip install -e .
@@ -83,7 +83,7 @@ mode, which allows the use of the -D flag to override excluded files.
 
 Or, using the command in the included Makefile,
 
-.. code-block:: bash
+.. code-block:: console
 
     cd $project_directory
     pip install -e .

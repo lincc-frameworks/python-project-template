@@ -8,7 +8,7 @@ one or more specific responses to the questions used to hydrate the project.
 Either way, the process starts with a single-line command in the directory containing
 your project:
 
-.. code-block:: bash
+.. code-block:: console
 
     >> copier update ./<project directory>
 
@@ -33,7 +33,7 @@ get an appreciation for complexity of the task.
     files where the changes can't be automatically merged. 
     For example, you might see this on the command line:
 
-    .. code-block:: bash
+    .. code-block:: console
 
         >> copier update
           ...
@@ -86,7 +86,7 @@ However, there may be new template features that you want to incorporate into
 your project before they are tagged for release.
 Copier provides the ``--vcs-ref`` flag for this purpose. 
 
-.. code-block:: bash
+.. code-block:: console
 
     >> copier update --vcs-ref=HEAD
 
@@ -103,7 +103,7 @@ file that records your responses to the template questions. If you decide that y
 answered one of the questions incorrectly or you just want to update the 
 response, you can change it without having to edit the rest.
 
-.. code-block:: bash
+.. code-block:: console
 
     >> copier update --force --data <question_name>="new answer"
 
@@ -115,7 +115,7 @@ For example, if you initialized your project by selecting ``pylint`` as your
 preferred linter, but now would like to change to ``black``, you could use the 
 following command:
 
-.. code-block:: bash
+.. code-block:: console
 
     >> copier update --force --data include_benchmarks=true
 

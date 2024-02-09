@@ -8,7 +8,7 @@ After cloning a repository and connecting to the resulting working tree confirm
 that you have ``git-lfs`` and then issue ``git lfs install`` to install 
 configuration and hooks and then ``git lfs track`` to designate targets for git-lfs.
 
-.. code-block:: bash
+.. code-block:: console
 
     git-lfs --version
     git lfs install --local
@@ -53,7 +53,7 @@ That site will show you instructions most appropriate for your platform.
 
 You may also use conda as it has a ``git-lfs`` package appropriately named.
 
-.. code-block:: bash
+.. code-block:: console
 
     conda install git-lfs
 
@@ -65,7 +65,7 @@ Install git-lfs in the local repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Once you have git-lfs use it to install support into the repository with the command
 
-.. code-block:: bash
+.. code-block:: console
 
     git lfs install --local
 
@@ -85,13 +85,13 @@ the needed changes and create the file if necessary.
 For example, if you want to specify that ``FITS`` files are handled by git-lfs 
 then you might use these commands
 
-.. code-block:: bash
+.. code-block:: console
 
     git lfs track '*.fits' '*.fits.fz'
 
 You can see a list of currently tracked names
 
-.. code-block:: bash
+.. code-block:: console
 
     git lfs track
 
@@ -109,7 +109,7 @@ specified the ``--local`` option you should also specify it here.
 Probably it is safer to always include the ``--local`` option so you restrict 
 impact to the current repository.
 
-.. code-block:: bash
+.. code-block:: console
 
     git lfs uninstall --local
 
@@ -120,7 +120,7 @@ Note that we recommend against uninstalling git-lfs as it causes confusion.
 
 You can see what files are controlled by git-lfs using the ``git lfs ls-files`` command
 
-.. code-block:: bash
+.. code-block:: console
 
     git lfs ls-files
 

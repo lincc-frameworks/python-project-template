@@ -18,6 +18,7 @@ dependencies = [
     "setuptools_scm",
     "sphinx", # Used to automatically generate documentation
     "sphinx-rtd-theme", # Used to render documentation
+    "sphinx-copybutton",
 ]
 
 [project.optional-dependencies]

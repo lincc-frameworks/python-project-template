@@ -33,9 +33,9 @@ airspeed velocity. You may need to perform minor changes to this file. For examp
 to install dependencies declared on a ``requirements.txt`` file, you may want to set the
 ``install_command`` as follows:
 
-    .. code:: bash
+    .. code:: console
 
-        python -m pip install -r requirements.txt {wheel_file}
+      >> python -m pip install -r requirements.txt {wheel_file}
 
 For more information about this configuration file, visit the
 `asv.conf.json reference <https://asv.readthedocs.io/en/stable/asv.conf.json.html>`_.
@@ -63,7 +63,7 @@ This workflow is triggered on pushes to the main branch.
   the first run will take a while because it will process every commit on the repository to the present day, 
   but subsequent runs will be faster.
    
-   .. code:: bash
+   .. code:: console
 
       >> asv run ALL --skip-existing
 
@@ -124,7 +124,7 @@ are several questions you'll be asked the first time, and you may need to instal
 a new python venv. When your local environment is properly configured, it runs 
 the benchmarking suite for your most recent commit
 
-.. code:: bash
+.. code:: console
 
     >> cd benchmarks
     >> asv run
@@ -132,7 +132,7 @@ the benchmarking suite for your most recent commit
 You will need to commit changes locally for the new code to be picked up by ASV.
 Having benchmarks for several revisions, you can find them and compare them with ease.
 
-.. code:: bash
+.. code:: console
     
     >> asv show
       Commits with results:
@@ -150,7 +150,7 @@ of commits and even tags. For more information visit ASV's
 
 If your benchmark fails, you can re-run and find more information with the following:
 
-.. code:: bash
+.. code:: console
 
     >> asv run --show-stderr
 

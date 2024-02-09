@@ -76,7 +76,7 @@ Other fun things you can do
 Even if you're not using this package, you can find slow-running tests in your
 suite with the ``--durations`` flag.
 
-.. code-block:: bash
+.. code-block:: console
 
     pytest --durations=10
 
