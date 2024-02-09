@@ -133,10 +133,25 @@ def test_code_style_combinations(copie, enforce_style):
     extra_answers = {
         "enforce_style": enforce_style,
     }
-
-    # run copier to hydrate a temporary project
     result = copie.copy(extra_answers=extra_answers)
     assert successfully_created_project(result)
     assert directory_structure_is_correct(result)
     # black would still run successfully.
+    assert black_runs_successfully(result)
+
+
+def test_smoke_test_notification(copie):
+    """Confirm we can generate a "smoke_test.yaml" file, with all
+    notification mechanisms selected."""
+
+    # provide a dictionary of the non-default answers to use
+    extra_answers = {
+        "failure_notification": ["email", "slack"],
+    }
+
+    # run copier to hydrate a temporary project
+    result = copie.copy(extra_answers=extra_answers)
+
+    assert successfully_created_project(result)
+    assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)

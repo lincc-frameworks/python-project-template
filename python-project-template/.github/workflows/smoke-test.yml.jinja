@@ -76,9 +76,9 @@ jobs:
           {% endraw %}
 {%- endif %}
 {%- if 'slack' in failure_notification %}
-{%- raw %}
+    {%- raw %}
     - name: Send status to Slack app
-      if: {% raw %}${{ failure() && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only post if the workflow failed and was not manually started. Customize this as necessary.
+      if: ${{ failure() && github.event_name != 'workflow_dispatch' }} # Only post if the workflow failed and was not manually started. Customize this as necessary.
       id: slack
       uses: slackapi/slack-github-action@main
       with:
@@ -115,4 +115,5 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Here is where the webhook URL is provided
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+    {%- endraw %}
 {%- endif %}

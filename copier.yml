@@ -36,7 +36,7 @@ package_name:
 project_organization:
     type: str
     help: What github organization will your project live under? 
-    default: my_organization
+    default: my-organization
     validator: >-
         {% if not (project_organization | regex_search('^[a-zA-Z0-9][a-zA-Z0-9\-]*$')) %}
         The name may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.
@@ -91,12 +91,11 @@ enforce_style:
 failure_notification:
     help: How would you like to receive workflow failure notifications?
     type: str
-    default: [email]
+    default: []
     multiselect: true
     choices:
         email (additional configuration required): email
         slack bot integration (additional configuration required): slack
-        none: none
     when: "{{ custom_install }}"
 
 mypy_type_checking:
@@ -148,9 +147,10 @@ include_benchmarks:
 _message_after_copy: |
     Your project "{{ project_name }}" has been created successfully!
 
-    Next, change directory to the project root and complete git configuration:
+    Next, change directory to the project root, create virtual environment, and complete git configuration:
 
        $ cd {{ _copier_conf.dst_path }}
+       $ python3 -mvenv ~/.virtualenvs/{{ project_name }} && source ~/.virtualenvs/{{ project_name }}/bin/activate
        $ bash .prepare_project.sh
 
 ###
