@@ -11,7 +11,7 @@ the template.
 .. important::
     This template is optimized to work well with Copier >= 9.1.0.
 
-    ``pipx list`` will display installed the currently install version of Copier.
+    ``pipx list`` will display the currently installed version of Copier.
 
 .. code-block:: bash
 
