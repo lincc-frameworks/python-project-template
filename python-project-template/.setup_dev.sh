@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# This script should be run by new developers to install this package in
+# editable mode and configure their local environment
+
 echo "Checking virtual environment"
 if [ -z "${VIRTUAL_ENV}" ] && [ -z "${CONDA_PREFIX}" ]; then
     echo 'No virtual environment detected: none of $VIRTUAL_ENV or $CONDA_PREFIX is set.'
@@ -24,21 +27,6 @@ if let "${pipversion[0]}<${MINIMUM_PIP_VERSION}"; then
     exit 1
 fi
 
-echo "Initializing local git repository"
-{
-    gitversion=( $(git version | git version | awk '{print $3}' | sed 's/\./ /g') )
-    if let "${gitversion[0]}<2"; then
-	# manipulate directly
-	git init . && echo 'ref: refs/heads/main' >.git/HEAD
-    elif let "${gitversion[0]}==2 & ${gitversion[1]}<34"; then
-	# rename master to main
-	git init . && { git branch -m master main 2>/dev/null || true; };
-    else
-	# set the initial branch name to main
-	git init --initial-branch=main >/dev/null
-    fi
-} > /dev/null
-
 echo "Installing package and runtime dependencies in local environment"
 python -m pip install -e . > /dev/null
 
@@ -48,5 +36,6 @@ python -m pip install -e .'[dev]' > /dev/null
 echo "Installing pre-commit"
 pre-commit install > /dev/null
 
-echo "Committing initial files"
-git add . && SKIP="no-commit-to-branch" git commit -m "Initial commit"
+#######################################################
+# Include any additional configurations below this line
+#######################################################
