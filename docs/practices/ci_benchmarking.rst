@@ -25,6 +25,8 @@ The benchmarking tool responsible to compute the runtime and memory benchmarks i
 How to manage
 -------------------------------------------------------------------------------
 
+.. _set_up:
+
 Set-up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

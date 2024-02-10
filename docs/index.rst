@@ -21,6 +21,7 @@ please :doc:`/source/contact`
 
    source/overview
    source/new_project
+   source/configuration_checklist
    source/update_project
    source/existing_project
    source/contributing

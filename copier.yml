@@ -149,9 +149,42 @@ _message_after_copy: |
 
     Next, change directory to the project root, create virtual environment, and complete git configuration:
 
-       $ cd {{ _copier_conf.dst_path }}
-       $ python3 -mvenv ~/.virtualenvs/{{ project_name }} && source ~/.virtualenvs/{{ project_name }}/bin/activate
-       $ bash .initialize_new_project.sh
+        $ cd {{ _copier_conf.dst_path }}
+        $ bash .initialize_new_project.sh
+        $ git remote add origin https://github.com/{{project_organization}}/{{project_name}}.git
+        $ git push -u origin main 
+        {%- if include_notebooks %}
+        $ conda install pandoc
+        {%- endif %}
+
+    Additional configuration steps will take you outside of your source directory.
+
+    - [ ] Configure your GitHub repository for safety and security
+          - https://lincc-ppt.readthedocs.io/en/latest/source/configuration_checklist.html#configure-your-github-repository-for-safety-and-security 
+    - [ ] Configure your GitHub repository for convenience!
+          - https://lincc-ppt.readthedocs.io/en/latest/source/configuration_checklist.html#configure-your-github-repository-for-convenience
+    {%- if include_benchmarks %}
+    - [ ] Finish setting up benchmarks
+          - https://lincc-ppt.readthedocs.io/en/latest/practices/ci_benchmarking.html#set-up
+    {%- endif %}
+    {%- if 'email' in failure_notification %}
+    - [ ] Set up smoke test email notifications
+        - https://lincc-ppt.readthedocs.io/en/latest/practices/ci_testing.html#email-notifications
+    {%- endif %}
+    {%- if 'slack' in failure_notification %}
+    - [ ] Set up smoke test slack notifications
+        - https://lincc-ppt.readthedocs.io/en/latest/practices/ci_testing.html#slack-notifications
+    {%- endif %}
+    - [ ] Set up code coverage with codecov
+        - https://lincc-ppt.readthedocs.io/en/latest/practices/code_coverage.html#how-to-manage
+    - [ ] Set up a PyPI package
+        - https://lincc-ppt.readthedocs.io/en/latest/practices/pypi.html#set-up
+    - [ ] Set up a conda-forge package
+        - https://lincc-ppt.readthedocs.io/en/latest/practices/conda.html#set-up
+    {%- if include_docs %}
+    - [ ] Connect your project to ReadTheDocs
+        - https://lincc-ppt.readthedocs.io/en/latest/practices/sphinx.html#how-to-get-started-with-readthedocs
+    {%- endif %}
 
 ###
 # Below this line are Copier configuration options.

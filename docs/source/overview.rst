@@ -73,4 +73,5 @@ Given that your system satisfies the requirements, go ahead and install Copier.
 Now choose your next adventure...
 -------------------------------------
 * :doc:`Start a new project<new_project>`
+* :doc:`Configure a new project<configuration_checklist>`
 * :doc:`Upgrade an existing project<existing_project>`
