@@ -43,7 +43,7 @@ questions:
        code (``src/{{package_name}}``). The package name must start with a lowercase letter, 
        followed by one or more of the following (a-z, 0-9, _).
    * - *What github organization will your project live under?*
-     - This will either be a gihub organization, or your github username, if you're working outside 
+     - This will either be a github organization, or your github username, if you're working outside 
        of an organization. This is used to construct URLs to your project, like
        ``https://github.com/{{project_organization}}/{{project_name}}``
    * - *What is the name of the code author?* 
