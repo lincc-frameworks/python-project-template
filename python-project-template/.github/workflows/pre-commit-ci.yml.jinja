@@ -10,8 +10,6 @@ on:
 jobs:
   pre-commit-ci:
     runs-on: ubuntu-latest
-    env: 
-      SKIP: "check-lincc-frameworks-template-version,pytest-check,no-commit-to-branch,validate-pyproject,check-added-large-files,sphinx-build"
     steps:
     - uses: actions/checkout@v4
       with:
@@ -28,6 +26,8 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - uses: pre-commit/action@v3.0.1
       with:
-        extra_args: --from-ref {% raw %}${{ github.event.pull_request.base.sha }}{% endraw %} --to-ref {% raw %}${{ github.event.pull_request.head.sha }}{% endraw %}
+        extra_args: --all-files --verbose
+      env:
+        SKIP: "check-lincc-frameworks-template-version,no-commit-to-branch,check-added-large-files,validate-pyproject,sphinx-build,pytest-check"
     - uses: pre-commit-ci/lite-action@v1.0.2
       if: always()
