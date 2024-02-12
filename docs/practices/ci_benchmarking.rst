@@ -49,7 +49,10 @@ For more information about this configuration file, visit the
    * Click "Settings"
    * Click "Pages" on the left navigation menu
    * Under "Build and deployment" set "Source" to "Deploy from a branch"
-   * Under "Branch" select "gh-pages", folder should be "/root"
+   * Under "Branch" select "gh-pages", folder should be "/ (root)"
+
+   .. image:: ../static/practices/ci_benchmarking/config.jpg
+      :alt: Configuration page screenshot
 
 A dashboard deployment is automatically triggered when the "gh-pages" branch is updated.
 Within a couple of minutes, the changes should be reflected on the dashboard.
