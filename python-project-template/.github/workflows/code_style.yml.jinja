@@ -21,9 +21,9 @@ jobs:
         python-version: {{ python_versions }}
 
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v4
     - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
-      uses: actions/setup-python@main
+      uses: actions/setup-python@v5
       with:
         python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
     - name: Install dependencies

@@ -24,13 +24,13 @@ jobs:
 
     steps:
       - name: Cache Python ${{ env.PYTHON_VERSION }}
-        uses: actions/cache@main
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: python-${{ env.PYTHON_VERSION }}
 
       - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@main
+        uses: actions/setup-python@v5
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
 
@@ -47,12 +47,12 @@ jobs:
 
     steps:
       - name: Checkout main branch of the repository
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Cache Python ${{ env.PYTHON_VERSION }}
-        uses: actions/cache@main
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: python-${{ env.PYTHON_VERSION }}
