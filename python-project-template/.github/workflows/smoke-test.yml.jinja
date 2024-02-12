@@ -23,9 +23,9 @@ jobs:
         python-version: {{ python_versions }}
 
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v4
     - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
-      uses: actions/setup-python@main
+      uses: actions/setup-python@v5
       with:
         python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
     - name: Install dependencies
@@ -43,7 +43,7 @@ jobs:
 {%- if 'email' in failure_notification %}
     - name: Send status to author's email      
       if: {% raw %}${{ failure() }} && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only email if the workflow failed and was not manually started. Customize this as necessary.
-      uses: dawidd6/action-send-mail@master
+      uses: dawidd6/action-send-mail@v3
       with:
         # Required mail server address if not connection_url:
         server_address: smtp.gmail.com
@@ -80,7 +80,7 @@ jobs:
     - name: Send status to Slack app
       if: ${{ failure() && github.event_name != 'workflow_dispatch' }} # Only post if the workflow failed and was not manually started. Customize this as necessary.
       id: slack
-      uses: slackapi/slack-github-action@main
+      uses: slackapi/slack-github-action@v1
       with:
         # For posting a rich message using Block Kit
         payload: | # The payload defined here can be customized to you liking https://api.slack.com/reference/block-kit/blocks 
