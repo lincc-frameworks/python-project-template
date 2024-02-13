@@ -1,4 +1,3 @@
-fail_fast: true
 repos:
     # Compare the local template version to the latest remote template version
     # This hook should always pass. It will print a message if the local version 
@@ -132,20 +131,6 @@ repos:
           {%- endif %}
           ]
 {%- endif %}
-    # Run unit tests, verify that they pass. Note that coverage is run against
-    # the ./src directory here because that is what will be committed. In the 
-    # github workflow script, the coverage is run against the installed package
-    # and uploaded to Codecov by calling pytest like so:
-    # `python -m pytest --cov=<package_name> --cov-report=xml`
-  - repo: local
-    hooks:
-      - id: pytest-check
-        name: Run unit tests
-        description: Run unit tests with pytest.
-        entry: bash -c "if python -m pytest --co -qq; then python -m pytest --cov=./src --cov-report=html; fi"
-        language: system
-        pass_filenames: false
-        always_run: true
 {%- if include_notebooks %}
     # Make sure Sphinx can build the documentation while explicitly omitting 
     # notebooks from the docs, so users don't have to wait through the execution 
@@ -195,3 +180,17 @@ repos:
             "./_readthedocs", # Output directory for rendered documents.
           ]
 {%- endif %}
+    # Run unit tests, verify that they pass. Note that coverage is run against
+    # the ./src directory here because that is what will be committed. In the
+    # github workflow script, the coverage is run against the installed package
+    # and uploaded to Codecov by calling pytest like so:
+    # `python -m pytest --cov=<package_name> --cov-report=xml`
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: Run unit tests
+        description: Run unit tests with pytest.
+        entry: bash -c "if python -m pytest --co -qq; then python -m pytest --cov=./src --cov-report=html; fi"
+        language: system
+        pass_filenames: false
+        always_run: true
