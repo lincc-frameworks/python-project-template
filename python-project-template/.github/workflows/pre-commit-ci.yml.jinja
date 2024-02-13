@@ -1,11 +1,13 @@
-# This workflow runs pre-commit hooks on pull requests to enforce coding style.
-# To ensure correct configuration, please refer to:
-#   https://lincc-ppt.readthedocs.io/en/latest/practices/ci_precommit.html
-
+# This workflow runs pre-commit hooks on pushes and pull requests to main
+# to enforce coding style. To ensure correct configuration, please refer to:
+#  https://lincc-ppt.readthedocs.io/en/latest/practices/ci_precommit.html
 name: Run pre-commit hooks
 
 on:
+  push:
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 jobs:
   pre-commit-ci:
@@ -30,4 +32,4 @@ jobs:
       env:
         SKIP: "check-lincc-frameworks-template-version,no-commit-to-branch,check-added-large-files,validate-pyproject,sphinx-build,pytest-check"
     - uses: pre-commit-ci/lite-action@v1.0.2
-      if: always()
+      if: failure() && github.event_name == 'pull_request' && github.event.pull_request.draft == false
