@@ -55,7 +55,7 @@ make it easier to see what changes are being made.
 Hydrate a copy of the template into your project
 ................................................
 
-.. code:: bash
+.. code:: console
 
     >> cd <existing_project_directory>
     >> copier copy gh:lincc-frameworks/python-project-template .
@@ -72,7 +72,7 @@ that tests will be contained in a first level directory named ``tests``.
 For example, if your project is in a directory named ``/science``, and your package
 is named ``new_science``, your source code and tests might look like this:
 
-.. code:: bash
+.. code:: console
 
     /science/src/new_science/module.py
     /science/tests/new_science/test_module.py
@@ -108,7 +108,8 @@ and Copier does not have the ability permanently overwrite your files.
 The following example is output from a Copier update. Note again that ``conflict`` is 
 simply an indicator that you should review that file before committing.
 
-.. code :: bash
+.. code-block:: console
+    :class: no-copybutton
 
     Copying from template version 1.2.1
     identical  .
@@ -148,7 +149,7 @@ You should attempt to use ``pip`` to build your package and install dependencies
 Failure to build successfully may be an indicator of a corrupted pyproject.toml file
 or missing dependencies.
 
-.. code:: bash
+.. code:: console
 
     >> pip install -e .'[dev]'
 
@@ -191,7 +192,7 @@ Install and use ``pre-commit``. It may seem annoying at first, but it will save
 you many cycles of "see a test fail on GitHub, make and push a change, hope the 
 test passes". Installation is easy!
 
-.. code:: bash
+.. code:: console
 
     >> pre-commit install
 
@@ -215,7 +216,7 @@ or another linting tool, it's reasonable to skip the linting check on the first 
 For instance if you selected ``black`` as your new linter, use the following to 
 bypass the pre-commit linting check on the first commit.
 
-.. code :: bash
+.. code:: bash
 
     >> SKIP=black git commit -m 'Incorporating LINCC Frameworks PPT'
 

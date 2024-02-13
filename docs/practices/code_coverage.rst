@@ -22,6 +22,6 @@ install the GitHub app, Codecov.
 * Select your repository and follow the instructions
 
 On your Codecov repository click "Settings" and under "Tokens" copy the value of
-`CODECOV_TOKEN`. Add it as a secret on your GitHub repository and you're all set!
+``CODECOV_TOKEN``. Add it as a secret on your GitHub repository and you're all set!
 
 Future pull requests and commits will now include code coverage information. Neato!

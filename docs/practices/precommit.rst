@@ -14,7 +14,7 @@ development. Additional documentation can be found
 To configure pre-commit for your project, run the following command to register 
 pre-commit hooks with ``.git/hooks/pre-commit``.
 
-.. code-block:: bash
+.. code-block:: console
     
     pre-commit install
 

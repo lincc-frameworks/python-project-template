@@ -27,6 +27,17 @@ html_show_sourcelink = False  # Remove 'view source code' from top of page (for 
 html_static_path = ["static"]
 html_css_files = ["custom.css"]
 
+extensions = ["sphinx_copybutton"]
+
+# -- sphinx-copybutton configuration ----------------------------------------
+## sets up the expected prompt text from console blocks, and excludes it from
+## the text that goes into the clipboard.
+copybutton_exclude = '.linenos, .gp'
+copybutton_prompt_text = ">> "
+
+## lets us suppress the copy button on select code blocks.
+copybutton_selector = "div:not(.no-copybutton) > div.highlight > pre"
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 

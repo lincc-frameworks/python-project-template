@@ -33,7 +33,7 @@ You probably don't want to create new tags while you're working on the template.
 Create a test project using the following command to let Copier know to use the
 latest local version.
 
-.. code-block:: bash
+.. code-block:: console
 
     >> copier copy --vcs-ref HEAD </local/path/to/template> </test/project/directory>
 
