@@ -37,6 +37,12 @@ repos:
       - id: validate-pyproject
         name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
+    # Verify that GitHub workflows are well formed
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.28.0
+    hooks:
+      - id: check-github-workflows
+        args: ["--verbose"]
 {%- if 'isort' in enforce_style %}
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
