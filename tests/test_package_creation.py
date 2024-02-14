@@ -1,6 +1,7 @@
 import pytest
 import pytest_copie
 import subprocess
+import os
 
 
 def successfully_created_project(result):
@@ -47,6 +48,14 @@ def unit_tests_in_project_run_successfully(result, package_name="example_package
 
     return pytest_results.returncode == 0
 
+def docs_build_successfully(result):
+
+    sphinx_results = subprocess.run(
+        ["make", "html"],
+        cwd=os.path.join(result.project_dir, "docs"),
+    )
+
+    return sphinx_results.returncode == 0
 
 def test_all_defaults(copie):
     """Test that the default values are used when no arguments are given.
@@ -140,13 +149,22 @@ def test_code_style_combinations(copie, enforce_style):
     assert black_runs_successfully(result)
 
 
-def test_smoke_test_notification(copie):
+@pytest.mark.parametrize(
+    "notification",
+    [
+        [],
+        ["slack"],
+        ["email"],
+        ["email", "slack"],
+    ],
+)
+def test_smoke_test_notification(copie, notification):
     """Confirm we can generate a "smoke_test.yaml" file, with all
     notification mechanisms selected."""
 
     # provide a dictionary of the non-default answers to use
     extra_answers = {
-        "failure_notification": ["email", "slack"],
+        "failure_notification": notification,
     }
 
     # run copier to hydrate a temporary project
@@ -155,3 +173,55 @@ def test_smoke_test_notification(copie):
     assert successfully_created_project(result)
     assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)
+
+
+@pytest.mark.parametrize(
+    "doc_answers",
+    [
+        {
+            "include_docs": True,
+            "include_notebooks": True,
+        },
+        {
+            "include_docs": True,
+            "include_notebooks": False,
+        },
+    ],
+)
+def test_doc_combinations(copie, doc_answers):
+    """Confirm we can generate a "smoke_test.yaml" file, with all
+    notification mechanisms selected."""
+
+    # run copier to hydrate a temporary project
+    result = copie.copy(extra_answers=doc_answers)
+
+    assert successfully_created_project(result)
+    assert directory_structure_is_correct(result)
+    assert black_runs_successfully(result)
+    assert (result.project_dir / "docs").is_dir() 
+    assert docs_build_successfully(result)
+
+@pytest.mark.parametrize(
+    "doc_answers",
+    [
+        {
+            "include_docs": False,
+            "include_notebooks": False,
+        },
+        {
+            "include_docs": False,
+            "include_notebooks": True,
+        },
+    ],
+)
+def test_doc_combinations_no_docs(copie, doc_answers):
+    """Confirm we can generate a "smoke_test.yaml" file, with all
+    notification mechanisms selected."""
+
+    # run copier to hydrate a temporary project
+    result = copie.copy(extra_answers=doc_answers)
+
+    assert successfully_created_project(result)
+    assert directory_structure_is_correct(result)
+    assert black_runs_successfully(result)
+    assert not (result.project_dir / "docs").is_dir() 
