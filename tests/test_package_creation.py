@@ -1,7 +1,6 @@
-import pytest
-import pytest_copie
 import subprocess
-import os
+
+import pytest
 
 
 def successfully_created_project(result):
@@ -48,14 +47,22 @@ def unit_tests_in_project_run_successfully(result, package_name="example_package
 
     return pytest_results.returncode == 0
 
+
 def docs_build_successfully(result):
+    """Test that we can build the doc tree.
+
+    !!! NOTE - This doesn't currently work because we need to `pip install` the hydrated
+    project before running the tests. And we don't have a way to create a temporary
+    virtual environment for the project.
+    """
 
     sphinx_results = subprocess.run(
         ["make", "html"],
-        cwd=os.path.join(result.project_dir, "docs"),
+        cwd=(result.project_dir / "docs"),
     )
 
     return sphinx_results.returncode == 0
+
 
 def test_all_defaults(copie):
     """Test that the default values are used when no arguments are given.
@@ -189,8 +196,7 @@ def test_smoke_test_notification(copie, notification):
     ],
 )
 def test_doc_combinations(copie, doc_answers):
-    """Confirm we can generate a "smoke_test.yaml" file, with all
-    notification mechanisms selected."""
+    """Confirm the docs directory is well-formed, when including docs."""
 
     # run copier to hydrate a temporary project
     result = copie.copy(extra_answers=doc_answers)
@@ -198,8 +204,8 @@ def test_doc_combinations(copie, doc_answers):
     assert successfully_created_project(result)
     assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)
-    assert (result.project_dir / "docs").is_dir() 
-    assert docs_build_successfully(result)
+    assert (result.project_dir / "docs").is_dir()
+
 
 @pytest.mark.parametrize(
     "doc_answers",
@@ -215,8 +221,7 @@ def test_doc_combinations(copie, doc_answers):
     ],
 )
 def test_doc_combinations_no_docs(copie, doc_answers):
-    """Confirm we can generate a "smoke_test.yaml" file, with all
-    notification mechanisms selected."""
+    """Confirm there is no 'docs' directory, if not including docs."""
 
     # run copier to hydrate a temporary project
     result = copie.copy(extra_answers=doc_answers)
@@ -224,4 +229,4 @@ def test_doc_combinations_no_docs(copie, doc_answers):
     assert successfully_created_project(result)
     assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)
-    assert not (result.project_dir / "docs").is_dir() 
+    assert not (result.project_dir / "docs").is_dir()
