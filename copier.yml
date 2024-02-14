@@ -187,6 +187,9 @@ _message_after_copy: |
        - Enable dependabot in github
        - Add another GitHub user as an administrator on the repository
 
+    These steps are detailed at
+        https://lincc-ppt.readthedocs.io/en/latest/source/configuration_checklist.html
+
 ###
 # Below this line are Copier configuration options.
 ###

@@ -12,7 +12,7 @@ If you find it useful, or have any questions or concerns when using the template
 please :doc:`/source/contact`
 
 .. important:: 
-   These instructions assume you are using ``copier`` version 8.0 or newer. Some
+   These instructions assume you are using ``copier`` version 9.1 or newer. Some
    features may not be available in older versions.
 
 .. toctree::
@@ -21,6 +21,7 @@ please :doc:`/source/contact`
 
    source/overview
    source/new_project
+   source/configuration_checklist
    source/update_project
    source/existing_project
    source/contributing
