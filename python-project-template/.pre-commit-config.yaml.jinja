@@ -100,7 +100,7 @@ repos:
     hooks:
       - id: ruff
         name: Lint code using ruff; sort and organize imports 
-        types_or: [ python, pyi, jupyter ]
+        types_or: [ python, pyi ]
         args: ["--fix"]
 {%- endif %}
 {%- if 'ruff_format' in enforce_style %}
