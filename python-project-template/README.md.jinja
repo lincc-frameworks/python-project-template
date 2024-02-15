@@ -4,12 +4,12 @@
 
 [![PyPI](https://img.shields.io/pypi/v/{{project_name}}?color=blue&logo=pypi&logoColor=white)](https://pypi.org/project/{{project_name}}/)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/{{project_organization}}/{{project_name}}/smoke-test.yml)](https://github.com/{{project_organization}}/{{project_name}}/actions/workflows/smoke-test.yml)
-[![codecov](https://codecov.io/gh/{{project_organization}}/{{project_name}}/branch/main/graph/badge.svg)](https://codecov.io/gh/{{project_organization}}/{{project_name}})
+[![Codecov](https://codecov.io/gh/{{project_organization}}/{{project_name}}/branch/main/graph/badge.svg)](https://codecov.io/gh/{{project_organization}}/{{project_name}})
 {%- if include_docs %}
-[![Read the Docs](https://img.shields.io/readthedocs/{{project_name}})](https://{{project_name}}.readthedocs.io/)
+[![Read The Docs](https://img.shields.io/readthedocs/{{project_name | replace("_", "-")}})](https://{{project_name | replace("_", "-")}}.readthedocs.io/)
 {%- endif %}
 {%- if include_benchmarks %}
-[![benchmarks](https://img.shields.io/github/actions/workflow/status/{{project_organization}}/{{project_name}}/asv-main.yml?label=benchmarks)](https://{{project_organization}}.github.io/{{project_name}}/)
+[![Benchmarks](https://img.shields.io/github/actions/workflow/status/{{project_organization}}/{{project_name}}/asv-main.yml?label=benchmarks)](https://{{project_organization}}.github.io/{{project_name}}/)
 {%- endif %}
 
 This project was automatically generated using the LINCC-Frameworks 

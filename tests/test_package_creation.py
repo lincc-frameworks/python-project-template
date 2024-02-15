@@ -1,3 +1,4 @@
+import pytest
 import subprocess
 
 import pytest
@@ -19,7 +20,8 @@ def black_runs_successfully(result):
     """Test to ensure that the black linter runs successfully on the project"""
     # run black with `--check` to look for lint errors, but don't fix them.
     black_results = subprocess.run(
-        ["python", "-m", "black", "--check", (result.project_dir / "src")], cwd=result.project_dir
+        ["python", "-m", "black", "--check", (result.project_dir / "src")],
+        cwd=result.project_dir,
     )
 
     return black_results.returncode == 0
@@ -29,7 +31,14 @@ def pylint_runs_successfully(result):
     """Test to ensure that the pylint linter runs successfully on the project"""
     # run pylint to ensure that the hydrated files are linted correctly
     pylint_results = subprocess.run(
-        ["python", "-m", "pylint", "--recursive=y", "--rcfile=./src/.pylintrc", (result.project_dir / "src")],
+        [
+            "python",
+            "-m",
+            "pylint",
+            "--recursive=y",
+            "--rcfile=./src/.pylintrc",
+            (result.project_dir / "src"),
+        ],
         cwd=result.project_dir,
     )
 
@@ -62,6 +71,19 @@ def docs_build_successfully(result):
     )
 
     return sphinx_results.returncode == 0
+
+  
+  def github_workflows_are_valid(result):
+    """Test to ensure that the GitHub workflows are valid"""
+    workflows_results = subprocess.run(
+        ["pre-commit", "run", "check-github-workflows"], cwd=result.project_dir
+    )
+    return workflows_results.returncode == 0
+
+
+def initialize_git_project(result):
+    """Initializes local git repository (required to run pre-commit)"""
+    subprocess.call(["git", "init", "."], cwd=result.project_dir)
 
 
 def test_all_defaults(copie):
@@ -230,3 +252,14 @@ def test_doc_combinations_no_docs(copie, doc_answers):
     assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)
     assert not (result.project_dir / "docs").is_dir()
+
+    
+def test_github_workflows_schema(copie):
+    """Confirm the current GitHub workflows have valid schemas."""
+    extra_answers = {
+        "include_benchmarks": True,
+        "include_docs": True,
+    }
+    result = copie.copy(extra_answers=extra_answers)
+    initialize_git_project(result)
+    assert github_workflows_are_valid(result)
