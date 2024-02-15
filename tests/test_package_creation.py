@@ -73,7 +73,7 @@ def docs_build_successfully(result):
     return sphinx_results.returncode == 0
 
   
-  def github_workflows_are_valid(result):
+def github_workflows_are_valid(result):
     """Test to ensure that the GitHub workflows are valid"""
     workflows_results = subprocess.run(
         ["pre-commit", "run", "check-github-workflows"], cwd=result.project_dir
