@@ -27,7 +27,7 @@ html_show_sourcelink = False  # Remove 'view source code' from top of page (for 
 html_static_path = ["static"]
 html_css_files = ["custom.css"]
 
-extensions = ["sphinx_copybutton"]
+extensions = ["sphinx_copybutton", "sphinx.ext.autosectionlabel"]
 
 # -- sphinx-copybutton configuration ----------------------------------------
 ## sets up the expected prompt text from console blocks, and excludes it from
@@ -37,6 +37,10 @@ copybutton_prompt_text = ">> "
 
 ## lets us suppress the copy button on select code blocks.
 copybutton_selector = "div:not(.no-copybutton) > div.highlight > pre"
+
+# -- Options for autosectionlabel -------------------------------------------------
+
+autosectionlabel_prefix_document=True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

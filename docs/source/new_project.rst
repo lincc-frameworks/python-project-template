@@ -43,7 +43,7 @@ questions:
        code (``src/{{package_name}}``). The package name must start with a lowercase letter, 
        followed by one or more of the following (a-z, 0-9, _).
    * - *What github organization will your project live under?*
-     - This will either be a gihub organization, or your github username, if you're working outside 
+     - This will either be a github organization, or your github username, if you're working outside 
        of an organization. This is used to construct URLs to your project, like
        ``https://github.com/{{project_organization}}/{{project_name}}``
    * - *What is the name of the code author?* 
@@ -169,41 +169,10 @@ Notice that when you create a PR in GitHub, a set of tests for Continuous
 Integration starts up to verify that the project can build successfully and 
 that all the unit tests pass. Neato!
 
+Next steps
+-------------------------------------------------------------------------------
 
-Additional configurations
--------------------------
-
-Configure your GitHub repository for safety and security
-********************************************************
-
-* Consider setting up branch protection rules.
-
-  * `GitHub Instructions for protected branches <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging>`_
-  * This will help ensure your code is always ready to deploy by running all tests
-    pass to merging into the ``main`` branch.
-
-* Enable ``dependabot`` for your new repository
-
-  * `GitHub Instructions for dependabot <https://docs.github.com/en/code-security/getting-started/securing-your-repository#managing-dependabot-security-updates>`_
-  * There are several different features that ``dependabot`` offers to keep your dependencies
-    up to date and your code secure. It's as easy as clicking a checkbox to get started.
-
-* Add another GitHub user as an administrator on your repository
-
-  * `GitHub Instructions for repo access <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository>`_
-  * It's just a good idea - like having a spare set of keys for your Lamborghini.
-
-Get the most out of this template
-*********************************
-At this point, your new project is hydrated, version controlled and ready for
-you to start coding. But there's a lot more that this template has to offer!
-
-If you want to enable performance benchmarking there are some additional steps. 
-Refer to the "How to manage" section of :doc:`Continuous Integration Benchmarking <../practices/ci_benchmarking>`
-for more information.
-
-Finally, take a look at the :doc:`Best Practices section <../practices/overview>` to learn about
-built in pre-commit hooks, GitHub CI, automatic documentation, and more.
+:doc:`Configure a new project<configuration_checklist>`
 
 Still have questions?
 -------------------------------------------------------------------------------
