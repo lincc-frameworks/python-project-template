@@ -31,6 +31,16 @@ extensions.append("autoapi.extension")
 extensions.append("nbsphinx")
 {%- endif %}
 
+# -- sphinx-copybutton configuration ----------------------------------------
+extensions.append("sphinx_copybutton")
+## sets up the expected prompt text from console blocks, and excludes it from
+## the text that goes into the clipboard.
+copybutton_exclude = ".linenos, .gp"
+copybutton_prompt_text = ">> "
+
+## lets us suppress the copy button on select code blocks.
+copybutton_selector = "div:not(.no-copybutton) > div.highlight > pre"
+
 templates_path = []
 exclude_patterns = ["_build", "**.ipynb_checkpoints"]
 

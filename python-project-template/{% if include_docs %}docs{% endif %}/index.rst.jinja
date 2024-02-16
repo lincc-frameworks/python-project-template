@@ -13,7 +13,7 @@ virtual environment. LINCC-Frameworks engineers primarily use `conda` to manage 
 environments. If you have conda installed locally, you can run the following to
 create and activate a new environment.
 
-.. code-block:: bash
+.. code-block:: console
 
    >> conda create env -n <env_name> python=3.10
    >> conda activate <env_name>
@@ -22,7 +22,7 @@ create and activate a new environment.
 Once you have created a new environment, you can install this project for local
 development using the following commands:
 
-.. code-block:: bash
+.. code-block:: console
 
    >> pip install -e .'[dev]'
    >> pre-commit install
