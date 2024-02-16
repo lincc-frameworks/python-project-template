@@ -1,6 +1,8 @@
 import pytest
 import subprocess
 
+import pytest
+
 
 def successfully_created_project(result):
     """Basic assertions that indicate the copier was able to create a project"""
@@ -55,6 +57,22 @@ def unit_tests_in_project_run_successfully(result, package_name="example_package
     return pytest_results.returncode == 0
 
 
+def docs_build_successfully(result):
+    """Test that we can build the doc tree.
+
+    !!! NOTE - This doesn't currently work because we need to `pip install` the hydrated
+    project before running the tests. And we don't have a way to create a temporary
+    virtual environment for the project.
+    """
+
+    sphinx_results = subprocess.run(
+        ["make", "html"],
+        cwd=(result.project_dir / "docs"),
+    )
+
+    return sphinx_results.returncode == 0
+
+  
 def github_workflows_are_valid(result):
     """Test to ensure that the GitHub workflows are valid"""
     workflows_results = subprocess.run(
@@ -160,13 +178,22 @@ def test_code_style_combinations(copie, enforce_style):
     assert black_runs_successfully(result)
 
 
-def test_smoke_test_notification(copie):
+@pytest.mark.parametrize(
+    "notification",
+    [
+        [],
+        ["slack"],
+        ["email"],
+        ["email", "slack"],
+    ],
+)
+def test_smoke_test_notification(copie, notification):
     """Confirm we can generate a "smoke_test.yaml" file, with all
     notification mechanisms selected."""
 
     # provide a dictionary of the non-default answers to use
     extra_answers = {
-        "failure_notification": ["email", "slack"],
+        "failure_notification": notification,
     }
 
     # run copier to hydrate a temporary project
@@ -177,6 +204,56 @@ def test_smoke_test_notification(copie):
     assert black_runs_successfully(result)
 
 
+@pytest.mark.parametrize(
+    "doc_answers",
+    [
+        {
+            "include_docs": True,
+            "include_notebooks": True,
+        },
+        {
+            "include_docs": True,
+            "include_notebooks": False,
+        },
+    ],
+)
+def test_doc_combinations(copie, doc_answers):
+    """Confirm the docs directory is well-formed, when including docs."""
+
+    # run copier to hydrate a temporary project
+    result = copie.copy(extra_answers=doc_answers)
+
+    assert successfully_created_project(result)
+    assert directory_structure_is_correct(result)
+    assert black_runs_successfully(result)
+    assert (result.project_dir / "docs").is_dir()
+
+
+@pytest.mark.parametrize(
+    "doc_answers",
+    [
+        {
+            "include_docs": False,
+            "include_notebooks": False,
+        },
+        {
+            "include_docs": False,
+            "include_notebooks": True,
+        },
+    ],
+)
+def test_doc_combinations_no_docs(copie, doc_answers):
+    """Confirm there is no 'docs' directory, if not including docs."""
+
+    # run copier to hydrate a temporary project
+    result = copie.copy(extra_answers=doc_answers)
+
+    assert successfully_created_project(result)
+    assert directory_structure_is_correct(result)
+    assert black_runs_successfully(result)
+    assert not (result.project_dir / "docs").is_dir()
+
+    
 def test_github_workflows_schema(copie):
     """Confirm the current GitHub workflows have valid schemas."""
     extra_answers = {
