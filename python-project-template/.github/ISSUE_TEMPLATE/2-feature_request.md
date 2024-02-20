@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-** Feature request**
+**Feature request**
 
 
 **Before submitting**
