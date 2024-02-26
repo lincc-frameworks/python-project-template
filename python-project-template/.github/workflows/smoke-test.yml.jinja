@@ -78,12 +78,12 @@ jobs:
 {%- if 'slack' in failure_notification %}
     {%- raw %}
     - name: Send status to Slack app
-      if: ${{ failure() && github.event_name != 'workflow_dispatch' }} # Only post if the workflow failed and was not manually started. Customize this as necessary.
+      if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
       id: slack
       uses: slackapi/slack-github-action@v1
       with:
         # For posting a rich message using Block Kit
-        payload: | # The payload defined here can be customized to you liking https://api.slack.com/reference/block-kit/blocks 
+        payload: |
           {
             "blocks": [
               {
@@ -97,7 +97,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "GitHub Action build result: *${{ job.status }}* :${{ job.status }}:" # Note that we expect the slack workspace to have an emoji called “failed” in this case.
+                  "text": "GitHub Action build result: *${{ job.status }}* :${{ job.status }}:"
                 }
               },
               {
@@ -113,7 +113,7 @@ jobs:
             ]
           }
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Here is where the webhook URL is provided
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
     {%- endraw %}
 {%- endif %}
