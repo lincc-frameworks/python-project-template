@@ -32,7 +32,7 @@ extensions = ["sphinx_copybutton", "sphinx.ext.autosectionlabel"]
 # -- sphinx-copybutton configuration ----------------------------------------
 ## sets up the expected prompt text from console blocks, and excludes it from
 ## the text that goes into the clipboard.
-copybutton_exclude = '.linenos, .gp'
+copybutton_exclude = ".linenos, .gp"
 copybutton_prompt_text = ">> "
 
 ## lets us suppress the copy button on select code blocks.
@@ -40,7 +40,7 @@ copybutton_selector = "div:not(.no-copybutton) > div.highlight > pre"
 
 # -- Options for autosectionlabel -------------------------------------------------
 
-autosectionlabel_prefix_document=True
+autosectionlabel_prefix_document = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

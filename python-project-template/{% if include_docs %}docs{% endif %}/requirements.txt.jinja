@@ -1,10 +1,12 @@
+{%- if include_notebooks %}
+ipykernel
+ipython
+jupyter
+jupytext
+nbconvert
+nbsphinx
+{%- endif %}
 sphinx
-sphinx-rtd-theme
 sphinx-autoapi
 sphinx-copybutton
-{%- if include_notebooks %}
-nbsphinx
-ipython
-jupytext
-jupyter
-{%- endif %}
+sphinx-rtd-theme
