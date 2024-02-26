@@ -20,9 +20,6 @@ classifiers = [
 dynamic = ["version"]
 requires-python = ">={{ python_versions[0] }}"
 dependencies = [
-{%- if include_notebooks %}
-    "ipykernel", # Support for Jupyter notebooks
-{%- endif %}
 ]
 
 [project.urls]
@@ -31,36 +28,23 @@ dependencies = [
 # On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
 [project.optional-dependencies]
 dev = [
-    "pytest",
-    "pytest-cov", # Used to report total code coverage
-    "pre-commit", # Used to run checks before finalizing a git commit
-{%- if include_docs %}
-    "sphinx", # Used to automatically generate documentation
-    "sphinx-rtd-theme", # Used to render documentation
-    "sphinx-autoapi", # Used to automatically generate api documentation
-{%- endif %}
-{%- if 'pylint' in enforce_style %}
-    "pylint", # Used for static linting of files
+{%- if include_benchmarks %}
+    "asv==0.6.1", # Used to compute performance benchmarks
 {%- endif %}
 {%- if 'black'  in enforce_style %}
     "black", # Used for static linting of files
 {%- endif %}
-{%- if 'ruff_lint' in enforce_style or 'ruff_format' in enforce_style %}
-    "ruff", # Used for static linting of files
-{%- endif %}
 {%- if mypy_type_checking != 'none' %}
     "mypy", # Used for static type checking of files
 {%- endif %}
-{%- if include_notebooks %}
-    # if you add dependencies here while experimenting in a notebook and you
-    # want that notebook to render in your documentation, please add the
-    # dependencies to ./docs/requirements.txt as well.
-    "nbconvert", # Needed for pre-commit check to clear output from Python notebooks
-    "nbsphinx", # Used to integrate Python notebooks into Sphinx documentation
-    "ipython", # Also used in building notebooks into Sphinx
+    "pre-commit", # Used to run checks before finalizing a git commit
+{%- if 'pylint' in enforce_style %}
+    "pylint", # Used for static linting of files
 {%- endif %}
-{%- if include_benchmarks %}
-    "asv==0.6.1", # Used to compute performance benchmarks
+    "pytest",
+    "pytest-cov", # Used to report total code coverage
+{%- if 'ruff_lint' in enforce_style or 'ruff_format' in enforce_style %}
+    "ruff", # Used for static linting of files
 {%- endif %}
 ]
 
