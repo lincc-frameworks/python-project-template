@@ -13,7 +13,7 @@ authors:
     equal-contrib: true
     affiliation: "1, 3"
   - name: Wilson Beebe
-    orcid: asdfasdf
+    orcid: 0009-0003-1791-8707
     affiliation: "1, 2"
   - name: Doug Branton
     orcid: 0009-0009-7822-7110
@@ -22,10 +22,10 @@ authors:
     orcid: 0009-0007-9870-9032
     affiliation: "1, 3"
   - name: Carl Christofferson
-    orcid: asdfasdf
+    orcid: 0009-0009-1164-3494
     affiliation: "1, 2"
-  - name: Andrew Connolly <-----------????
-    orcid: asdfasdf
+  - name: Andrew Connolly
+    orcid: 0000-0001-5576-8189
     affiliation: "1, 2"
   - name: Jeremy Kubica
     orcid: 0009-0009-2281-7031
@@ -36,21 +36,21 @@ authors:
   - name: Konstantin Malanchev
     orcid: 0000-0001-7179-7406
     affiliation: "1, 3"
-  - name: Alex Malz <----------????
+  - name: Alex Malz
     orcid: 0000-0002-8676-1622
     affiliation: "1, 3"
   - name: Sean McGuire
-    orcid: asdfasdf
+    orcid: 0000-0001-5576-8189
     affiliation: "1, 3"
   - name: Chris Wenneman
-    orcid: asdfasdf
+    orcid: 0009-0002-6218-5007
     affiliation: "1, 2"
 affiliations:
   - name: LINCC-Frameworks
     index: 1
   - name: DiRAC Institute and the Department of Astronomy, University of Washington, 3910 15th Ave NE, Seattle, WA 98195, USA
     index: 2
-  - name: McWilliams Center for Cosmology, Department of Physics, Carnegie Mellon University, Pittsburgh, PA 15213, USA
+  - name: The McWilliams Center for Cosmology & Astrophysics, Department of Physics, Carnegie Mellon University, Pittsburgh, PA 15213, USA
     index: 3
 date: 28 February 2024
 bibliography: paper.bib
