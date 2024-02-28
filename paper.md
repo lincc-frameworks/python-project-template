@@ -5,21 +5,21 @@ tags:
   - template
 authors:
   - name: Drew Oldag
-    orcid: asdfasdf
+    orcid: 0000-0001-6984-8411
     equal-contrib: true
     affiliation: "1, 2"
   - name: Melissa DeLucchi
-    orcid: asdfasdf
+    orcid: 0000-0002-1074-2900
     equal-contrib: true
     affiliation: "1, 3"
   - name: Wilson Beebe
     orcid: asdfasdf
     affiliation: "1, 2"
   - name: Doug Branton
-    orcid: asdfasdf
+    orcid: 0009-0009-7822-7110
     affiliation: "1, 2"
   - name: Sandro Campos
-    orcid: asdfasdf
+    orcid: 0009-0007-9870-9032
     affiliation: "1, 3"
   - name: Carl Christofferson
     orcid: asdfasdf
@@ -28,16 +28,16 @@ authors:
     orcid: asdfasdf
     affiliation: "1, 2"
   - name: Jeremy Kubica
-    orcid: asdfasdf
+    orcid: 0009-0009-2281-7031
     affiliation: "1, 3"
   - name: Olivia Lynn
-    orcid: asdfasdf
+    orcid: 0000-0001-5028-146X
     affiliation: "1, 3"
-  - name: Kostya Malanchev
-    orcid: asdfasdf
+  - name: Konstantin Malanchev
+    orcid: 0000-0001-7179-7406
     affiliation: "1, 3"
   - name: Alex Malz <----------????
-    orcid: asdfasdf
+    orcid: 0000-0002-8676-1622
     affiliation: "1, 3"
   - name: Sean McGuire
     orcid: asdfasdf
@@ -48,9 +48,9 @@ authors:
 affiliations:
   - name: LINCC-Frameworks
     index: 1
-  - name: University of Washington
+  - name: DiRAC Institute and the Department of Astronomy, University of Washington, 3910 15th Ave NE, Seattle, WA 98195, USA
     index: 2
-  - name: Carnegie Mellon University
+  - name: McWilliams Center for Cosmology, Department of Physics, Carnegie Mellon University, Pittsburgh, PA 15213, USA
     index: 3
 date: 28 February 2024
 bibliography: paper.bib
@@ -124,7 +124,7 @@ Scientific projects often go into periods of hibernation when not under active d
 
 ## Recent applications
 
-The LF-PPT has been applied to multiple LINCC Frameworks projects including LSDB[^11], Hipscat[^12], and TAPE[^13], short term collaborations such as Sorcha[14], SuperPhot+[^10], DeepDISC[^15], and MacCauff[^9], and external project including kcorrect[^16] and FlexCode[^17] Additionally a project specific version was forked from the project and has been applied to all RAIL packages[^18].
+The LF-PPT has been applied to multiple LINCC Frameworks projects including LSDB[^11], Hipscat[^12], and TAPE[^13], short term collaborations such as Sorcha[^14], SuperPhot+[^10], DeepDISC[^15], and MacCauff[^9], and external project including kcorrect[^16] and FlexCode[^17] Additionally a project specific version was forked from the project and has been applied to all RAIL packages[^18].
 
 # Acknowledgments
 
@@ -138,7 +138,7 @@ This project is supported by Schmidt Sciences.
 [^6]: https://docs.github.com/en/code-security/dependabot 
 [^7]: https://pypi.org/
 [^8]: https://conda-forge.org/docs/
-[^9]: https://something-for-maccauff???
+[^9]: https://github.com/macauff/macauff
 [^10]: https://github.com/VTDA-Group/superphot-plus
 [^11]: https://github.com/astronomy-commons/lsdb
 [^12]: https://github.com/astronomy-commons/hipscat
