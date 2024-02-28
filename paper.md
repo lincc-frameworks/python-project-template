@@ -39,6 +39,9 @@ authors:
   - name: Alex Malz
     orcid: 0000-0002-8676-1622
     affiliation: "1, 3"
+  - name: Rachel Mandelbaum
+    orcid: 0000-0003-2271-1527
+    affiliation: "1, 3"
   - name: Sean McGuire
     orcid: 0009-0005-8764-2608
     affiliation: "1, 3"
