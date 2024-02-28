@@ -40,7 +40,7 @@ authors:
     orcid: 0000-0002-8676-1622
     affiliation: "1, 3"
   - name: Sean McGuire
-    orcid: 0000-0001-5576-8189
+    orcid: 0009-0005-8764-2608
     affiliation: "1, 3"
   - name: Chris Wenneman
     orcid: 0009-0002-6218-5007
@@ -85,19 +85,19 @@ Thorough documentation of code allows others to use the package more readily and
 
 ## Distribution
 
-Software is only useful to the broader community if other users can find, install, and update it. Package management systems such as pip[^3] or conda[^4] provide simple tools for a user to download a new software package and its dependencies from public repositories such as PyPI[^7] or conda-forge[^8]. To enable easy code installation with pip or conda the LF-PPT provides support for automatic distribution through both PyPI and conda-forge when the user applies a new git tag via the GitHub UI.
+Software is only useful to the broader community if other users can find, install, and update it. Package management systems such as pip[^3] or conda[^4] provide simple tools for a user to download a new software package and its dependencies from public repositories such as PyPI[^5] or conda-forge[^6]. To enable easy code installation with pip or conda the LF-PPT provides support for automatic distribution through both PyPI and conda-forge when the user applies a new git tag via the GitHub UI.
 
 ## Additional code health tools
 
-The LF-PPT supports many more features than those listed here including static code analysis, performance benchmarking, code testing coverage and more. For a complete list, please see the documentation at http://lincc-ppt.readthedocs.io/. 
+The LF-PPT supports many more features than those listed here including static code analysis, performance benchmarking, code testing coverage and more. For a complete list, please see the documentation at http://lincc-ppt.readthedocs.io/.
 
-The most notable exclusion from the LF-PPT is code. Aside from a few optional stub source and test files, the LF-PPT allows the user focus on scientific code, while supporting them with the industry best practices in maintainable software engineering.  
+The most notable exclusion from the LF-PPT is code. Aside from a few optional stub source and test files, the LF-PPT allows the user to focus on scientific code, while supporting them with the industry best practices in maintainable software engineering.
 
 # Usage
 
 ## General usage
 
-The LINCC-Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^5] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To hydrate a new or existing project with the LF-PPT via copier the user calls:
+The LINCC-Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^7] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To hydrate a new or existing project with the LF-PPT via copier the user calls:
 
 ```
 copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
@@ -126,11 +126,11 @@ copier update
 
 ## Hibernating projects
 
-Scientific projects often go into periods of hibernation when not under active development or use, and are often challenging to revive. With the LF-PPT, hibernating projects should be much easier to reactivate. Automatically scheduled smoke tests and dependabot[^6] integration ensure that the code and dependencies continue to function correctly without significant interaction from the maintainers.
+Scientific projects often go into periods of hibernation when not under active development or use, and are often challenging to revive. With the LF-PPT, hibernating projects should be much easier to reactivate. Automatically scheduled smoke tests and dependabot[^8] integration ensure that the code and dependencies continue to function correctly without significant interaction from the maintainers.
 
 ## Recent applications
 
-The LF-PPT has been applied to multiple LINCC Frameworks projects including LSDB[^11], Hipscat[^12], and TAPE[^13], short term collaborations such as Sorcha[^14], SuperPhot+[^10], DeepDISC[^15], and MacCauff[^9], and external project including kcorrect[^16] and FlexCode[^17] Additionally a project specific version was forked from the project and has been applied to all RAIL packages[^18].
+The LF-PPT has been applied to multiple LINCC Frameworks projects including LSDB[^9], Hipscat[^10], and TAPE[^11], short term collaborations such as Sorcha[^12], SuperPhot+[^13], DeepDISC[^14], and MacCauff[^15], and external project including kcorrect[^16] and FlexCode[^17] Additionally a project specific version was forked from the project and has been applied to all RAIL packages[^18].
 
 # Acknowledgments
 
@@ -140,17 +140,17 @@ This project is supported by Schmidt Sciences.
 [^2]: https://about.readthedocs.com/
 [^3]: https://pip.pypa.io/en/latest/
 [^4]: https://docs.conda.io/en/latest/
-[^5]: https://copier.readthedocs.io/en/stable/ 
-[^6]: https://docs.github.com/en/code-security/dependabot 
-[^7]: https://pypi.org/
-[^8]: https://conda-forge.org/docs/
-[^9]: https://github.com/macauff/macauff
-[^10]: https://github.com/VTDA-Group/superphot-plus
-[^11]: https://github.com/astronomy-commons/lsdb
-[^12]: https://github.com/astronomy-commons/hipscat
-[^13]: https://github.com/lincc-frameworks/tape
-[^14]: https://github.com/dirac-institute/sorcha
-[^15]: https://github.com/lincc-frameworks/deepdisc
+[^5]: https://pypi.org/
+[^6]: https://conda-forge.org/docs/
+[^7]: https://copier.readthedocs.io/en/stable/ 
+[^8]: https://docs.github.com/en/code-security/dependabot
+[^9]: https://github.com/astronomy-commons/lsdb
+[^10]: https://github.com/astronomy-commons/hipscat
+[^11]: https://github.com/lincc-frameworks/tape
+[^12]: https://github.com/dirac-institute/sorcha
+[^13]: https://github.com/VTDA-Group/superphot-plus
+[^14]: https://github.com/lincc-frameworks/deepdisc
+[^15]: https://github.com/macauff/macauff
 [^16]: https://github.com/blanton144/kcorrect
 [^17]: https://github.com/lee-group-cmu/FlexCode
 [^18]: https://github.com/LSSTDESC/RAIL-project-template
