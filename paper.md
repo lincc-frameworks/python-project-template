@@ -99,12 +99,16 @@ The most notable exclusion from the LF-PPT is code. Aside from a few optional st
 
 The LINCC-Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^5] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To hydrate a new or existing project with the LF-PPT via copier the user calls:
 
-> copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
+```
+copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
+```
 
 A questionnaire is presented to configure the project and establish the various features of the template to include. After the directory structure and files have been generated, the user should run the included initialization script to configure the local git repository and install the new package in the virtual environment:
 
-> cd <new/project/directory>
-> bash .initialize-new-project.sh
+```
+cd <new/project/directory>
+bash .initialize-new-project.sh
+```
 
 The process is designed so as not to require significant time, and, thus, if the user is unhappy with the generated project, they can simply delete and recreate it. Depending on the options selected, some additional configuration may be required, such as registering with ReadTheDocs or PyPI. To assist the user, a customized, post-creation checklist is generated.
 
@@ -116,7 +120,9 @@ In addition to creating new projects from scratch, the LF-PPT can be applied to 
 
 As best practices evolve and new tools are introduced, the LF-PPT will incorporate those into the template. Updates to the template can be applied to existing projects with minimal effort, allowing the users to focus on science and not software maintenance.
 
-> copier update
+```
+copier update
+```
 
 ## Hibernating projects
 
