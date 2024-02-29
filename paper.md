@@ -49,7 +49,7 @@ authors:
     orcid: 0009-0002-6218-5007
     affiliation: "1, 2"
 affiliations:
-  - name: LINCC-Frameworks
+  - name: LINCC Frameworks
     index: 1
   - name: DiRAC Institute and the Department of Astronomy, University of Washington, 3910 15th Ave NE, Seattle, WA 98195, USA
     index: 2
@@ -61,13 +61,13 @@ bibliography: paper.bib
 
 # Summary
 
-The creation of healthy code is vital for its successful long term use in scientific research. To maximize impact throughout the community, software packages must be accurate, usable, and maintainable. Here we discuss several engineering processes that are important for developing healthy software. Unfortunately these processes often require configuration leading to short-term overhead for new projects. We introduce the LINCC-Frameworks Python Project Template, a configurable template designed for scientific software projects that greatly simplifies adopting such practices by automating the setup and configuration of important code health tools.
+The creation of healthy code is vital for its successful long term use in scientific research. To maximize impact throughout the community, software packages must be robust, usable, and maintainable. Here we discuss several engineering processes that are important for developing healthy software. Unfortunately these processes often require configuration leading to short-term overhead for new projects. We introduce the LINCC Frameworks Python Project Template, a configurable template designed for scientific software projects that greatly simplifies adopting such practices by automating the setup and configuration of important code health tools.
 
 # Statement of need
 
 Software has long played a vital role in analyzing scientific data and driving new discoveries. As the scientific community continues to build upon established projects and create novel algorithms, there is a need to ensure the accuracy, repeatability, usability, and maintainability of the software. The first factor is required for the validity of the scientific results, while the latter factors enable the software to have a broad, sustained impact.
 
-The LINCC-Frameworks Python Project Template (LF-PPT) was originally created with the needs of astronomers in mind; however, it became apparent that it is broadly applicable for many scientific use cases. The LF-PPT codifies our best engineering practices because we were unable to find existing tooling that met our needs. Many other templates exist for specific applications that include non-trivial amounts of code, but we wanted a template that 1) is agnostic to specific applications, 2) includes tooling needed for healthy software, 3) does not preclude use of other application-specific templates, and 4) is updatable as best practices and tooling evolve. 
+The LINCC Frameworks Python Project Template (LF-PPT) was originally created with the needs of astronomers in mind; however, it became apparent that it is broadly applicable for many scientific use cases. The LF-PPT codifies our best engineering practices because we were unable to find existing tooling that met our needs. Many other templates exist for specific applications that include non-trivial amounts of code, but we wanted a template that 1) is agnostic to specific applications, 2) includes tooling needed for healthy software, 3) does not preclude use of other application-specific templates, and 4) is updatable as best practices and tooling evolve.
 
 
 # Code health processes
@@ -100,7 +100,7 @@ The most notable exclusion from the LF-PPT is code. Aside from a few optional st
 
 ## General usage
 
-The LINCC Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^7] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To hydrate a new or existing project with the LF-PPT via copier, the user calls:
+The LINCC Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^7] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To create a new project with the LF-PPT via copier, the user calls:
 
 ```
 copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
@@ -117,7 +117,7 @@ The process is designed so as not to require significant time, and, thus, if the
 
 ## Existing projects
 
-In addition to creating new projects from scratch, the LF-PPT can be applied to existing projects to incorporate the features it provides. Often a more established project will require more effort to apply the LF-PPT. However, LINCC-Frameworks has had success applying the template to multiple legacy projects. A collection of tips for applying the template to existing projects is included in the documentation http://lincc-ppt.readthedocs.io/.
+In addition to creating new projects from scratch, the LF-PPT can be applied to existing projects to incorporate the features it provides. Often a more established project will require more effort to apply the LF-PPT. However, LINCC Frameworks has had success applying the template to multiple legacy projects. A collection of tips for applying the template to existing projects is included in the documentation http://lincc-ppt.readthedocs.io/.
 
 ## Updating projects
 
@@ -126,6 +126,8 @@ As best practices evolve and new tools are introduced, the LF-PPT will incorpora
 ```
 copier update
 ```
+
+Similarly, if the user determines that different template options would better suit the project as it evolves, the same command can be used to review and change the initial responses to the questionnaire and apply those changes to the project.
 
 ## Hibernating projects
 
