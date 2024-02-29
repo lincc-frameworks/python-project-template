@@ -67,7 +67,7 @@ The creation of healthy code is vital for its successful long term use in scient
 
 Software has long played a vital role in analyzing scientific data and driving new discoveries. As the scientific community continues to build upon established projects and create novel algorithms, there is a need to ensure the accuracy, repeatability, usability, and maintainability of the software. The first factor is required for the validity of the scientific results, while the latter factors enable the software to have a broad, sustained impact.
 
-The LINCC-Frameworks Python Project Template (LF-PPT) was originally created with the needs of astronomers in mind, however, it became apparent that it is broadly applicable for many scientific use cases. The LF-PPT codifies our best engineering practices because we were unable to find existing tooling that met our needs. Many other templates exist for specific applications that include non-trivial amounts of code, but we wanted a template that 1) is agnostic to specific applications 2) includes tooling needed for healthy software 3) doesn’t preclude use of other application-specific templates and 4) is updatable as best practices and tooling evolve. 
+The LINCC-Frameworks Python Project Template (LF-PPT) was originally created with the needs of astronomers in mind; however, it became apparent that it is broadly applicable for many scientific use cases. The LF-PPT codifies our best engineering practices because we were unable to find existing tooling that met our needs. Many other templates exist for specific applications that include non-trivial amounts of code, but we wanted a template that 1) is agnostic to specific applications, 2) includes tooling needed for healthy software, 3) does not preclude use of other application-specific templates, and 4) is updatable as best practices and tooling evolve. 
 
 
 # Code health processes
@@ -100,7 +100,7 @@ The most notable exclusion from the LF-PPT is code. Aside from a few optional st
 
 ## General usage
 
-The LINCC-Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^7] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To hydrate a new or existing project with the LF-PPT via copier the user calls:
+The LINCC Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^7] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To hydrate a new or existing project with the LF-PPT via copier, the user calls:
 
 ```
 copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
@@ -129,11 +129,11 @@ copier update
 
 ## Hibernating projects
 
-Scientific projects often go into periods of hibernation when not under active development or use, and are often challenging to revive. With the LF-PPT, hibernating projects should be much easier to reactivate. Automatically scheduled smoke tests and dependabot[^8] integration ensure that the code and dependencies continue to function correctly without significant interaction from the maintainers.
+Scientific projects often go into periods of hibernation when not under active development or use, and can be challenging to revive. With the LF-PPT, hibernating projects should be much easier to reactivate. Automatically scheduled smoke tests and dependabot[^8] integration ensure that the code and dependencies continue to function correctly without significant intervention from the maintainers.
 
 ## Recent applications
 
-The LF-PPT has been applied to multiple LINCC Frameworks projects including LSDB[^9], Hipscat[^10], and TAPE[^11], short term collaborations such as Sorcha[^12], SuperPhot+[^13], DeepDISC[^14], and MacCauff[^15], and external project including kcorrect[^16] and FlexCode[^17] Additionally a project specific version was forked from the project and has been applied to all RAIL packages[^18].
+The LF-PPT has been applied to multiple LINCC Frameworks projects including LSDB[^9], HiPSCat[^10], and TAPE[^11], short term collaborations such as Sorcha[^12], SuperPhot+[^13], DeepDISC[^14], and MacCauff[^15], and external projects including kcorrect[^16] and FlexCode[^17]. Additionally, a project-specific version was forked from the project and has been applied to all RAIL packages[^18].
 
 # Acknowledgments
 
