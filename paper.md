@@ -61,7 +61,7 @@ bibliography: paper.bib
 
 # Summary
 
-The creation of healthy code is vital for its successful long term use in scientific research. To maximize impact throughout the community, software packages must be robust, usable, and maintainable. Here we discuss several engineering processes that are important for developing healthy software. Unfortunately these processes often require configuration leading to short-term overhead for new projects. We introduce the LINCC Frameworks Python Project Template, a configurable template designed for scientific software projects that greatly simplifies adopting such practices by automating the setup and configuration of important code health tools. Notably the template does not include any application specific code. This allows the user to focus on their scientific code, and not building or maintaining code health infrastructure.
+The creation of healthy code is vital for its successful long term use in scientific research. To maximize impact throughout the community, software packages must be usable, maintainable, and produce consistent results. Here we discuss several engineering processes that are important for developing healthy software. Unfortunately these processes often require configuration leading to short-term overhead for new projects. We introduce the LINCC Frameworks Python Project Template, a configurable template designed for scientific software projects that greatly simplifies adopting such practices by automating the setup and configuration of important code health tools. Notably the template does not include any application specific code. This allows users to focus on their scientific code, and not building or maintaining code health infrastructure.
 
 # Statement of need
 
