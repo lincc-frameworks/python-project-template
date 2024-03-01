@@ -61,7 +61,7 @@ bibliography: paper.bib
 
 # Summary
 
-The creation of healthy code is vital for its successful long term use in scientific research. To maximize impact throughout the community, software packages must be robust, usable, and maintainable. Here we discuss several engineering processes that are important for developing healthy software. Unfortunately these processes often require configuration leading to short-term overhead for new projects. We introduce the LINCC Frameworks Python Project Template, a configurable template designed for scientific software projects that greatly simplifies adopting such practices by automating the setup and configuration of important code health tools.
+The creation of healthy code is vital for its successful long term use in scientific research. To maximize impact throughout the community, software packages must be robust, usable, and maintainable. Here we discuss several engineering processes that are important for developing healthy software. Unfortunately these processes often require configuration leading to short-term overhead for new projects. We introduce the LINCC Frameworks Python Project Template, a configurable template designed for scientific software projects that greatly simplifies adopting such practices by automating the setup and configuration of important code health tools. Notably the template does not include any application specific code. This allows the user to focus on their scientific code, and not building or maintaining code health infrastructure.
 
 # Statement of need
 
@@ -94,8 +94,6 @@ Software is only useful to the broader community if other users can find, instal
 ## Additional code health tools
 
 The LF-PPT supports many more features than those listed here including static code analysis, performance benchmarking, code testing coverage and more. For a complete list, please see the documentation at http://lincc-ppt.readthedocs.io/.
-
-The most notable exclusion from the LF-PPT is code. Aside from a few optional stub source and test files, the LF-PPT allows the user to focus on scientific code, while supporting them with the industry best practices in maintainable software engineering.
 
 # Usage
 
