@@ -36,7 +36,7 @@ authors:
   - name: Konstantin Malanchev
     orcid: 0000-0001-7179-7406
     affiliation: "1, 3"
-  - name: Alex Malz
+  - name: Alex I. Malz
     orcid: 0000-0002-8676-1622
     affiliation: "1, 3"
   - name: Rachel Mandelbaum
