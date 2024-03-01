@@ -79,12 +79,13 @@ There exists a wide variety of literature on best practices for developing healt
 Automated testing is critical to ensuring the correctness of code during initial implementation and through ongoing changes. Code should be validated by a comprehensive suite of tests including unit tests, which confirm the accuracy of individual functions, and integration tests that ensure end-to-end functionality for supported use cases. A comprehensive and automated test suite is an indicator of a trustworthy software package.
 
 The LF-PPT supports automated testing by configuring several different continuous integration GitHub workflows, that run test suites automatically:
- - at each push or pull request to ensure that changes to the current branch do not break the program’s behavior and
- - in regularly scheduled smoke tests (usually daily) to ensure that the code has not broken due to a change of the project’s code or the behavior of its dependencies.
+
+- at each push or pull request to ensure that changes to the current branch do not break the program’s behavior and
+- in regularly scheduled smoke tests (usually daily) to ensure that the code has not broken due to a change of the project’s code or the behavior of its dependencies.
 
 ## Documentation
 
-Thorough documentation of code allows others to use the package more readily and encourages maintainability. The LF-PPT supports the use of sphinx[^1] for integration with ReadTheDocs[^2] to automatically render Python docstrings into well formatted documentation alongside manually written documentation. Additionally, to demonstrate the use of the package in context, the LF-PPT provides automatic rendering of example Jupyter notebooks within the documentation.
+Thorough documentation of code allows others to use the package more readily and encourages maintainability. The LF-PPT supports the use of sphinx[^1] for integration with ReadTheDocs[^2] to automatically render Python docstrings into well-formatted documentation alongside manually written documentation. Additionally, to demonstrate the use of the package in context, the LF-PPT provides automatic rendering of example Jupyter notebooks within the documentation.
 
 ## Distribution
 
@@ -100,17 +101,17 @@ The most notable exclusion from the LF-PPT is code. Aside from a few optional st
 
 ## General usage
 
-The LINCC Frameworks Python Project Template automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^7] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To create a new project with the LF-PPT via copier, the user calls:
+The LF-PPT automates the setup of the above processes for Python projects hosted on GitHub. The only direct dependency is copier[^7] [@copier], which is used as the engine to generate new projects from the LF-PPT with a specific directory structure, the requested configuration and stub files. To create a new project with the LF-PPT via copier, the user calls:
 
 ```
-copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
+$ copier copy gh:lincc-frameworks/python-project-template <new/project/directory>
 ```
 
 A questionnaire is presented to configure the project and establish the various features of the template to include. After the directory structure and files have been generated, the user should run the included initialization script to configure the local git repository and install the new package in the virtual environment:
 
 ```
-cd <new/project/directory>
-bash .initialize-new-project.sh
+$ cd <new/project/directory>
+$ bash .initialize-new-project.sh
 ```
 
 The process is designed so as not to require significant time, and, thus, if the user is unhappy with the generated project, they can simply delete and recreate it. Depending on the options selected, some additional configuration may be required, such as registering with ReadTheDocs or PyPI. To assist the user, a customized, post-creation checklist is generated.
@@ -124,7 +125,7 @@ In addition to creating new projects from scratch, the LF-PPT can be applied to 
 As best practices evolve and new tools are introduced, the LF-PPT will incorporate those into the template. Updates to the template can be applied to existing projects with minimal effort, allowing the users to focus on science and not software maintenance.
 
 ```
-copier update
+$ copier update
 ```
 
 Similarly, if the user determines that different template options would better suit the project as it evolves, the same command can be used to review and change the initial responses to the questionnaire and apply those changes to the project.
