@@ -138,6 +138,8 @@ The LF-PPT has been applied to multiple LINCC Frameworks projects including LSDB
 
 # Acknowledgments
 
+We would like to thank the users and external contributors who provided feedback, suggestions, and contributions as well as all the LINCC Frameworks team members who helped publicize this package within the astronomy community.
+
 This project is supported by Schmidt Sciences.
 
 [^1]: https://www.sphinx-doc.org/
