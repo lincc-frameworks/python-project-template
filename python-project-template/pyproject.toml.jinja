@@ -34,6 +34,7 @@ dev = [
 {%- if 'black'  in enforce_style %}
     "black", # Used for static linting of files
 {%- endif %}
+    "jupyter", # Clears output from Jupyter notebooks
 {%- if mypy_type_checking != 'none' %}
     "mypy", # Used for static type checking of files
 {%- endif %}
