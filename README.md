@@ -32,6 +32,4 @@ See full documentation at [readthedocs](https://lincc-ppt.readthedocs.io/en/late
 
 ## Acknowledgements
 
-LINCC Frameworks is supported by Schmidt Futures, a philanthropic initiative
-founded by Eric and Wendy Schmidt, as part of the Virtual Institute of 
-Astrophysics (VIA).
+This project is supported by Schmidt Sciences.
