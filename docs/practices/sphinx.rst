@@ -32,9 +32,10 @@ of the organization, and let them know what you're trying to do.
 
     - Include multiple maintainers in your RTD project. You don't want to be 
       the single point of failure!
-    - Turn on Pull Request builds (Admin > Advanced Settings > Build pull 
+    - Turn on Pull Request builds (Admin > Settings > Build pull 
       requests for this project). This will try to build the RTD site for each 
       pull request, and PR reviewers can preview the changes.
+    - Switch the default to `stable` (Admin > Settings > Default version). 
 
 How to manage
 -------------------------------------------------------------------------------
