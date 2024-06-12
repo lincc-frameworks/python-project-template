@@ -21,11 +21,19 @@ please :doc:`/source/contact`
 
    source/overview
    source/new_project
+   source/existing_project
    source/configuration_checklist
    source/update_project
-   source/existing_project
    source/contributing
    source/contact
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Template Options
+
+   template_options
+
 
 .. toctree::
    :maxdepth: 1

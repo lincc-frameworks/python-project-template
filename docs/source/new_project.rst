@@ -173,8 +173,3 @@ Next steps
 -------------------------------------------------------------------------------
 
 :doc:`Configure a new project<configuration_checklist>`
-
-Still have questions?
--------------------------------------------------------------------------------
-
-:doc:`/source/contact`
