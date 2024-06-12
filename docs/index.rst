@@ -32,7 +32,7 @@ please :doc:`/source/contact`
    :maxdepth: 1
    :caption: Template Options
 
-   template_options
+   source/template_options
 
 
 .. toctree::

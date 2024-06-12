@@ -1,6 +1,12 @@
 Template Options
 ================
 
+Here we list all the options available when choosing a custom installation.
+
+The simplified installation will use the following defaults:
+TODO
+
+
 1. Simple or custom
 -------------------
 
