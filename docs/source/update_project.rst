@@ -1,5 +1,5 @@
-Updating a project
-==================
+Updating a templated project
+============================
 
 Updating a project comes in two flavors. 
 Updating to incorporate a new version of the template, or updating 

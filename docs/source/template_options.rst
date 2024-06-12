@@ -3,12 +3,18 @@ Template Options
 
 Here we list all the options available when choosing a custom installation.
 
-The simplified installation will use the following defaults:
-TODO
+The simplified installation will use the default values listed at the top of each of the following 
+sections.
 
 
 1. Simple or custom
 -------------------
+
+.. note::
+   Would you like to use simple (default tooling) or customized installation? 
+
+   **Default: `my_project`**
+   
 
 1. maybe just a short section that describes the differences
 2. if we do split simple into minimal and maximal, this would also be a helpful section do explain that
@@ -17,11 +23,23 @@ TODO
 2. Name of your project
 -----------------------
 
+.. note::
+   What is the name of your project?
+
+   **Default: `my_project`**
+   
+
+
 As written in original table
 
 
 3. Python package name
 -----------------------
+
+**Question:**
+   What is the name of your Python package?
+**Default:**
+ `example_package`
 
 As written in original table
 
@@ -29,11 +47,21 @@ As written in original table
 4. Github organization name
 --------------------------
 
+**Question:**
+   What github organization will your project live under? 
+**Default:**
+   `my-organization`
+
 As written in original table
 
 
 5. Name of the code author
 --------------------------
+
+**Question:**
+   What is the name of the code author?
+**Default:**
+   `Your Name`
 
 As written in original table
 

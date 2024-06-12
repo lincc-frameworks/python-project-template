@@ -1,4 +1,4 @@
-Incorporating the template into a prior project
+Hydrate a pre-template project
 ===============================================================================
 
 These instructions are for those who want to incorporate the latest version of the 
