@@ -40,7 +40,7 @@ As written in original table
 
 
 4. Github organization name
---------------------------
+----------------------------
 
 **Question:**
    What github organization will your project live under? 

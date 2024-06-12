@@ -18,6 +18,7 @@ please :doc:`/source/contact`
 .. toctree::
    :maxdepth: 1
    :caption: Using the Template
+   :hidden:
 
    source/overview
    source/new_project
@@ -29,8 +30,9 @@ please :doc:`/source/contact`
 
 
 .. toctree::
-   :maxdepth: 1
-   :numbered:
+   :maxdepth: 2
+   :caption: Template Options
+   :hidden:
 
    source/template_options
 
@@ -38,6 +40,7 @@ please :doc:`/source/contact`
 .. toctree::
    :maxdepth: 1
    :caption: Best Practices
+   :hidden:
 
    practices/overview
    practices/ci_benchmarking
