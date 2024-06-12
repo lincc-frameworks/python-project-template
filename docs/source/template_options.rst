@@ -1,12 +1,3 @@
-Template Options
-================
-
-Here we list all the options available when choosing a custom installation.
-
-The simplified installation will use the default values listed at the top of each of the following 
-sections.
-
-
 1. Simple or custom
 -------------------
 
@@ -14,7 +5,11 @@ sections.
    Would you like to use simple (default tooling) or customized installation? 
 
    **Default: `my_project`**
-   
+
+The simplified installation will use the default values listed at the top of each of the following 
+sections.
+
+
 
 1. maybe just a short section that describes the differences
 2. if we do split simple into minimal and maximal, this would also be a helpful section do explain that
