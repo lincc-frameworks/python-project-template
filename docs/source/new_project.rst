@@ -1,4 +1,4 @@
-Creating a new project
+Create a new templated project
 ===============================================================================
 
 

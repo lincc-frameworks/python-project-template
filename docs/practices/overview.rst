@@ -19,7 +19,6 @@ Practices
 * :doc:`precommit`
 * :doc:`pypi`
 * :doc:`sphinx`
-* :doc:`git-lfs`
 * :doc:`pytest_timeout`
 
 Still have questions?

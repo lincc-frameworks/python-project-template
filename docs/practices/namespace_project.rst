@@ -1,5 +1,5 @@
-Python namespace project
-========================
+Python Namespace Projects
+=========================
 
 `Pep 420 <https://peps.python.org/pep-0420/>`_ defines a standard for namespace packages. 
 This standard allows for separately versioned and maintained subpackages to present 

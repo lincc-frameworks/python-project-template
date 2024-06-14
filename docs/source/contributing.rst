@@ -1,4 +1,4 @@
-Contributing to the template
+Contribute to the template
 ===============================================================================
 
 Find (or make) a new GitHub issue

@@ -1,4 +1,4 @@
-Hydrate a pre-template project
+or, Hydrate an un-templated project
 ===============================================================================
 
 These instructions are for those who want to incorporate the latest version of the 

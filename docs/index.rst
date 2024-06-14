@@ -43,18 +43,12 @@ please :doc:`/source/contact`
    :hidden:
 
    practices/overview
-   practices/ci_benchmarking
-   practices/ci_precommit
-   practices/ci_testing
-   practices/code_coverage
-   practices/git-lfs
-   practices/issue_pr_templating
-   practices/linting
-   practices/namespace_project
-   practices/pipx
    practices/precommit
-   practices/pypi
-   practices/conda
-   practices/unit_testing
-   practices/pytest_timeout
+   practices/environment_management
+   practices/linting
+   practices/ci
+   practices/namespace_project
+   practices/issue_pr_templating
    practices/sphinx
+   practices/pypi
+

@@ -1,4 +1,4 @@
-Updating a templated project
+Update a templated project
 ============================
 
 Updating a project comes in two flavors. 
