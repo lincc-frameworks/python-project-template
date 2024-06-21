@@ -18,32 +18,37 @@ please :doc:`/source/contact`
 .. toctree::
    :maxdepth: 1
    :caption: Using the Template
+   :hidden:
 
    source/overview
    source/new_project
+   source/existing_project
    source/configuration_checklist
    source/update_project
-   source/existing_project
    source/contributing
    source/contact
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Template Options
+   :hidden:
+
+   source/template_options
+
 
 .. toctree::
    :maxdepth: 1
    :caption: Best Practices
+   :hidden:
 
    practices/overview
-   practices/ci_benchmarking
-   practices/ci_precommit
-   practices/ci_testing
-   practices/code_coverage
-   practices/git-lfs
-   practices/issue_pr_templating
-   practices/linting
-   practices/namespace_project
    practices/pipx
    practices/precommit
-   practices/pypi
-   practices/conda
-   practices/unit_testing
-   practices/pytest_timeout
+   practices/linting
+   practices/ci
+   practices/namespace_project
+   practices/issue_pr_templating
    practices/sphinx
+   practices/publishing_package
+

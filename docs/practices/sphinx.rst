@@ -1,4 +1,4 @@
-Sphinx - ReadTheDocs and AutoAPI
+Sphinx: ReadTheDocs, AutoAPI
 ===============================================================================
 
 What is it? Why do it?

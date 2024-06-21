@@ -1,4 +1,4 @@
-Code Style
+Code Style: Linters, Auto-Formatters
 ===============================================================================
 
 What is it? Why do it?

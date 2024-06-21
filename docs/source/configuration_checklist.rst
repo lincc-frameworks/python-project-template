@@ -1,4 +1,4 @@
-Configuring a new project
+Configure a templated project
 ===============================================================================
 
 So you've created a new python project from the template! Great!
