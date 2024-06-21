@@ -44,11 +44,11 @@ please :doc:`/source/contact`
 
    practices/overview
    practices/precommit
-   practices/environment_management
+   practices/pipx
    practices/linting
    practices/ci
    practices/namespace_project
    practices/issue_pr_templating
    practices/sphinx
-   practices/pypi
+   practices/publishing_package
 

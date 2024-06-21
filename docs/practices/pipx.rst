@@ -1,4 +1,4 @@
-pipx
+Pipx
 ====================================================================================================
 
 ``pipx`` is a tool to enable installation of end-user applications written 

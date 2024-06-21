@@ -1,8 +1,8 @@
-Env Management: pipx, conda
+Publishing Your Package: PyPI, Conda
 ===============================================================================
 
 .. toctree::
    :maxdepth: 1
 
-   pipx
+   pypi
    conda
