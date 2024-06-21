@@ -43,8 +43,8 @@ please :doc:`/source/contact`
    :hidden:
 
    practices/overview
-   practices/precommit
    practices/pipx
+   practices/precommit
    practices/linting
    practices/ci
    practices/namespace_project

@@ -25,9 +25,11 @@ The name of your project.
 
 Must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _, -).
 
-If you distribute your code via PyPI, this is the name that will be used. This will allow users to install like so: ``pip install <project_name>``. 
+This will be used to connect to your project on github, as in ``https://github.com/{{project_organization}}/{{project_name}}``.
 
-Note that this will be used to connect to your project on github, as in ``https://github.com/{{project_organization}}/{{project_name}}``.
+If you distribute your code via PyPI, this is the name that will be used. This will allow users to install like so: ``pip install <project_name>``.
+
+Read more at :doc:`../practices/pypi`.
 
 
 3. Python package name
@@ -214,6 +216,8 @@ If this option is selected, the template will create an example module and test 
    | Options    | **✱ yes**, no                                                          |
    +------------+------------------------------------------------------------------------+
 
+See :doc:`../practices/sphinx`.
+
 If this option is selected, any docstrings in your Python files will be turned into API documentation via Sphinx autodoc.
 
 The template will create directories and configuration files to enable Sphinx document generation and ReadTheDocs integration::
@@ -227,7 +231,6 @@ The template will create directories and configuration files to enable Sphinx do
     |  ├─ ...
     ├─ readthedocs.yml
     ├─ ...
-
 
 
 14. Rendered notebooks
@@ -266,3 +269,5 @@ It will also create a sample benchmarking suite under ``benchmarks/``::
     │  ├─ benchmarks/
     │  │  ├─ benchmarks.py
     ├─ ...
+
+Read more at :doc:`../practices/ci_benchmarking`.
