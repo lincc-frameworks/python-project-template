@@ -224,6 +224,8 @@ The template will create directories and configuration files to enable Sphinx do
     │  ├─ index.rst
     │  ├─ Makefile
     │  ├─ requirements.txt
+    |  ├─ ...
+    ├─ readthedocs.yml
     ├─ ...
 
 
