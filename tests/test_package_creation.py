@@ -1,4 +1,5 @@
-import pytest
+"""Verify package creation using `pytest-copie`"""
+
 import subprocess
 
 import pytest
@@ -10,6 +11,8 @@ def successfully_created_project(result):
 
 
 def contains_required_files(result):
+    """Utility method to confirm that the required project files exist in the
+    copier result."""
     required_files = [
         ".copier-answers.yml",
         ".git_archival.txt",
@@ -42,6 +45,7 @@ def black_runs_successfully(result):
     black_results = subprocess.run(
         ["python", "-m", "black", "--check", (result.project_dir / "src")],
         cwd=result.project_dir,
+        check=False,
     )
 
     return black_results.returncode == 0
@@ -60,19 +64,20 @@ def pylint_runs_successfully(result):
             (result.project_dir / "src"),
         ],
         cwd=result.project_dir,
+        check=False,
     )
 
     return pylint_results.returncode == 0
 
 
-def unit_tests_in_project_run_successfully(result, package_name="example_package"):
+def unit_tests_in_project_run_successfully(result):
     """Test to ensure that the unit tests run successfully on the project
 
     !!! NOTE - This doesn't currently work because we need to `pip install` the hydrated
     project before running the tests. And we don't have a way to create a temporary
     virtual environment for the project.
     """
-    pytest_results = subprocess.run(["python", "-m", "pytest"], cwd=result.project_dir)
+    pytest_results = subprocess.run(["python", "-m", "pytest"], cwd=result.project_dir, check=False)
 
     return pytest_results.returncode == 0
 
@@ -106,7 +111,7 @@ def docs_build_successfully(result):
 def github_workflows_are_valid(result):
     """Test to ensure that the GitHub workflows are valid"""
     workflows_results = subprocess.run(
-        ["pre-commit", "run", "check-github-workflows"], cwd=result.project_dir
+        ["pre-commit", "run", "check-github-workflows"], cwd=result.project_dir, check=False
     )
     return workflows_results.returncode == 0
 
@@ -131,7 +136,7 @@ def test_all_defaults(copie):
 
     # check to see if the README file was hydrated with copier answers.
     found_line = False
-    with open(result.project_dir / "README.md") as f:
+    with open(result.project_dir / "README.md", encoding="utf-8") as f:
         for line in f:
             if "example_project" in line:
                 found_line = True
@@ -164,7 +169,7 @@ def test_use_black_and_no_example_modules(copie):
 
     # check to see if the pyproject.toml file has the expected dependencies
     found_line = False
-    with open(result.project_dir / "pyproject.toml") as f:
+    with open(result.project_dir / "pyproject.toml", encoding="utf-8") as f:
         for line in f:
             if '"black", # Used for static linting of files' in line:
                 found_line = True
