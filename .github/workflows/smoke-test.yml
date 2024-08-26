@@ -39,3 +39,40 @@ jobs:
     - name: Run unit tests with pytest /  pytest-copie
       run: |
         python -m pytest
+    - name: Send status to Slack app
+      if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
+      id: slack
+      uses: slackapi/slack-github-action@v1
+      with:
+        payload: |
+          {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "${{ github.repository }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "GitHub Action build result: *${{ job.status }}* :${{ job.status }}:"
+                }
+              },
+              {
+                "type": "divider"
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
