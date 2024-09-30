@@ -20,4 +20,4 @@ their own configuration files.
 A ``pyproject.toml`` file provides a vast number of customization options well
 beyond what can be covered here. For an in-depth look at how the file can be used
 and how it compares to the older ``setup.py`` checkout the
-`Python Packagining User Guide <https://packaging.python.org/en/latest/guides/writing-pyproject-toml/>`_.
+`Python Packaging User Guide <https://packaging.python.org/en/latest/guides/writing-pyproject-toml/>`_.
