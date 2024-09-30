@@ -9,7 +9,7 @@ It replaces the need for setup.py, requirements.txt, and other configuration fil
 
 A fundamental use for ``pyproject.toml`` is to define dependencies. You should
 make an effort to add all the required dependencies to the ``[dependencies]``
-section of the file.
+section of the file. The template also creates a section for dependencies used only in development: ``[project.optional-dependencies][dev]``. You can add additional sets of optional dependencies here, e.g. for extended feature sets.
 
 In addition to dependencies, ``pyproject.toml`` centralizes the project's
 configuration and makes it easier to manage. If you examine your ``pyproject.toml``
