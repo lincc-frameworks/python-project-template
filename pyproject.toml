@@ -19,7 +19,7 @@ dependencies = [
     "sphinx", # Used to automatically generate documentation
     "sphinx-rtd-theme", # Used to render documentation
     "sphinx-copybutton",
-    "pyyaml-include<2.0",
+    "pyyaml-include<3.0",
 ]
 
 [project.optional-dependencies]
