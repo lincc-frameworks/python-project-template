@@ -51,4 +51,5 @@ please :doc:`/source/contact`
    practices/issue_pr_templating
    practices/sphinx
    practices/publishing_package
+   practices/customizing_project
 
