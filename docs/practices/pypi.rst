@@ -26,8 +26,11 @@ To support this, you'll need to configure your repository.
 
   * For previously unpublished packages: https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
   * For existing published packaged: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
-   
-* When configuring your trusted publisher, the value to use for the "Workflow name" is "publish-to-pypi.yml".
+
+* When configuring your trusted publisher
+
+  * Set the value of "Workflow name" to "publish-to-pypi.yml".
+  * Leave the value of "Environment name" blank.
 
 
 Releasing new versions
