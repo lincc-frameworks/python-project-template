@@ -7,7 +7,7 @@ What is it? Why do it?
 The ``pyproject.toml`` file is used to define many different project configurations.
 It replaces the need for setup.py, requirements.txt, and other configuration files.
 
-A fundamental use for ``pyproject.toml`` is to define a dependencies. You should
+A fundamental use for ``pyproject.toml`` is to define dependencies. You should
 make an effort to add all the required dependencies to the ``[dependencies]``
 section of the file.
 
