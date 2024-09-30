@@ -59,6 +59,7 @@ project_license:
     choices:
         MIT: MIT
         BSD: BSD
+        GPLv3: GPL3
         none: none
 
 python_versions:
