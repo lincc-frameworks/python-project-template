@@ -11,7 +11,10 @@ on:
   workflow_dispatch:
   
 env:
-  PYTHON_VERSION: "3.10"
+{%- endraw %}
+{%- import 'python-versions.jinja' as py%}
+  PYTHON_VERSION: "{{ py.pref(python_versions) }}"
+{%- raw %}
   WORKING_DIR: ${{ github.workspace }}/benchmarks
   NIGHTLY_HASH_FILE: nightly-hash
 

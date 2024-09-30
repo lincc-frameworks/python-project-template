@@ -1,0 +1,35 @@
+{# You use this file by including it via jinja like:
+
+    {%- import 'python-versions.jinja' as py -%} 
+
+Then pass the python_versions list into the various macros like so: 
+
+  {{ py.min(python_versions) }} 
+
+This template creates no output, but does allow you to transform python_versions answer into a 
+number of helpful values for when you need a single python version. 
+
+Note that the import syntax and access MUST BE in the form above. Copier has problems processing import lines
+that are any more complex when they occur in files who's paths are also jinja templated. #}
+
+
+{# This gives a middle python version from a potentially long list of versions 
+For even-length lists we prefer the older of the two middle values. 
+   ["3.9","3.10","3.11","3.12"] -> "3.10" 
+For odd-length lists we prefer the middle value 
+   ["3.9","3.10","3.11"] -> "3.10"        #}
+{% macro pref(python_versions) -%}
+{%- set n = python_versions | length -%}
+{{ python_versions[((n+1)//2 - 1)] }}
+{%- endmacro -%}
+
+{# These give the minimum and maximum python versions supported #}
+{% macro min(python_versions) -%}
+{%- set n = python_versions | length -%}
+{{ python_versions[0] }}
+{%- endmacro -%}
+
+{% macro max(python_versions) -%}
+{%- set n = python_versions | length -%}
+{{ python_versions[n-1] }}
+{%- endmacro -%}

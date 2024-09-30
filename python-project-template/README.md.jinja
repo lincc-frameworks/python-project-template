@@ -1,3 +1,4 @@
+{%- import 'python-versions.jinja' as py %}
 # {{project_name}}
 
 [![Template](https://img.shields.io/badge/Template-LINCC%20Frameworks%20Python%20Project%20Template-brightgreen)](https://lincc-ppt.readthedocs.io/en/latest/)
@@ -29,7 +30,7 @@ environments. If you have conda installed locally, you can run the following to
 create and activate a new environment.
 
 ```
->> conda create -n <env_name> python=3.10
+>> conda create -n <env_name> python={{ py.pref(python_versions) }}
 >> conda activate <env_name>
 ```
 
