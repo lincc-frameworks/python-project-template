@@ -26,6 +26,7 @@ please :doc:`/source/contact`
    source/configuration_checklist
    source/update_project
    source/contributing
+   source/citation
    source/contact
 
 

@@ -22,7 +22,7 @@ the full benefit of the template.
 .. _prerequisites:
 
 Prerequisites
---------------
+-------------
 
 To use our template you'll need to install 
 `Copier <https://copier.readthedocs.io/en/latest/>`_. 

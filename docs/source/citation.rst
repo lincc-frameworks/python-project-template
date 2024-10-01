@@ -1,0 +1,22 @@
+Citation
+===============================================================================
+
+If you use Python Project Template in your work, we ask the you cite the `"A Python Project Template for Healthy Scientific Software" <https://iopscience.iop.org/article/10.3847/2515-5172/ad4da1)>`_ research note:
+
+.. code-block:: text
+
+    @ARTICLE{2024RNAAS...8..141O,
+        author = {{Oldag}, Drew and {DeLucchi}, Melissa and {Beebe}, Wilson and {Branton}, Doug and {Campos}, Sandro and {Chandler}, Colin Orion and {Christofferson}, Carl and {Connolly}, Andrew and {Kubica}, Jeremy and {Lynn}, Olivia and {Malanchev}, Konstantin and {Malz}, Alex I. and {Mandelbaum}, Rachel and {McGuire}, Sean and {Wenneman}, Chris},
+        title = "{A Python Project Template for Healthy Scientific Software}",
+        journal = {Research Notes of the American Astronomical Society},
+        keywords = {Open source software, 1866},
+        year = 2024,
+        month = may,
+        volume = {8},
+        number = {5},
+        eid = {141},
+        pages = {141},
+        doi = {10.3847/2515-5172/ad4da1},
+        adsurl = {https://ui.adsabs.harvard.edu/abs/2024RNAAS...8..141O},
+        adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+    }
