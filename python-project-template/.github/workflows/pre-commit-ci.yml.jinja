@@ -1,3 +1,4 @@
+{%- import 'python-versions.jinja' as py %}
 # This workflow runs pre-commit hooks on pushes and pull requests to main
 # to enforce coding style. To ensure correct configuration, please refer to:
 #  https://lincc-ppt.readthedocs.io/en/latest/practices/ci_precommit.html
@@ -19,7 +20,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '{{ py.pref(python_versions) }}'
     - name: Install dependencies
       run: |
         sudo apt-get update

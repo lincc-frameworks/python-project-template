@@ -1,3 +1,4 @@
+{%- import 'python-versions.jinja' as py %}
 [project]
 name = "{{project_name}}"
 license = {file = "LICENSE"}
@@ -18,7 +19,7 @@ classifiers = [
     "Programming Language :: Python",
 ]
 dynamic = ["version"]
-requires-python = ">={{ python_versions[0] }}"
+requires-python = ">={{ py.min(python_versions)  }}"
 dependencies = [
 ]
 
@@ -66,7 +67,7 @@ testpaths = [
 
 [tool.black]
 line-length = 110
-target-version = ["py{{ python_versions[0] | replace(".", "") }}"]
+target-version = ["py{{ py.min(python_versions) | replace(".", "") }}"]
 
 [tool.isort]
 profile = "black"
@@ -74,7 +75,7 @@ line_length = 110
 
 [tool.ruff]
 line-length = 110
-target-version = "py{{ python_versions[0] | replace(".", "") }}"
+target-version = "py{{ py.min(python_versions) | replace(".", "") }}"
 
 [tool.ruff.lint]
 select = [

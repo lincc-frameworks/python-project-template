@@ -16,7 +16,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PYTHON_VERSION: "3.10"
+{%- endraw %}
+{%- import 'python-versions.jinja' as py%}
+  PYTHON_VERSION: "{{ py.pref(python_versions) }}"
+{%- raw %}
   ASV_VERSION: "0.6.4"
   WORKING_DIR: ${{github.workspace}}/benchmarks
   ARTIFACTS_DIR: ${{github.workspace}}/artifacts

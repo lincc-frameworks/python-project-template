@@ -1,3 +1,4 @@
+{%- import 'python-versions.jinja' as py %}
 repos:
     # Compare the local template version to the latest remote template version
     # This hook should always pass. It will print a message if the local version 
@@ -98,7 +99,7 @@ repos:
         # supported by your project here, or alternatively use
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
-        language_version: python3.10
+        language_version: python{{ py.pref(python_versions) }}
 {%- endif %}
 {%- if 'ruff_lint' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
