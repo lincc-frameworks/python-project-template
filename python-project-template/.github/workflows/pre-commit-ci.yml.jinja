@@ -32,5 +32,5 @@ jobs:
         extra_args: --all-files --verbose
       env:
         SKIP: "check-lincc-frameworks-template-version,no-commit-to-branch,check-added-large-files,validate-pyproject,sphinx-build,pytest-check"
-    - uses: pre-commit-ci/lite-action@v1.0.2
+    - uses: pre-commit-ci/lite-action@v1.1.0
       if: failure() && github.event_name == 'pull_request' && github.event.pull_request.draft == false

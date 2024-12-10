@@ -33,6 +33,6 @@ jobs:
       run: |
         python -m pytest --cov={{package_name}} --cov-report=xml
     - name: Upload coverage report to codecov
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       with:
         token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
