@@ -25,7 +25,7 @@ The name of your project.
 
 Must start with a lowercase letter, followed by one or more of the following (a-z, 0-9, _, -).
 
-This will be used to connect to your project on github, as in ``git@github.com:{{project_organization}}/{{project_name}}``.
+This will be used to connect to your project on github, as in ``https://github.com/{{project_organization}}/{{project_name}}``.
 
 If you distribute your code via PyPI, this is the name that will be used. This will allow users to install like so: ``pip install <project_name>``.
 
@@ -71,7 +71,7 @@ This will be:
 
     * Your GitHub username, if you're working outside of an organization. 
 
-This is used to construct URLs to your project, as in: ``git@github.com:{{project_organization}}/{{project_name}}``.
+This is used to construct URLs to your project, as in: ``https://github.com/{{project_organization}}/{{project_name}}``.
 
 
 5. Name of the code author

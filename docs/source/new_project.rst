@@ -45,7 +45,7 @@ questions:
    * - *What github organization will your project live under?*
      - This will either be a github organization, or your github username, if you're working outside 
        of an organization. This is used to construct URLs to your project, like
-       ``git@github.com:{{project_organization}}/{{project_name}}``
+       ``https://github.com/{{project_organization}}/{{project_name}}``
    * - *What is the name of the code author?* 
      - The name of the code's author, or the organization that is responsible for the code.
        This will be used in the project and documentation metadata. 
