@@ -1,4 +1,6 @@
+![Banner Image for LINCC Frameworks Python Project Template](https://github.com/user-attachments/assets/8977125e-b4c7-4f12-8f63-f3feb70a3ac6)
 # LINCC Frameworks Python Project Template
+
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/lincc-frameworks/python-project-template)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lincc-frameworks/python-project-template/ci.yml)](https://github.com/lincc-frameworks/python-project-template/ci.yml)
 [![Read the Docs](https://img.shields.io/readthedocs/lincc-ppt)](https://lincc-ppt.readthedocs.io/)
