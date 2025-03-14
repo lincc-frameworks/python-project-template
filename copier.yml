@@ -156,7 +156,7 @@ _message_after_copy: |
        $ bash .initialize_new_project.sh
 
     Push your project to a new repository on GitHub:
-       $ git remote add origin https://github.com/{{project_organization}}/{{project_name}}.git
+       $ git remote add origin git@github.com:{{project_organization}}/{{project_name}}.git
        $ git push -u origin main
 
     {%- if include_notebooks %}
