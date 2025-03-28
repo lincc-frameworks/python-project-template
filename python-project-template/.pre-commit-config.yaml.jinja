@@ -164,7 +164,7 @@ repos:
             "-d", # Flag for cached environment and doctrees
             "./docs/_build/doctrees", # Directory
             "-D", # Flag to override settings in conf.py
-            "exclude_patterns=notebooks/*", # Exclude our notebooks from pre-commit
+            "exclude_patterns=notebooks/*,_build", # Exclude notebooks and build dir from pre-commit
           ]
 {%- elif include_docs %}
     # Make sure Sphinx can build the documentation without issues.
