@@ -4,6 +4,12 @@
 def greetings() -> str:
     """A friendly greeting for a future friend.
 
+    Example:
+    >>> greetings()
+    'Hello from LINCC-Frameworks!'
+
+    Note: this example becomes a unit test via doctests
+
     Returns
     -------
     str
@@ -14,6 +20,12 @@ def greetings() -> str:
 
 def meaning() -> int:
     """The meaning of life, the universe, and everything.
+
+    Example:
+    >>> meaning()
+    42
+
+    Note: this example becomes a unit test via doctests
 
     Returns
     -------
