@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
+# Bash Unofficial strict mode (http://redsymbol.net/articles/unofficial-bash-strict-mode/) 
+# and (https://disconnected.systems/blog/another-bash-strict-mode/)
+set -o nounset # Any uninitialized variable is an error
+set -o errexit # Exit the script on the failure of any command to execute without error
+set -o pipefail # Fail command pipelines on the failure of any individual step
+IFS=$'\n\t' #set internal field separator to avoid iteration errors
+# Trap all exits and output something helpful
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+
 echo "Checking virtual environment"
-if [ -z "${VIRTUAL_ENV}" ] && [ -z "${CONDA_PREFIX}" ]; then
+if [ "${VIRTUAL_ENV:-missing}" = "missing" ] && [ "${CONDA_PREFIX:-missing}" = "missing" ]; then
     echo 'No virtual environment detected: none of $VIRTUAL_ENV or $CONDA_PREFIX is set.'
     echo
     echo "=== This script is going to install the project in the system python environment ==="
@@ -17,7 +26,7 @@ fi
 
 echo "Checking pip version"
 MINIMUM_PIP_VERSION=22
-pipversion=( $(python -m pip --version | awk '{print $2}' | sed 's/\./ /g') )
+pipversion=( $(python -m pip --version | awk '{print $2}' | sed 's/\./\n\t/g') )
 if let "${pipversion[0]}<${MINIMUM_PIP_VERSION}"; then
     echo "Insufficient version of pip found. Requires at least version ${MINIMUM_PIP_VERSION}."
     echo "See https://lincc-ppt.readthedocs.io/ for details."
@@ -26,7 +35,7 @@ fi
 
 echo "Initializing local git repository"
 {
-    gitversion=( $(git version | git version | awk '{print $3}' | sed 's/\./ /g') )
+    gitversion=( $(git version | git version | awk '{print $3}' | sed 's/\./\n\t/g') )
     if let "${gitversion[0]}<2"; then
 	# manipulate directly
 	git init . && echo 'ref: refs/heads/main' >.git/HEAD
