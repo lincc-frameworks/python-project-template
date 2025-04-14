@@ -29,7 +29,18 @@ expected.
 
 It's also worth noting that if you want to write exploratory tests as you develop
 your code, but you *do not* want those tests to be included in automated test runs,
-feel free to place those tests in a directory outside of the ``./tests`` directory.
+feel free to place those tests in a directory outside of the ``./tests`` and 
+``./src`` directories.
 
 Note that ``pytest`` will recursively search subdirectories inside of ``./tests``
 while searching for tests to run.
+
+doctests
+-------------------------------------------------------------------------------
+
+In addition to the usual ways of writing unit tests with pytest, our template
+supports tests embedded in documentation using pytest's 
+`doctest <https://doc.pytest.org/en/latest/how-to/doctest.html>`_ component. 
+Documentation comments in all source files, as well as ``.rst`` files in the ``./docs`` 
+directory can contain doctests in the format outlined 
+`here <https://doc.pytest.org/en/latest/how-to/doctest.html>`_.

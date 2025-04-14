@@ -63,7 +63,10 @@ write_to = "src/{{package_name}}/_version.py"
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
+    "src",
+    "docs",
 ]
+addopts = "--doctest-modules --doctest-glob=*.rst"
 
 [tool.black]
 line-length = 110
