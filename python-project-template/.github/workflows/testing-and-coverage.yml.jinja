@@ -1,3 +1,4 @@
+{%- import 'python-versions.jinja' as py %}
 # This workflow will install Python dependencies, run tests and report code coverage with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
@@ -36,3 +37,29 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
+{%- if test_lowest_version != 'none' %}
+  test-lowest-versions:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python {{ py.min(python_versions)  }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: '{{ py.min(python_versions)  }}'
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        python -m pip install --upgrade uv
+        uv venv venv
+        source venv/bin/activate
+        {%- if test_lowest_version == 'direct' %}
+        uv pip compile --resolution=lowest-direct -o requirements_lowest.txt pyproject.toml
+        {%- elif test_lowest_version == 'all' %}
+        uv pip compile --resolution=lowest -o requirements_lowest.txt pyproject.toml
+        {%- endif %}
+        uv pip install --constraint=requirements_lowest.txt -e .[dev]
+    - name: Run unit tests with pytest
+      run: |
+        source venv/bin/activate
+        python -m pytest
+{%- endif %}

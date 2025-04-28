@@ -125,11 +125,14 @@ The license type you want to use for this project.
 8. Versions of Python
 ---------------------
 
-   +------------+-----------------------------------------------------------------+
-   | Question   | What versions of Python will your project support?              |
-   +------------+-----------------------------------------------------------------+
-   | Options    | 3.7 (end-of-life), 3.8, **✱ 3.9**, **✱ 3.10**, **✱ 3.11**, 3.12 |
-   +------------+-----------------------------------------------------------------+
+   +------------+----------------------------------------------------+
+   | Question   | What versions of Python will your project support? |
+   +------------+----------------------------------------------------+
+   | Options    | 3.8 (end-of-life), **✱ 3.9**,                      |
+   |            | **✱ 3.9**, **✱ 3.10**,                             |
+   |            | **✱ 3.11**, **✱ 3.12**,                            |
+   |            | 3.13                                               |
+   +------------+----------------------------------------------------+
 
 Select all versions of python that you are targeting for execution.
 
@@ -271,3 +274,27 @@ It will also create a sample benchmarking suite under ``benchmarks/``::
     ├─ ...
 
 Read more at :doc:`../practices/ci_benchmarking`.
+
+16. Test against lowest versions
+------------------------------------------------
+
+   +------------+-----------------------------------------------------------+
+   | Question   | Run pull request tests with the lowest versions of python |
+   |            | and dependencies?                                         |
+   +------------+-----------------------------------------------------------+
+   | Options    | | (none) Do not test with lowest versions of dependencies | 
+   |            | | **(direct)** Test with lowest versions of direct        |
+   |            |   dependencies only (those listed in pyproject.toml)      | 
+   |            | | (all) Test with lowest versions of all dependencies     |
+   +------------+-----------------------------------------------------------+
+
+Adds an optional stage to the end of the testing and coverage github CI workflow
+using the oldest version of python you've selected above, and will determine 
+the oldest versions of dependencies indicated in the pyproject file.
+
+A new environment has these dependencies installed, and we try to run the pytest
+unit tests against these versions.
+
+This can be useful if your project is a library, and folks may want to depend on 
+you and your dependencies. Understanding the true range of versions you support
+in your application can make dependency resolution much easier for your users!
