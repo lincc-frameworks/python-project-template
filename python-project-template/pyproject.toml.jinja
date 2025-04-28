@@ -78,11 +78,12 @@ target-version = ["py{{ py.min(python_versions) | replace(".", "") }}"]
 profile = "black"
 line_length = 110
 {% endif -%}
-
+{% if 'ruff_lint' in enforce_style or 'ruff_format' in enforce_style -%}
 [tool.ruff]
 line-length = 110
 target-version = "py{{ py.min(python_versions) | replace(".", "") }}"
-
+{% endif -%}
+{% if 'ruff_lint' in enforce_style -%}
 [tool.ruff.lint]
 select = [
     # pycodestyle
@@ -114,7 +115,6 @@ select = [
     # Numpy v2.0 compatibility
     "NPY201",
 ]
-
 ignore = [
     "UP006", # Allow non standard library generics in type hints
     "UP007", # Allow Union in type hints
@@ -124,6 +124,7 @@ ignore = [
     "UP015", # Allow redundant open parameters
     "UP028", # Allow yield in for loop
 ]
+{% endif -%}
 
 {%- if mypy_type_checking != 'none' %}
 [tool.setuptools.package-data]
