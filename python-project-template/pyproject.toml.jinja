@@ -68,13 +68,16 @@ testpaths = [
 ]
 addopts = "--doctest-modules --doctest-glob=*.rst"
 
+{% if 'black' in enforce_style -%}
 [tool.black]
 line-length = 110
-target-version = ["py{{ py.min(python_versions) | replace(".", "") }}"]
-
+target-version = 2
+{% endif -%}
+{% if 'isort' in enforce_style -%}
 [tool.isort]
 profile = "black"
 line_length = 110
+{% endif -%}
 
 [tool.ruff]
 line-length = 110
