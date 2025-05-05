@@ -288,6 +288,25 @@ def test_doc_combinations_no_docs(copie, doc_answers):
     assert not (result.project_dir / "docs").is_dir()
 
 
+@pytest.mark.parametrize("test_lowest_version", ["none", "direct", "all"])
+def test_test_lowest_version(copie, test_lowest_version):
+    """Confirm we can generate a "testing_and_coverage.yaml" file, with all
+    test_lowest_version mechanisms selected."""
+
+    # provide a dictionary of the non-default answers to use
+    extra_answers = {
+        "test_lowest_version": test_lowest_version,
+    }
+
+    # run copier to hydrate a temporary project
+    result = copie.copy(extra_answers=extra_answers)
+
+    assert successfully_created_project(result)
+    assert directory_structure_is_correct(result)
+    assert black_runs_successfully(result)
+    assert contains_required_files(result)
+
+
 def test_github_workflows_schema(copie):
     """Confirm the current GitHub workflows have valid schemas."""
     extra_answers = {

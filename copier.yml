@@ -64,7 +64,7 @@ project_license:
 
 python_versions:
     help: What versions of python are you targeting? We will add automated testing for these versions.
-    default: ["3.9", "3.10", "3.11"]
+    default: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     type: str
     multiselect: true
     choices:
@@ -143,6 +143,15 @@ include_benchmarks:
     choices:
         yes: true
         no: false
+    when: "{{ custom_install }}"
+
+test_lowest_version:
+    help: Run pull request tests with the lowest versions of python and dependencies? Recommended if you are developing a library
+    default: direct
+    choices:
+        Do not test with lowest versions of dependencies: none
+        Test with lowest versions of direct dependencies only (those listed in pyproject.toml): direct
+        Test with lowest versions of all dependencies: all
     when: "{{ custom_install }}"
 
 _message_after_copy: |
