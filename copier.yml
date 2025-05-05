@@ -64,7 +64,7 @@ project_license:
 
 python_versions:
     help: What versions of python are you targeting? We will add automated testing for these versions.
-    default: ["3.9", "3.10", "3.11", "3.12"]
+    default: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     type: str
     multiselect: true
     choices:
