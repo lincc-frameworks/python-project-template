@@ -34,7 +34,9 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install dependencies
-      run: pip install "asv[virtualenv]==${{env.ASV_VERSION}}"
+      run: |
+        pip install asv==${{env.ASV_VERSION}}
+        pip install virtualenv==20.30 # Temporary fix to airspeed-velocity/asv#1484
     - name: Configure git
       run: |
         git config user.name "github-actions[bot]"
