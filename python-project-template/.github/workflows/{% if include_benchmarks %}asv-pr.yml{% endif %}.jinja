@@ -43,7 +43,9 @@ jobs:
       run: |
         echo "Workflow Run ID: ${{github.run_id}}"
     - name: Install dependencies
-      run: pip install "asv[virtualenv]==${{env.ASV_VERSION}}" lf-asv-formatter
+      run: |
+        pip install asv==${{env.ASV_VERSION}} lf-asv-formatter
+        pip install virtualenv==20.30 # Temporary fix to airspeed-velocity/asv#1484
     - name: Make artifacts directory
       run: mkdir -p ${{env.ARTIFACTS_DIR}}
     - name: Save pull request number
