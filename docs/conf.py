@@ -10,7 +10,7 @@ from setuptools_scm import get_version
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "LINCC Frameworks Python Project Template"
-copyright = "2024, LINCC Frameworks"
+copyright = "2025, LINCC Frameworks"
 author = "LINCC Frameworks"
 release = get_version(root="..")
 # for example take major/minor
