@@ -53,9 +53,16 @@ jobs:
         uv venv venv
         source venv/bin/activate
         {%- if test_lowest_version == 'direct' %}
-        uv pip compile --resolution=lowest-direct -o requirements_lowest.txt pyproject.toml
+        if [ -f requirements.txt ]; then
+          uv pip compile --resolution=lowest-direct -o requirements_lowest.txt pyproject.toml --build-constraints=requirements.txt
+        else
+          uv pip compile --resolution=lowest-direct -o requirements_lowest.txt pyproject.toml
         {%- elif test_lowest_version == 'all' %}
-        uv pip compile --resolution=lowest -o requirements_lowest.txt pyproject.toml
+        if [ -f requirements.txt ]; then
+          uv pip compile --resolution=lowest -o requirements_lowest.txt pyproject.toml --build-constraints=requirements.txt
+        else
+            uv pip compile --resolution=lowest -o requirements_lowest.txt pyproject.toml
+        fi
         {%- endif %}
         uv pip install --constraint=requirements_lowest.txt -e .[dev]
     - name: Run unit tests with pytest
