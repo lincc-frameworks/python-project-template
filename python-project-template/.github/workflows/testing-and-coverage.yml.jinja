@@ -54,14 +54,14 @@ jobs:
         source venv/bin/activate
         {%- if test_lowest_version == 'direct' %}
         if [ -f requirements.txt ]; then
-          uv pip compile --resolution=lowest-direct -o requirements_lowest.txt pyproject.toml --build-constraints=requirements.txt
+          uv pip compile --resolution=lowest-direct pyproject.toml requirements.txt -o requirements_lowest.txt
         else
-          uv pip compile --resolution=lowest-direct -o requirements_lowest.txt pyproject.toml
+          uv pip compile --resolution=lowest-direct pyproject.toml -o requirements_lowest.txt
         {%- elif test_lowest_version == 'all' %}
         if [ -f requirements.txt ]; then
-          uv pip compile --resolution=lowest -o requirements_lowest.txt pyproject.toml --build-constraints=requirements.txt
+          uv pip compile --resolution=lowest pyproject.toml requirements.txt -o requirements_lowest.txt
         else
-            uv pip compile --resolution=lowest -o requirements_lowest.txt pyproject.toml
+            uv pip compile --resolution=lowest pyproject.toml -o requirements_lowest.txt
         fi
         {%- endif %}
         uv pip install --constraint=requirements_lowest.txt -e .[dev]
