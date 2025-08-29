@@ -278,15 +278,15 @@ Read more at :doc:`../practices/ci_benchmarking`.
 16. Test against lowest versions
 ------------------------------------------------
 
-   +------------+-----------------------------------------------------------+
-   | Question   | Run pull request tests with the lowest versions of python |
-   |            | and dependencies?                                         |
-   +------------+-----------------------------------------------------------+
-   | Options    | | (none) Do not test with lowest versions of dependencies | 
-   |            | | **(direct)** Test with lowest versions of direct        |
-   |            |   dependencies only (those listed in pyproject.toml)      | 
-   |            | | (all) Test with lowest versions of all dependencies     |
-   +------------+-----------------------------------------------------------+
+   +------------+---------------------------------------------------------------+
+   | Question   | Run pull request tests with the lowest versions of python     |
+   |            | and dependencies?                                             |
+   +------------+---------------------------------------------------------------+
+   | Options    | | **(none)** Do not test with lowest versions of dependencies |
+   |            | | (direct) Test with lowest versions of direct                |
+   |            |   dependencies only (those listed in pyproject.toml)          |
+   |            | | (all) Test with lowest versions of all dependencies         |
+   +------------+---------------------------------------------------------------+
 
 Adds an optional stage to the end of the testing and coverage github CI workflow
 using the oldest version of python you've selected above, and will determine 

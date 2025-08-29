@@ -147,7 +147,7 @@ include_benchmarks:
 
 test_lowest_version:
     help: Run pull request tests with the lowest versions of python and dependencies? Recommended if you are developing a library
-    default: direct
+    default: none
     choices:
         Do not test with lowest versions of dependencies: none
         Test with lowest versions of direct dependencies only (those listed in pyproject.toml): direct
