@@ -49,13 +49,13 @@ jobs:
         path: ${{env.WORKING_DIR}}/${{env.NIGHTLY_HASH_FILE}}
         key: commit-hash-${{steps.nightly-dates.outputs.yesterday}}
     - name: Compare main against last nightly build
-        id: asv_compare
-        run: |
-          if [ -s $NIGHTLY_HASH_FILE ]; then
-            PREV_HASH=$(cat $NIGHTLY_HASH_FILE)
-            asv continuous $PREV_HASH $CURRENT_HASH --factor 1.5 --verbose
-          fi
-        continue-on-error: true
+      id: asv_compare
+      run: |
+        if [ -s $NIGHTLY_HASH_FILE ]; then
+          PREV_HASH=$(cat $NIGHTLY_HASH_FILE)
+          asv continuous $PREV_HASH $CURRENT_HASH --factor 1.5 --verbose
+        fi
+      continue-on-error: true
     - name: Update commit hash
       if: always()
       run: echo $CURRENT_HASH > $NIGHTLY_HASH_FILE
