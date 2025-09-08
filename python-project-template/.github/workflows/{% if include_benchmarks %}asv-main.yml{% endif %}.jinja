@@ -38,9 +38,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install dependencies
-      run: |
-        pip install asv==${{env.ASV_VERSION}}
-        pip install virtualenv==20.30 # Temporary fix to airspeed-velocity/asv#1484
+      run: pip install asv[virtualenv]==$ASV_VERSION
     - name: Configure git
       run: |
         git config user.name "github-actions[bot]"
@@ -56,7 +54,7 @@ jobs:
           mv ../_results .
         fi
     - name: Run ASV for the main branch
-      run: asv run ALL --skip-existing --verbose || true
+      run: asv run ALL --skip-existing --verbose
     - name: Submit new results to the "benchmarks" branch
       uses: JamesIves/github-pages-deploy-action@v4
       with:

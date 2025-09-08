@@ -43,13 +43,11 @@ jobs:
       run: |
         echo "Workflow Run ID: ${{github.run_id}}"
     - name: Install dependencies
-      run: |
-        pip install asv==${{env.ASV_VERSION}} lf-asv-formatter
-        pip install virtualenv==20.30 # Temporary fix to airspeed-velocity/asv#1484
+      run: pip install asv[virtualenv]==$ASV_VERSION lf-asv-formatter
     - name: Make artifacts directory
       run: mkdir -p ${{env.ARTIFACTS_DIR}}
     - name: Save pull request number
-      run: echo ${{github.event.pull_request.number}} > ${{env.ARTIFACTS_DIR}}/pr
+      run: echo ${{github.event.pull_request.number}} > $ARTIFACTS_DIR/pr
     - name: Get current job logs URL
       uses: Tiryoh/gha-jobid-action@v1
       id: jobs
@@ -58,20 +56,34 @@ jobs:
         job_name: ${{github.job}}
     - name: Create ASV machine config file
       run: asv machine --machine gh-runner --yes
-    - name: Save comparison of PR against main branch
+    - name: Compare PR against main branch
+      id: asv_compare
       run: |
         git remote add upstream https://github.com/${{github.repository}}.git
         git fetch upstream
-        asv continuous upstream/main HEAD --verbose || true
-        asv compare upstream/main HEAD --sort ratio --verbose | tee output
-        python -m lf_asv_formatter --asv_version "$(asv --version | awk '{print $2}')"
-        printf "\n\nClick [here]($STEP_URL) to view all benchmarks." >> output
-        mv output ${{env.ARTIFACTS_DIR}}
+        asv continuous upstream/main HEAD --factor 1.5 --verbose
+      continue-on-error: true
+    - name: Format ASV output
+      if: always()
+      run: |
+        asv compare upstream/main HEAD --verbose --sort ratio | tee output
+        python -m lf_asv_formatter --asv_version $ASV_VERSION
+        if [[ "${{ steps.asv_compare.outcome }}" == "failure" ]]; then
+          MESSAGE="Some benchmarks failed or their performance regressed significantly."
+        else
+          MESSAGE="Click [here]($STEP_URL) to view all benchmarks."
+        fi
+        printf "\n\n%s\n" "$MESSAGE" >> output
+        mv output $ARTIFACTS_DIR
       env:
         STEP_URL: ${{steps.jobs.outputs.html_url}}#step:10:1
     - name: Upload artifacts (PR number and benchmarks output)
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: benchmark-artifacts
         path: ${{env.ARTIFACTS_DIR}}
+    - name: Fail workflow
+      if: steps.asv_compare.outcome == 'failure'
+      run: exit 1
 {%- endraw -%}

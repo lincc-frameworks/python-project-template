@@ -16,6 +16,7 @@ env:
 {%- raw %}
   ASV_VERSION: "0.6.4"
   WORKING_DIR: ${{github.workspace}}/benchmarks
+  CURRENT_HASH: ${{github.sha}}
   NIGHTLY_HASH_FILE: nightly-hash
 
 jobs:
@@ -34,23 +35,9 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install dependencies
-      run: |
-        pip install asv==${{env.ASV_VERSION}}
-        pip install virtualenv==20.30 # Temporary fix to airspeed-velocity/asv#1484
-    - name: Configure git
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      run: pip install asv[virtualenv]==$ASV_VERSION
     - name: Create ASV machine config file
       run: asv machine --machine gh-runner --yes
-    - name: Fetch previous results from the "benchmarks" branch
-      run: |
-        if git ls-remote --exit-code origin benchmarks > /dev/null 2>&1; then
-          git merge origin/benchmarks \
-            --allow-unrelated-histories \
-            --no-commit
-          mv ../_results .
-        fi
     - name: Get nightly dates under comparison
       id: nightly-dates
       run: |
@@ -59,21 +46,102 @@ jobs:
     - name: Use last nightly commit hash from cache
       uses: actions/cache@v4
       with:
-        path: ${{env.WORKING_DIR}}
-        key: nightly-results-${{steps.nightly-dates.outputs.yesterday}}
-    - name: Run comparison of main against last nightly build
-      run: |
-        HASH_FILE=${{env.NIGHTLY_HASH_FILE}}
-        CURRENT_HASH=${{github.sha}}
-        if [ -f $HASH_FILE ]; then
-          PREV_HASH=$(cat $HASH_FILE)
-          asv continuous $PREV_HASH $CURRENT_HASH --verbose || true
-          asv compare $PREV_HASH $CURRENT_HASH --sort ratio --verbose
-        fi
-        echo $CURRENT_HASH > $HASH_FILE
-    - name: Update last nightly hash in cache
+        path: ${{env.WORKING_DIR}}/${{env.NIGHTLY_HASH_FILE}}
+        key: commit-hash-${{steps.nightly-dates.outputs.yesterday}}
+    - name: Compare main against last nightly build
+        id: asv_compare
+        run: |
+          if [ -s $NIGHTLY_HASH_FILE ]; then
+            PREV_HASH=$(cat $NIGHTLY_HASH_FILE)
+            asv continuous $PREV_HASH $CURRENT_HASH --factor 1.5 --verbose
+          fi
+        continue-on-error: true
+    - name: Update commit hash
+      if: always()
+      run: echo $CURRENT_HASH > $NIGHTLY_HASH_FILE
+    - name: Upload current commit hash to cache
+      if: always()
       uses: actions/cache@v4
       with:
-        path: ${{env.WORKING_DIR}}
-        key: nightly-results-${{steps.nightly-dates.outputs.today}}
+        path: ${{env.WORKING_DIR}}/${{env.NIGHTLY_HASH_FILE}}
+        key: commit-hash-${{steps.nightly-dates.outputs.today}}
+    - name: Fail workflow
+      if: steps.asv_compare.outcome == 'failure'
+      run: exit 1
 {%- endraw -%}
+{%- if 'email' in failure_notification %}
+    - name: Send status to author's email      
+      if: {% raw %}${{ failure() }} && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only email if the workflow failed and was not manually started. Customize this as necessary.
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server address if not connection_url:
+        server_address: smtp.gmail.com
+        # Server port: (uses TLS by default if server_port is 465)
+        server_port: 465
+
+        # Mail server username:
+        username: {% raw %}${{secrets.MAIL_USERNAME}}{% endraw %}
+        # Mail server password:
+        password: {% raw %}${{secrets.MAIL_PASSWORD}}{% endraw %}
+        # Required recipients' addresses:
+        to: {{ author_email }}
+
+        # Required mail subject:
+        subject: {% raw %}Smoke test ${{ job.status }} in ${{github.repository}}{% endraw %}
+        # Required sender full name:
+        from: GitHub Actions Report
+        # Optional body:
+        html_body: {% raw %}|
+          <!DOCTYPE html>
+          <html>
+          <body>
+          <h3>Smoke test ${{ job.status }}</h3>
+          <p>The smoke test in <b>${{ github.repository }}</b> has completed with result: <b>${{ job.status }}</b></p>
+          <p><a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}">
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          </a></p>
+          </body>
+          </html>
+          {% endraw %}
+{%- endif %}
+{%- if 'slack' in failure_notification %}
+    {%- raw %}
+    - name: Send status to Slack app
+      if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
+      id: slack
+      uses: slackapi/slack-github-action@v2
+      with:
+        # For posting a rich message using Block Kit
+        webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+        webhook-type: webhook-trigger
+        payload: |
+          {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "${{ github.repository }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "GitHub Action benchmark result: *${{ job.status }}* :${{ job.status }}:"
+                }
+              },
+              {
+                "type": "divider"
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }
+            ]
+          }
+    {%- endraw %}
+{%- endif %}
