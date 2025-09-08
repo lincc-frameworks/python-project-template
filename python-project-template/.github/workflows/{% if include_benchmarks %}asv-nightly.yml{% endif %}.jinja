@@ -1,4 +1,4 @@
-{%- raw -%}
+{%- import 'python-versions.jinja' as py%}
 # This workflow will run daily at 06:45.
 # It will run benchmarks with airspeed velocity (asv)
 # and compare performance with the previous nightly build.
@@ -10,8 +10,6 @@ on:
   workflow_dispatch:
   
 env:
-{%- endraw %}
-{%- import 'python-versions.jinja' as py%}
   PYTHON_VERSION: "{{ py.pref(python_versions) }}"
 {%- raw %}
   ASV_VERSION: "0.6.4"

@@ -1,4 +1,4 @@
-{%- raw -%}
+{%- import 'python-versions.jinja' as py%}
 # This workflow will run benchmarks with airspeed velocity (asv) for pull requests.
 # It will compare the performance of the main branch with the performance of the merge
 # with the new changes. It then publishes a comment with this assessment by triggering
@@ -11,18 +11,16 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-concurrency:
-  group: ${{github.workflow}}-${{github.ref}}
-  cancel-in-progress: true
-
 env:
-{%- endraw %}
-{%- import 'python-versions.jinja' as py%}
   PYTHON_VERSION: "{{ py.pref(python_versions) }}"
 {%- raw %}
   ASV_VERSION: "0.6.4"
   WORKING_DIR: ${{github.workspace}}/benchmarks
   ARTIFACTS_DIR: ${{github.workspace}}/artifacts
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
 
 jobs:
   asv-pr:

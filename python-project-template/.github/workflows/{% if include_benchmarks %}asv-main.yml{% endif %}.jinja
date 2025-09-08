@@ -1,4 +1,4 @@
-{%- raw -%}
+{%- import 'python-versions.jinja' as py%}
 # This workflow will run benchmarks with airspeed velocity (asv), 
 # store the new results in the "benchmarks" branch and publish them
 # to a dashboard on GH Pages.
@@ -9,8 +9,6 @@ on:
     branches: [ main ]
 
 env:
-{%- endraw %}
-{%- import 'python-versions.jinja' as py%}
   PYTHON_VERSION: "{{ py.pref(python_versions) }}"
 {%- raw %}
   ASV_VERSION: "0.6.4"
