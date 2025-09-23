@@ -1,6 +1,7 @@
 [project]
 name = "python-project-template"
-license = {file = "LICENSE"}
+license = "BSD-3-Clause"
+license-files = ["LICENSE", "CITATION.bib"]
 readme = "README.md"
 authors = [
     { name = "LINCC Frameworks", email = "lincc-frameworks-team@lists.lsst.org" }

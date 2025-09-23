@@ -5,14 +5,31 @@ import subprocess
 import pytest
 
 
-def successfully_created_project(result):
-    """Basic assertions that indicate the copier was able to create a project"""
-    return result.exit_code == 0 and result.exception is None and result.project_dir.is_dir()
+def create_project_with_basic_checks(copie, extra_answers, package_name="example_package"):
+    """Create the project using copier. Perform a handful of basic checks on the created directory."""
+    # run copier to hydrate a temporary project
+    result = copie.copy(extra_answers=extra_answers)
 
+    ## Initializes local git repository (required to run pre-commit)
+    subprocess.call(["git", "init", "."], cwd=result.project_dir)
 
-def contains_required_files(result):
-    """Utility method to confirm that the required project files exist in the
-    copier result."""
+    # successfully_created_project
+    assert (
+        result.exit_code == 0 and result.exception is None and result.project_dir.is_dir()
+    ), "Did not successfully create project"
+
+    # pyproject_toml_is_valid
+    precommit_results = subprocess.run(
+        ["pre-commit", "run", "validate-pyproject"], cwd=result.project_dir, check=False
+    )
+    assert precommit_results.returncode == 0
+
+    # directory_structure_is_correct
+    assert (result.project_dir / f"src/{package_name}").is_dir() and (
+        result.project_dir / f"tests/{package_name}"
+    ).is_dir(), "Directory structure is incorrect"
+
+    # contains_required_files
     required_files = [
         ".copier-answers.yml",
         ".git_archival.txt",
@@ -29,14 +46,9 @@ def contains_required_files(result):
         if not (result.project_dir / file).is_file():
             all_found = False
             print("Required file not generated:", file)
-    return all_found
+    assert all_found
 
-
-def directory_structure_is_correct(result, package_name="example_package"):
-    """Test to ensure that the default directory structure ws created correctly"""
-    return (result.project_dir / f"src/{package_name}").is_dir() and (
-        result.project_dir / f"tests/{package_name}"
-    ).is_dir()
+    return result
 
 
 def black_runs_successfully(result):
@@ -68,18 +80,6 @@ def pylint_runs_successfully(result):
     )
 
     return pylint_results.returncode == 0
-
-
-def unit_tests_in_project_run_successfully(result):
-    """Test to ensure that the unit tests run successfully on the project
-
-    !!! NOTE - This doesn't currently work because we need to `pip install` the hydrated
-    project before running the tests. And we don't have a way to create a temporary
-    virtual environment for the project.
-    """
-    pytest_results = subprocess.run(["python", "-m", "pytest"], cwd=result.project_dir, check=False)
-
-    return pytest_results.returncode == 0
 
 
 def docs_build_successfully(result):
@@ -116,23 +116,14 @@ def github_workflows_are_valid(result):
     return workflows_results.returncode == 0
 
 
-def initialize_git_project(result):
-    """Initializes local git repository (required to run pre-commit)"""
-    subprocess.call(["git", "init", "."], cwd=result.project_dir)
-
-
 def test_all_defaults(copie):
     """Test that the default values are used when no arguments are given.
     Ensure that the project is created and that the basic files exist.
     """
-
     # run copier to hydrate a temporary project
-    result = copie.copy()
+    result = create_project_with_basic_checks(copie, {})
 
-    assert successfully_created_project(result)
-    assert directory_structure_is_correct(result)
     assert not pylint_runs_successfully(result)
-    assert contains_required_files(result)
 
     # check to see if the README file was hydrated with copier answers.
     found_line = False
@@ -155,14 +146,8 @@ def test_use_black_and_no_example_modules(copie):
         "enforce_style": ["black", "pylint", "isort"],
         "create_example_module": False,
     }
-
-    # run copier to hydrate a temporary project
-    result = copie.copy(extra_answers=extra_answers)
-
-    assert successfully_created_project(result)
-    assert directory_structure_is_correct(result)
-    assert not pylint_runs_successfully(result)
-    assert contains_required_files(result)
+    result = create_project_with_basic_checks(copie, extra_answers)
+    assert pylint_runs_successfully(result)
 
     # make sure that the files that were not requested were not created
     assert not (result.project_dir / "src/example_package/example_module.py").is_file()
@@ -200,10 +185,8 @@ def test_code_style_combinations(copie, enforce_style):
     extra_answers = {
         "enforce_style": enforce_style,
     }
-    result = copie.copy(extra_answers=extra_answers)
-    assert successfully_created_project(result)
-    assert directory_structure_is_correct(result)
-    assert contains_required_files(result)
+    result = create_project_with_basic_checks(copie, extra_answers)
+
     # black would still run successfully.
     assert black_runs_successfully(result)
 
@@ -227,12 +210,30 @@ def test_smoke_test_notification(copie, notification):
     }
 
     # run copier to hydrate a temporary project
-    result = copie.copy(extra_answers=extra_answers)
-
-    assert successfully_created_project(result)
-    assert directory_structure_is_correct(result)
+    result = create_project_with_basic_checks(copie, extra_answers)
     assert black_runs_successfully(result)
-    assert contains_required_files(result)
+
+
+@pytest.mark.parametrize(
+    "license",
+    [
+        [],
+        ["MIT"],
+        ["BSD"],
+        ["GPL3"],
+        ["none"],
+    ],
+)
+def test_license(copie, license):
+    """Confirm we get a valid project for different license options."""
+
+    # provide a dictionary of the non-default answers to use
+    extra_answers = {"license": license}
+
+    # run copier to hydrate a temporary project
+    result = create_project_with_basic_checks(copie, extra_answers)
+
+    assert black_runs_successfully(result)
 
 
 @pytest.mark.parametrize(
@@ -252,12 +253,9 @@ def test_doc_combinations(copie, doc_answers):
     """Confirm the docs directory is well-formed, when including docs."""
 
     # run copier to hydrate a temporary project
-    result = copie.copy(extra_answers=doc_answers)
+    result = create_project_with_basic_checks(copie, doc_answers)
 
-    assert successfully_created_project(result)
-    assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)
-    assert contains_required_files(result)
     assert docs_build_successfully(result)
     assert (result.project_dir / "docs").is_dir()
 
@@ -279,12 +277,9 @@ def test_doc_combinations_no_docs(copie, doc_answers):
     """Confirm there is no 'docs' directory, if not including docs."""
 
     # run copier to hydrate a temporary project
-    result = copie.copy(extra_answers=doc_answers)
+    result = create_project_with_basic_checks(copie, doc_answers)
 
-    assert successfully_created_project(result)
-    assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)
-    assert contains_required_files(result)
     assert not (result.project_dir / "docs").is_dir()
 
 
@@ -299,12 +294,9 @@ def test_test_lowest_version(copie, test_lowest_version):
     }
 
     # run copier to hydrate a temporary project
-    result = copie.copy(extra_answers=extra_answers)
+    result = create_project_with_basic_checks(copie, extra_answers)
 
-    assert successfully_created_project(result)
-    assert directory_structure_is_correct(result)
     assert black_runs_successfully(result)
-    assert contains_required_files(result)
 
 
 def test_github_workflows_schema(copie):
@@ -313,7 +305,6 @@ def test_github_workflows_schema(copie):
         "include_benchmarks": True,
         "include_docs": True,
     }
-    result = copie.copy(extra_answers=extra_answers)
-    initialize_git_project(result)
+    result = create_project_with_basic_checks(copie, extra_answers)
+
     assert github_workflows_are_valid(result)
-    assert contains_required_files(result)
