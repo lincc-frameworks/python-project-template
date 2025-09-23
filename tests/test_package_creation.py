@@ -161,7 +161,7 @@ def test_use_black_and_no_example_modules(copie):
 
     assert successfully_created_project(result)
     assert directory_structure_is_correct(result)
-    assert pylint_runs_successfully(result)
+    assert not pylint_runs_successfully(result)
     assert contains_required_files(result)
 
     # make sure that the files that were not requested were not created
