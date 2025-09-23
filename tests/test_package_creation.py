@@ -18,6 +18,12 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
         result.exit_code == 0 and result.exception is None and result.project_dir.is_dir()
     ), "Did not successfully create project"
 
+    # install the `example_package` into the existing python environment.
+    build_results = subprocess.run(
+        ["python", "-m", "pip", "install", "--no-deps", "."], cwd=result.project_dir, check=False
+    )
+    assert build_results.returncode == 0
+
     # pyproject_toml_is_valid
     precommit_results = subprocess.run(
         ["pre-commit", "run", "validate-pyproject"], cwd=result.project_dir, check=False
@@ -48,19 +54,16 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
             print("Required file not generated:", file)
     assert all_found
 
-    return result
-
-
-def black_runs_successfully(result):
-    """Test to ensure that the black linter runs successfully on the project"""
-    # run black with `--check` to look for lint errors, but don't fix them.
+    # black_runs_successfully
     black_results = subprocess.run(
         ["python", "-m", "black", "--check", (result.project_dir / "src")],
         cwd=result.project_dir,
         check=False,
     )
 
-    return black_results.returncode == 0
+    assert black_results.returncode == 0
+
+    return result
 
 
 def pylint_runs_successfully(result):
@@ -123,6 +126,7 @@ def test_all_defaults(copie):
     # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, {})
 
+    # uses ruff instead of (black/isort/pylint)
     assert not pylint_runs_successfully(result)
 
     # check to see if the README file was hydrated with copier answers.
@@ -161,8 +165,6 @@ def test_use_black_and_no_example_modules(copie):
                 break
     assert found_line
 
-    assert black_runs_successfully(result)
-
 
 @pytest.mark.parametrize(
     "enforce_style",
@@ -187,9 +189,6 @@ def test_code_style_combinations(copie, enforce_style):
     }
     result = create_project_with_basic_checks(copie, extra_answers)
 
-    # black would still run successfully.
-    assert black_runs_successfully(result)
-
 
 @pytest.mark.parametrize(
     "notification",
@@ -211,7 +210,6 @@ def test_smoke_test_notification(copie, notification):
 
     # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
-    assert black_runs_successfully(result)
 
 
 @pytest.mark.parametrize(
@@ -233,8 +231,6 @@ def test_license(copie, license):
     # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
 
-    assert black_runs_successfully(result)
-
 
 @pytest.mark.parametrize(
     "doc_answers",
@@ -255,7 +251,6 @@ def test_doc_combinations(copie, doc_answers):
     # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, doc_answers)
 
-    assert black_runs_successfully(result)
     assert docs_build_successfully(result)
     assert (result.project_dir / "docs").is_dir()
 
@@ -279,7 +274,6 @@ def test_doc_combinations_no_docs(copie, doc_answers):
     # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, doc_answers)
 
-    assert black_runs_successfully(result)
     assert not (result.project_dir / "docs").is_dir()
 
 
@@ -295,8 +289,6 @@ def test_test_lowest_version(copie, test_lowest_version):
 
     # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
-
-    assert black_runs_successfully(result)
 
 
 def test_github_workflows_schema(copie):
