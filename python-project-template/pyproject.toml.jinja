@@ -1,18 +1,22 @@
 {%- import 'python-versions.jinja' as py %}
 [project]
 name = "{{project_name}}"
-license = {file = "LICENSE"}
+{%- if project_license == 'BSD' %}
+license = "BSD-3-Clause"
+{%- elif project_license == 'MIT' %}
+license = "MIT"
+{%- elif project_license == 'GPL3' %}
+license = "GPL-3.0-only"
+{%- endif %}
+{%- if project_license != 'none' %}
+license_file = ["LICENSE"]
+{%- endif %}
 readme = "README.md"
 authors = [
     { name = "{{author_name}}"{% if author_email %}, email = "{{author_email}}"{% endif %} }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
-{%- if project_license == 'MIT' %}
-    "License :: OSI Approved :: MIT License",
-{%- elif project_license == 'BSD' %}
-    "License :: OSI Approved :: BSD License",
-{%- endif %}
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
     "Operating System :: OS Independent",
