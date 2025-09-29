@@ -57,6 +57,7 @@ jobs:
           uv pip compile --resolution=lowest-direct pyproject.toml requirements.txt -o requirements_lowest.txt
         else
           uv pip compile --resolution=lowest-direct pyproject.toml -o requirements_lowest.txt
+        fi
         {%- elif test_lowest_version == 'all' %}
         if [ -f requirements.txt ]; then
           uv pip compile --resolution=lowest pyproject.toml requirements.txt -o requirements_lowest.txt
