@@ -54,13 +54,12 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
             print("Required file not generated:", file)
     assert all_found
 
-    # black_runs_successfully
+    # black_runs_successfully for src and tests
     black_results = subprocess.run(
-        ["python", "-m", "black", "--check", (result.project_dir / "src")],
+        ["python", "-m", "black", "--check", "--verbose", result.project_dir],
         cwd=result.project_dir,
         check=False,
     )
-
     assert black_results.returncode == 0
 
     return result
@@ -69,7 +68,7 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
 def pylint_runs_successfully(result):
     """Test to ensure that the pylint linter runs successfully on the project"""
     # run pylint to ensure that the hydrated files are linted correctly
-    pylint_results = subprocess.run(
+    pylint_src_results = subprocess.run(
         [
             "python",
             "-m",
@@ -82,7 +81,20 @@ def pylint_runs_successfully(result):
         check=False,
     )
 
-    return pylint_results.returncode == 0
+    pylint_test_results = subprocess.run(
+        [
+            "python",
+            "-m",
+            "pylint",
+            "--recursive=y",
+            "--rcfile=./tests/.pylintrc",
+            (result.project_dir / "tests"),
+        ],
+        cwd=result.project_dir,
+        check=False,
+    )
+
+    return pylint_src_results.returncode == 0 and pylint_test_results.returncode == 0
 
 
 def docs_build_successfully(result):
