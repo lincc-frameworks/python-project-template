@@ -1,8 +1,11 @@
 """Verify package creation using `pytest-copie`"""
 
+import os
 import subprocess
 
 import pytest
+
+os.environ["SKIP"] = "no-commit-to-branch"
 
 
 def create_project_with_basic_checks(copie, extra_answers, package_name="example_package"):
@@ -23,12 +26,6 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
         ["python", "-m", "pip", "install", "--no-deps", "."], cwd=result.project_dir, check=False
     )
     assert build_results.returncode == 0
-
-    # pyproject_toml_is_valid
-    precommit_results = subprocess.run(
-        ["pre-commit", "run", "validate-pyproject"], cwd=result.project_dir, check=False
-    )
-    assert precommit_results.returncode == 0
 
     # directory_structure_is_correct
     assert (result.project_dir / f"src/{package_name}").is_dir() and (
@@ -54,92 +51,28 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
             print("Required file not generated:", file)
     assert all_found
 
-    # black_runs_successfully for src and tests
-    black_results = subprocess.run(
-        ["python", "-m", "black", "--check", "--verbose", result.project_dir],
-        cwd=result.project_dir,
-        check=False,
-    )
-    assert black_results.returncode == 0
+    ## Initialize local git repository and add ALL new files to it.
+    git_results = subprocess.run(["git", "init", "."], cwd=result.project_dir, check=False)
+    assert git_results.returncode == 0
+    git_results = subprocess.run(["git", "add", "."], cwd=result.project_dir, check=False)
+    assert git_results.returncode == 0
+
+    ## This will run ALL of the relevant pre-commits (excludes only "no-commit-to-branch,check-added-large-files")
+    precommit_results = subprocess.run(["pre-commit", "run", "-a"], cwd=result.project_dir, check=False)
+    assert precommit_results.returncode == 0
 
     return result
 
 
-def pylint_runs_successfully(result):
-    """Test to ensure that the pylint linter runs successfully on the project"""
-    # run pylint to ensure that the hydrated files are linted correctly
-    pylint_src_results = subprocess.run(
-        [
-            "python",
-            "-m",
-            "pylint",
-            "--recursive=y",
-            "--rcfile=./src/.pylintrc",
-            (result.project_dir / "src"),
-        ],
-        cwd=result.project_dir,
-        check=False,
-    )
-
-    pylint_test_results = subprocess.run(
-        [
-            "python",
-            "-m",
-            "pylint",
-            "--recursive=y",
-            "--rcfile=./tests/.pylintrc",
-            (result.project_dir / "tests"),
-        ],
-        cwd=result.project_dir,
-        check=False,
-    )
-
-    return pylint_src_results.returncode == 0 and pylint_test_results.returncode == 0
-
-
-def docs_build_successfully(result):
-    """Test that we can build the doc tree.
-
-    !!! NOTE - This doesn't currently work because we need to `pip install` the hydrated
-    project before running the tests. And we don't have a way to create a temporary
-    virtual environment for the project.
-    """
-
-    required_files = [
-        ".readthedocs.yml",
-    ]
-    all_found = True
-    for file in required_files:
-        if not (result.project_dir / file).is_file():
-            all_found = False
-            print("Required file not generated:", file)
-    return all_found
-
-    # sphinx_results = subprocess.run(
-    #     ["make", "html"],
-    #     cwd=(result.project_dir / "docs"),
-    # )
-
-    # return sphinx_results.returncode == 0
-
-
-def github_workflows_are_valid(result):
-    """Test to ensure that the GitHub workflows are valid"""
-    workflows_results = subprocess.run(
-        ["pre-commit", "run", "check-github-workflows"], cwd=result.project_dir, check=False
-    )
-    return workflows_results.returncode == 0
-
-
-def test_all_defaults(copie):
+def test_all_defaults(copie, default_answers):
     """Test that the default values are used when no arguments are given.
     Ensure that the project is created and that the basic files exist.
     """
-    # run copier to hydrate a temporary project
-    result = create_project_with_basic_checks(copie, {})
+    result = create_project_with_basic_checks(copie, default_answers)
 
     # uses ruff instead of (black/isort/pylint)
-    assert not pylint_runs_successfully(result)
+    assert not (result.project_dir / "src/.pylintrc").is_file()
+    assert not (result.project_dir / "tests/.pylintrc").is_file()
 
     # check to see if the README file was hydrated with copier answers.
     found_line = False
@@ -151,19 +84,19 @@ def test_all_defaults(copie):
     assert found_line
 
 
-def test_use_black_and_no_example_modules(copie):
+def test_use_black_and_no_example_modules(copie, default_answers):
     """We want to provide non-default arguments for the linter and example modules
     copier questions and ensure that the pyproject.toml file is created with Black
     and that no example modules are created.
     """
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "enforce_style": ["black", "pylint", "isort"],
         "create_example_module": False,
     }
     result = create_project_with_basic_checks(copie, extra_answers)
-    assert pylint_runs_successfully(result)
+
+    assert (result.project_dir / "src/.pylintrc").is_file()
+    assert (result.project_dir / "tests/.pylintrc").is_file()
 
     # make sure that the files that were not requested were not created
     assert not (result.project_dir / "src/example_package/example_module.py").is_file()
@@ -191,12 +124,10 @@ def test_use_black_and_no_example_modules(copie):
         ["black", "pylint", "isort", "ruff_lint", "ruff_format"],
     ],
 )
-def test_code_style_combinations(copie, enforce_style):
+def test_code_style_combinations(copie, enforce_style, default_answers):
     """Test that various combinations of code style enforcement will
     still result in a valid project being created."""
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "enforce_style": enforce_style,
     }
     result = create_project_with_basic_checks(copie, extra_answers)
@@ -211,16 +142,13 @@ def test_code_style_combinations(copie, enforce_style):
         ["email", "slack"],
     ],
 )
-def test_smoke_test_notification(copie, notification):
+def test_smoke_test_notification(copie, notification, default_answers):
     """Confirm we can generate a "smoke_test.yaml" file, with all
     notification mechanisms selected."""
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "failure_notification": notification,
     }
 
-    # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
 
 
@@ -234,13 +162,10 @@ def test_smoke_test_notification(copie, notification):
         ["none"],
     ],
 )
-def test_license(copie, license):
+def test_license(copie, license, default_answers):
     """Confirm we get a valid project for different license options."""
+    extra_answers = default_answers | {"license": license}
 
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {"license": license}
-
-    # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
 
 
@@ -257,13 +182,11 @@ def test_license(copie, license):
         },
     ],
 )
-def test_doc_combinations(copie, doc_answers):
+def test_doc_combinations(copie, doc_answers, default_answers):
     """Confirm the docs directory is well-formed, when including docs."""
+    extra_answers = default_answers | doc_answers
+    result = create_project_with_basic_checks(copie, extra_answers)
 
-    # run copier to hydrate a temporary project
-    result = create_project_with_basic_checks(copie, doc_answers)
-
-    assert docs_build_successfully(result)
     assert (result.project_dir / "docs").is_dir()
 
 
@@ -280,35 +203,30 @@ def test_doc_combinations(copie, doc_answers):
         },
     ],
 )
-def test_doc_combinations_no_docs(copie, doc_answers):
+def test_doc_combinations_no_docs(copie, doc_answers, default_answers):
     """Confirm there is no 'docs' directory, if not including docs."""
+    extra_answers = default_answers | doc_answers
 
-    # run copier to hydrate a temporary project
-    result = create_project_with_basic_checks(copie, doc_answers)
+    result = create_project_with_basic_checks(copie, extra_answers)
 
     assert not (result.project_dir / "docs").is_dir()
 
 
 @pytest.mark.parametrize("test_lowest_version", ["none", "direct", "all"])
-def test_test_lowest_version(copie, test_lowest_version):
+def test_test_lowest_version(copie, test_lowest_version, default_answers):
     """Confirm we can generate a "testing_and_coverage.yaml" file, with all
     test_lowest_version mechanisms selected."""
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "test_lowest_version": test_lowest_version,
     }
 
-    # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
 
 
-def test_github_workflows_schema(copie):
+def test_github_workflows_schema(copie, default_answers):
     """Confirm the current GitHub workflows have valid schemas."""
-    extra_answers = {
+    extra_answers = default_answers | {
         "include_benchmarks": True,
         "include_docs": True,
     }
     result = create_project_with_basic_checks(copie, extra_answers)
-
-    assert github_workflows_are_valid(result)

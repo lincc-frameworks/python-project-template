@@ -139,7 +139,7 @@ repos:
           {%- endif %}
           ]
 {%- endif %}
-{%- if include_notebooks %}
+{%- if include_docs and include_notebooks %}
     # Make sure Sphinx can build the documentation while explicitly omitting 
     # notebooks from the docs, so users don't have to wait through the execution 
     # of each notebook or each commit. By default, these will be checked in the 

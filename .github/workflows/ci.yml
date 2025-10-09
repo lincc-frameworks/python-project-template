@@ -27,4 +27,5 @@ jobs:
         pip install -e .[dev]
     - name: Run unit tests with pytest /  pytest-copie
       run: |
-        python -m pytest
+        git config --global init.defaultBranch main
+        python -m pytest --python_version ${{ matrix.python-version }}
