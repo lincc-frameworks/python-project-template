@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
     - uses: actions/checkout@main
@@ -38,7 +38,7 @@ jobs:
         pip list
     - name: Run unit tests with pytest /  pytest-copie
       run: |
-        python -m pytest
+        python -m pytest --python_version ${{ matrix.python-version }}
     - name: Send status to Slack app
       if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
       id: slack
