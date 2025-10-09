@@ -52,6 +52,10 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
     assert all_found
 
     ## Initialize local git repository and add ALL new files to it.
+    git_results = subprocess.run(
+        ["git", "config", "--global", "init.defaultBranch", "main"], cwd=result.project_dir, check=False
+    )
+    assert git_results.returncode == 0
     git_results = subprocess.run(["git", "init", "."], cwd=result.project_dir, check=False)
     assert git_results.returncode == 0
     git_results = subprocess.run(["git", "add", "."], cwd=result.project_dir, check=False)
@@ -64,12 +68,11 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
     return result
 
 
-def test_all_defaults(copie):
+def test_all_defaults(copie, default_answers):
     """Test that the default values are used when no arguments are given.
     Ensure that the project is created and that the basic files exist.
     """
-    # run copier to hydrate a temporary project
-    result = create_project_with_basic_checks(copie, {})
+    result = create_project_with_basic_checks(copie, default_answers)
 
     # uses ruff instead of (black/isort/pylint)
     assert not (result.project_dir / "src/.pylintrc").is_file()
@@ -85,18 +88,17 @@ def test_all_defaults(copie):
     assert found_line
 
 
-def test_use_black_and_no_example_modules(copie):
+def test_use_black_and_no_example_modules(copie, default_answers):
     """We want to provide non-default arguments for the linter and example modules
     copier questions and ensure that the pyproject.toml file is created with Black
     and that no example modules are created.
     """
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "enforce_style": ["black", "pylint", "isort"],
         "create_example_module": False,
     }
     result = create_project_with_basic_checks(copie, extra_answers)
+
     assert (result.project_dir / "src/.pylintrc").is_file()
     assert (result.project_dir / "tests/.pylintrc").is_file()
 
@@ -126,12 +128,10 @@ def test_use_black_and_no_example_modules(copie):
         ["black", "pylint", "isort", "ruff_lint", "ruff_format"],
     ],
 )
-def test_code_style_combinations(copie, enforce_style):
+def test_code_style_combinations(copie, enforce_style, default_answers):
     """Test that various combinations of code style enforcement will
     still result in a valid project being created."""
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "enforce_style": enforce_style,
     }
     result = create_project_with_basic_checks(copie, extra_answers)
@@ -146,16 +146,13 @@ def test_code_style_combinations(copie, enforce_style):
         ["email", "slack"],
     ],
 )
-def test_smoke_test_notification(copie, notification):
+def test_smoke_test_notification(copie, notification, default_answers):
     """Confirm we can generate a "smoke_test.yaml" file, with all
     notification mechanisms selected."""
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "failure_notification": notification,
     }
 
-    # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
 
 
@@ -169,13 +166,10 @@ def test_smoke_test_notification(copie, notification):
         ["none"],
     ],
 )
-def test_license(copie, license):
+def test_license(copie, license, default_answers):
     """Confirm we get a valid project for different license options."""
+    extra_answers = default_answers | {"license": license}
 
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {"license": license}
-
-    # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
 
 
@@ -192,11 +186,10 @@ def test_license(copie, license):
         },
     ],
 )
-def test_doc_combinations(copie, doc_answers):
+def test_doc_combinations(copie, doc_answers, default_answers):
     """Confirm the docs directory is well-formed, when including docs."""
-
-    # run copier to hydrate a temporary project
-    result = create_project_with_basic_checks(copie, doc_answers)
+    extra_answers = default_answers | doc_answers
+    result = create_project_with_basic_checks(copie, extra_answers)
 
     assert (result.project_dir / "docs").is_dir()
 
@@ -214,32 +207,29 @@ def test_doc_combinations(copie, doc_answers):
         },
     ],
 )
-def test_doc_combinations_no_docs(copie, doc_answers):
+def test_doc_combinations_no_docs(copie, doc_answers, default_answers):
     """Confirm there is no 'docs' directory, if not including docs."""
+    extra_answers = default_answers | doc_answers
 
-    # run copier to hydrate a temporary project
-    result = create_project_with_basic_checks(copie, doc_answers)
+    result = create_project_with_basic_checks(copie, extra_answers)
 
     assert not (result.project_dir / "docs").is_dir()
 
 
 @pytest.mark.parametrize("test_lowest_version", ["none", "direct", "all"])
-def test_test_lowest_version(copie, test_lowest_version):
+def test_test_lowest_version(copie, test_lowest_version, default_answers):
     """Confirm we can generate a "testing_and_coverage.yaml" file, with all
     test_lowest_version mechanisms selected."""
-
-    # provide a dictionary of the non-default answers to use
-    extra_answers = {
+    extra_answers = default_answers | {
         "test_lowest_version": test_lowest_version,
     }
 
-    # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, extra_answers)
 
 
-def test_github_workflows_schema(copie):
+def test_github_workflows_schema(copie, default_answers):
     """Confirm the current GitHub workflows have valid schemas."""
-    extra_answers = {
+    extra_answers = default_answers | {
         "include_benchmarks": True,
         "include_docs": True,
     }
