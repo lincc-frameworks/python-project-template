@@ -32,6 +32,20 @@ dev = [
     "pylint", # test pylint in unit tests
     "pytest-copie", # Used to create hydrated copier projects for testing
     "tox", # Used to run tests in multiple environments
+    ## Dependencies that are needed to test hydrated projects:
+    "ipykernel",
+    "ipython",
+    "jupyter",
+    "jupytext",
+    "mypy",
+    "nbconvert",
+    "nbsphinx",
+    "pre-commit",
+    "ruff",
+    "sphinx",
+    "sphinx-autoapi",
+    "sphinx-copybutton",
+    "sphinx-rtd-theme",
 ]
 
 [build-system]
