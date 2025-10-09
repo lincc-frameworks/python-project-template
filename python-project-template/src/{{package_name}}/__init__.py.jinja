@@ -1,6 +1,10 @@
-from ._version import __version__
 {% if create_example_module -%}
+from ._version import __version__
 from .example_module import greetings, meaning
 
-__all__ = ["greetings", "meaning"]
+__all__ = ["greetings", "meaning", "__version__"]
+{% else -%}
+from ._version import __version__
+
+__all__ = ["__version__"]
 {% endif -%}

@@ -1,8 +1,11 @@
 """Verify package creation using `pytest-copie`"""
 
+import os
 import subprocess
 
 import pytest
+
+os.environ["SKIP"] = "no-commit-to-branch,check-added-large-files"
 
 
 def create_project_with_basic_checks(copie, extra_answers, package_name="example_package"):
@@ -23,12 +26,6 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
         ["python", "-m", "pip", "install", "--no-deps", "."], cwd=result.project_dir, check=False
     )
     assert build_results.returncode == 0
-
-    # pyproject_toml_is_valid
-    precommit_results = subprocess.run(
-        ["pre-commit", "run", "validate-pyproject"], cwd=result.project_dir, check=False
-    )
-    assert precommit_results.returncode == 0
 
     # directory_structure_is_correct
     assert (result.project_dir / f"src/{package_name}").is_dir() and (
@@ -54,81 +51,17 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
             print("Required file not generated:", file)
     assert all_found
 
-    # black_runs_successfully for src and tests
-    black_results = subprocess.run(
-        ["python", "-m", "black", "--check", "--verbose", result.project_dir],
-        cwd=result.project_dir,
-        check=False,
-    )
-    assert black_results.returncode == 0
+    ## Initialize local git repository and add ALL new files to it.
+    git_results = subprocess.run(["git", "init", "."], cwd=result.project_dir, check=False)
+    assert git_results.returncode == 0
+    git_results = subprocess.run(["git", "add", "."], cwd=result.project_dir, check=False)
+    assert git_results.returncode == 0
+
+    ## This will run ALL of the relevant pre-commits (excludes only "no-commit-to-branch,check-added-large-files")
+    precommit_results = subprocess.run(["pre-commit", "run", "-a"], cwd=result.project_dir, check=False)
+    assert precommit_results.returncode == 0
 
     return result
-
-
-def pylint_runs_successfully(result):
-    """Test to ensure that the pylint linter runs successfully on the project"""
-    # run pylint to ensure that the hydrated files are linted correctly
-    pylint_src_results = subprocess.run(
-        [
-            "python",
-            "-m",
-            "pylint",
-            "--recursive=y",
-            "--rcfile=./src/.pylintrc",
-            (result.project_dir / "src"),
-        ],
-        cwd=result.project_dir,
-        check=False,
-    )
-
-    pylint_test_results = subprocess.run(
-        [
-            "python",
-            "-m",
-            "pylint",
-            "--recursive=y",
-            "--rcfile=./tests/.pylintrc",
-            (result.project_dir / "tests"),
-        ],
-        cwd=result.project_dir,
-        check=False,
-    )
-
-    return pylint_src_results.returncode == 0 and pylint_test_results.returncode == 0
-
-
-def docs_build_successfully(result):
-    """Test that we can build the doc tree.
-
-    !!! NOTE - This doesn't currently work because we need to `pip install` the hydrated
-    project before running the tests. And we don't have a way to create a temporary
-    virtual environment for the project.
-    """
-
-    required_files = [
-        ".readthedocs.yml",
-    ]
-    all_found = True
-    for file in required_files:
-        if not (result.project_dir / file).is_file():
-            all_found = False
-            print("Required file not generated:", file)
-    return all_found
-
-    # sphinx_results = subprocess.run(
-    #     ["make", "html"],
-    #     cwd=(result.project_dir / "docs"),
-    # )
-
-    # return sphinx_results.returncode == 0
-
-
-def github_workflows_are_valid(result):
-    """Test to ensure that the GitHub workflows are valid"""
-    workflows_results = subprocess.run(
-        ["pre-commit", "run", "check-github-workflows"], cwd=result.project_dir, check=False
-    )
-    return workflows_results.returncode == 0
 
 
 def test_all_defaults(copie):
@@ -139,7 +72,8 @@ def test_all_defaults(copie):
     result = create_project_with_basic_checks(copie, {})
 
     # uses ruff instead of (black/isort/pylint)
-    assert not pylint_runs_successfully(result)
+    assert not (result.project_dir / "src/.pylintrc").is_file()
+    assert not (result.project_dir / "tests/.pylintrc").is_file()
 
     # check to see if the README file was hydrated with copier answers.
     found_line = False
@@ -163,7 +97,8 @@ def test_use_black_and_no_example_modules(copie):
         "create_example_module": False,
     }
     result = create_project_with_basic_checks(copie, extra_answers)
-    assert pylint_runs_successfully(result)
+    assert (result.project_dir / "src/.pylintrc").is_file()
+    assert (result.project_dir / "tests/.pylintrc").is_file()
 
     # make sure that the files that were not requested were not created
     assert not (result.project_dir / "src/example_package/example_module.py").is_file()
@@ -263,7 +198,6 @@ def test_doc_combinations(copie, doc_answers):
     # run copier to hydrate a temporary project
     result = create_project_with_basic_checks(copie, doc_answers)
 
-    assert docs_build_successfully(result)
     assert (result.project_dir / "docs").is_dir()
 
 
@@ -310,5 +244,3 @@ def test_github_workflows_schema(copie):
         "include_docs": True,
     }
     result = create_project_with_basic_checks(copie, extra_answers)
-
-    assert github_workflows_are_valid(result)
