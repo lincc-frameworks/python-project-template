@@ -5,7 +5,7 @@ import subprocess
 
 import pytest
 
-os.environ["SKIP"] = "no-commit-to-branch,check-added-large-files"
+os.environ["SKIP"] = "no-commit-to-branch"
 
 
 def create_project_with_basic_checks(copie, extra_answers, package_name="example_package"):
@@ -52,10 +52,6 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
     assert all_found
 
     ## Initialize local git repository and add ALL new files to it.
-    git_results = subprocess.run(
-        ["git", "config", "--global", "init.defaultBranch", "main"], cwd=result.project_dir, check=False
-    )
-    assert git_results.returncode == 0
     git_results = subprocess.run(["git", "init", "."], cwd=result.project_dir, check=False)
     assert git_results.returncode == 0
     git_results = subprocess.run(["git", "add", "."], cwd=result.project_dir, check=False)
