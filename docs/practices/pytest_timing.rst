@@ -1,3 +1,10 @@
+pytest timing
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Slow unit tests can dis-incentivize writing or running unit tests. Luckily,
+there are many packages in the python ecosystem to help with this issue.
+This page lists some of the resources we find useful.
+
 pytest-timeout
 ===============================================================================
 
@@ -70,10 +77,10 @@ with the pytest annotation:
 
 Setting a timeout to 0 seconds disables the timeout entirely.
 
-Other fun things you can do
--------------------------------------------------------------------------------
+Find slow tests
+===============================================================================
 
-Even if you're not using this package, you can find slow-running tests in your
+Even if you're not using the timeout package, you can find slow-running tests in your
 suite with the ``--durations`` flag.
 
 .. code-block:: console
@@ -84,3 +91,44 @@ This will run your test suite as normal, outputting a list of the 10 slowest
 calls after the execution. Note that this is not the 10 slowest **tests**: 
 the setup and teardown will be counted separately so put slow, shared fixture
 setup in a shared fixture!
+
+Profile slow tests
+===============================================================================
+
+pytest-profiling
+-------------------------------------------------------------------------------
+
+The `pytest-profiling <https://pypi.org/project/pytest-profiling/>`__ package
+is a plugin for pytest that will profile selected test cases, and optionally
+provide a heat map of where your tests are spending their time.
+
+.. code-block:: console
+
+    pip install pytest-profiling
+
+To get a list of the functions that your code is spending the most time in, just 
+pass the ``--profile`` argument to the pytest invocation. You can limit the test
+targets as you would with any other ``pytest`` execution using the ``-k <pattern>``
+argument. e.g. 
+
+.. code-block:: console
+
+    pytest --profile  -k test_cone_search_filters_correct_points
+    pytest --profile-svg  -k test_cone_search_filters_correct_points
+
+py-spy
+-------------------------------------------------------------------------------
+
+The `py-spy <https://github.com/benfred/py-spy>`__ package is a more general
+purpose sampling profiler for any python program. The python program you're 
+profiling is the ``pytest`` execution.
+
+Profiling the same target as above, using ``py-spy`` might look like:
+
+.. code-block:: console
+
+    py-spy record -o profile.svg -- pytest -k test_cone_search_filters_correct_points
+
+You will get a profiling flame chart saved to ``profile.svg``. These are not as
+easy to read as some other flame charts, but they're better than sifting through the
+raw results!
