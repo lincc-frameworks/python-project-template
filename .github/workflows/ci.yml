@@ -16,15 +16,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@main
+      with:
+        fetch-depth: 0
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@main
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
     - name: Install dependencies
       run: |
         sudo apt-get update
-        python -m pip install --upgrade pip
-        pip install -e .[dev]
+        uv pip install --system -e .[dev]
     - name: Run unit tests with pytest /  pytest-copie
       run: |
         git config --global init.defaultBranch main

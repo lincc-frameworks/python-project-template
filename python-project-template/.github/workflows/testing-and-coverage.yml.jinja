@@ -24,12 +24,13 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
     - name: Install dependencies
       run: |
         sudo apt-get update
-        python -m pip install --upgrade pip
-        pip install -e .[dev]
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        uv pip install --system -e .[dev]
+        if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; fi
     - name: Run unit tests with pytest
       run: |
         python -m pytest --cov={{package_name}} --cov-report=xml
