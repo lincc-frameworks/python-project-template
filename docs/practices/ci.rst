@@ -10,4 +10,4 @@ Continuous Integration
    ci_precommit
    code_coverage
    unit_testing
-   pytest_timeout
+   pytest_timing

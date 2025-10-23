@@ -19,7 +19,7 @@ Practices
 * :doc:`precommit`
 * :doc:`pypi`
 * :doc:`sphinx`
-* :doc:`pytest_timeout`
+* :doc:`pytest_timing`
 
 Still have questions?
 --------------------------------
