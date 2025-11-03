@@ -13,7 +13,7 @@ env:
 {%- import 'python-versions.jinja' as py%}
   PYTHON_VERSION: "{{ py.pref(python_versions) }}"
 {%- raw %}
-  ASV_VERSION: "0.6.4"
+  ASV_VERSION: "0.6.5"
   WORKING_DIR: ${{github.workspace}}/benchmarks
 
 concurrency:
@@ -38,9 +38,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install dependencies
-      run: |
-        pip install asv==${{env.ASV_VERSION}}
-        pip install virtualenv==20.30 # Temporary fix to airspeed-velocity/asv#1484
+      run: pip install asv[virtualenv]==${{env.ASV_VERSION}}
     - name: Configure git
       run: |
         git config user.name "github-actions[bot]"
