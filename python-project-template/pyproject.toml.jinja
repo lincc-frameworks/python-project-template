@@ -34,8 +34,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
 {%- if include_benchmarks %}
-    "asv==0.6.4", # Used to compute performance benchmarks
-    "virtualenv==20.30", # Temporary fix to airspeed-velocity/asv#1484
+    "asv[virtualenv]==0.6.5", # Used to compute performance benchmarks
 {%- endif %}
 {%- if 'black'  in enforce_style %}
     "black", # Used for static linting of files
