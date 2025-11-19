@@ -128,7 +128,7 @@ The license type you want to use for this project.
    +------------+----------------------------------------------------+
    | Question   | What versions of Python will your project support? |
    +------------+----------------------------------------------------+
-   | Options    | 3.8 (end-of-life), **✱ 3.9**,                      |
+   | Options    | 3.8 (end-of-life),                                 |
    |            | **✱ 3.9**, **✱ 3.10**,                             |
    |            | **✱ 3.11**, **✱ 3.12**,                            |
    |            | **✱ 3.13**                                         |
