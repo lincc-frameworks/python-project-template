@@ -64,12 +64,11 @@ project_license:
 
 python_versions:
     help: What versions of python are you targeting? We will add automated testing for these versions.
-    default: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+    default: ["3.10", "3.11", "3.12", "3.13"]
     type: str
     multiselect: true
     choices:
-        "3.8 (end-of-life)": "3.8"
-        "3.9": "3.9"
+        "3.9 (end-of-life)": "3.9"
         "3.10": "3.10"
         "3.11": "3.11"
         "3.12": "3.12"
