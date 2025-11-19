@@ -130,7 +130,7 @@ The license type you want to use for this project.
    +------------+----------------------------------------------------+
    | Options    | 3.9 (end-of-life), **✱ 3.10**,                     |
    |            | **✱ 3.11**, **✱ 3.12**,                            |
-   |            | **✱ 3.13**                                         |
+   |            | **✱ 3.13**, 3.14                                   |
    +------------+----------------------------------------------------+
 
 Select all versions of python that you are targeting for execution.
