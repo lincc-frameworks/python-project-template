@@ -31,6 +31,7 @@ jobs:
       run: |
         sudo apt-get update
         uv pip install --system -e .
+        if [ -f docs/requirements.txt ]; then uv pip install -r docs/requirements.txt; fi
         if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; fi
 {%- if include_notebooks %}
     - name: Install notebook requirements
