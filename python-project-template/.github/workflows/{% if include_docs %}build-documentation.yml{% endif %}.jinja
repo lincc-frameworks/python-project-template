@@ -28,7 +28,6 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        python -m pip install --upgrade pip
         uv pip install --system -e .[dev]
         if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; fi
 {%- if include_notebooks %}
