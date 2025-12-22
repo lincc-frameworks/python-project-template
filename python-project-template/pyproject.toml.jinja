@@ -15,6 +15,9 @@ readme = "README.md"
 authors = [
     { name = "{{author_name}}"{% if author_email %}, email = "{{author_email}}"{% endif %} }
 ]
+{%- if project_description != '' %}
+description = "{{project_description}}"
+{%- endif %}
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",

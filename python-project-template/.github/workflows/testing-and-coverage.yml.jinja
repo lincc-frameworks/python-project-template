@@ -67,6 +67,9 @@ jobs:
         fi
         {%- endif %}
         uv pip install --constraint=requirements_lowest.txt -e .[dev]
+    - name: List dependencies
+      run: |
+        pip list
     - name: Run unit tests with pytest
       run: |
         source venv/bin/activate

@@ -12,6 +12,13 @@ assignees: ''
 **Environment Information**
 
 
+<details>
+<summary>Traceback</summary>
+
+FILL IN YOUR STACK TRACE HERE
+
+</details>
+
 **Before submitting**
 Please check the following:
 
