@@ -26,11 +26,11 @@ jobs:
         working-directory: ${{env.WORKING_DIR}}
     steps:
     - name: Set up Python ${{env.PYTHON_VERSION}}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{env.PYTHON_VERSION}}
     - name: Checkout main branch of the repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - name: Install dependencies
@@ -55,7 +55,7 @@ jobs:
         echo "yesterday=$(date -d yesterday +'%Y-%m-%d')" >> $GITHUB_OUTPUT
         echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
     - name: Use last nightly commit hash from cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{env.WORKING_DIR}}
         key: nightly-results-${{steps.nightly-dates.outputs.yesterday}}
@@ -70,7 +70,7 @@ jobs:
         fi
         echo $CURRENT_HASH > $HASH_FILE
     - name: Update last nightly hash in cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{env.WORKING_DIR}}
         key: nightly-results-${{steps.nightly-dates.outputs.today}}
