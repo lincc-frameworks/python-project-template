@@ -36,7 +36,7 @@ jobs:
       with:
         python-version: ${{env.PYTHON_VERSION}}
     - name: Checkout PR branch of the repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - name: Display Workflow Run Information
@@ -68,7 +68,7 @@ jobs:
       env:
         STEP_URL: ${{steps.jobs.outputs.html_url}}#step:10:1
     - name: Upload artifacts (PR number and benchmarks output)
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: benchmark-artifacts
         path: ${{env.ARTIFACTS_DIR}}
