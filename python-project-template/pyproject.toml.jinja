@@ -15,6 +15,9 @@ readme = "README.md"
 authors = [
     { name = "{{author_name}}"{% if author_email %}, email = "{{author_email}}"{% endif %} }
 ]
+{%- if project_description != '' %}
+description = "{{project_description}}"
+{%- endif %}
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -75,7 +78,6 @@ addopts = "--doctest-modules --doctest-glob=*.rst"
 {% if 'black' in enforce_style -%}
 [tool.black]
 line-length = 110
-target-version = ["py{{ py.min(python_versions) | replace(".", "") }}"]
 {% endif -%}
 {% if 'isort' in enforce_style -%}
 [tool.isort]
@@ -85,7 +87,6 @@ line_length = 110
 {% if 'ruff_lint' in enforce_style or 'ruff_format' in enforce_style -%}
 [tool.ruff]
 line-length = 110
-target-version = "py{{ py.min(python_versions) | replace(".", "") }}"
 {% endif -%}
 {% if 'ruff_lint' in enforce_style -%}
 [tool.ruff.lint]

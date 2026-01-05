@@ -62,6 +62,11 @@ project_license:
         GPLv3: GPL3
         none: none
 
+project_description:
+    help: Provide a brief project description. Press enter to leave blank.
+    type: str
+    default: ""
+
 python_versions:
     help: What versions of python are you targeting? We will add automated testing for these versions.
     default: ["3.10", "3.11", "3.12", "3.13"]
