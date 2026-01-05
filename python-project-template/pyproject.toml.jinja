@@ -78,7 +78,6 @@ addopts = "--doctest-modules --doctest-glob=*.rst"
 {% if 'black' in enforce_style -%}
 [tool.black]
 line-length = 110
-target-version = ["py{{ py.min(python_versions) | replace(".", "") }}"]
 {% endif -%}
 {% if 'isort' in enforce_style -%}
 [tool.isort]
