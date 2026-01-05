@@ -18,7 +18,7 @@ dynamic = ["version"]
 dependencies = [
     "setuptools_scm",
     "sphinx", # Used to automatically generate documentation
-    "sphinx-rtd-theme", # Used to render documentation
+    "sphinx-rtd-theme>=3.0", # Used to render documentation
     "sphinx-copybutton",
     "pyyaml-include<3.0",
 ]
@@ -45,7 +45,7 @@ dev = [
     "sphinx",
     "sphinx-autoapi",
     "sphinx-copybutton",
-    "sphinx-rtd-theme",
+    "sphinx-rtd-theme>=3.0",
 ]
 
 [build-system]
