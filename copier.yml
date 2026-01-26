@@ -8,19 +8,22 @@ _message_before_copy: |
     https://lincc-ppt.readthedocs.io/en/latest/source/new_project.html#template-questions
 
 custom_install:
-    help: Would you like to use simple (default tooling) or customized installation? 
-    type: bool
-    default: customized
+    help: What is the purpose of this project? We will tailor the questions to suit the project, or you can do a fully customized installation.
+    type: str
+    default: custom
     choices:
-        customized: true
-        simple: false
+        python library: library
+        command line application: command
+        collection of notebooks: notebook
+        retrofitting existing project: retrofit
+        custom: custom
 
 project_name:
     type: str
     help: What is the name of your project?
     default: example_project
     validator: >-
-        {% if not (project_name | regex_search('^[a-z][a-z0-9\_\-]+$')) %}
+        {% if not (project_name | regex_search('^[a-zA-Z][a-zA-Z0-9_-]+$')) %}
         Must use a lowercase letter followed by one or more of (a-z, 0-9, _, -).
         {% endif %}
 
@@ -29,7 +32,7 @@ package_name:
     help: What is your python package name?
     default: example_package
     validator: >-
-        {% if not (package_name | regex_search('^[a-z][a-z0-9\_]+$')) %}
+        {% if not (package_name | regex_search('^[a-z][a-zA-Z0-9_]+$')) %}
         Must use a lowercase letter followed by one or more of (a-z, 0-9, _).
         {% endif %}
 
@@ -38,7 +41,7 @@ project_organization:
     help: What github organization will your project live under? 
     default: my-organization
     validator: >-
-        {% if not (project_organization | regex_search('^[a-zA-Z0-9][a-zA-Z0-9\-]*$')) %}
+        {% if not (project_organization | regex_search('^[a-zA-Z0-9][a-zA-Z0-9-]*$')) %}
         The name may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.
         {% endif %}
 
@@ -79,12 +82,11 @@ python_versions:
         "3.12": "3.12"
         "3.13": "3.13"
         "3.14": "3.14"
-    when: "{{ custom_install }}"
 
 enforce_style:
     help: What tooling set would you like to use to enforce code style? Use SPACE to highlight all that apply.
     type: str
-    default: [ruff_lint, ruff_format]
+    default: "{{ '[ruff_lint, ruff_format]' if custom_install != 'retrofit' else [] }}"
     multiselect: true
     choices:
         ruff linting: ruff_lint
@@ -92,7 +94,7 @@ enforce_style:
         pylint: pylint
         black: black
         isort: isort
-    when: "{{ custom_install }}"
+    when: "{{ custom_install in ('library', 'command', 'custom')}}"
 
 failure_notification:
     help: How would you like to receive workflow failure notifications?
@@ -102,7 +104,7 @@ failure_notification:
     choices:
         email (additional configuration required): email
         slack bot integration (additional configuration required): slack
-    when: "{{ custom_install }}"
+    when: "{{ custom_install in ('library', 'custom')}}"
 
 mypy_type_checking:
     help: Would you like to include mypy to perform static type checking for type hints?
@@ -112,7 +114,7 @@ mypy_type_checking:
         No type checking: none
         Add basic type checking for code that has type hints: basic
         Add strict type checking to enforce that type hints are used: strict
-    when: "{{ custom_install }}"
+    when: "{{ custom_install in ('library', 'custom')}}"
 
 create_example_module:
     help: Do you want to create some example module code?
@@ -121,7 +123,7 @@ create_example_module:
     choices:
         yes: true
         no: false
-    when: "{{ custom_install }}"
+    when: "{{ custom_install in ('library', 'command', 'custom')}}"
 
 include_docs:
     help: Do you want to include a directory for sphinx, and autoapi generation?
@@ -130,7 +132,6 @@ include_docs:
     choices:
         yes: true
         no: false
-    when: "{{ custom_install }}"
 
 include_notebooks:
     help: Do you want to include rendered notebooks in your documentation?
@@ -139,7 +140,7 @@ include_notebooks:
     choices:
         yes: true
         no: false
-    when: "{{ custom_install and include_docs }}"
+    when: "{{ include_docs }}"
 
 include_benchmarks:
     help: Do you want to enable benchmarking?
@@ -148,7 +149,7 @@ include_benchmarks:
     choices:
         yes: true
         no: false
-    when: "{{ custom_install }}"
+    when: "{{ custom_install in ('library', 'custom') }}"
 
 test_lowest_version:
     help: Run pull request tests with the lowest versions of python and dependencies? Recommended if you are developing a library
@@ -157,7 +158,7 @@ test_lowest_version:
         Do not test with lowest versions of dependencies: none
         Test with lowest versions of direct dependencies only (those listed in pyproject.toml): direct
         Test with lowest versions of all dependencies: all
-    when: "{{ custom_install }}"
+    when: "{{ custom_install in ('library', 'command', 'custom') }}"
 
 _message_after_copy: |
     Your project "{{ project_name }}" has been created successfully!
