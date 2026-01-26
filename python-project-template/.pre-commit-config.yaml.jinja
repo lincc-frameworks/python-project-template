@@ -4,7 +4,7 @@ repos:
     # This hook should always pass. It will print a message if the local version 
     # is out of date.
   - repo: https://github.com/lincc-frameworks/pre-commit-hooks
-    rev: v0.2.1
+    rev: v0.2.2
     hooks:
       - id: check-lincc-frameworks-template-version
         name: Check template version
@@ -142,7 +142,7 @@ repos:
 {%- endif %}
 {%- if include_docs and include_notebooks %}
   - repo: https://github.com/lincc-frameworks/pre-commit-hooks
-    rev: v0.2.1
+    rev: v0.2.2
     hooks:
       - id: pre-executed-nb-never-execute
         name: Check pre-executed notebooks
