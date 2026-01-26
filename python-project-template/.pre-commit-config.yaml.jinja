@@ -122,7 +122,8 @@ repos:
 {%- endif %}
 {%- if mypy_type_checking != 'none' %}
     # Analyze type hints and report errors.
-  - repo: local
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.19.0
     hooks:
       - id: mypy
         name: mypy (python files in src/ and tests/)
@@ -137,55 +138,6 @@ repos:
           {%- elif mypy_type_checking == 'strict' %}
             "--strict", # Use mypy strict mode to enforce type hints
           {%- endif %}
-          ]
-{%- endif %}
-{%- if include_docs and include_notebooks %}
-    # Make sure Sphinx can build the documentation while explicitly omitting 
-    # notebooks from the docs, so users don't have to wait through the execution 
-    # of each notebook or each commit. By default, these will be checked in the 
-    # GitHub workflows.
-  - repo: local
-    hooks:
-      - id: sphinx-build
-        name: Build documentation with Sphinx
-        entry: sphinx-build
-        language: system
-        always_run: true
-        exclude_types: [file, symlink]
-        args:
-          [
-            "-M", # Run sphinx in make mode, so we can use -D flag later
-                  # Note: -M requires next 3 args to be builder, source, output
-            "html", # Specify builder
-            "./docs", # Source directory of documents
-            "./_readthedocs", # Output directory for rendered documents
-            "-T", # Show full trace back on exception
-            "-E", # Don't use saved env; always read all files
-            "-d", # Flag for cached environment and doctrees
-            "./docs/_build/doctrees", # Directory
-            "-D", # Flag to override settings in conf.py
-            "exclude_patterns=notebooks/*,_build", # Exclude notebooks and build dir from pre-commit
-          ]
-{%- elif include_docs %}
-    # Make sure Sphinx can build the documentation without issues.
-  - repo: local
-    hooks:
-      - id: sphinx-build
-        name: Build documentation with Sphinx
-        entry: sphinx-build
-        language: system
-        always_run: true
-        exclude_types: [file, symlink]
-        args:
-          [
-            "-T", # Show full trace back on exception
-            "-E", # Don't use saved env. always read all files.
-            "-b", # Flag to select which builder to use
-            "html", # Use the HTML builder
-            "-d", # Flag for cached environment and doctrees
-            "./docs/_build/doctrees", # directory
-            "./docs", # Source directory of documents
-            "./_readthedocs", # Output directory for rendered documents.
           ]
 {%- endif %}
     # Run unit tests, verify that they pass. Note that coverage is run against

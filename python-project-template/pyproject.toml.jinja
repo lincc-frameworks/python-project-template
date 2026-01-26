@@ -132,6 +132,8 @@ ignore = [
 {% endif -%}
 
 {%- if mypy_type_checking != 'none' %}
+[tool.mypy]
+python_version = "{{py.min(python_versions)}}"
 [tool.setuptools.package-data]
 {{package_name}} = ["py.typed"]
 {%- endif %}
