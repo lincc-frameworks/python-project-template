@@ -1,3 +1,6 @@
+"""Test basic validation of questions and answers."""
+
+
 def test_questions_default_answers(copie):
     """Create the project directory using copier"""
     # run copier to hydrate a temporary project
@@ -5,8 +8,9 @@ def test_questions_default_answers(copie):
     assert result.exit_code == 0
 
     answer_dict = result.answers
-    assert answer_dict["enforce_style"] != ''
+    assert answer_dict["enforce_style"] != ""
     assert answer_dict["create_example_module"]
+
 
 def test_questions_retrofit_answers(copie):
     """Create the project directory using copier"""
@@ -17,6 +21,7 @@ def test_questions_retrofit_answers(copie):
     answer_dict = result.answers
     assert "enforce_style" not in answer_dict
     assert "create_example_module" not in answer_dict
+
 
 def test_questions_invalid_project_name(copie):
     """Create the project directory using copier"""
