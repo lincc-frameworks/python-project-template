@@ -130,7 +130,7 @@ def test_code_style_combinations(copie, enforce_style, default_answers):
     extra_answers = default_answers | {
         "enforce_style": enforce_style,
     }
-    result = create_project_with_basic_checks(copie, extra_answers)
+    create_project_with_basic_checks(copie, extra_answers)
 
 
 @pytest.mark.parametrize(
@@ -149,11 +149,11 @@ def test_smoke_test_notification(copie, notification, default_answers):
         "failure_notification": notification,
     }
 
-    result = create_project_with_basic_checks(copie, extra_answers)
+    create_project_with_basic_checks(copie, extra_answers)
 
 
 @pytest.mark.parametrize(
-    "license",
+    "license_option",
     [
         [],
         ["MIT"],
@@ -162,11 +162,11 @@ def test_smoke_test_notification(copie, notification, default_answers):
         ["none"],
     ],
 )
-def test_license(copie, license, default_answers):
+def test_license(copie, license_option, default_answers):
     """Confirm we get a valid project for different license options."""
-    extra_answers = default_answers | {"license": license}
+    extra_answers = default_answers | {"license": license_option}
 
-    result = create_project_with_basic_checks(copie, extra_answers)
+    create_project_with_basic_checks(copie, extra_answers)
 
 
 @pytest.mark.parametrize(
@@ -220,7 +220,7 @@ def test_test_lowest_version(copie, test_lowest_version, default_answers):
         "test_lowest_version": test_lowest_version,
     }
 
-    result = create_project_with_basic_checks(copie, extra_answers)
+    create_project_with_basic_checks(copie, extra_answers)
 
 
 def test_github_workflows_schema(copie, default_answers):
@@ -229,4 +229,4 @@ def test_github_workflows_schema(copie, default_answers):
         "include_benchmarks": True,
         "include_docs": True,
     }
-    result = create_project_with_basic_checks(copie, extra_answers)
+    create_project_with_basic_checks(copie, extra_answers)

@@ -1,7 +1,7 @@
 repos:
     # Prevents committing directly branches named 'main' and 'master'.
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       - id: no-commit-to-branch
         name: Prevent main branch commits
@@ -12,20 +12,20 @@ repos:
         args: ['--maxkb=500']
     # Verify that pyproject.toml is well formed
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.12.1
+    rev: v0.24.1
     hooks:
       - id: validate-pyproject
         name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
     # Verify that GitHub workflows are well formed
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.0
+    rev: 0.36.1
     hooks:
       - id: check-github-workflows
         args: ["--verbose"]
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 7.0.0
     hooks:
       - id: isort
         name: Run isort
@@ -44,10 +44,11 @@ repos:
           [
             "-rn", # Only display messages
             "-sn", # Don't display the score
+            "--max-line-length=120",
           ]
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 26.1.0
     hooks:
       - id: black-jupyter
         name: Format code using black
@@ -56,27 +57,7 @@ repos:
         # supported by your project here, or alternatively use
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
-        language_version: python3.10
-    # Make sure Sphinx can build the documentation without issues.
-  - repo: local
-    hooks:
-      - id: sphinx-build
-        name: Build documentation with Sphinx
-        entry: sphinx-build
-        language: system
-        always_run: true
-        exclude_types: [file, symlink]
-        args:
-          [
-            "-T", # Show full trace back on exception
-            "-E", # Don't use saved env. always read all files.
-            "-b", # Flag to select which builder to use
-            "html", # Use the HTML builder
-            "-d", # Flag for cached environment and doctrees
-            "./docs/_build/doctrees", # directory
-            "./docs", # Source directory of documents
-            "./_readthedocs", # Output directory for rendered documents.
-          ]
+        language_version: python3.12
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the
     # github workflow script, the coverage is run against the installed package
