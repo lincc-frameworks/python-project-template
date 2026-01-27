@@ -18,6 +18,7 @@ classifiers = [
 dynamic = ["version"]
 requires-python = ">=3.9"
 dependencies = [
+    "setuptools_scm",
     "pyyaml-include<3.0",
 ]
 
