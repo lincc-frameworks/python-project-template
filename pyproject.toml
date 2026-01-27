@@ -1,3 +1,4 @@
+
 [project]
 name = "python-project-template"
 license = "BSD-3-Clause"
@@ -6,6 +7,7 @@ readme = "README.md"
 authors = [
     { name = "LINCC Frameworks", email = "lincc-frameworks-team@lists.lsst.org" }
 ]
+description = "LINCC-Framework's best practices for python code organization, testing, documentation, and automation."
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -14,16 +16,15 @@ classifiers = [
     "Programming Language :: Python",
 ]
 dynamic = ["version"]
-
+requires-python = ">=3.9"
 dependencies = [
-    "setuptools_scm",
-    "sphinx", # Used to automatically generate documentation
-    "sphinx-rtd-theme>=3.0", # Used to render documentation
-    "sphinx-copybutton",
     "pyyaml-include<3.0",
 ]
-requires-python = ">=3.9"
 
+[project.urls]
+"Source Code" = "https://github.com/lincc-frameworks/python-project-template"
+
+# On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
 [project.optional-dependencies]
 dev = [
     "black", # Used to format code

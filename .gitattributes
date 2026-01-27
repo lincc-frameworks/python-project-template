@@ -1,0 +1,24 @@
+# For explanation of this file and uses see
+# https://git-scm.com/docs/gitattributes
+# https://developer.lsst.io/git/git-lfs.html#using-git-lfs-enabled-repositories
+# https://lincc-ppt.readthedocs.io/en/latest/practices/git-lfs.html
+#
+# Used by https://github.com/lsst/afwdata.git
+# *.boost filter=lfs diff=lfs merge=lfs -text
+# *.dat filter=lfs diff=lfs merge=lfs -text
+# *.fits filter=lfs diff=lfs merge=lfs -text
+# *.gz filter=lfs diff=lfs merge=lfs -text
+#
+# apache parquet files
+# *.parq	filter=lfs diff=lfs merge=lfs -text
+#
+# sqlite files
+# *.sqlite3	filter=lfs diff=lfs merge=lfs -text
+#
+# gzip files
+# *.gz	filter=lfs diff=lfs merge=lfs -text
+#
+# png image files
+# *.png	filter=lfs diff=lfs merge=lfs -text
+
+.git_archival.txt export-subst

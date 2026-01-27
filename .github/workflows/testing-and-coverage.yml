@@ -1,4 +1,8 @@
-name: CI for Template
+
+# This workflow will install Python dependencies, run tests and report code coverage with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Unit test and code coverage
 
 on:
   push:
@@ -15,11 +19,11 @@ jobs:
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
 
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@main
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install uv
@@ -28,6 +32,7 @@ jobs:
       run: |
         sudo apt-get update
         uv pip install --system -e .[dev]
+        if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; fi
     - name: Run unit tests with pytest /  pytest-copie
       run: |
         git config --global init.defaultBranch main

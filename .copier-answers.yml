@@ -1,0 +1,30 @@
+# Changes here will be overwritten by Copier
+_commit: v2.2.0
+_src_path: gh:lincc-frameworks/python-project-template
+author_email: lincc-frameworks-team@lists.lsst.org
+author_name: LINCC Frameworks
+create_example_module: false
+custom_install: custom
+enforce_style:
+- pylint
+- black
+- isort
+failure_notification: []
+include_benchmarks: false
+include_docs: true
+include_notebooks: false
+mypy_type_checking: none
+package_name: python_project_template
+project_description: LINCC-Framework's best practices for python code organization,
+    testing, documentation, and automation.
+project_license: BSD
+project_name: python-project-template
+project_organization: lincc-frameworks
+python_versions:
+- '3.9'
+- '3.10'
+- '3.11'
+- '3.12'
+- '3.13'
+- '3.14'
+test_lowest_version: none

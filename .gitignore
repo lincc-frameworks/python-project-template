@@ -133,9 +133,18 @@ dmypy.json
 # vscode
 .vscode/
 
+# dask
+dask-worker-space/
+
+# tmp directory
+tmp/
+
 # Mac OS
 .DS_Store
 
 # Airspeed Velocity performance results
 _results/
 _html/
+
+# Project initialization script
+.initialize_new_project.sh
