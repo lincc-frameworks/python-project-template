@@ -57,7 +57,8 @@ def create_project_with_basic_checks(copie, extra_answers, package_name="example
     git_results = subprocess.run(["git", "add", "."], cwd=result.project_dir, check=False)
     assert git_results.returncode == 0
 
-    ## This will run ALL of the relevant pre-commits (excludes only "no-commit-to-branch,check-added-large-files")
+    ## This will run ALL of the relevant pre-commits
+    # (excludes only "no-commit-to-branch,check-added-large-files")
     precommit_results = subprocess.run(["pre-commit", "run", "-a"], cwd=result.project_dir, check=False)
     assert precommit_results.returncode == 0
 

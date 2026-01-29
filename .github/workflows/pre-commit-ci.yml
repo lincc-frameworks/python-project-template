@@ -1,0 +1,37 @@
+
+# This workflow runs pre-commit hooks on pushes and pull requests to main
+# to enforce coding style. To ensure correct configuration, please refer to:
+#  https://lincc-ppt.readthedocs.io/en/latest/practices/ci_precommit.html
+name: Run pre-commit hooks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  pre-commit-ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0 
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.11'
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        uv pip install --system .[dev]
+        if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; fi
+    - uses: pre-commit/action@v3.0.1
+      with:
+        extra_args: --all-files --verbose
+      env:
+        SKIP: "check-lincc-frameworks-template-version,no-commit-to-branch,check-added-large-files,validate-pyproject,sphinx-build,pytest-check"
+    - uses: pre-commit-ci/lite-action@v1.1.0
+      if: failure() && github.event_name == 'pull_request' && github.event.pull_request.draft == false

@@ -1,4 +1,26 @@
+
 repos:
+    # Compare the local template version to the latest remote template version
+    # This hook should always pass. It will print a message if the local version 
+    # is out of date.
+  - repo: https://github.com/lincc-frameworks/pre-commit-hooks
+    rev: v0.2.2
+    hooks:
+      - id: check-lincc-frameworks-template-version
+        name: Check template version
+        description: Compare current template version against latest
+        verbose: true
+    # Clear output from jupyter notebooks so that only the input cells are committed.
+  - repo: local
+    hooks:
+      - id: jupyter-nb-clear-output
+        name: Clear output from Jupyter notebooks
+        description: Clear output from Jupyter notebooks.
+        files: \.ipynb$
+        exclude: ^docs/pre_executed
+        stages: [pre-commit]
+        language: system
+        entry: jupyter nbconvert --clear-output
     # Prevents committing directly branches named 'main' and 'master'.
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -44,7 +66,7 @@ repos:
           [
             "-rn", # Only display messages
             "-sn", # Don't display the score
-            "--max-line-length=120",
+            "--rcfile=tests/.pylintrc",
           ]
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
@@ -57,7 +79,7 @@ repos:
         # supported by your project here, or alternatively use
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
-        language_version: python3.12
+        language_version: python3.11
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the
     # github workflow script, the coverage is run against the installed package
