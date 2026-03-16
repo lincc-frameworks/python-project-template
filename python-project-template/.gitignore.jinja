@@ -148,3 +148,7 @@ _html/
 
 # Project initialization script
 .initialize_new_project.sh
+{% if custom_install == 'library' %}
+# uv
+uv.lock
+{% endif %}
