@@ -231,3 +231,31 @@ def test_github_workflows_schema(copie, default_answers):
         "include_docs": True,
     }
     create_project_with_basic_checks(copie, extra_answers)
+
+
+@pytest.mark.parametrize(
+    "custom_install,uv_lock_ignored",
+    [
+        ("library", True),
+        ("command", False),
+        ("notebook", False),
+        ("custom", False),
+    ],
+)
+def test_uv_lock_in_gitignore(copie, default_answers, custom_install, uv_lock_ignored):
+    """Confirm that uv.lock is added to .gitignore only for library projects."""
+    extra_answers = default_answers | {"custom_install": custom_install}
+    result = copie.copy(extra_answers=extra_answers)
+
+    assert result.exit_code == 0 and result.exception is None
+
+    gitignore_path = result.project_dir / ".gitignore"
+    assert gitignore_path.is_file()
+
+    with open(gitignore_path, encoding="utf-8") as f:
+        gitignore_content = f.read()
+
+    if uv_lock_ignored:
+        assert "uv.lock" in gitignore_content
+    else:
+        assert "uv.lock" not in gitignore_content
