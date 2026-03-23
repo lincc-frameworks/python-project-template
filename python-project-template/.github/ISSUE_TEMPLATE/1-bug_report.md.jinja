@@ -15,7 +15,9 @@ assignees: ''
 <details>
 <summary>Traceback</summary>
 
+```
 FILL IN YOUR STACK TRACE HERE
+```
 
 </details>
 
