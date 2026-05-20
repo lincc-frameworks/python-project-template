@@ -119,6 +119,10 @@ select = [
     "D419",
     # Numpy v2.0 compatibility
     "NPY201",
+    {% if custom_install == 'library' %}
+    # flake8-print
+    "T201",
+    {% endif -%}
 ]
 ignore = [
     "UP006", # Allow non standard library generics in type hints
