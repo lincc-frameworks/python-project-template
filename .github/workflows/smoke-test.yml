@@ -41,7 +41,7 @@ jobs:
     - name: Run unit tests with pytest /  pytest-copie
       run: |
         git config --global init.defaultBranch main
-        python -m pytest --python_version ${{ matrix.python-version }}
+        python -m pytest tests --python_version ${{ matrix.python-version }}
     - name: Send status to Slack app
       if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
       id: slack
