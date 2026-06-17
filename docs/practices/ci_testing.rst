@@ -111,17 +111,17 @@ You'll need to create a Slack app. It's not as scary as it sounds!
 It will have certain permissions to post to particular channels, and will have
 an associated webhook URL that we'll use to send messages from GitHub to the app. 
 
-See `Slack's official documentation <https://api.slack.com/start/quickstart>`_ 
+See `Slack's official documentation <https://docs.slack.dev/app-management/quickstart-app-settings/>`_ 
 for setting up an app. We really only need steps 1 and 5, summarized below:
 
-- `Step 1 <https://api.slack.com/start/quickstart#creating>`_: Create an app
+- `Step 1 <https://docs.slack.dev/app-management/quickstart-app-settings/#creating>`_: Create an app
   from scratch. The ``App Name`` you select here will appear in the slack
   notificationw we create later, so use something descriptive enough, like:
 
    - <my project> Slack Bot
    - <my project> CI Reporter
 
-- `Step 5 <https://api.slack.com/start/quickstart#webhooks>`_: Add a new
+- `Step 5 <https://docs.slack.dev/app-management/quickstart-app-settings/#webhooks>`_: Add a new
   webhook and you'll give it permission to post to a specific slack channel.
   Copy the webook URL.
 
