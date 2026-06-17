@@ -125,6 +125,9 @@ for setting up an app. We really only need steps 1 and 5, summarized below:
   webhook and you'll give it permission to post to a specific slack channel.
   Copy the webook URL.
 
+In the Slack App settings, under "Collaborators", you can add more folks who can manage the App, 
+and webhooks. We recommend adding someone else with permissions to update the App.
+
 Github workflow step to post to webhook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
