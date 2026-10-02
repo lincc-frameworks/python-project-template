@@ -36,4 +36,4 @@ jobs:
     - name: Run unit tests with pytest /  pytest-copie
       run: |
         git config --global init.defaultBranch main
-        python -m pytest tests --python_version ${{ matrix.python-version }}
+        python -m pytest tests -o log_cli=true -vv --python_version ${{ matrix.python-version }}

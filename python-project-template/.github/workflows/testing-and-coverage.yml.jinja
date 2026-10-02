@@ -33,7 +33,7 @@ jobs:
         if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; fi
     - name: Run unit tests with pytest
       run: |
-        python -m pytest --cov={{package_name}} --cov-report=xml
+        python -m pytest -o log_cli=true -vv --cov={{package_name}} --cov-report=xml
     - name: Upload coverage report to codecov
       uses: codecov/codecov-action@v7
       with:
