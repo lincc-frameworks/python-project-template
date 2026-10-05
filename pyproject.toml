@@ -54,7 +54,7 @@ dev = [
 [build-system]
 requires = [
     "setuptools>=84.0.0", # Used to build and package the Python project
-    "setuptools_scm>=9.2.2", # Gets release version from git. Makes it available programmatically
+    "setuptools_scm>=10.2.1", # Gets release version from git. Makes it available programmatically
 ]
 build-backend = "setuptools.build_meta"
 
@@ -67,3 +67,6 @@ line-length = 110
 [tool.isort]
 profile = "black"
 line_length = 110
+
+[tool.pytest.ini_options]
+log_cli_level = "INFO"

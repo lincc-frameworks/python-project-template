@@ -23,13 +23,13 @@ jobs:
         python-version: {{ python_versions }}
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
       with:
         python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
     - name: Install uv
-      uses: astral-sh/setup-uv@v7
+      uses: astral-sh/setup-uv@v10.0.1
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -40,11 +40,11 @@ jobs:
         pip list
     - name: Run unit tests with pytest
       run: |
-        python -m pytest
+        python -m pytest -o log_cli=true -vv 
 {%- if 'email' in failure_notification %}
     - name: Send status to author's email      
       if: {% raw %}${{ failure() }} && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only email if the workflow failed and was not manually started. Customize this as necessary.
-      uses: dawidd6/action-send-mail@v3
+      uses: dawidd6/action-send-mail@v18
       with:
         # Required mail server address if not connection_url:
         server_address: smtp.gmail.com
@@ -81,7 +81,7 @@ jobs:
     - name: Send status to Slack app
       if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
       id: slack
-      uses: slackapi/slack-github-action@v2
+      uses: slackapi/slack-github-action@v4
       with:
         # For posting a rich message using Block Kit
         webhook: ${{ secrets.SLACK_WEBHOOK_URL }}

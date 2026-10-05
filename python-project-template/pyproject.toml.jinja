@@ -74,6 +74,7 @@ testpaths = [
     "docs",
 ]
 addopts = "--doctest-modules --doctest-glob=*.rst"
+log_cli_level = "INFO"
 
 {% if 'black' in enforce_style -%}
 [tool.black]
