@@ -42,8 +42,12 @@ jobs:
       run: |
         git config --global init.defaultBranch main
         python -m pytest tests -o log_cli=true -vv --python_version ${{ matrix.python-version }}
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ always() && needs.build.result == 'failure' && github.event_name != 'workflow_dispatch' }}
+    steps:
     - name: Send status to Slack app
-      if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
       id: slack
       uses: slackapi/slack-github-action@v4
       with:
@@ -63,7 +67,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "GitHub Action build result: *${{ job.status }}* :${{ job.status }}:"
+                  "text": "GitHub Action build result: *${{ needs.build.result }}* :x:"
                 }
               },
               {
