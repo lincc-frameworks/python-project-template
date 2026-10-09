@@ -142,6 +142,14 @@ include_notebooks:
         no: false
     when: "{{ include_docs }}"
 
+include_dev_guide:
+    help: Do you want to include a development guide markdown file for your repository?
+    type: bool
+    default: yes
+    choices:
+        yes: true
+        no: false
+
 include_benchmarks:
     help: Do you want to enable benchmarking?
     type: bool
