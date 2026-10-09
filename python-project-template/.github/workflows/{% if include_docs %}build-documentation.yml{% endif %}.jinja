@@ -10,17 +10,22 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions: {}
+
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
   cancel-in-progress: true
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
     - uses: actions/checkout@v7
+      with:
+        persist-credentials: false
     - name: Set up Python {{ py.pref(python_versions) }}
       uses: actions/setup-python@v7
       with:

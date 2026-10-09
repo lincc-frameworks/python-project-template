@@ -10,6 +10,8 @@ on:
     workflows: ["Run benchmarks for PR"]
     types: [completed]
 
+permissions: {}
+
 jobs:
   upload-pr-comment:
     runs-on: ubuntu-latest
@@ -17,6 +19,7 @@ jobs:
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
     permissions:
+      actions: read
       issues: write
       pull-requests: write
     steps:
