@@ -151,7 +151,7 @@ repos:
         args:
           ["docs/pre_executed/"]
 {%- endif %}
-{%- if not skip_all_source %}
+{%- if contains_code %}
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the
     # github workflow script, the coverage is run against the installed package
