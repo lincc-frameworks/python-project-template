@@ -10,13 +10,18 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions: {}
+
 jobs:
   pre-commit-ci:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v7
       with:
-        fetch-depth: 0 
+        fetch-depth: 0
+        persist-credentials: false
     - name: Set up Python
       uses: actions/setup-python@v7
       with:

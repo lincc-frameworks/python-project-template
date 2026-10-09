@@ -10,16 +10,22 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions: {}
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         python-version: {{ python_versions }}
 
     steps:
     - uses: actions/checkout@v7
+      with:
+        persist-credentials: false
     - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
       uses: actions/setup-python@v7
       with:
@@ -35,6 +41,7 @@ jobs:
       run: |
         python -m pytest -o log_cli=true -vv --cov={{package_name}} --cov-report=xml
     - name: Upload coverage report to codecov
+      if: github.event_name == 'push'
       uses: codecov/codecov-action@v7
       with:
         token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}

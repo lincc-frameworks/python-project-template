@@ -11,6 +11,8 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions: {}
+
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
   cancel-in-progress: true
@@ -27,6 +29,9 @@ env:
 jobs:
   asv-pr:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
     defaults:
       run:
         working-directory: ${{env.WORKING_DIR}}
@@ -39,6 +44,7 @@ jobs:
       uses: actions/checkout@v7
       with:
         fetch-depth: 0
+        persist-credentials: false
     - name: Display Workflow Run Information
       run: |
         echo "Workflow Run ID: ${{github.run_id}}"
