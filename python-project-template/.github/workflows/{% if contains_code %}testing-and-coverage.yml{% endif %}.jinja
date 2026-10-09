@@ -49,6 +49,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
+      with:
+        persist-credentials: false
     - name: Set up Python {{ py.min(python_versions)  }}
       uses: actions/setup-python@v7
       with:
