@@ -18,6 +18,17 @@ custom_install:
         retrofitting existing project: retrofit
         custom: custom
 
+contains_code:
+    help: The repo contains some code that should be tested.
+    type: bool
+    default: >-
+        {% if custom_install != 'notebook' %}
+        true
+        {% else %}
+        false
+        {% endif %}
+    when: false  # Automatically determined, not asked to the user.
+
 project_name:
     type: str
     help: What is the name of your project?
@@ -119,7 +130,7 @@ mypy_type_checking:
 create_example_module:
     help: Do you want to create some example module code?
     type: bool
-    default: yes
+    default: "{{ contains_code }}"
     choices:
         yes: true
         no: false
@@ -153,7 +164,7 @@ include_dev_guide:
 include_benchmarks:
     help: Do you want to enable benchmarking?
     type: bool
-    default: yes
+    default: "{{ contains_code }}"
     choices:
         yes: true
         no: false
