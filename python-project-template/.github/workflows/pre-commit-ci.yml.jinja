@@ -22,7 +22,7 @@ jobs:
       with:
         python-version: '{{ py.pref(python_versions) }}'
     - name: Install uv
-      uses: astral-sh/setup-uv@v10.0.1
+      uses: astral-sh/setup-uv@v10.2.0
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -33,5 +33,5 @@ jobs:
         extra_args: --all-files --verbose
       env:
         SKIP: "check-lincc-frameworks-template-version,no-commit-to-branch,check-added-large-files,validate-pyproject,sphinx-build,pytest-check"
-    - uses: pre-commit-ci/lite-action@v1.1.0
+    - uses: pre-commit-ci/lite-action@v1.2.0
       if: failure() && github.event_name == 'pull_request' && github.event.pull_request.draft == false
