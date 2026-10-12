@@ -32,11 +32,11 @@ jobs:
         working-directory: ${{env.WORKING_DIR}}
     steps:
     - name: Set up Python ${{env.PYTHON_VERSION}}
-      uses: actions/setup-python@v7
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
       with:
         python-version: ${{env.PYTHON_VERSION}}
     - name: Checkout main branch of the repository
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       with:
         fetch-depth: 0
         persist-credentials: false
@@ -59,7 +59,7 @@ jobs:
     - name: Run ASV for the main branch
       run: asv run ALL --skip-existing --verbose || true
     - name: Submit new results to the "benchmarks" branch
-      uses: JamesIves/github-pages-deploy-action@v4
+      uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445
       with:
         branch: benchmarks
         folder: ${{env.WORKING_DIR}}/_results
@@ -69,7 +69,7 @@ jobs:
         asv show
         asv publish
     - name: Deploy to Github pages
-      uses: JamesIves/github-pages-deploy-action@v4
+      uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445
       with:
         branch: gh-pages
         folder: ${{env.WORKING_DIR}}/_html
