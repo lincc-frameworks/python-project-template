@@ -24,6 +24,8 @@ jobs:
       id-token: write
     steps:
     - uses: actions/checkout@v7
+      with:
+        persist-credentials: false
     - name: Set up Python
       uses: actions/setup-python@v7
       with:
