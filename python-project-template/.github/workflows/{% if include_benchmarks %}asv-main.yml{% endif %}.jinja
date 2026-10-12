@@ -59,7 +59,7 @@ jobs:
     - name: Run ASV for the main branch
       run: asv run ALL --skip-existing --verbose || true
     - name: Submit new results to the "benchmarks" branch
-      uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f
+      uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445
       with:
         branch: benchmarks
         folder: ${{env.WORKING_DIR}}/_results
@@ -69,7 +69,7 @@ jobs:
         asv show
         asv publish
     - name: Deploy to Github pages
-      uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f
+      uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445
       with:
         branch: gh-pages
         folder: ${{env.WORKING_DIR}}/_html
