@@ -57,6 +57,12 @@ dev = [
 {%- endif %}
 ]
 
+{%- if contains_code %}
+# Command-line scripts that can be run after installing the package
+[project.scripts]
+{{package_name}}_version = "{{package_name}}_cli.{{package_name}}_version:main"
+{%- endif %}
+
 [build-system]
 requires = [
     "setuptools>=62", # Used to build and package the Python project
