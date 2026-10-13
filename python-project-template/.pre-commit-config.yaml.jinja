@@ -99,7 +99,9 @@ repos:
         # supported by your project here, or alternatively use
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
-        language_version: python{{ py.pref(python_versions) }}
+        # This currently uses the default language version. Uncomment
+        # the following line to use the max version.
+        # language_version: python{{ py.max(python_versions) }}
 {%- endif %}
 {%- if 'ruff_lint' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
