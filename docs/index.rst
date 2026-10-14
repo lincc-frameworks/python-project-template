@@ -54,4 +54,3 @@ please :doc:`/source/contact`
    practices/publishing_package
    practices/customizing_project
    practices/development_guide
-

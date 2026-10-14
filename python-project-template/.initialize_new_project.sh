@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Bash Unofficial strict mode (http://redsymbol.net/articles/unofficial-bash-strict-mode/) 
+# Bash Unofficial strict mode (http://redsymbol.net/articles/unofficial-bash-strict-mode/)
 # and (https://disconnected.systems/blog/another-bash-strict-mode/)
 set -o nounset # Any uninitialized variable is an error
 set -o errexit # Exit the script on the failure of any command to execute without error
