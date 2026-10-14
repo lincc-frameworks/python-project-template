@@ -46,9 +46,9 @@ jobs:
         pip list
     - name: Run unit tests with pytest
       run: |
-        python -m pytest -o log_cli=true -vv 
+        python -m pytest -o log_cli=true -vv
 {%- if 'email' in failure_notification %}
-    - name: Send status to author's email      
+    - name: Send status to author's email
       if: {% raw %}${{ failure() }} && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only email if the workflow failed and was not manually started. Customize this as necessary.
       uses: dawidd6/action-send-mail@67ce3558d613188179559c61d3565140cf389968  # v22
       with:

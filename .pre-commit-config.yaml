@@ -1,7 +1,7 @@
 
 repos:
     # Compare the local template version to the latest remote template version
-    # This hook should always pass. It will print a message if the local version 
+    # This hook should always pass. It will print a message if the local version
     # is out of date.
   - repo: https://github.com/lincc-frameworks/pre-commit-hooks
     rev: 439dda8bd784f4aa721851ecec03877df286f6b5
