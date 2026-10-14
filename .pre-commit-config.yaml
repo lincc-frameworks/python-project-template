@@ -38,7 +38,7 @@ repos:
         description: Prevent the user from committing very large files.
         args: ['--maxkb=500']
       - id: trailing-whitespace
-        args: [--markdown-linebreak-ext=md]  # Keep markdown line breaks
+        exclude: \.(rst|md|txt|html)$  # Skip rst, md, txt, and html files
         name: Fix trailing whitespace
       - id: end-of-file-fixer
         name: Files end with a newline

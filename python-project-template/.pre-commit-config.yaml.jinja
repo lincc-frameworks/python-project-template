@@ -21,7 +21,12 @@ repos:
         stages: [pre-commit]
         language: system
         entry: jupyter nbconvert --clear-output
-    # Prevents committing directly branches named 'main' and 'master'.
+    # Run a series of standard precommit checks, including:
+    #  - no commits to branches named 'main' and 'master'.
+    #  - No large files (>= 500kb)
+    #  - All YAML and TOML files are valid.
+    #  - No whitespace at the end of lines and a single newline at end of file.
+    #  - No outstanding merge conflict markers in the codebase.
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # v6.0.0
     hooks:
@@ -32,6 +37,18 @@ repos:
         name: Check for large files
         description: Prevent the user from committing very large files.
         args: ['--maxkb=500']
+      - id: trailing-whitespace
+        exclude: \.(rst|md|txt|html)$  # Skip rst, md, txt, and html files
+        name: Fix trailing whitespace
+      - id: end-of-file-fixer
+        name: Files end with a newline
+      - id: check-toml
+        name: Validate TOML files
+      - id: check-yaml
+        args: [--allow-multiple-documents]  # Allow multiple document format
+        name: Validate YAML files
+      - id: check-merge-conflict
+        name: Check for merge conflicts
     # Verify that pyproject.toml is well formed
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: 17e12779811926f000bdfa1795f9e3735dd71ac3  # v0.26
