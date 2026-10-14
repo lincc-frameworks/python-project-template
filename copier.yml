@@ -49,7 +49,7 @@ package_name:
 
 project_organization:
     type: str
-    help: What github organization will your project live under? 
+    help: What github organization will your project live under?
     default: my-organization
     validator: >-
         {% if not (project_organization | regex_search('^[a-zA-Z0-9][a-zA-Z0-9-]*$')) %}
