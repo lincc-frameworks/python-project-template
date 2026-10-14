@@ -37,11 +37,11 @@ jobs:
         working-directory: ${{env.WORKING_DIR}}
     steps:
     - name: Set up Python ${{env.PYTHON_VERSION}}
-      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
       with:
         python-version: ${{env.PYTHON_VERSION}}
     - name: Checkout PR branch of the repository
-      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       with:
         fetch-depth: 0
         persist-credentials: false
@@ -55,7 +55,7 @@ jobs:
     - name: Save pull request number
       run: echo ${{github.event.pull_request.number}} > ${{env.ARTIFACTS_DIR}}/pr
     - name: Get current job logs URL
-      uses: Tiryoh/gha-jobid-action@be260d8673c9211a84cdcf37794ebd654ba81eef
+      uses: Tiryoh/gha-jobid-action@be260d8673c9211a84cdcf37794ebd654ba81eef  # v1.4.0
       id: jobs
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
@@ -74,7 +74,7 @@ jobs:
       env:
         STEP_URL: ${{steps.jobs.outputs.html_url}}#step:10:1
     - name: Upload artifacts (PR number and benchmarks output)
-      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
       with:
         name: benchmark-artifacts
         path: ${{env.ARTIFACTS_DIR}}
