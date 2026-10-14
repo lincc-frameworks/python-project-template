@@ -16,11 +16,12 @@ Issue Templates
 
 Issue templates are highly customizable, and it's often appropriate to have
 multiple available to users to promote better organization of common issue
-types. By default, the python-project-template provides three base templates
+types. By default, the python-project-template provides two base templates
 
-* **general-issue-template**: A general issue template for issues that don't fit into other categories.
 * **bug-report-template**: A template specific to identifying bugs within the package.
 * **feature-request-template**: A template for requesting new features of the package.
+
+In addition, GitHub provides a default blank issue template for issues that don't fit into other categories.
 
 A user will be prompted to choose between these templates any time they attempt
 to create a new issue in the repository. You may add new templates to this 
