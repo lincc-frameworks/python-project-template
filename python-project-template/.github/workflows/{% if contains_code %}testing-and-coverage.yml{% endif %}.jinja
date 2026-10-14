@@ -42,7 +42,7 @@ jobs:
       run: |
         python -m pytest -o log_cli=true -vv --cov={{package_name}} --cov-report=xml
     - name: Upload coverage report to codecov
-      uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5
+      uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5  # v7.1.1
       with:
         token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
 {%- if test_lowest_version != 'none' %}
