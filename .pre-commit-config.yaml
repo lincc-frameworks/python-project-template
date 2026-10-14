@@ -96,7 +96,9 @@ repos:
         # supported by your project here, or alternatively use
         # pre-commit's default_language_version, see
         # https://pre-commit.com/#top_level-default_language_version
-        language_version: python3.11
+        # This currently uses the default language version. Uncomment
+        # the following line to use the max version.
+        # language_version: python{{ py.max(python_versions) }}
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the
     # github workflow script, the coverage is run against the installed package
