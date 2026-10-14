@@ -1,10 +1,10 @@
 {%- import 'python-versions.jinja' as py %}
 repos:
     # Compare the local template version to the latest remote template version
-    # This hook should always pass. It will print a message if the local version 
+    # This hook should always pass. It will print a message if the local version
     # is out of date.
   - repo: https://github.com/lincc-frameworks/pre-commit-hooks
-    rev: 439dda8bd784f4aa721851ecec03877df286f6b5
+    rev: 439dda8bd784f4aa721851ecec03877df286f6b5  # v0.2.2
     hooks:
       - id: check-lincc-frameworks-template-version
         name: Check template version
@@ -23,7 +23,7 @@ repos:
         entry: jupyter nbconvert --clear-output
     # Prevents committing directly branches named 'main' and 'master'.
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # v6.0.0
     hooks:
       - id: no-commit-to-branch
         name: Prevent main branch commits
@@ -34,21 +34,21 @@ repos:
         args: ['--maxkb=500']
     # Verify that pyproject.toml is well formed
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: 17e12779811926f000bdfa1795f9e3735dd71ac3
+    rev: 17e12779811926f000bdfa1795f9e3735dd71ac3  # v0.26
     hooks:
       - id: validate-pyproject
         name: Validate pyproject.toml
         description: Verify that pyproject.toml adheres to the established schema.
     # Verify that GitHub workflows are well formed
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0494aa7fa1314e98913a41227d8f0a515b2c1049
+    rev: 0494aa7fa1314e98913a41227d8f0a515b2c1049  # v0.38.2
     hooks:
       - id: check-github-workflows
         args: ["--verbose"]
 {%- if 'isort' in enforce_style %}
     # Automatically sort the imports used in .py files
   - repo: https://github.com/pycqa/isort
-    rev: 9f905615631c545f5aea2516508109350d1d2f7d
+    rev: 9f905615631c545f5aea2516508109350d1d2f7d  # v9.0.2
     hooks:
       - id: isort
         name: Run isort
@@ -90,7 +90,7 @@ repos:
 {%- if 'black' in enforce_style %}
     # Analyze the code style and report code that doesn't adhere.
   - repo: https://github.com/psf/black
-    rev: 258e7dbf348bc23cb70b8cdf693481c04634ebcc
+    rev: 258e7dbf348bc23cb70b8cdf693481c04634ebcc  # v26.10.1
     hooks:
       - id: black-jupyter
         name: Format code using black
@@ -106,7 +106,7 @@ repos:
 {%- if 'ruff_lint' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: 44b5042edab9382aba712eed4f9c7bab7a3d6a3e
+    rev: 44b5042edab9382aba712eed4f9c7bab7a3d6a3e  # v0.17.0
     hooks:
       - id: ruff
         name: Lint code using ruff; sort and organize imports 
@@ -116,7 +116,7 @@ repos:
 {%- if 'ruff_format' in enforce_style %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: 44b5042edab9382aba712eed4f9c7bab7a3d6a3e
+    rev: 44b5042edab9382aba712eed4f9c7bab7a3d6a3e  # v0.17.0
     hooks:
       - id: ruff-format
         name: Format code using ruff
@@ -125,7 +125,7 @@ repos:
 {%- if mypy_type_checking != 'none' %}
     # Analyze type hints and report errors.
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 2834ec6639549dd6796205c8f011dedcd587288b
+    rev: 2834ec6639549dd6796205c8f011dedcd587288b  # v2.4.0
     hooks:
       - id: mypy
         name: mypy (python files in src/ and tests/)
@@ -144,7 +144,7 @@ repos:
 {%- endif %}
 {%- if include_docs and include_notebooks %}
   - repo: https://github.com/lincc-frameworks/pre-commit-hooks
-    rev: 439dda8bd784f4aa721851ecec03877df286f6b5
+    rev: 439dda8bd784f4aa721851ecec03877df286f6b5  # v0.2.2
     hooks:
       - id: pre-executed-nb-never-execute
         name: Check pre-executed notebooks
