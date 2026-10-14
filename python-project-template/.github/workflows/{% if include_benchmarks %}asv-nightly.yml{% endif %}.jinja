@@ -39,7 +39,7 @@ jobs:
         fetch-depth: 0
         persist-credentials: false
     - name: Install dependencies
-      run: pip install asv[virtualenv]==${{env.ASV_VERSION}}
+      run: pip install asv==${{env.ASV_VERSION}}
     - name: Configure git
       run: |
         git config user.name "github-actions[bot]"
