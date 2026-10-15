@@ -1,5 +1,5 @@
 1. Purpose of the project
---------------------------------
+-------------------------
   
    +------------+------------------------------------------------------------+
    | Question   | What is the purpose of this installation?                  |
@@ -256,7 +256,7 @@ A sample notebook will be generated and added to your docs as an example.
 
 
 15. Commandline Files
---------------------
+---------------------
 
    +------------+---------------------------------------------------------------+
    | Question   | Do you want to include commandline files for your project?    |
