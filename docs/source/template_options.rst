@@ -1,15 +1,19 @@
-1. Simple or custom installation
---------------------------------
+1. Purpose of the project
+-------------------------
+  
+   +------------+------------------------------------------------------------+
+   | Question   | What is the purpose of this installation?                  |
+   +------------+------------------------------------------------------------+
+   | Options    | library, command, notebook, retrofit, **✱ customized**     |
+   +------------+------------------------------------------------------------+
 
-   +------------+----------------------------------------------------------------------------+
-   | Question   | Would you like to use simple (default tooling) or customized installation? |
-   +------------+----------------------------------------------------------------------------+
-   | Options    | **✱ customized**, simple                                                   |
-   +------------+----------------------------------------------------------------------------+
+This question will determine how the project is set up and what options are presented. The options include:
 
-.. Something I'm struggling with is how to demarkate the default values that a simple install uses.
-
-Choosing "simple installation" will use the default values listed at the top of each of the following sections (labeled `Default` or marked with a ✱).
+* library: python library - This creates a standard Python library meant to be installed with something like `pip` and called from other applications. It includes benchmarking and notebook options, but not commandline utils.
+* command: command line application - This sets up the project as a command line tool.
+* notebook: collection of notebooks - This sets up the project to include Jupyter notebooks. By default it won't create a source tree, benchmarks, etc.
+* retrofit: retrofitting existing project - This adapts an existing project to fit the template structure.
+* custom: custom (DEFAULT) - This allows for a fully customized setup.
 
 
 2. Name of your project
@@ -251,7 +255,43 @@ A sample notebook will be generated and added to your docs as an example.
 .. Caution:: ReadTheDocs builds timeout after 30 minutes, which means all included notebooks must be able to render in that time frame.
 
 
-15. Benchmarking
+15. Commandline Files
+---------------------
+
+   +------------+---------------------------------------------------------------+
+   | Question   | Do you want to include commandline files for your project?    |
+   +------------+---------------------------------------------------------------+
+   | Options    | **✱ yes**, no                                                 |
+   +------------+---------------------------------------------------------------+
+
+The template will create directories and configuration files to enable commandline scripts::
+
+    project_name/
+    ├─ src/
+    │  ├─ {package_name}_cli/
+    │  │  ├─ __init__.py
+    │  │  ├─ {package_name}_version.py
+
+The commandline files are located under ``src/{package_name}_cli/`` and must be linked from the pyproject.toml to be installed as commandline scripts.
+
+
+16. Developer Guide
+-------------------
+
+   +------------+--------------------------------------------------------------------------------+
+   | Question   | Do you want to include a development guide markdown file for your repository?  |
+   +------------+--------------------------------------------------------------------------------+
+   | Options    | **✱ yes**, no                                                                  |
+   +------------+--------------------------------------------------------------------------------+
+
+Include a basic development guide for your repository, outlining guiding design principles, how to setup and run tests, and coding conventions. This document is meant to be read by both humans and AI agents to enable consistent contributions to the project. An AGENTS.md file is also created with default instructions for the agent to read the development guide.
+
+    project_name/
+    ├─ DEVELOPMENT_GUIDE.md
+    ├─ AGENTS.md
+
+
+17. Benchmarking
 ----------------
 
    +------------+-------------------------------------------------+
@@ -274,7 +314,8 @@ It will also create a sample benchmarking suite under ``benchmarks/``::
 
 Read more at :doc:`../practices/ci_benchmarking`.
 
-16. Test against lowest versions
+
+18. Test against lowest versions
 ------------------------------------------------
 
    +------------+---------------------------------------------------------------+
