@@ -57,7 +57,8 @@ dev = [
 {%- endif %}
 ]
 
-{%- if contains_code %}
+{%- if include_cli_files %}
+
 # Command-line scripts that can be run after installing the package
 [project.scripts]
 {{package_name}}_version = "{{package_name}}_cli.{{package_name}}_version:main"
