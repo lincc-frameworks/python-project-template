@@ -42,7 +42,7 @@ repos:
         args: [--allow-multiple-documents]  # Allow multiple document format
         name: Validate YAML files
       - id: check-merge-conflict
-        name: Check for merge conflicts
+        name: Check for files that contain merge conflict strings
     # Verify that pyproject.toml is well formed
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: 17e12779811926f000bdfa1795f9e3735dd71ac3
