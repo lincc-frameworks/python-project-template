@@ -153,6 +153,18 @@ include_notebooks:
         no: false
     when: "{{ include_docs }}"
 
+include_cli_files:
+    help: Do you want to include commandline files for your project?
+    type: bool
+    default: "{{ custom_install == 'command' }}"
+    choices:
+        yes: true
+        no: false
+    # Only ask about CLI files if the project is being set up for retrofit
+    # or custom installation. Autoset to true for command installation, and
+    # false for notebooks and library.
+    when: "{{ custom_install == 'retrofit' or custom_install == 'custom'}}"
+
 include_dev_guide:
     help: Do you want to include a development guide markdown file for your repository?
     type: bool
