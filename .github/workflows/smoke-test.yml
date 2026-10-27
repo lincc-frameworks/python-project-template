@@ -47,13 +47,20 @@ jobs:
       run: |
         git config --global init.defaultBranch main
         python -m pytest tests -o log_cli=true -vv --python_version ${{ matrix.python-version }}
+
+  notify:
+
+    needs: build
+    if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Send status to Slack app
-      if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
       id: slack
       uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d  # v4.0.0
       with:
         webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-        webhook-type: webhook-trigger
+        webhook-type: incoming-webhook
         payload: |
           {
             "blocks": [
@@ -68,7 +75,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "GitHub Action build result: *${{ job.status }}* :${{ job.status }}:"
+                  "text": "GitHub Action build result: *${{ needs.build.result }}* :${{ needs.build.result }}:"
                 }
               },
               {
