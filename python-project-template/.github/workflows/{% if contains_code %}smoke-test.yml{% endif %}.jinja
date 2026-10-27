@@ -47,9 +47,20 @@ jobs:
     - name: Run unit tests with pytest
       run: |
         python -m pytest -o log_cli=true -vv
+{%- if 'email' in failure_notification or 'slack' in failure_notification %}
+    {%- raw %}
+
+  notify:
+
+    needs: build
+    # Only notify if the workflow failed and was not manually started. Customize this as necessary.
+    if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    {%- endraw %}
 {%- if 'email' in failure_notification %}
     - name: Send status to author's email
-      if: {% raw %}${{ failure() }} && github.event_name != 'workflow_dispatch' }}{% endraw %} # Only email if the workflow failed and was not manually started. Customize this as necessary.
       uses: dawidd6/action-send-mail@67ce3558d613188179559c61d3565140cf389968  # v22
       with:
         # Required mail server address if not connection_url:
@@ -65,7 +76,7 @@ jobs:
         to: {{ author_email }}
 
         # Required mail subject:
-        subject: {% raw %}Smoke test ${{ job.status }} in ${{github.repository}}{% endraw %}
+        subject: {% raw %}Smoke test ${{ needs.build.result }} in ${{github.repository}}{% endraw %}
         # Required sender full name:
         from: GitHub Actions Report
         # Optional body:
@@ -73,8 +84,8 @@ jobs:
           <!DOCTYPE html>
           <html>
           <body>
-          <h3>Smoke test ${{ job.status }}</h3>
-          <p>The smoke test in <b>${{ github.repository }}</b> has completed with result: <b>${{ job.status }}</b></p>
+          <h3>Smoke test ${{ needs.build.result }}</h3>
+          <p>The smoke test in <b>${{ github.repository }}</b> has completed with result: <b>${{ needs.build.result }}</b></p>
           <p><a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}">
           ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           </a></p>
@@ -85,13 +96,12 @@ jobs:
 {%- if 'slack' in failure_notification %}
     {%- raw %}
     - name: Send status to Slack app
-      if: ${{ failure() && github.event_name != 'workflow_dispatch' }}
       id: slack
       uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d  # v4.0.0
       with:
         # For posting a rich message using Block Kit
         webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-        webhook-type: webhook-trigger
+        webhook-type: incoming-webhook
         payload: |
           {
             "blocks": [
@@ -99,10 +109,11 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": ":${{ job.status }}: *${{ github.repository }}:* ${{ matrix.python-version }} (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|run #${{ github.run_number }}>)"
+                  "text": ":${{ needs.build.result }}: *${{ github.repository }}* (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|run #${{ github.run_number }}>)"
                 }
               }
             ]
           }
     {%- endraw %}
+{%- endif %}
 {%- endif %}
